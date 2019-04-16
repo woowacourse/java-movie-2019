@@ -1,29 +1,87 @@
 package validator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 import domain.Movie;
+import domain.MovieRepository;
+import domain.PlaySchedule;
 
 public class ScheduleValidator implements Validator {
 
-    private final Movie movie;
-    private final String scheduleNum;
+    private static final String delimiter = ":";
 
-    public ScheduleValidator(Movie movie, String scheduleNum) {
-        this.movie = movie;
-        this.scheduleNum = scheduleNum;
+    private final Map<String, String> schedules;     // Movie, schedule
+
+    public ScheduleValidator(List<String> schedule) {
+        this.schedules = new HashMap<>();
+        for (String s : schedule) {
+            String[] movieAndSchedule = splitByDelimeter(s);
+            insertMovieAndSchedule(movieAndSchedule);
+        }
     }
 
     @Override
     public boolean doesValid() {
-        return doesScheduleInputIsValid()
-                && doesPlaySchedulesExist();
+        return doesMovieAndScheduleInputIsValid()
+                && doesMovieAndPlaySchedulesExist();
     }
 
-    public boolean doesScheduleInputIsValid() {
-        MovieInputValidator movieInputValidator = new MovieInputValidator(scheduleNum);
-        return movieInputValidator.doesValid();
+    private boolean doesMovieAndScheduleInputIsValid() {
+        List<String> movieList = new ArrayList<>(schedules.keySet());
+        List<String> scheduleList = new ArrayList<>(schedules.values());
+
+        return doesInputIsValid(movieList) && doesInputIsValid(scheduleList);
     }
 
-    public boolean doesPlaySchedulesExist() {
-        return movie.doesPlaySchedulesHas(Integer.parseInt(scheduleNum));
+    private boolean doesInputIsValid(List<String> inputs) {
+        return !inputs.stream()
+                .map(MovieInputValidator::new)
+                .noneMatch((movieInputValidator) -> movieInputValidator.doesValid());
+    }
+
+    private boolean doesMovieAndPlaySchedulesExist() {
+        return !schedules.entrySet().stream()
+                .noneMatch((movieAndSchedule) -> {
+                    int movieId = Integer.parseInt(movieAndSchedule.getKey());
+                    int schedule = Integer.parseInt(movieAndSchedule.getValue());
+                    Movie movie = MovieRepository.getMovieById(movieId);
+                    if (movie == null) {
+                        return false;
+                    }
+                    return movie.doesPlaySchedulesHas(schedule);
+                });
+    }
+
+    private void insertMovieAndSchedule(String[] movieAndSchedule) {
+        schedules.put(movieAndSchedule[0], movieAndSchedule[1]);     // TODO 입력값이 1:1 등이 아닐 때 예외 처리할 것
+    }
+
+    private boolean doesEachScheduleAreOneHourWithinRange() {
+        return !schedules.entrySet().stream()
+                .noneMatch((movieAndSchedule) -> {
+                    int movieId = Integer.parseInt(movieAndSchedule.getKey());
+                    int schedule = Integer.parseInt(movieAndSchedule.getValue());
+                    Movie movie = MovieRepository.getMovieById(movieId);
+                    PlaySchedule playSchedule = movie.getScheduleByIndex(schedule);
+                    return doesScheduleAreOneHourWithinRange(playSchedule);         // 하나의 스케쥴을 가지고 전체 스케쥴과 비교
+                });
+    }
+
+    private boolean doesScheduleAreOneHourWithinRange(PlaySchedule playSchedule1) {
+        return !schedules.entrySet().stream()
+                .noneMatch((movieAndSchedule) -> {
+                    int movieId = Integer.parseInt(movieAndSchedule.getKey());
+                    int schedule = Integer.parseInt(movieAndSchedule.getValue());
+                    Movie movie = MovieRepository.getMovieById(movieId);
+                    PlaySchedule playSchedule2 = movie.getScheduleByIndex(schedule);
+                    return playSchedule1.isOneHourWithinRange(playSchedule2);
+                });
+    }
+
+    private String[] splitByDelimeter(String input) {
+        return input.split(delimiter);
     }
 }

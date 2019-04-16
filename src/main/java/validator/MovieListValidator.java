@@ -3,31 +3,33 @@ package validator;
 import domain.Movie;
 import domain.MovieRepository;
 
-import java.util.Set;
+import java.util.List;
 
 public class MovieListValidator implements Validator {
 
-    private final Set<String> movieIdSet;
+    private final List<String> movieIdSet;
 
-    public MovieListValidator(Set<String> movieIds) {
+    public MovieListValidator(List<String> movieIds) {
         movieIdSet = movieIds;
     }
 
     @Override
     public boolean doesValid() {
         return doesEachMovieInputIsValid()
-                && doesEachMovieIdBelowMovieListLength();
+                && doesEachMovieIdExist();
     }
 
-    boolean doesEachMovieInputIsValid() {
+    private boolean doesEachMovieInputIsValid() {
         return !movieIdSet.stream()
                 .map(MovieInputValidator::new)
-                .anyMatch((inputValidator) -> !inputValidator.doesValid());
+                .noneMatch((inputValidator) -> inputValidator.doesValid());
     }
 
-    boolean doesEachMovieIdBelowMovieListLength() {
-        int movieListLen = MovieRepository.getMovies().size();
+    private boolean doesEachMovieIdExist() {
+        List<Movie> movieList = MovieRepository.getMovies();
         return !movieIdSet.stream()
-                .anyMatch((movieId) -> Integer.parseInt(movieId) > movieListLen);
+                .noneMatch((movieId) -> {
+                    return MovieRepository.contains(Integer.parseInt(movieId));
+                });
     }
 }

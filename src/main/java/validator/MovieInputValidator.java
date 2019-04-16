@@ -13,11 +13,11 @@ public class MovieInputValidator implements Validator {
         return doesInputIsNumeric() && doesInputIsNotNull();
     }
 
-    boolean doesInputIsNumeric() {
+    private boolean doesInputIsNumeric() {
         return input.matches("[0-9]+");
     }
 
-    boolean doesInputIsNotNull() {
+    private boolean doesInputIsNotNull() {
         return input != null;
     }
 }

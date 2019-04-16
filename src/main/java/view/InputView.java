@@ -1,11 +1,16 @@
 package view;
 
-import validator.MovieInputValidator;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import validator.MovieListValidator;
+import validator.ScheduleValidator;
 import validator.Validator;
 
-import java.util.Scanner;
-
 public class InputView {
+    private static final String INPUT_DELIMITER = ",";
+    private static final String SCHEDULE_DELIMITER = ":";
+
     private final Scanner scanner;
     private Validator validator;
 
@@ -14,14 +19,36 @@ public class InputView {
         validator = null;
     }
 
-    public int inputMovieId() {
-        String input = null;
+    public List<Integer> inputMovieIds() {
+        String[] inputs = null;
         do {
-            System.out.println("## 예약할 영화를 선택하세요.");
-            input = scanner.nextLine();
-            validator = new MovieInputValidator(input);
-        } while(!validator.doesValid());
+            System.out.println("## 예약할 영화들을 " + INPUT_DELIMITER + " 를 기준으로 나눠서" + " 선택하세요.");
+            inputs = scanner.nextLine().split(INPUT_DELIMITER);
+            validator = new MovieListValidator(Arrays.asList(inputs));
+        } while (!validator.doesValid());
 
-        return Integer.parseInt(input);
+        return Collections.unmodifiableList(
+                Arrays.asList(inputs).stream().map(Integer::parseInt).collect(Collectors.toList()));
+    }
+
+    public Map<Integer, Integer> inputMovieSchedules() {
+        String[] inputs = null;
+        do {
+            System.out.println("## 각 영화별 예약할 시간표를 " + SCHEDULE_DELIMITER + " 를 기준으로 하여"
+                    + "선택하세요(첫번째 상영 시간이 1번)." + "  e.g. 1:1, 5:3");
+            inputs = scanner.nextLine().split(INPUT_DELIMITER);
+            validator = new ScheduleValidator(Arrays.asList(inputs));
+        } while (!validator.doesValid());
+
+        return makeMovieSchedules(inputs);
+    }
+
+    private Map<Integer, Integer> makeMovieSchedules(String[] inputs) {
+        Map<Integer, Integer> result = new HashMap<>();
+        for (String s : inputs) {
+            String[] movieAndSchedule = s.split(SCHEDULE_DELIMITER);
+            result.put(Integer.parseInt(movieAndSchedule[0]), Integer.parseInt(movieAndSchedule[1]));
+        }
+        return Collections.unmodifiableMap(result);
     }
 }

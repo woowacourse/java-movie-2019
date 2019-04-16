@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.DateTimeUtils.PLAYING_TIME_FORMAT;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
@@ -41,5 +42,19 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static boolean contains(int movieId) {
+        return movies.stream()
+                .anyMatch((movie) -> movie.matchId(movieId));
+    }
+
+    public static Movie getMovieById(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.matchId(movieId)) {
+                return movie;
+            }
+        }
+        return null;
     }
 }

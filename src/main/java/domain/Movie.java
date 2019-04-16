@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +36,13 @@ public class Movie {
 
     public boolean doesPlaySchedulesHas(int scheduleNum) {
         return playSchedules.size() >= scheduleNum;
+    }
+
+    public boolean matchId(int id) {
+        return this.id == id;
+    }
+
+    public PlaySchedule getScheduleByIndex(int index) {
+        return playSchedules.get(index);
     }
 }
