@@ -17,4 +17,16 @@ public class PlaySchedule {
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
+
+    public void printScheduleStartTime() {
+        System.out.println("시작시간: " + format(startDateTime));
+    }
+
+    public boolean reserveTickets(int personCount) {
+        if (personCount > capacity) {
+            return false;
+        }
+        capacity -= personCount;
+        return true;
+    }
 }
