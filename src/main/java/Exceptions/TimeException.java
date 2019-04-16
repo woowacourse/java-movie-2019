@@ -10,6 +10,6 @@ public class TimeException {
             OutputView.printTImeException();
             return InputView.inputMovieTime(size);
         }
-        return number;
+        return number-1;
     }
 }

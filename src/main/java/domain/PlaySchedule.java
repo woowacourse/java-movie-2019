@@ -1,5 +1,9 @@
 package domain;
 
+import Exceptions.PeopleException;
+import view.InputView;
+import view.OutputView;
+
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -11,6 +15,20 @@ public class PlaySchedule {
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
+    }
+
+    public void setCapacity(int people){
+        if(!PeopleException.setCapacity(capacity, people)){
+            OutputView.printPeopleException();
+            setCapacity(InputView.inputMoviePeople());
+        }
+        if(PeopleException.setCapacity(capacity, people)){
+            this.capacity = capacity - people;
+        }
+    } // TODO
+
+    public int getCapacity(){
+        return capacity;
     }
 
     @Override

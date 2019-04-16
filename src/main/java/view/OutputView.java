@@ -47,4 +47,9 @@ public class OutputView {
         System.out.println("0 미만은 잘못된 포인트 값 입니다.");
         System.out.println("다시 입력해 주세요.");
     }
+
+    public static void printPeopleException(){
+        System.out.println("자리가 부족합니다.");
+        System.out.println("다시 입력해 주세요.");
+    }
 }

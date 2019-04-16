@@ -11,7 +11,6 @@ public class Result {
     private List<Movie> movies;
     private List<Integer> movieId = new ArrayList<>();
     private List<Integer> movieTime = new ArrayList<>();
-    private List<Integer> moviePeople = new ArrayList<>();
 
     public Result(List<Movie> movies, int movieNumber) {
         this.movieId.add(movieNumber);
@@ -21,7 +20,8 @@ public class Result {
     public void startMovieResult() {
         int timeSize = movies.get(movieId.get(0)).getTimeSize();
         movieTime.add(InputView.inputMovieTime(timeSize));
-        moviePeople.add(InputView.inputMoviePeople()); //TODO 예외 처리하기
+        int people = InputView.inputMoviePeople(); //TODO
+        movies.get(movieId.get(0)).setPeople(movieTime.get(0), people);
         setMovieResult(InputView.inputMovieExit());
     }
 
@@ -37,8 +37,9 @@ public class Result {
     private void startMoviePay() {
         int sum = 0;
         for (int i = 0; i < movieId.size(); i++) {
-            movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), moviePeople.get(i));
-            sum += movies.get(movieId.get(i)).getTotalPrice(moviePeople.get(i));
+            int people = movies.get(movieId.get(i)).getPeople(movieTime.get(i));
+            movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), people);
+            sum += movies.get(movieId.get(i)).getTotalPrice(people);
         }
         int point = InputView.inputPoint();
         double pay = InputView.inputPay();
@@ -51,8 +52,10 @@ public class Result {
 
         movieId.add(movieNumber);
         OutputView.printMovieInfo(movies.get(movieNumber).toString());
-        movieTime.add(InputView.inputMovieTime(timeSize));
-        moviePeople.add(InputView.inputMoviePeople()); //TODO 예외처리하기
+        int time = InputView.inputMovieTime(timeSize);
+        movieTime.add(time);
+        int people = InputView.inputMoviePeople(); //TODO
+        movies.get(movieNumber).setPeople(time, people);
         setMovieResult(InputView.inputMovieExit());
     }
 }
