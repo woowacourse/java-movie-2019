@@ -43,11 +43,13 @@ public class MovieRepository {
 		return movies;
 	}
 
-	public static boolean isExist(int id) {
+	public static void isExist(int id){
 		int isNot = 1;
 		for (Movie movie : movies) {
 			isNot *= (movie.isTheMovie(id)) ? 0 : 1;
 		}
-		return (isNot == 0);
+		if(isNot == 1) {
+			throw new IllegalArgumentException("해당 아이디의 영화가 없습니다. \n 다시 입력해주세요.");
+		}
 	}
 }
