@@ -21,6 +21,10 @@ public class Movie {
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
+    
+    public PlaySchedule getPlayMovieSchedule(int selectedMovieTime) {
+    	return playSchedules.get(selectedMovieTime);
+    }
 
     @Override
     public String toString() {

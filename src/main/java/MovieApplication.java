@@ -19,5 +19,7 @@ public class MovieApplication {
         	movieId = InputView.inputMovieId();
         }
         
+        int movieTime = InputView.inputMovieTime();
+        System.out.println(movies.get(movieId).getPlayMovieSchedule(movieTime - 1));
     }
 }
