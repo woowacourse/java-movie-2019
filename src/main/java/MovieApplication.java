@@ -29,8 +29,8 @@ public class MovieApplication {
         CardOrCash cardOrCash = InputView.inputCardOrCash();
 
         OutputView.pirntResult(cardOrCash,point,reservateInformation);
-        MovieRepository.UpdateMovieInfo(reservateInformation);
-        ReservateMovie();
+        int people = reservateInformation.getReservePeople().getReservePeople();
+        reservateInformation.getPlaySchedule().UpdateCapacity(people);
 
     }
 

@@ -56,18 +56,4 @@ public class MovieRepository {
         return true;
     }
 
-    public static boolean isValidMoviesId(List<Integer> reservateMove) {
-        int count = 0;
-        count = (int) reservateMove.stream().filter(s -> (isValidMovieId(s) == false)).count();
-
-        return (count == 0) ? true : false;
-    }
-
-    public static void UpdateMovieInfo(ReservateInformation reservateInformation){
-        int reservedMovieid = reservateInformation.getMovie().getId();
-
-
-    };
-
-
 }
