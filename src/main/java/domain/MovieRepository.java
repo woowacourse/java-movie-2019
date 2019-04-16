@@ -47,4 +47,14 @@ public class MovieRepository {
 		return movies.stream()
 			.anyMatch(movie -> movie.getId() == movieId);
 	}
+	
+	// TODO indent 줄이기
+	public static Movie findMovie(int movieId) {
+		for(Movie movie : MovieRepository.getMovies()) {
+			if(movie.getId() == movieId) {
+				return movie;
+			}
+		}
+		return null;
+	}
 }
