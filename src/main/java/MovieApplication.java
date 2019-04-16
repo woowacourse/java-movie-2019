@@ -3,6 +3,7 @@ import java.util.List;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import domain.SelectedMovie;
 import view.InputView;
 import view.OutputView;
@@ -17,12 +18,10 @@ public class MovieApplication {
         int movieId = recurInputMovieId();
         Movie selectedMovie = MovieRepository.getMovie(movieId);
         System.out.println(selectedMovie);
-        
-        int selectedSchedule = recurInputSchedule(selectedMovie);
-        
-
-        // TODO 구현 진행
-        
+        int indexOfSelectedSchedule = recurInputSchedule(selectedMovie);
+        PlaySchedule selectedSchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
+        int numOfPeople = recurInputPeople(selectedSchedule);
+        selectedMovies.add(new SelectedMovie(selectedMovie, selectedSchedule, numOfPeople));
     }
     
     static int inputMovieIdOnce(){
@@ -56,6 +55,26 @@ public class MovieApplication {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			input = recurInputSchedule(movie);
+		}
+    	return input;
+    }
+    
+    static int inputPeopleOnce(PlaySchedule schedule){
+    	int input = InputView.inputNumOfPeople();
+    	if(input <= 0)
+    		throw new IllegalArgumentException("인원 수는 0보다 커야 합니다. \n다시 입력해 주세요.");
+    	if(!schedule.isValidPeople(input))
+    		throw new IllegalArgumentException("예약 가능 인원을 초과합니다. \n다시 입력해 주세요.");
+    	return input;
+    }
+    
+    static int recurInputPeople(PlaySchedule schedule) {
+    	int input = 0;
+    	try {
+    		input = inputPeopleOnce(schedule);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			input = recurInputPeople(schedule);
 		}
     	return input;
     }

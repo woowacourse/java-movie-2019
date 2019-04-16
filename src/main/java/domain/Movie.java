@@ -30,6 +30,10 @@ public class Movie {
     	int sizeOfSchedule = playSchedules.size();
     	return select <= sizeOfSchedule && select > 0;
     }
+    
+    public PlaySchedule getSchedule(int index) {
+    	return playSchedules.get(index-1);
+    }
 
     @Override
     public String toString() {

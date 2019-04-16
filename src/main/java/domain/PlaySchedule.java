@@ -1,8 +1,8 @@
 package domain;
 
-import java.time.LocalDateTime;
-
 import static utils.DateTimeUtils.format;
+
+import java.time.LocalDateTime;
 
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
@@ -11,6 +11,14 @@ public class PlaySchedule {
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
+    }
+    
+    public LocalDateTime getStartDateTime() {
+    	return startDateTime;
+    }
+    
+    public boolean isValidPeople(int people) {
+    	return people <= capacity;
     }
 
     @Override
