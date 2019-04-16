@@ -24,7 +24,8 @@ public class InputView {
     }
 
     public static int inputAdditionalReservation() {
-        System.out.println(NEW_LINE + "## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        System.out.println(NEW_LINE + "## 예약을 종료하고 결제를 진행하려면 1번," +
+                " 추가 예약을 진행하려면 2번");
         return getValidInteger();
     }
 
@@ -46,7 +47,8 @@ public class InputView {
             return getValidInteger();
         }
         if (input < MIN_INPUT) {
-            System.out.format("%d 이상의 수를 입력해주세요." + NEW_LINE, MIN_INPUT);
+            System.out.format("%d 이상의 수를 입력해주세요."
+                    + NEW_LINE, MIN_INPUT);
             return getValidInteger();
         }
         return input;
@@ -60,7 +62,8 @@ public class InputView {
             return getPosiviteIntegerForPoint();
         }
         if (input < MIN_POINT) {
-            System.out.format("%d 이상의 수를 입력해주세요." + NEW_LINE, MIN_POINT);
+            System.out.format("%d 이상의 수를 입력해주세요."
+                    + NEW_LINE, MIN_POINT);
             return getPosiviteIntegerForPoint();
         }
         return input;

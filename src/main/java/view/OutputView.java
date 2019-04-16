@@ -19,7 +19,8 @@ public class OutputView {
         System.out.println(selectedMovie);
     }
 
-    public static void printTimeWarning(boolean isTimePassed, boolean canBookTogether) {
+    public static void printTimeWarning(boolean isTimePassed,
+                                        boolean canBookTogether) {
         if (isTimePassed) {
             System.out.println("영화 상영 시간이 지났습니다.");
         } else if (!canBookTogether) {
@@ -43,7 +44,8 @@ public class OutputView {
     }
 
     public static void printPointExceededWarining(int totalCharge) {
-        System.out.format("포인트 사용은 결제 금액 %d를 넘을 수 없습니다." + NEW_LINE, totalCharge);
+        System.out.format("포인트 사용은 결제 금액 %d를 넘을 수 없습니다."
+                + NEW_LINE, totalCharge);
     }
 
     public static void printReservationSummary(int finalCharge) {

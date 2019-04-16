@@ -65,7 +65,8 @@ public class MovieApplication {
         BookedMovie bookedMovie = new BookedMovie(selectedMovie);
         OutputView.printSelectedMovie(selectedMovie);
 
-        PlaySchedule selectedSchedule = decideSchedule(selectedMovie, bookedMovie);
+        PlaySchedule selectedSchedule =
+                decideSchedule(selectedMovie, bookedMovie);
         if (!checkMovieTime(selectedSchedule)) {
             return bookOneMovie();
         }
@@ -75,9 +76,11 @@ public class MovieApplication {
         return bookedMovie;
     }
 
-    private static PlaySchedule decideSchedule(Movie selectedMovie, BookedMovie bookedMovie) {
+    private static PlaySchedule decideSchedule(Movie selectedMovie,
+                                               BookedMovie bookedMovie) {
         int scheduleId = InputView.inputScheduleId();
-        PlaySchedule selectedSchedule = selectedMovie.getScheduleById(scheduleId);
+        PlaySchedule selectedSchedule =
+                selectedMovie.getScheduleById(scheduleId);
         while (selectedSchedule == null) {
             OutputView.printInvalidScheduleIdWarning();
             scheduleId = InputView.inputScheduleId();
@@ -89,7 +92,8 @@ public class MovieApplication {
 
     private static boolean checkMovieTime(PlaySchedule selectedSchedule) {
         boolean isTimePassed = selectedSchedule.isStartTimePassed();
-        boolean canBookTogether = isBookingTogetherValid(selectedSchedule);
+        boolean canBookTogether =
+                isBookingTogetherValid(selectedSchedule);
         OutputView.printTimeWarning(isTimePassed, canBookTogether);
         return !isTimePassed && canBookTogether;
     }
@@ -102,7 +106,8 @@ public class MovieApplication {
         return isValid;
     }
 
-    private static boolean decidePersonCount(BookedMovie bookedMovie, PlaySchedule selectedSchedule) {
+    private static boolean decidePersonCount(BookedMovie bookedMovie,
+                                             PlaySchedule selectedSchedule) {
         int personCount = InputView.inputPersonCount();
         boolean isBooked = selectedSchedule.reserveTickets(personCount);
         if (isBooked) {
@@ -145,11 +150,12 @@ public class MovieApplication {
         return paymentMethod;
     }
 
-    private static int calFinalCharge(int totalCharge, int pointToUse, int paymentMethod) {
+    private static int calFinalCharge(int totalCharge, int pointToUse,
+                                      int paymentMethod) {
         int chargeAfterPoint = totalCharge - pointToUse;
         if (paymentMethod == PAY_WITH_CREDIT_CARD) {
-            return (int)(chargeAfterPoint * 0.95);
+            return (int) (chargeAfterPoint * 0.95);
         }
-        return (int)(chargeAfterPoint * 0.98);
+        return (int) (chargeAfterPoint * 0.98);
     }
 }

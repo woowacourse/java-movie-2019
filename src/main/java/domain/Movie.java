@@ -33,7 +33,8 @@ public class Movie {
     }
 
     public void printMovieWithoutSchedule() {
-        System.out.print(id + " - " + name + ", " + price + "원" + NEW_LINE);
+        System.out.print(id + " - " + name + ", "
+                + price + "원" + NEW_LINE);
     }
 
     public boolean hasSameId(int movieId) {
@@ -42,7 +43,7 @@ public class Movie {
 
     public PlaySchedule getScheduleById(int scheduleId) {
         try {
-            return playSchedules.get(scheduleId-1);
+            return playSchedules.get(scheduleId - 1);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }

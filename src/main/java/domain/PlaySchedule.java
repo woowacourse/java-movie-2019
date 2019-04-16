@@ -18,15 +18,16 @@ public class PlaySchedule {
 
     @Override
     public String toString() {
-        return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
+        return "시작시간: " + format(startDateTime)
+                + " 예약가능인원: " + capacity + "\n";
     }
 
     public void printScheduleStartTime() {
         System.out.println("시작시간: " + format(startDateTime));
     }
 
-     /* 예약 인원이 유효할 시 예약 후 true return
-      * 인원이 너무 많을 시 예약 없이 오류 출력 후 false return */
+    /* 예약 인원이 유효할 시 예약 후 true return
+     * 인원이 너무 많을 시 예약 없이 오류 출력 후 false return */
     public boolean reserveTickets(int personCount) {
         if (personCount > capacity) {
             System.out.println("예매 가능 인원을 초과하였습니다.");
