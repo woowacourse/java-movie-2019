@@ -10,15 +10,19 @@ import java.util.List;
 
 public class MovieBookingModel {
 
-    private MovieBookingService movieBookingService;
-    private PaymentService paymentService;
+    private MovieBookingService movieBookingService = new MovieBookingService();
+    private PaymentService paymentService = new PaymentService();
 
     public List<Movie> retrieveMovies() {
         return movieBookingService.retrieveAllMovies();
     }
 
+    public Movie retrieveMovieById(int id) {
+        return movieBookingService.retrieveMovieById(id);
+    }
+
     public boolean isBookable(Booking b) {
-        return isBookable(b);
+        return movieBookingService.checkBookable(b);
     }
 
     public boolean isBookableTogether(List<Booking> bookings) {
@@ -26,7 +30,7 @@ public class MovieBookingModel {
     }
 
     public int bookWithPay(List<Booking> bookings, int point, PaymentType paymentType) {
-        if (movieBookingService.checkBookableTogether(bookings)) {
+        if (!movieBookingService.checkBookableTogether(bookings)) {
             throw new IllegalArgumentException("Specified bookings cannot be booked together");
         }
         int payed = paymentService.handlePayment(movieBookingService.getTotalPrice(bookings), point, paymentType);

@@ -26,6 +26,10 @@ public class MovieBookingService {
         return MovieRepository.getMovies();
     }
 
+    public Movie retrieveMovieById(int id) {
+        return MovieRepository.getMovie(id);
+    }
+
     /**
      * 단일 예매가 가능한 상태인지 확인(인원 초과, 시작 시간 초과 여부만 확인)
      * @param b 확인할 예매 정보
@@ -51,6 +55,9 @@ public class MovieBookingService {
         List<PlaySchedule> schedules = new ArrayList<>();
 
         for (Booking booking : bookings) {
+            if (booking.equals(b)) {
+                continue;
+            }
             schedules.add(booking.schedule);
         }
         return isBookableWithOthers(schedules, b.schedule);

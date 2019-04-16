@@ -18,4 +18,14 @@ public enum PaymentType {
     public String getName() {
         return name;
     }
+
+    public static PaymentType valueOf(int sel) {
+        if (sel == 1) {
+            return CREDIT_CARD;
+        }
+        if (sel == 2) {
+            return CASH;
+        }
+        return null;
+    }
 }

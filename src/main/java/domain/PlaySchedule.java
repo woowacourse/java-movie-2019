@@ -22,7 +22,7 @@ public class PlaySchedule {
     }
 
     public boolean isCapable(int numOfPeople) {
-        return capacity >= numOfPeople;
+        return capacity >= numOfPeople && numOfPeople > 0;
     }
 
     public boolean isBookableWith(PlaySchedule otherSchedule) {

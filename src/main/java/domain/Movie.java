@@ -30,6 +30,10 @@ public class Movie {
         return price * numOfPeople;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
