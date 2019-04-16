@@ -87,7 +87,6 @@ public class MovieApplication {
     }
 
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservationList = new ArrayList<MovieReservation>();
 
         makeReservation(reservationList);
