@@ -27,6 +27,10 @@ public class ReservationMovie {
         this.reservedNumberOfPeople = reservedNumberOfPeople;
     }
 
+    public int getTotalPriceOfMovieReservation() {
+        return moviePrice * reservedNumberOfPeople;
+    }
+
     @Override
     public String toString() {
         return movieId + HYPHEN + movieName + COMMA + moviePrice + WON + NEW_LINE

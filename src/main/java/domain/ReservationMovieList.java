@@ -1,7 +1,5 @@
 package domain;
 
-import com.sun.corba.se.spi.activation.RepositoryHolder;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +25,12 @@ public class ReservationMovieList {
 
     public void addReservationMovie(ReservationMovie reservationMovie) {
         reservationMovieList.add(reservationMovie);
+    }
+
+    public int getTotalReservationPrice() {
+        return reservationMovieList.stream()
+                .mapToInt(ReservationMovie::getTotalPriceOfMovieReservation)
+                .sum();
     }
 
     @Override
