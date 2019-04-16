@@ -33,22 +33,8 @@ public class Movie {
                 + sb.toString();
     }
 
-    public static String askUserWhatMovie() {
-        boolean isUserInputRight = false;
-        String userInput = "error:askUserWhatMovie()";
-        while (!isUserInputRight) {
-            userInput = askAndReceiveInput("##예약할 영화를 선택하세요:");
-            isUserInputRight = checkUserInput(userInput);
-        }
-        return userInput;
-    }
 
-    public static String askAndReceiveInput(String sentence) {
-        System.out.println(sentence);
-        Scanner reader = new Scanner(System.in);
-        String userInput = reader.nextLine();
-        return userInput;
-    }
 
-    public static boolean checkU
+
+
 }

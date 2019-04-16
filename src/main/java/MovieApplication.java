@@ -10,9 +10,11 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        //int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
-        String whatMovie = Movie.askUserWhatMovie();
+        String whatMovie = InputView.askUserWhatMovie();
+
+
     }
 }
