@@ -10,7 +10,7 @@ public class ReservationList {
         reservationList.put(movie, num);
     }
 
-    public int getTotalPrice() {
+    int getTotalPrice() {
         int totalPrice = 0;
         for (Movie movie : reservationList.keySet()) {
             int eachPrice = movie.getPrice() * reservationList.get(movie);
@@ -18,5 +18,4 @@ public class ReservationList {
         }
         return totalPrice;
     }
-
 }
