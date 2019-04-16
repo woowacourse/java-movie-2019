@@ -58,4 +58,10 @@ public class Movie {
     public int calculateTotalReserveMoney(int personCount){
         return price*personCount;
     }
+    // 자리 줄이기
+    public void decreaseScheduleCapacity(int scheduleIndex, int personCount){
+        PlaySchedule reserveSchedule = playSchedules.get(scheduleIndex);
+        // 줄이기
+        reserveSchedule.decreasePersonCount(personCount);
+    }
 }

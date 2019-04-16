@@ -30,4 +30,8 @@ public class PlaySchedule {
     public void showOnlyTimeInfo(){
         System.out.println("시작시간: " + format(startDateTime));
     }
+
+    public void decreasePersonCount(int count){
+        capacity -= count;
+    }
 }
