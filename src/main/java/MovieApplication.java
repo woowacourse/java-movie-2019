@@ -8,6 +8,8 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
+    public static final double SALE_RATE_CARD = 0.95;
+    public static final double SALE_RATE_NOCARD = 0.98;
 
     public static void showAllReservation(List<MovieReservation> reservationList) {
         // 지금까지 예약내역 보여주기
@@ -35,6 +37,24 @@ public class MovieApplication {
             totalMoney += movie.calculateTotalReserveMoney(printPersonCount);
         }
         return totalMoney;
+    }
+
+    public static double getSalePercent(boolean isCard) {
+        if (isCard) {
+            return SALE_RATE_CARD;
+        }
+        return SALE_RATE_NOCARD;
+    }
+
+    public static void pay(int payExceptPoint, boolean isCard) {
+        if (payExceptPoint <= 0) {
+            System.out.println(String.format("## 최종 결제한 금액은 0 원 입니다."));
+            return;
+        }
+        int payMoney = (int) (payExceptPoint * (getSalePercent(isCard)));
+        System.out.println(String.format("## 최종 결제한 금액은 %d 원 입니다.",payMoney));
+
+
     }
 
     public static void main(String[] args) {
