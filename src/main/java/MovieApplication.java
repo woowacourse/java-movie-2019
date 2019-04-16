@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import utils.ValidatorUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -11,6 +12,11 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
+
+        while (!ValidatorUtils.isNaturalMovieId(movieId)) {
+            System.out.println("상영목록에 없는 영화를 선택했습니다.\n");
+            movieId = InputView.inputMovieId();
+        }
 
     }
 }
