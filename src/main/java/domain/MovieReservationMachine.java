@@ -32,7 +32,9 @@ public class MovieReservationMachine {
      * 사용자의 예매 건을 예매 내역에 추가한다.
      */
     public static void addReservation(int movieId, int scheduleId, int personnels) {
-        reservationHistory.add(new Reservation(MovieRepository.getMovieWithId(movieId), scheduleId, personnels));
+        Movie thisMovie = MovieRepository.getMovieWithId(movieId);
+        thisMovie.getSchedule(scheduleId).reduceCapacity(personnels);
+        reservationHistory.add(new Reservation(thisMovie, scheduleId, personnels));
     }
 
     /**

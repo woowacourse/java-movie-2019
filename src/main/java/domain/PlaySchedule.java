@@ -23,4 +23,8 @@ public class PlaySchedule {
     public boolean isCapable(int numberOfPeople) {
         return numberOfPeople <= capacity;
     }
+
+    public void reduceCapacity(int personnels) {
+        capacity -= personnels;
+    }
 }
