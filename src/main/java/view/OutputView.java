@@ -34,5 +34,15 @@ public class OutputView {
         return movie;
     }
 
+    /*
+     * 실패 조건에 부합하면 오류를 발생
+     */
+    public static void makeFail(Movie movie, List<LocalDateTime> times, LocalDateTime localDateTime) {
+        if (judgeOneHour(times, localDateTime) && judgeStartTime(movie, times.get(times.size() - 1)) == false) {
+            throw new IllegalArgumentException();
+        }
+
+    }
+
 
 }
