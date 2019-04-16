@@ -31,4 +31,22 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public boolean movieMatchOf(int id){
+        return (this.id == id);
+    }
+
+    public PlaySchedule checkSchedue(int scheduleId, int people) {
+        if(scheduleId > playSchedules.size()){
+            throw new IllegalArgumentException("## 시간표가 맞지 않습니다.");
+        }
+
+        if(playSchedules.get(scheduleId).checkCapacity(people)){
+            throw new IllegalArgumentException("## 매진 입니다.");
+        }
+
+
+        return playSchedules.get(scheduleId);
+    }
+
 }
