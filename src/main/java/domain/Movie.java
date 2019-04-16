@@ -33,6 +33,10 @@ public class Movie {
 	public List<PlaySchedule> getPlaySchedules() {
 		return playSchedules;
 	}
+	
+	public boolean isLessThanPlayScheduleSize(int capacity) {
+		return (playSchedules.size() >= capacity) ? true : false;
+	}
 
 	void addPlaySchedule(PlaySchedule playSchedule) {
 		playSchedules.add(playSchedule);

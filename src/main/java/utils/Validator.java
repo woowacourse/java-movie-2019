@@ -47,8 +47,9 @@ public class Validator {
 	}
 
 	public static boolean isValidPlaySchedule(String value, Movie movie) {
-		if(!isNaturalNumber(value) || 
-			movie.getPlaySchedules().size() >= Integer.parseInt(value)) {
+		if (!isNaturalNumber(value) ||
+			!movie.isLessThanPlayScheduleSize(Integer.parseInt(value))) {
+			printWrongInput();
 			return false;
 		}
 		return true;
