@@ -11,4 +11,8 @@ public class Reservation {
         this.scheduleNumber = scheduleNumber;
         this.numberOfpeople = numberOfPeople;
     }
+
+    public MovieId getMoiveId() {
+        return moiveId;
+    }
 }

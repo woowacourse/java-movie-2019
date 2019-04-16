@@ -9,6 +9,16 @@ public class ScheduleNumber {
     private final int START_NUMBER = 1;
     private final int scheduleNumber;
 
+    public ScheduleNumber(int movieId, int scheduleNumber) {
+        if (!isValid(movieId, scheduleNumber)
+                || (scheduleNumber < START_NUMBER)) {
+            System.out.println("상형 시간 목록에 있는 시간을 골라주세요.");
+            throw new IllegalArgumentException();
+        }
+        this.scheduleNumber = scheduleNumber;
+    }
+
+
     private boolean isValid(int movieId, int scheduleNumber) {
         Optional<Movie> matchResult = MovieRepository.getMovies().stream()
                 .filter(movie -> movie.getId() == movieId).findAny();
@@ -17,12 +27,7 @@ public class ScheduleNumber {
         return movie.contains(scheduleNumber);
     }
 
-    public ScheduleNumber(int movieId, int scheduleNumber) {
-        if (!isValid(movieId, scheduleNumber)
-                || (scheduleNumber < START_NUMBER)) {
-            System.out.println("상형 시간 목록에 있는 시간을 골라주세요.");
-            throw new IllegalArgumentException();
-        }
-        this.scheduleNumber = scheduleNumber;
+    public int getScheduleNumber() {
+        return scheduleNumber;
     }
 }

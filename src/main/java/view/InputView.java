@@ -34,7 +34,23 @@ public class InputView {
         }
     }
 
-    public static NumberOfPeople inputNumberOfPeople() {
-        return null;
+    public static NumberOfPeople inputNumberOfPeople(int movieId, int scheduleNumber) {
+        try {
+            System.out.println("## 예약할 인원을 선택세요.");
+            return new NumberOfPeople(movieId, scheduleNumber,
+                    Integer.parseInt(scanner.nextLine()));
+        } catch (NumberFormatException e) {
+            System.out.println("숫자만 입력할 수 있습니다.");
+            return inputNumberOfPeople(movieId, scheduleNumber);
+        } catch (IllegalArgumentException e) {
+            return inputNumberOfPeople(movieId, scheduleNumber);
+        }
+    }
+
+    public static String inputContinueReservation() {
+        System.out.println("예약을 종료하고 결제를 진행하려면 1번," +
+                "추가 예약을 진행하려면 2번");
+
+        return scanner.nextLine();
     }
 }

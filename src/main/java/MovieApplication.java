@@ -15,9 +15,8 @@ public class MovieApplication {
     public static void main(String[] args) {
         HashMap<MovieId, Reservation> reservations = new LinkedHashMap<>();
 
+        showMovieList();
         do {
-            showMovieList();
-
             Reservation reservation = ReservationManager.getReservation();
             ReservationManager.addReservationTo(reservations, reservation);
         } while(ReservationManager.continueReservation());
