@@ -1,10 +1,13 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,11 +34,14 @@ public class MovieApplication {
     private static int moviePoint = 0;
     private static int moviePayMethod = 0;
     private static int movieTotalPay = 0;
+    private static ArrayList<LocalDateTime> dateTimes = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(INFO_MOVIE);
         OutputView.printMovies(movies);
         continueBooking();
+//        isOnehourTime();
+        checkOnehourTime();
         startPay();
         printPay();
     }
@@ -84,9 +90,25 @@ public class MovieApplication {
         }
     }
 
+    public static void checkOnehourTime() {
+        boolean isOnehour;
+        Collections.sort(dateTimes);    //오름차순 정렬
+        LocalDateTime localMin = dateTimes.get(0);
+        LocalDateTime localMax = dateTimes.get(dateTimes.size() - 1);
+        System.out.println("localMin 의 값 : " + dateTimes.get(0));
+        System.out.println("localMax 의 값 : " + dateTimes.get(dateTimes.size()-1));
+        isOnehour = DateTimeUtils.isOneHourWithinRange(localMin, localMax);
+        System.out.println("1시간 이상 차이가 나는가? " + isOnehour);
+//        for(int i = 0; i< dateTimes.size(); i++) {
+//            System.out.println("DateTime : " + dateTimes.get(i));
+//        }
+    }
 
     public static void isOnehourTime() {
-
+        List<PlaySchedule> playSchedules;
+        playSchedules = choiceMovie.getPlaySchedules();
+        dateTimes.add(playSchedules.get(movieTime -1).getStartDateTime());
+        System.out.println("IsOnehourTIme DateTime : + " +dateTimes.get(0));
     }
 
     public static void continueBooking() {
@@ -103,11 +125,13 @@ public class MovieApplication {
         if(movieContinue == 1) {
             choiceMovies.add(choiceMovie);
             impossibleBooking();
+            isOnehourTime();
             showBooking();
         }
         if(movieContinue == 2) {
             choiceMovies.add(choiceMovie);
             impossibleBooking();
+            isOnehourTime();
             continueBooking();
         }
     }
