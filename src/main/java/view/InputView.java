@@ -41,4 +41,19 @@ public class InputView {
         }
         return scheduleIndex;
     }
+
+    public static int inputReservePersonCount(int movieId, int scheduleIndex) {
+        System.out.println("예약할 인원을 입력하세요");
+        String userInput = scanner.nextLine().trim();
+        // 정수 체크
+        if (!Validator.isInteger(userInput)) {
+            return inputReservePersonCount(movieId, scheduleIndex);
+        }
+        // 해당스캐줄 해당인원으로 예약 가능한지
+        int personCount = Integer.parseInt(userInput);
+        if(!Validator.isScheduleReservePossible(movieId, scheduleIndex, personCount)){
+            return inputReservePersonCount(movieId, scheduleIndex);
+        }
+        return personCount;
+    }
 }
