@@ -48,4 +48,11 @@ public class MovieReservationMachine {
         }
     }
 
+    /**
+     * 결제가 시작한다는 메시지를 출력한다.
+     */
+    public static void printPaymentStartMessage() {
+        System.out.println("## 결제를 진행합니다.");
+    }
+
 }
