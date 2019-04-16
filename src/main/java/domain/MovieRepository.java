@@ -42,4 +42,13 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie findMovieById(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.isEqualId(movieId)) {
+                return movie;
+            }
+        }
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.MovieRepository;
 
 import java.util.List;
 
@@ -9,5 +10,13 @@ public class OutputView {
         for (Movie movie : movies) {
             System.out.println(movie);
         }
+    }
+
+    public static String getMoviePlaySchedule(int movieId){
+        Movie movie = MovieRepository.findMovieById(movieId);
+        if(movie == null){
+            throw new IllegalArgumentException("해당 영화가 없습니다.");
+        }
+        return movie.toString();
     }
 }

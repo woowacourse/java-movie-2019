@@ -10,8 +10,16 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        System.out.println(getPlayScheduleOfSelectedMovie());
+    }
 
-        // TODO 구현 진행
+    private static String getPlayScheduleOfSelectedMovie(){
+        try{
+            int movieId = InputView.inputMovieId();
+            return OutputView.getMoviePlaySchedule(movieId);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return getPlayScheduleOfSelectedMovie();
+        }
     }
 }
