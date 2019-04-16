@@ -10,8 +10,10 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-        int movieId = Input.intInput();
-        OutputView.printSelectedMovie(movies, movieId);
+        int movieId = Input.idInput();
+        Movie selectedMovie = MovieRepository.getSelectedMovie(movieId);
+        OutputView.printSelectedMovie(selectedMovie);
+        int movieTime = Input.timeInput(selectedMovie);
 
     }
 }

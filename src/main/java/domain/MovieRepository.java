@@ -50,4 +50,13 @@ public class MovieRepository {
         return idList;
     }
 
+    public static Movie getSelectedMovie(int movieNum){
+        for (Movie movie : movies){
+            if(movie.getId() == movieNum)return movie;
+        }
+        throw new IllegalArgumentException();
+    }
+
+
+
 }

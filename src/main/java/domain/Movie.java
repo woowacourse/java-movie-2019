@@ -35,4 +35,13 @@ public class Movie {
     public int getId(){
         return id;
     }
+
+    public int getScheduleSize(){
+        return playSchedules.size();
+    }
+
+//    public boolean isMovieInTime(int num){
+//        playSchedules.get(num-1);
+//    }
+
 }
