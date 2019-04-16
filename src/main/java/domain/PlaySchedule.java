@@ -12,6 +12,9 @@ public class PlaySchedule {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
+    public LocalDateTime getStartDateTime(){
+        return this.startDateTime;
+    }
 
     public int getCapacity(){
         return this.capacity;

@@ -35,8 +35,6 @@ public class MovieApplication {
 
         reservation=new Reservation(movieId,scheduledNumber,numberOfPeople);
         user.addReservation(reservation);
-
-
     }
 
 
