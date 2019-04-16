@@ -9,7 +9,7 @@ public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 
     static {
-        Movie movie1 = new Movie(1, "ÏÉùÏùº", 8_000);
+        Movie movie1 = new Movie(1, "ª˝¿œ", 8_000);
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 12:00"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 14:40"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 17:00"), 6));
@@ -17,14 +17,14 @@ public class MovieRepository {
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 22:00"), 3));
         movies.add(movie1);
 
-        Movie movie2 = new Movie(5, "Îèà", 10_000);
+        Movie movie2 = new Movie(5, "µ∑", 10_000);
         movie2.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 08:00"), 3));
         movie2.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 10:30"), 5));
         movie2.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 13:00"), 5));
         movie2.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 15:30"), 5));
         movies.add(movie2);
 
-        Movie movie3 = new Movie(7, "ÌååÏù¥Î∏åÌîºÌä∏", 9_000);
+        Movie movie3 = new Movie(7, "∆ƒ¿Ã∫Í««∆Æ", 9_000);
         movie3.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 13:00"), 4));
         movie3.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 15:40"), 4));
         movie3.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 18:00"), 4));
@@ -32,7 +32,7 @@ public class MovieRepository {
         movie3.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 23:15"), 3));
         movies.add(movie3);
 
-        Movie movie4 = new Movie(8, "Îç§Î≥¥", 9_000);
+        Movie movie4 = new Movie(8, "¥˝∫∏", 9_000);
         movie4.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 11:30"), 2));
         movie4.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 16:00"), 3));
         movie4.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 21:30"), 2));
@@ -42,4 +42,22 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
-}
+    
+    public static List<PlaySchedule> searchPlaySchedules(int id){
+    	Movie movie = findMatchMovie(id);
+    	if(movie != null) {
+        	return movie.getPlaySchedules();
+    	} 
+    	return null;
+    }
+    
+    private static Movie findMatchMovie(int id) {
+    	for(Movie movie : getMovies()) {
+    		if(movie.getId() == id) {
+    			movie.toString();
+    			return movie;
+    		}
+    	}
+    	return null;
+    }
+}	
