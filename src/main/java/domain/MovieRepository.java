@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -42,4 +44,12 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie searchMovies(int id, int index) throws IllegalArgumentException {
+        if (index >= movies.size()) {
+            throw new IllegalArgumentException("목록에 없는 영화 입니다.");
+        }
+        return (movies.get(index).isContainId(id)) ? movies.get(index) : searchMovies(id, index + 1);
+    }
+
 }

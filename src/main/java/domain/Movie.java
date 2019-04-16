@@ -31,4 +31,9 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public boolean isContainId(int id) {
+        return (id == this.id) ? true : false;
+    }
+
 }
