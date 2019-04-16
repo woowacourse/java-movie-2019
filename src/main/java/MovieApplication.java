@@ -17,5 +17,16 @@ public class MovieApplication {
         while (!MovieRepository.isContains(movieId));
 
         OutputView.printMovieById(movieId);
+
+        int scheduledNumber;
+        do {
+            scheduledNumber = InputView.inputMovieSchedule();
+        }
+        while (scheduledNumber > movies.get(movieId).getScheduleSize()
+                || MovieRepository.getMovieById(movieId).getPlaySchedule().get(scheduledNumber-1).getCapacity() <= 0);
+
+
+
     }
+
 }

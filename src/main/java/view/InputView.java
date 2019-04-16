@@ -15,5 +15,14 @@ public class InputView {
         return Integer.parseInt(scannedMovieId);
     }
 
+    public static int inputMovieSchedule(){
+        String scannedMovieSchedule;
+        do {
+            System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+            scannedMovieSchedule=SCANNER.nextLine();
+        }
+        while (!Validator.isNaturalNumber(scannedMovieSchedule) || scannedMovieSchedule.equals("0"));
+        return Integer.parseInt(scannedMovieSchedule);
+    }
 
 }

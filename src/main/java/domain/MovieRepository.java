@@ -55,6 +55,7 @@ public class MovieRepository {
         return flag;
     }
 
+
     public static List<Movie> getMovies() {
         return movies;
     }
