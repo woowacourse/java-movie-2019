@@ -1,7 +1,4 @@
-import domain.Basket;
-import domain.Booking;
-import domain.Movie;
-import domain.MovieRepository;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -15,10 +12,16 @@ public class MovieApplication {
     private static Basket basket = new Basket();
 
     public static void main(String[] args) {
+        BookingList bookingList = getBookingList();
+    }
+
+    private static BookingList getBookingList() {
         do {
             Booking booking = bookMovie();
+            addBasket(booking);
         } while (isPaymentOrContinue());
 
+        return new BookingList(basket.getBookingList());
     }
 
     private static Booking bookMovie() {
@@ -51,6 +54,15 @@ public class MovieApplication {
             if (movie.isIdSelected(movieId)) return movie;
         throw new Exception("선택하신 번호의 영화가 없습니다. 다시 입력해주세요.");
     }
+
+    private static void addBasket(Booking booking) {
+        try {
+            basket.addBooking(booking);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
     private static boolean isPaymentOrContinue() {
         try {
