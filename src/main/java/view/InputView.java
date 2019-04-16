@@ -17,96 +17,108 @@ public class InputView {
     public static int inputMovieId() {
         try {
             System.out.println("## 예약할 영화를 선택하세요.");
-            int id=intException();
+            int id = intException();
             return isContainMovieId(id);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMovieId();
         }
     }
 
-    public static int intException(){
+    public static int intException() {
         return scanner.nextInt();
     }
 
-    public static int isContainMovieId(int inputId){
+    public static int isContainMovieId(int inputId) {
         List<Movie> movies = MovieRepository.getMovies();
         List<Integer> ids = new ArrayList<>();
-        for(Movie movie:movies){
+        for (Movie movie : movies) {
             ids.add(movie.getId());
         }
-        if(ids.contains(inputId)){
+        if (ids.contains(inputId)) {
             return inputId;
         }
         throw new IllegalArgumentException("상영하고 있는 영화의 id를 입력해주세요. ");
     }
 
-    public static ChoiceMovie inputMovieTime(List<ChoiceMovie> choiceMovies,Movie choiceMovie){
+    public static ChoiceMovie inputMovieTime(List<ChoiceMovie> choiceMovies, Movie choiceMovie) {
         try {
             System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영시간이 1번)");
-            int index=intException();
-            int time = isContainTime(choiceMovie,index);
-            LocalDateTime movieStartTime=choiceMovie.getPlaySchedules().get(time-1).getStartDateTime();
-            movieStartTime = isBeforeTime(isOverOneHour(choiceMovies,movieStartTime));
-            return new ChoiceMovie(choiceMovie,choiceMovie.getPlaySchedules().get(time).getStartDateTime());
-        }catch (Exception e){
+            int index = intException();
+            int time = isContainTime(choiceMovie, index);
+            LocalDateTime movieStartTime = choiceMovie.getPlaySchedules().get(time - 1).getStartDateTime();
+            movieStartTime = isBeforeTime(isOverOneHour(choiceMovies, movieStartTime));
+            return new ChoiceMovie(choiceMovie, choiceMovie.getPlaySchedules().get(time).getStartDateTime());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputMovieTime(choiceMovies,choiceMovie);
+            return inputMovieTime(choiceMovies, choiceMovie);
         }
     }
-    public static int isContainTime(Movie movie,int inputTime){
-        if(movie.getPlaySchedulesLength()<inputTime || inputTime<0){
+
+    public static int isContainTime(Movie movie, int inputTime) {
+        if (movie.getPlaySchedulesLength() < inputTime || inputTime < 0) {
             throw new IllegalArgumentException("올바른 상영시간표를 선택해 주세요.");
         }
         return inputTime;
     }
 
-    public static LocalDateTime isOverOneHour(List<ChoiceMovie> choiceMovies, LocalDateTime movieTime){
-        for(ChoiceMovie choice :choiceMovies){
-            if(!DateTimeUtils.isOneHourWithinRange(choice.getLocalDateTime(),movieTime)){
+    public static LocalDateTime isOverOneHour(List<ChoiceMovie> choiceMovies, LocalDateTime movieTime) {
+        for (ChoiceMovie choice : choiceMovies) {
+            if (!DateTimeUtils.isOneHourWithinRange(choice.getLocalDateTime(), movieTime)) {
                 throw new IllegalArgumentException("한가지 이상의 영화를 예매했을 경우 예매하려는 영화의 시작시간과 차이가 1시간 이상 차이날 수 없습니다.");
             }
         }
         return movieTime;
     }
-    public static LocalDateTime isBeforeTime(LocalDateTime choiceTime){
-        if(choiceTime.isBefore(LocalDateTime.now())){
+
+    public static LocalDateTime isBeforeTime(LocalDateTime choiceTime) {
+        if (choiceTime.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("상영시간이 지난 영화는 예매할 수 없습니다.");
         }
         return choiceTime;
     }
-    public static int inputMember(){
+
+    public static int inputMember() {
         try {
             System.out.println("## 예약할 인원을 입력하세요.");
             return intException();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMember();
         }
     }
 
-    public static int inputAddReservation(){
+    public static int inputAddReservation() {
         try {
             System.out.println("## 예약을 종료하고 결제를 진행하려면 1번,추가 예약을 진행하려면 2번");
             return isOneOrTwo(intException());
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputAddReservation();
         }
     }
-   public static int isOneOrTwo(int input){
-        if(!(input==1 || input==2)){
+
+    public static int isOneOrTwo(int input) {
+        if (!(input == 1 || input == 2)) {
             throw new IllegalArgumentException("입력은 1또는 2를 입력해 주세요.");
         }
         return input;
-   }
+    }
 
-   }
-    public static int isOverPrice(int point,int price){
-        if(point>price || point<0){
+    public static int inputPoint(int price) {
+        try {
+            System.out.println("포인트 사용금액을 입력하세요.포인트가 없으면 0입력");
+            int point = intException();
+            return isOverPrice(point, price);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPoint(price);
+        }
+    }
+    public static int isOverPrice ( int point, int price){
+        if (point > price || point < 0) {
             throw new IllegalArgumentException("포인트는 결제금액보다 적게 입력해 주세요.");
         }
         return point;
-  }
-
+    }
 }
