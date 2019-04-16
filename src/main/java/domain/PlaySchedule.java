@@ -1,6 +1,9 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static utils.DateTimeUtils.format;
 
@@ -11,6 +14,18 @@ public class PlaySchedule {
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public boolean isFull() {
+        return !(capacity > 0);
+    }
+
+    public boolean withinRangeOneHour(PlaySchedule playSchedule) {
+        return  DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
     }
 
     @Override

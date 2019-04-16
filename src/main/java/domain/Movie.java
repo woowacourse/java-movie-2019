@@ -1,5 +1,9 @@
 package domain;
 
+import utils.DateTimeUtils;
+
+import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +30,24 @@ public class Movie {
         return this.id == id;
     }
 
+    public boolean withinRangeOneHour(Movie movie) {
+        return false;
+    }
+
+    public PlaySchedule getPlaySchedule(int index) {
+        return this.playSchedules.get(index);
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
+        int index = 1;
         StringBuilder sb = new StringBuilder();
         for (PlaySchedule playSchedule : playSchedules) {
-            sb.append(playSchedule);
+            sb.append(String.format("[%d] %s", index++, playSchedule));
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
