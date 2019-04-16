@@ -18,14 +18,15 @@ public class InputView {
         return movieId;
     }
 
-    public static int inputScheduleNumber(int movieId) {
-        int scheduleNumber;
+    public static int inputScheduleNumber() {
+        System.out.println("## 예약할 시간표를 선택하세요.");
 
-        do {
-            System.out.println("## 예약할 시간표를 선택하세요.");
-            scheduleNumber = scanner.nextInt();
-        } while (!ValidatorUtils.isNaturalScheduleNumber(movieId, scheduleNumber));
+        return scanner.nextInt();
+    }
 
-        return scheduleNumber;
+    public static int inputReservationCount() {
+        System.out.println("## 예약할 인원을 입력하세요.");
+
+        return scanner.nextInt();
     }
 }

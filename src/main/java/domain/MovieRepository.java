@@ -55,12 +55,25 @@ public class MovieRepository {
     }
 
     public static boolean containsSchedule(int movieId, int scheduleNumber) {
+        Movie movie = getMovieById(movieId);
+
+        return movie.isContainsScheduleNumber(scheduleNumber);
+
+    }
+
+    public static boolean isProperReservationCount(int movieId, int scheduleNumber, int reservationCount) {
+        Movie movie = getMovieById(movieId);
+
+        return movie.isProperReservationCount(scheduleNumber, reservationCount);
+    }
+
+    private static Movie getMovieById(int movieId) {
         for (Movie movie : movies) {
             if (movie.isContainsMovieId(movieId)) {
-                return movie.isContainsScheduleNumber(scheduleNumber);
+                return movie;
             }
         }
 
-        return false;
+        return null;
     }
 }

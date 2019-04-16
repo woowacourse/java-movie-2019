@@ -26,8 +26,12 @@ public class Movie {
         return this.id == movieId;
     }
 
-    public boolean isContainsScheduleNumber(int scheduleNumber) {
+    boolean isContainsScheduleNumber(int scheduleNumber) {
         return scheduleNumber >= 1 && scheduleNumber <= playSchedules.size();
+    }
+
+    boolean isProperReservationCount(int scheduleNumber, int reservationCount) {
+        return playSchedules.get(scheduleNumber - 1).isProperReservationCount(reservationCount);
     }
 
     @Override

@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import utils.ValidatorUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -10,6 +11,7 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         int movieId;
         int scheduleNumber;
+        int reservationCount;
 
         OutputView.printMovies(movies);
 
@@ -17,7 +19,17 @@ public class MovieApplication {
 
         OutputView.printMovie(movies, movieId);
 
-        scheduleNumber = InputView.inputScheduleNumber(movieId);
+        scheduleNumber = InputView.inputScheduleNumber();
+
+        while (!ValidatorUtils.isNaturalScheduleNumber(movieId, scheduleNumber)) {
+            scheduleNumber = InputView.inputScheduleNumber();
+        }
+
+        reservationCount = InputView.inputReservationCount();
+
+        while (!ValidatorUtils.inNaturalReservationCount(movieId, scheduleNumber, reservationCount)) {
+            reservationCount = InputView.inputReservationCount();
+        }
 
     }
 }
