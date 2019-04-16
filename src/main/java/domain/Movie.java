@@ -22,6 +22,30 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public PlaySchedule getPlaySchedule(int playSchedule){
+        return playSchedules.get(playSchedule-1);
+    }
+
+    public boolean isIdSelected(int id) {
+        return this.id == id ? true : false;
+    }
+
+    public boolean isTherePlaySchedule(int selectedPlaySchedule) {
+        return playSchedules.size() >= selectedPlaySchedule - 1;
+    }
+
+    public boolean isThereCapacity(int selectedPlaySchedule, int numberOfPeople) {
+        return playSchedules.get(selectedPlaySchedule - 1).getCapacity() >= numberOfPeople;
+    }
+
+    public String getMovieInfo(){
+        return  id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -10,4 +10,9 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
+    public static void printPlaySchedule(Movie selectedMovie) {
+        System.out.println(selectedMovie);
+    }
+
 }
