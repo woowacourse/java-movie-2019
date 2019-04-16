@@ -153,7 +153,7 @@ public class MovieApplication {
     }
 
     public static void movieNumber() {
-        int num = 0;
+        int num;
         System.out.println(INFO_NUM);
         Scanner scan = new Scanner(System.in);
         num = scan.nextInt();
