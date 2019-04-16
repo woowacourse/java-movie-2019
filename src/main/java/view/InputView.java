@@ -45,4 +45,16 @@ public class InputView {
         return Integer.parseInt(scanned);
     }
 
+    public static int inputPoint(){
+        String scanned;
+
+        System.out.println("## 결제를 진행합니다.");
+        do{
+            System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+            scanned=SCANNER.nextLine();
+        }
+        while (!Validator.isNaturalNumber(scanned));
+        return Integer.parseInt(scanned);
+    }
+
 }
