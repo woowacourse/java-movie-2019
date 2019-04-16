@@ -29,15 +29,15 @@ public class MovieApplication {
             int movieTime = InputView.inputMovieTime() - 1;
             int countOfUser = InputView.inputCountOfUser();
 
-            isOverUser(selectedMovie , movieTime , countOfUser);
+            isOverUser(selectedMovie, movieTime, countOfUser);
             return new PaymentInfo(selectedMovie, movieTime, countOfUser);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return selectMovie();
         }
     }
 
-    private static void isOverUser(Movie movie, int movieTime, int countOfuser){
-        if (!(movie.getPlaySchedules(movieTime).getCapacity() - countOfuser > 0)){
+    private static void isOverUser(Movie movie, int movieTime, int countOfuser) {
+        if (!(movie.getPlaySchedules(movieTime).getCapacity() - countOfuser > 0)) {
             OutputView.overUser();
             throw new IllegalArgumentException();
         }

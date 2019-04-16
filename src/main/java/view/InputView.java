@@ -45,7 +45,7 @@ public class InputView {
             if (wantPay == 2) {
                 return false;
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return wantPay();
         }
         return false;

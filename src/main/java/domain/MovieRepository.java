@@ -44,10 +44,9 @@ public class MovieRepository {
         return movies;
     }
 
-    public static Movie getMoviesById(int id){
+    public static Movie getMoviesById(int id) {
         return movies.stream()
                 .filter(movie -> movie.getId() == id)
                 .collect(Collectors.toList()).get(0);
     }
-
 }
