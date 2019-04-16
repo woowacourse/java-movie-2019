@@ -13,6 +13,13 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public void buyTicket(int buyCount) {
+        if (capacity - buyCount < 0) {
+            throw new IllegalArgumentException("인원 초과");
+        }
+        this.capacity -= buyCount;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
