@@ -9,6 +9,8 @@
  */
 package domain;
 
+import java.util.List;
+
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +21,8 @@ import view.OutputView;
  *
  */
 public class TicketingManager {
+	private List<Ticket> tickets;
+	
 	public void ticketing() {
 		try {
 			int movieId = InputView.inputMovieId();
@@ -28,6 +32,7 @@ public class TicketingManager {
 			checkSchedule(movieId, scheduleNumber);
 			int ticketCount = InputView.inputTicketCount();
 			checkTicketCount(movieId, scheduleNumber, ticketCount);
+			tickets.add(new Ticket(movieId, scheduleNumber, ticketCount));
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
 			ticketing();

@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class Movie {
 
 	void addPlaySchedule(PlaySchedule playSchedule) {
 		playSchedules.add(playSchedule);
+	}
+	
+	public LocalDateTime getStartDateTime(int scheduleNumber) {
+		return playSchedules.get(scheduleNumber - 1).getStartDateTime();
 	}
 
 	@Override
@@ -45,5 +50,9 @@ public class Movie {
 
 	public boolean hasEnoughCapacity(int scheduleNumber, int ticketCount) {
 		return playSchedules.get(scheduleNumber - 1).hasEnoughCapacity(ticketCount);
+	}
+	
+	public void reduceCapacity(int scheduleNumber, int count) {
+		playSchedules.get(scheduleNumber - 1).reduceCapacity(count);
 	}
 }

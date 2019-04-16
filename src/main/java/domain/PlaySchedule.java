@@ -25,4 +25,8 @@ public class PlaySchedule {
     public boolean isEnd() {
     	return LocalDateTime.now().isAfter(startDateTime);
     }
+    
+    public void reduceCapacity(int count) {
+    	this.capacity -= count;
+    }
 }
