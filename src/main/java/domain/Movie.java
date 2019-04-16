@@ -39,5 +39,10 @@ public class Movie {
         return false;
     }
 
-
+    public void validateSchedule(int schedule) {
+        if (playSchedules.size() < schedule) {
+            throw new IllegalArgumentException("존재하지 않는 상영 시간입니다.");
+        }
+        playSchedules.get(schedule - 1).validateSchedule();
+    }
 }

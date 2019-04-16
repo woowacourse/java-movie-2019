@@ -1,10 +1,8 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.Reservation;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
@@ -14,9 +12,20 @@ public class MovieApplication {
 
         Movie movie = getMovie(movies);
         OutputView.printMovie(movie);
+        int scheduleNumber = getScheduleNumber(movie);
 
     }
 
+    private static int getScheduleNumber(Movie movie) {
+        try{
+            int schedule = InputView.inputMovieSchedule();
+            movie.validateSchedule(schedule);
+            return schedule;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getScheduleNumber(movie);
+        }
+    }
 
     private static Movie getMovie(List<Movie> movies) {
         try {

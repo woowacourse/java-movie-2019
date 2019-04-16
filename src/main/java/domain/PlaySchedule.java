@@ -17,4 +17,10 @@ public class PlaySchedule {
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
+
+    public void validateSchedule() throws IllegalArgumentException {
+        if (startDateTime.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("상영 시간이 지났습니다.");
+        }
+    }
 }
