@@ -12,6 +12,15 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
 
-        // TODO 구현 진행
+        OutputView.printMovie(findMovieById(movies, movieId));
+    }
+
+    public static Movie findMovieById(List<Movie> movieList, int movieId) {
+        for (Movie movie : movieList) {
+            if (movie.isSameMovieId(movieId))
+                return movie;
+        }
+
+        return null;
     }
 }
