@@ -50,7 +50,7 @@ public class MovieRepository {
                 return movie;
             }
         }
-        throw new RuntimeException("스케줄 오류");
+        throw new IllegalArgumentException("상영 목록에 없는 영화를 선택하셨습니다");
     }
 
     public static List<PlaySchedule> getPlaySchedule(Movie inputMovie) {
@@ -59,7 +59,7 @@ public class MovieRepository {
                 return movie.getPlaySchedules();
             }
         }
-        throw new RuntimeException("스케줄이 없습니다");
+        throw new IllegalArgumentException("스케줄이 없습니다");
     }
 
     public static void buyMovieTickets(Movie movie, int playScheduleIndex, int buyCount) {

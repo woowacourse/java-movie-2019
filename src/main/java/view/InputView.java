@@ -11,8 +11,13 @@ public class InputView {
 
     public static Movie inputMovie() {
         System.out.println("## 예약할 영화를 선택하세요.");
-        //여기서 예외처리해서 없는 영화 확인할 것
-        return MovieRepository.getWantMovie(InputUtil.getInt());
+        try {
+            OutputView.printMovies(MovieRepository.getMovies());
+            return MovieRepository.getWantMovie(InputUtil.getInt());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputMovie();
+        }
     }
 
     public static int InputTimeScheduleIndex(Movie movie) {

@@ -17,7 +17,7 @@ public class PlaySchedule {
 
     public void buyTicket(int buyCount) {
         if (capacity - buyCount < 0) {
-            throw new IllegalArgumentException("인원 초과");
+            throw new IllegalArgumentException("인원 초과입니다 다른 일정을 선택해주세요\n");
         }
         this.capacity -= buyCount;
     }
