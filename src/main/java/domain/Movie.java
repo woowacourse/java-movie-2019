@@ -1,8 +1,14 @@
 package domain;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
+@Getter
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -16,6 +22,16 @@ public class Movie {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public int getId(){
+        return id;
+    }
+    public String getname(){
+        return name;
+    }
+    public int getprice(){
+        return price;
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {

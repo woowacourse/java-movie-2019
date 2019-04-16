@@ -11,4 +11,6 @@ repositories {
 dependencies {
     testCompile('junit:junit:4.12')
     testCompile('org.assertj:assertj-core:3.11.1')
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
 }
