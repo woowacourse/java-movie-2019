@@ -6,6 +6,15 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
+    public static boolean isStringNumber(String string) {
+        try {
+            Integer.parseInt(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);

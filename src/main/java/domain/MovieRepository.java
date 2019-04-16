@@ -42,4 +42,13 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static boolean isValidId(int movieId) {
+        boolean isValid = false;
+
+        for (Movie movie : movies) {
+            isValid = isValid || movie.isYourId(movieId);
+        }
+        return isValid;
+    }
 }

@@ -31,4 +31,11 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public boolean isYourId(int movieId) {
+        if (id == movieId) {
+            return true;
+        }
+        return false;
+    }
 }
