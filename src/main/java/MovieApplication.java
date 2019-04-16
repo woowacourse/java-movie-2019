@@ -1,11 +1,10 @@
-import Program.BookingMovie;
+import Program.BookSystem;
 import domain.BookMovie;
 import domain.Movie;
 import domain.MovieRepository;
 import view.InputView;
 import view.OutputView;
 
-import java.awt.print.Book;
 import java.util.List;
 
 public class MovieApplication {
@@ -14,14 +13,20 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-        BookingMovie bookSystem = new BookingMovie(new BookMovie());
+        BookSystem bookSystem = new BookSystem(new BookMovie());
 
         BookMovie bookingMovie = bookSystem.booking(movieId);
         List<Movie> bookingMovieList = bookingMovie.getBookMovieList();
         OutputView.printMovies(bookingMovieList);
 
         int ScheduleNumber = InputView.inputMovieSchedule();
-        bookSystem.selectSchedule(ScheduleNumber);
+        bookSystem.selectSchedule(0,ScheduleNumber);
+
+        int inputPeopleBooking = InputView.inputPeopleBooking();
+        bookSystem.selectPeopleBooking(inputPeopleBooking);
+        System.out.println(bookingMovie);
+
+
 
 
     }

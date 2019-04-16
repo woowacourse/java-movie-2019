@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BookMovie {
     List<Movie>  bookMovieList = new ArrayList<>();
-
+    int bookingPeople;
     public BookMovie(){
 
     }
@@ -21,8 +21,19 @@ public class BookMovie {
         bookMovieList.add(movie);
     }
 
+    public void setBookingPeople(int peopleNumber){ this.bookingPeople = peopleNumber; }
+
     @Override
     public String toString(){
-        return bookMovieList.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("예약 현황\n");
+        for(Movie movie : bookMovieList){
+            stringBuilder.append(movie.getId() + "-");
+            stringBuilder.append(" "+movie.getname() + "\n");
+            stringBuilder.append("예약시간: "+ movie.getPlaySchedules().get(0).getLocalDateTime()+"\n");
+            stringBuilder.append(movie.getprice() + "원\n");
+            stringBuilder.append("예약인원: "+ bookingPeople + "명");
+        }
+        return stringBuilder.toString();
     }
 }
