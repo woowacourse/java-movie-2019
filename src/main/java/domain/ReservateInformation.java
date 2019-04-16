@@ -22,4 +22,8 @@ public class ReservateInformation {
     public PlaySchedule getPlaySchedule() {
         return playSchedule;
     }
+
+    public int getWholePrice(){
+        return this.getMovie().getPrice() * this.reservePeople.getReservePeople();
+    }
 }

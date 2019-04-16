@@ -59,6 +59,19 @@ public class InputView {
         }
     }
 
+    public static Point inputPoint(ReservateInformation reservateInformation) {
+        try {
+            System.out.println("##결제를진행합니다.");
+            System.out.println("##포인트사용금액을입력하세요.포인트가없으면0입력");
+            int point = scanner.nextInt();
+            Point point1 = new Point(reservateInformation, point);
+            return point1;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return inputPoint(reservateInformation);
+        }
+    }
+
     public static List<Integer> ConvertStringToInt(List<String> movies) {
         List<Integer> reservateMovies = movies.stream()
                 .map(Integer::valueOf)

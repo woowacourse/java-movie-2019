@@ -23,6 +23,8 @@ public class MovieApplication {
 
         ReservateInformation reservateInformation = new ReservateInformation(reserveSchedule,userMovie,reservePeople);
         OutputView.printReservateInfo(reservateInformation);
+        InputView.inputPoint();
+
 
     }
     public static void main(String[] args) {

@@ -45,4 +45,8 @@ public class Movie {
     public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
