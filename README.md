@@ -1,11 +1,15 @@
 - class MovieRespository
 
-    - getMovie() : 특정 id를 입력 받으면 그 영화의 정보만 반환하는 함수
+    - getMovie() : 특정 id를 입력 받으면 그 영화의 정보만 반환하는 메서드
 
 - class Movie
 
-    - getId() : movie의 id를 반환하는 함수
+    - getId() : movie의 id를 반환하는 메서드
 
 - class OutputView
 
-    - printMovie() : 특정 영화의 정보를 출력하는 함수
+    - printMovie() : 특정 영화의 정보를 출력하는 메서드
+
+- class InputView
+
+    - inputMovieScheduleNum() : 상영 시간표에서 특정 시간을 선택했을 때 그 시간표의 번호를 입력받는 메서드

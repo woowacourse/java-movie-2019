@@ -13,6 +13,8 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         Movie movieOfId = MovieRepository.getMovie(movieId);
         OutputView.printMovie(movieOfId);
+
+        int movieScheduleNum = InputView.inputMovieScheduleNum();
         // TODO 구현 진행
     }
 }
