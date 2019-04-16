@@ -24,6 +24,10 @@ public class PlaySchedule {
     public void subtractCapacity(int ticket) {
     	capacity -= ticket;
     }
+    
+    public int getCapacity() {
+    	return capacity;
+    }
 
     @Override
     public String toString() {
