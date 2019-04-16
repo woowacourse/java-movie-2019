@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public boolean isRightMovie(int movieId) {
+        return (id == movieId);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -30,5 +34,9 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
     }
 }

@@ -42,4 +42,22 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getWantMovie(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.isRightMovie(movieId)) {
+                return movie;
+            }
+        }
+        throw new RuntimeException("스케줄 오류");
+    }
+
+    public static List<PlaySchedule> getPlaySchedule(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.isRightMovie(movieId)) {
+                return movie.getPlaySchedules();
+            }
+        }
+        throw new RuntimeException("스케줄 오류");
+    }
 }
