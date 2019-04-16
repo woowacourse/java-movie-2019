@@ -43,13 +43,26 @@ public class MovieRepository {
 		return movies;
 	}
 
-	public static Boolean hasMovie(int id, int index) {
-		if (index >= movies.size()) {
+	public static Boolean hasMovie(int id) {
+		if (findMovieIndex(id, 0) == movies.size()) {
 			return false;
 		}
-		if (movies.get(index).isId(id)) {
-			return true;
+		return true;
+	}
+	
+	/**
+	 * 찾으려는 아이디의 영화가 저장된 인덱스를 반환하는 메소드
+	 * @param id 찾으려는 영화의 아이디
+	 * @param index 탐색 시작 인덱스
+	 * @return 해당 아이디를 가진 영화가 있으면 그 인덱스를 반환 없으면 마지막 인덱스 + 1 값(총 영화의 개수)을 반환
+	 */
+	private static int findMovieIndex(int id, int index) {
+		if (index >= movies.size()) {
+			return index;
 		}
-		return hasMovie(id, index + 1);
+		if (movies.get(index).isId(id)) {
+			return index;
+		}
+		return findMovieIndex(id, index + 1);
 	}
 }

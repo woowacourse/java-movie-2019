@@ -30,7 +30,7 @@ public class TicketingManager {
 	}
 
 	private void checkMovie(int movieId) {
-		if (!MovieRepository.hasMovie(movieId, 0)) {
+		if (!MovieRepository.hasMovie(movieId)) {
 			throw new IllegalArgumentException("해당 영화는 상영중이지 않습니다.");
 		}
 	}

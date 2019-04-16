@@ -18,7 +18,7 @@ import domain.MovieRepository;
 public class MovieRepositoryTest {
 	@Test
 	public void hasMovie() {
-		assertThat(MovieRepository.hasMovie(1, 0)).isEqualTo(true);
-		assertThat(MovieRepository.hasMovie(2, 0)).isEqualTo(false);
+		assertThat(MovieRepository.hasMovie(1)).isEqualTo(true);
+		assertThat(MovieRepository.hasMovie(2)).isEqualTo(false);
 	}
 }
