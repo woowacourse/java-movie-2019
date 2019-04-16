@@ -11,7 +11,11 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-
+        while (!InputView.isValidId(movieId, movies)) {
+        	System.out.println("상영목록에 없는 영화입니다.");
+        	movieId = InputView.inputMovieId();
+        }
         // TODO 구현 진행
+        //
     }
 }

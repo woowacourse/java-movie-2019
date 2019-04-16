@@ -31,4 +31,9 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+    
+    public boolean haveId(int idNumber) {
+    	return id == idNumber;
+    }
+    //플레이 스케쥴 출력 
 }
