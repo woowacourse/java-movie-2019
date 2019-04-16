@@ -6,7 +6,7 @@ import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
-    private int capacity;
+    private final int capacity;
 
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
