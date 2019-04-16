@@ -42,6 +42,10 @@ public class MovieRepository {
 	public static List<Movie> getMovies() {
 		return movies;
 	}
+	
+	public static String findMovieInfomation(int id) {
+		return movies.get(findMovieIndex(id, 0)).toString();
+	}
 
 	public static Boolean hasMovie(int id) {
 		if (findMovieIndex(id, 0) == movies.size()) {

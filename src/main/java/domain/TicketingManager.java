@@ -23,6 +23,7 @@ public class TicketingManager {
 		try {
 			int movieId = InputView.inputMovieId();
 			checkMovie(movieId);
+			OutputView.printMovie(movieId);
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
 			ticketing();

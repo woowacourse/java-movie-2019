@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.MovieRepository;
 
 import java.util.List;
 
@@ -9,6 +10,10 @@ public class OutputView {
 		for (Movie movie : movies) {
 			System.out.println(movie);
 		}
+	}
+	
+	public static void printMovie(int id) {
+		System.out.println(MovieRepository.findMovieInfomation(id));
 	}
 
 	public static void printErrorMessage(Exception e) {
