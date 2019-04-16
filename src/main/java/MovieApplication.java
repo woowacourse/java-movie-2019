@@ -13,7 +13,6 @@ public class MovieApplication {
     private static final int CONTINUE_SIGNAL = 2;
     private static final int PAY_CARD = 1;
     private static final double CARD_DISCOUNT = 0.95;
-    private static final int PAY_CASH = 2;
     private static final double CASH_DISCOUNT = 0.98;
 
     private static List<Reservation> reservations;
@@ -100,8 +99,15 @@ public class MovieApplication {
     private static boolean pay() {
         int point = 0;
         int payMethod = 0;
-        point = InputView.inputPoint();
+        if ((point = InputView.inputPoint()) < 0) {
+            OutputView.printInputWrongPoint();
+            return pay();
+        }
         payMethod = InputView.inputPayMethod();
+        if (payMethod != 1 && payMethod != 2) {
+            OutputView.printInputWrongMethod();
+            return pay();
+        }
         OutputView.printReceipt(countTotalPrice(point, payMethod));
         return true;
     }
