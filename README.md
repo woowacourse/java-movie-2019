@@ -21,4 +21,5 @@
 
     - appOfOne() : 한 번의 예매 상황을 구현하는 메서드
     - checkIfTooMuchPeople() : 잔여 좌석 수보다 더 많이 예매하면 true를 반환하는 메서드
-    - updateMovieSchedule() : 예매한 인원에 따라 다르게 영화 상영표를 업데이트 하는 메서드
+    - updateMovieForTooMuch() : 예매한 인원이 잔여 좌석보다 많을 때 영화 상영표를 업데이트 하는 메서드
+    - updateMovieForLess() : 예매한 인원이 잔여 좌석보다 적을 때 영화 상영표를 업데이트 하는 메서드

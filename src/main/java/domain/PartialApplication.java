@@ -6,38 +6,47 @@ import view.OutputView;
 
 public class PartialApplication {
 
-  Movie movieOfId;
-  int movieScheduleNum;
-  private PlaySchedule playSchedule;
-  int peopleWatchingMovie;
+  int MOVIE_ID;
+  Movie MOVIE_OF_ID;
+  int MOVIE_SCHEDULE_NUM;
+  private PlaySchedule PLAY_SCHEDULE;
+  public int PEOPLE_WATCHING_MOVIE;
 
   public void appOfOne() {
     OutputView.printMovies(MovieRepository.getMovies());
-    int movieId = InputView.inputMovieId();
-    movieOfId = MovieRepository.getMovie(movieId);
-    OutputView.printMovie(movieOfId);
-    movieScheduleNum = InputView.inputMovieScheduleNum();
-    playSchedule = MovieRepository.playScheduleOfMovieOfNum(movieOfId, movieScheduleNum);
+    MOVIE_ID = InputView.inputMovieId();
+    MOVIE_OF_ID = MovieRepository.getMovie(MOVIE_ID);
+    OutputView.printMovie(MOVIE_OF_ID);
+    MOVIE_SCHEDULE_NUM = InputView.inputMovieScheduleNum();
+    PLAY_SCHEDULE = MovieRepository.playScheduleOfMovieOfNum(MOVIE_OF_ID, MOVIE_SCHEDULE_NUM);
   }
 
   public boolean checkIfTooMuchPeople() {
-    peopleWatchingMovie = InputView.inputPeopleWatchingMovie();
-    if (playSchedule.getCapacity() < peopleWatchingMovie) {
+    PEOPLE_WATCHING_MOVIE = InputView.inputPeopleWatchingMovie();
+    if (PLAY_SCHEDULE.getCapacity() < PEOPLE_WATCHING_MOVIE) {
       return true;
     }
     return false;
   }
 
-  public boolean updateMovieSchedule() {
-    if (checkIfTooMuchPeople()) {
-      peopleWatchingMovie = peopleWatchingMovie - movieOfId.getPlaySchedule().get(movieScheduleNum-1).getCapacity();
-      movieOfId.getPlaySchedule().remove(movieScheduleNum - 1);
-      movieOfId.setPlaySchedules(movieOfId.getPlaySchedule());
-      return true;
-    }
-    if(!checkIfTooMuchPeople()){
-      movieOfId.getPlaySchedule().get(movieScheduleNum - 1).setCapacity(movieOfId.getPlaySchedule().get(movieScheduleNum - 1).getCapacity() - peopleWatchingMovie);
-    }
+  public boolean updateMovieForTooMuch() {
+    PEOPLE_WATCHING_MOVIE -= MovieRepository.getMovie(MOVIE_ID).getPlaySchedule()
+        .get(MOVIE_SCHEDULE_NUM - 1).getCapacity();
+    MovieRepository.getMovie(MOVIE_ID).getPlaySchedule().get(MOVIE_SCHEDULE_NUM - 1).setCapacity(0);
+    return true;
+  }
+
+  public boolean updateMovieForLess() {
+    MovieRepository.getMovie(MOVIE_ID).getPlaySchedule().get(MOVIE_SCHEDULE_NUM - 1).setCapacity(
+        MovieRepository.getMovie(MOVIE_ID).getPlaySchedule().get(MOVIE_SCHEDULE_NUM - 1)
+            .getCapacity() - PEOPLE_WATCHING_MOVIE);
     return false;
+  }
+
+  public boolean toContinue() {
+    if (InputView.inputIfContinue() == 1) {
+      return false;
+    }
+    return true;
   }
 }

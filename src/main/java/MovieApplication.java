@@ -11,11 +11,13 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         ArrayList<PartialApplication> partialApplications = new ArrayList<PartialApplication>();
-        while(true){
+        boolean TO_CONTINUE = true;
+        while(TO_CONTINUE){
             PartialApplication pa = new PartialApplication();
             pa.appOfOne();
             partialApplications.add(pa);
-            pa.updateMovieSchedule();
+            boolean b =(pa.checkIfTooMuchPeople())? pa.updateMovieForTooMuch():pa.updateMovieForLess();
+            TO_CONTINUE = pa.toContinue();
         }
         // TODO 구현 진행
     }
