@@ -22,10 +22,9 @@ public class MovieApplication {
         Movie movie;
         PlaySchedule playSchedule;
         int personnel = 0;
-        boolean isReservation = false;
-        int sum = 0;
-        double amount = 0;
-
+        boolean isReservation;
+        int sum;
+        double amount;
 
         do {
             movie = selectMovie(movies);
@@ -41,6 +40,12 @@ public class MovieApplication {
         sum = sumMoviesPrice(selectMovies, personnel);
         amount = resultAmount(sum , InputView.inputPoint());
         
+        result(amount);
+    }
+
+    public static void result(double amount) {
+        OutputView.printBillingProgress();
+        OutputView.printResult((int)amount);
     }
 
     public static double resultAmount(int sum, int point) {
