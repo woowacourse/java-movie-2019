@@ -15,6 +15,9 @@ public class MovieApplication {
             PartialApplication pa = new PartialApplication();
             pa.appOfOne();
             partialApplications.add(pa);
+            if(!pa.checkIfTooMuchPeople()){
+                break;
+            }
         }
         // TODO 구현 진행
     }

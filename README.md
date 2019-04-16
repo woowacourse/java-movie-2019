@@ -20,3 +20,4 @@
 - class PartialApplication
 
     - appOfOne() : 한 번의 예매 상황을 구현하는 메서드
+    - checkIfTooMuchPeople() : 잔여 좌석 수보다 더 많이 예매하면 true를 반환하는 메서드
