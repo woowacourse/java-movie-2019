@@ -10,15 +10,27 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId(List<Movie> movies) {
+    public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
         try {
             int input =inputInt();
-            InputCheckUtils.checkInputReservationMoive(input, movies);
+            InputCheckUtils.checkInputReservationMoive(input);
             return input;
         }catch(Exception e){
             System.err.println(e);
-            return inputMovieId(movies);
+            return inputMovieId();
+        }
+    }
+
+    public static int inputMovieSchedule(int movieId) {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+        try{
+            int selectedSchedule = inputInt();
+            InputCheckUtils.checkInputReservationSchedule(movieId, selectedSchedule);
+            return selectedSchedule;
+        }catch (Exception e){
+            System.err.println(e);
+            return inputMovieSchedule(movieId);
         }
     }
 

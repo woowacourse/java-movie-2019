@@ -10,8 +10,9 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId(movies);
+        int movieId = InputView.inputMovieId();
+        OutputView.printSelectedMovie(movieId);
 
-        OutputView.printSelectedMovie(movies,movieId);
+        int schedule = InputView.inputMovieSchedule(movieId);
     }
 }
