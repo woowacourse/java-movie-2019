@@ -66,4 +66,8 @@ public class Movie {
     public void printStartDateTime(int movieTime) {
         System.out.print(playSchedules.get(--movieTime).startDateTime());
     }
+
+    public void modifyCapacity(int movieTime, int numOfGuest) {
+        playSchedules.get(--movieTime).modifyCapacity(numOfGuest);
+    }
 }

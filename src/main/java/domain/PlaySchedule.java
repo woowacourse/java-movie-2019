@@ -28,4 +28,8 @@ public class PlaySchedule {
     public String startDateTime() {
         return format(startDateTime);
     }
+
+    public void modifyCapacity(int numOfGuest) {
+        this.capacity -= numOfGuest;
+    }
 }

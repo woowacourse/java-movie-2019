@@ -99,7 +99,7 @@ public class MovieApplication {
         int point = getPoint(totalPrice);
         int totalPaymetPrice = finalPayment(totalPrice, point);
         OutputView.printPayment(totalPaymetPrice);
-        // 결제 완료 후 예약가능인원 수정
+        finalProcess();
     }
 
     private int getTotalPrice() {
@@ -149,6 +149,12 @@ public class MovieApplication {
         } catch (IllegalArgumentException e) {
             System.err.println("잘못 입력하셨습니다.");
             return getCardOrCash();
+        }
+    }
+
+    private void finalProcess() {
+        for (Reservation reservation : reservations) {
+            reservation.modifyCapacity();
         }
     }
 }

@@ -31,4 +31,9 @@ public class Reservation {
         System.out.println();
         System.out.println("예약 인원: " + numOfGuest + "명");
     }
+
+    public void modifyCapacity() {
+        Movie movie = MovieRepository.getMovie(movieId);
+        movie.modifyCapacity(movieTime, numOfGuest);
+    }
 }
