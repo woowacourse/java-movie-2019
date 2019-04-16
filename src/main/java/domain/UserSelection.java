@@ -10,4 +10,8 @@ public class UserSelection {
         this.movieTime = movieTime;
         this.noOfPerson = noOfPerson;
     }
+
+    public int getPrice() {
+        return noOfPerson * MovieRepository.getPrice(movieId);
+    }
 }

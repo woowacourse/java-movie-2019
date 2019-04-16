@@ -66,6 +66,10 @@ public class MovieRepository {
         return movies.get(getMovieIndex(movieId)).hasCapacity(movieTime, noOfPerson);
     }
 
+    public static int getPrice(int movieId) {
+        return movies.get(getMovieIndex(movieId)).getPrice();
+    }
+
     private static int getMovieIndex(int movieId) {
         Iterator<Movie> iterator = movies.iterator();
         int index = 0;

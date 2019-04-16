@@ -47,4 +47,8 @@ public class Movie {
     public boolean hasCapacity(int movieTime, int noOfPerson) {
         return this.playSchedules.get(movieTime - 1).hasCapacity(noOfPerson);
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
