@@ -18,6 +18,10 @@ public class PlaySchedule {
         return startDateTime;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
     public int checkValidReservation(int reservePeopleNum) {
         if ((this.capacity >= reservePeopleNum) &&
                 (reservePeopleNum > MIN_RESERVATION_NUM)) {
@@ -26,9 +30,9 @@ public class PlaySchedule {
         throw new IllegalArgumentException();
     }
 
-    boolean reduce(int peopleNum){
+    boolean reduce(int peopleNum) {
         capacity -= peopleNum;
-        if(capacity == 0){
+        if (capacity == 0) {
             return true;
         }
         return false;
