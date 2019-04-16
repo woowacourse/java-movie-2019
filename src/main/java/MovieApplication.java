@@ -18,5 +18,6 @@ public class MovieApplication {
         OutputView.printSelectedMovie(selectedMovie);
 
         int moveStartTimeNumber = InputView.inputMovieStartTime();
+        int numberOfPeople = InputView.inputNumberOfPeople();
     }
 }
