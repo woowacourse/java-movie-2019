@@ -25,6 +25,11 @@ public class Movie {
     boolean isTheMovie(int id) {
     	return this.id == id;
     }
+    
+    public boolean isValidSchedule(int select) {
+    	int sizeOfSchedule = playSchedules.size();
+    	return select <= sizeOfSchedule && select > 0;
+    }
 
     @Override
     public String toString() {
