@@ -32,13 +32,11 @@ public class Movie {
                 + sb.toString();
     }
 
-    public void showSchedule() {
-        for(PlaySchedule playSchedule : playSchedules) {
-            System.out.println(playSchedule.toString());
-        }
-    }
-
     public PlaySchedule getSchedule(int scheduleNumber) {
         return playSchedules.get(scheduleNumber);
+    }
+
+    public boolean checkPossibleTickets(int scheduleNumber, int countOfTickets) {
+        return playSchedules.get(scheduleNumber).isCapable(countOfTickets);
     }
 }

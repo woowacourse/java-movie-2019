@@ -15,13 +15,18 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId;
+        int countOfTickets;
+        int scheduleNumber;
         boolean continueBooking = true; //추가 예약 여부
 
         while (continueBooking) {
             movieId = InputView.inputMovieId();
-            OutputView.printSchedule(movies, movieId);
+            scheduleNumber = InputView.inputMovieSchedule(movies, movieId);
+            countOfTickets = InputView.inputCountOfTickets(movies, movieId, scheduleNumber);
 
-            PlaySchedule playSchedule = InputView.inputMovieSchedule(movies ,movieId);
+            PlaySchedule playSchedule = movies.get(movieId).getSchedule(scheduleNumber);
+            PurchasedMovie purchasedMovie = new PurchasedMovie(movies.get(movieId), playSchedule, countOfTickets);
+            purchasedMovies.add(purchasedMovie);
         }
 
 
