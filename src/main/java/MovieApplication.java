@@ -1,6 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
-import view.InputView;
+import domain.TicketingManager;
 import view.OutputView;
 
 import java.util.List;
@@ -8,10 +8,9 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
+        TicketingManager ticketingManager = new TicketingManager();
+        
         OutputView.printMovies(movies);
-
-        int movieId = InputView.inputMovieId();
-
-        // TODO 구현 진행
+        ticketingManager.ticketing();
     }
 }
