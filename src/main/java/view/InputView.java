@@ -15,4 +15,14 @@ public class InputView {
 			return inputMovieId();
 		}
 	}
+	
+	public static int inputMovieTime() {
+		try {
+			System.out.println("## 예약할 시간표를 선택하세요.");
+			return scanner.nextInt();
+		} catch (InputMismatchException e) {
+			scanner.nextLine();
+			return inputMovieTime();
+		}
+	}	
 }
