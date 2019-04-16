@@ -17,13 +17,18 @@ public class UserInfo {
     }
 
     public void addMove(MovieBookingInfo movieBookingInfo) {
+        if (hasMovieOneHourWithinRange(movieBookingInfo)) {
+            throw new IllegalArgumentException("시간이 부적합힙니다.");
+        }
         movieList.add(movieBookingInfo);
+        movieBookingInfo.reserve();
     }
 
-    private boolean hasMovieOneHourWithinRange(PlaySchedule playSchedule) {
+    private boolean hasMovieOneHourWithinRange(MovieBookingInfo movieBookingInfo) {
         for (MovieBookingInfo bookingInfo : movieList) {
-            bookingInfo.isRangeWithinOneHour(playSchedule);
+            bookingInfo.isRangeWithinOneHour(movieBookingInfo);
         }
+
         return false;
     }
 

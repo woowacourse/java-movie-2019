@@ -22,12 +22,18 @@ public class MovieBookingInfo {
         return movie.getPrice() * number;
     }
 
-    public Movie getMovie() {
-        return movie;
+
+    public boolean isRangeWithinOneHour(MovieBookingInfo movieBookingInfo) {
+        return this.playSchedule.withinRangeOneHour(movieBookingInfo.getPlaySchedule());
     }
 
-    public boolean isRangeWithinOneHour(PlaySchedule playSchedule) {
-        return this.playSchedule.withinRangeOneHour(playSchedule);
+    public PlaySchedule getPlaySchedule() {
+        return playSchedule;
+    }
+
+    public void reserve() {
+        playSchedule.reserve();
+
     }
 
     @Override

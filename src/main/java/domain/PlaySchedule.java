@@ -28,6 +28,10 @@ public class PlaySchedule {
         return DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
     }
 
+    public void reserve() {
+        capacity--;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
