@@ -22,6 +22,8 @@ public class MovieApplication {
         int numPeople = InputView.inputNumPeople();
         makeReservation(findMovieById(movies, movieId), tableId, numPeople);
         reservations.add(new Reservation(findMovieById(movies, movieId), tableId, numPeople));
+
+        OutputView.printReservations(reservations);
     }
 
     public static Movie findMovieById(List<Movie> movieList, int movieId) {

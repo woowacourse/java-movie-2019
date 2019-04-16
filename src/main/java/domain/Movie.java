@@ -32,6 +32,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String toString(int tableId) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE + playSchedules.get(tableId).toStringForConfirm();
+    }
+
     public boolean isSameMovieId(int id) {
         return this.id == id;
     }

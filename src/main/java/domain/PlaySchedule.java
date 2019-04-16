@@ -18,6 +18,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public String toStringForConfirm() {
+        return "시작시간: " + format(startDateTime);
+    }
+
     public boolean makeReserve(int numPeople) {
         if (capacity > numPeople) {
             capacity -= numPeople;
@@ -25,4 +29,5 @@ public class PlaySchedule {
         }
         return false;
     }
+
 }
