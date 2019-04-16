@@ -12,6 +12,8 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = inputView.inputMovieId();
-        OutputView.prnitMovie(movieId);
+        OutputView.printMovie(movieId);
+
+        int reservationTime = 
     }
 }

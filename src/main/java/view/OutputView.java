@@ -12,7 +12,7 @@ public class OutputView {
         }
     }
 
-    public static void prnitMovie(int movieId) {
+    public static void printMovie(int movieId) {
         System.out.println(MovieRepository.getMovie(movieId));
     }
 }
