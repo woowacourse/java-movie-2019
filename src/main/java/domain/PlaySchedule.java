@@ -9,6 +9,7 @@ import static utils.DateTimeUtils.format;
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
     private int capacity;
+    private final int ZERO = 0;
 
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
@@ -32,8 +33,13 @@ public class PlaySchedule {
     }
 
     public boolean isCapacity(int purchaseAmount) {
+    	if (purchaseAmount == ZERO) {
+    		System.out.println("0명을 유효하지 않은 인원입니다..");
+			return false;
+		}
+    	
     	if (this.capacity < purchaseAmount) {
-    		System.out.println("예매 가능한 인원 초과한 영화입니다.");
+    		System.out.println("예매 가능한 인원을 초과했습니다.");
 			return false;
 		}
     	return true;
