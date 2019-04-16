@@ -50,7 +50,7 @@ public class BookControl {
         int index = -1;
         do {
             index = InputView.inputMovieTime() - 1;
-        } while (checkIndex(index, id));
+        } while (checkIndex(index, id) && checkTime(index, id));
         return index;
     }
 
@@ -61,6 +61,12 @@ public class BookControl {
             return true;
         System.out.println("상영시간을 잘못 입력하였습니다.");
         return false;
+    }
+
+    // #1-2-2 추가로 예약하는 경우 이전에 예약했던 영화와 1시간 이상 차이 나는지 판별할 함수
+    private boolean checkTime(int index, int id) {
+        
+        return true;
     }
 
     // #1-2-2 해당 ID의 영화를 불러오는 함수
