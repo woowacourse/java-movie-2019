@@ -42,4 +42,8 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static int getCountOfMovies() {
+        return movies.size();
+    }
 }

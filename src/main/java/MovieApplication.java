@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -10,8 +11,14 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        int movieId;
+        boolean continueBooking = true; //추가 예약 여부
 
-        // TODO 구현 진행
+        while (continueBooking) {
+            movieId = InputView.inputMovieId();
+            OutputView.printSchedule(movies, movieId);
+        }
+
+
     }
 }
