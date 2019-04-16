@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class MovieApplication {
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-        Map<Integer,Movie> movieList = MovieRepository.getMovieMap();
+        Map<Integer, Movie> movieList = MovieRepository.getMovieMap();
+        OutputView.printMovies(movieList);
 
         int movieId = InputView.inputMovieId();
-        OutputView.printMovieInfo(movieList, movieId);
-        int movieTime = InputView.inputSchedule(movieList.get(movieId));
-        int movieNumberOfPeople = InputView.inputNumberOfPeople(movieList.get(movieId), movieTime);
+        Movie selectedMovie = movieList.get(movieId);
+        OutputView.printMovieInfo(selectedMovie);
+        int movieTime = InputView.inputSchedule(selectedMovie);
+        int movieNumberOfPeople = InputView.inputNumberOfPeople(selectedMovie, movieTime);
 
 
         // TODO 구현 진행

@@ -3,19 +3,20 @@ package view;
 import domain.Movie;
 
 import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 
 public class OutputView {
-    public static void printMovies(List<Movie> movies) {
-        for (Movie movie : movies) {
-            System.out.println(movie);
+    public static void printMovies(Map<Integer, Movie> movies) {
+        for(int key : movies.keySet()){
+            System.out.println(movies.get(key));
         }
     }
 
-    public static void printMovieInfo(Map<Integer, Movie> movies, int id){
-        if(movies.containsKey(id)){
-            System.out.println(movies.get(id));
-        }
+    public static void printMovieInfo(Movie movie){
+        System.out.println(movie);
     }
+/*
+    public static void printReservation(){
+
+    }
+*/
 }
