@@ -43,4 +43,8 @@ public class Movie {
     public PlaySchedule getPlaySchedule(int id) {
         return this.playSchedules.get(id);
     }
+
+    public int getPrice() {
+        return this.price;
+    }
 }

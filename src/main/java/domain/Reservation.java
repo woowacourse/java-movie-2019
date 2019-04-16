@@ -10,13 +10,12 @@ public class Reservation {
     private Movie movie;
     private PlaySchedule schedule;
     private int reservationCount;
-
     public Reservation(List<Movie> movies) {
         init(movies);
     }
 
     private void init(List<Movie> movies) {
-        try {
+        try { // TODO: 두 영화의 시간 차이가 1시간 이내가 아닌 경우를 체크.
             this.movies = movies;
             OutputView.printMovies(this.movies);
             int movieId = InputView.inputMovieId();
@@ -36,5 +35,9 @@ public class Reservation {
     public String toString() {
         return movie.getName() + schedule.getStartTimeString() + "예약 인원: "
                 + reservationCount + "명\n";
+    }
+
+    public int getPaymentAmount() {
+        return movie.getPrice() * reservationCount;
     }
 }
