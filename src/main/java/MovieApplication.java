@@ -1,9 +1,11 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,11 +79,19 @@ public class MovieApplication {
     }
 
     private static PlaySchedule validateScheduleTime(Movie movie, PlaySchedule schedule) {
-        if (schedule.isNotStartedYet()) {
+        if (schedule.isNotStartedYet() && checkInterval(schedule)) {
             return schedule;
         }
         OutputView.printAlreadyStartedMessage();
         return validateSchedule(movie, InputView.inputSchedule());
+    }
+
+    private static boolean checkInterval(PlaySchedule schedule) {
+        boolean test = true;
+        for (BookingInfo info : bookingList) {
+            test &= DateTimeUtils.isOneHourWithinRange(schedule.getTime(), info.getTime());
+        }
+        return test;
     }
 
     private static int validateCapacity(PlaySchedule schedule, int capacity) {
@@ -159,6 +169,8 @@ class BookingInfo {
     public int getId() { return movie.getId(); }
 
     public void addCapacity(int capacity) { this.capacity += capacity; }
+
+    public LocalDateTime getTime() { return schedule.getTime(); }
 
     public String getInfo() {
         return movie.getTitle() + ", " + movie.getPrice()
