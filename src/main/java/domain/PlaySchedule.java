@@ -24,4 +24,8 @@ public class PlaySchedule {
     public boolean isThisTimeAvailable(int numOfGuest) {
         return capacity >= numOfGuest;
     }
+
+    public String startDateTime() {
+        return format(startDateTime);
+    }
 }

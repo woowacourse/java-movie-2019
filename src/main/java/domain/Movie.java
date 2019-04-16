@@ -54,4 +54,16 @@ public class Movie {
     public boolean isThisNumberAvailable(int movieTime, int numOfGuest) {
         return playSchedules.get(--movieTime).isThisTimeAvailable(numOfGuest);
     }
+
+    public int getPrice(int numOfGuest) {
+        return price * numOfGuest;
+    }
+
+    public void printMovieInfo() {
+        System.out.println(id + " - " + name + ", " + price + "원");
+    }
+
+    public void printStartDateTime(int movieTime) {
+        System.out.print(playSchedules.get(--movieTime).startDateTime());
+    }
 }

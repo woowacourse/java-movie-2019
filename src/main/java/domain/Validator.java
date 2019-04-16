@@ -46,4 +46,18 @@ public class Validator {
         }
         throw new IllegalArgumentException("1이나 2만 입력해 주세요.");
     }
+
+    public static void checkPoint(int point, int totalPrice) {
+        if (point >= 0 && point <= totalPrice) {
+            return;
+        }
+        throw new IllegalArgumentException("포인트는 0 이상이어야 하며 전체 티켓 가격을 초과할 수 없습니다.");
+    }
+
+    public static void checkCardOrCash(int cardOrCash) {
+        if (cardOrCash == 1 || cardOrCash == 2) {
+            return;
+        }
+        throw new IllegalArgumentException("1이나 2만 입력해 주세요.");
+    }
 }
