@@ -57,6 +57,8 @@ public class Movie {
     }
 
     void reduceCapacity(PlaySchedule schedule, int reservePeopleNum) {
-        playSchedules.get(playSchedules.indexOf(schedule)).reduce(reservePeopleNum);
+        if (playSchedules.get(playSchedules.indexOf(schedule)).reduce(reservePeopleNum)) {
+            playSchedules.remove(playSchedules.indexOf(schedule));
+        }
     }
 }

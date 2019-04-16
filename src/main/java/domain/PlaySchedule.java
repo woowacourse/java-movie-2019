@@ -26,8 +26,12 @@ public class PlaySchedule {
         throw new IllegalArgumentException();
     }
 
-    void reduce(int peopleNum){
+    boolean reduce(int peopleNum){
         capacity -= peopleNum;
+        if(capacity == 0){
+            return true;
+        }
+        return false;
     }
 
     @Override
