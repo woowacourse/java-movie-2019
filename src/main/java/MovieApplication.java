@@ -16,7 +16,8 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
-        start(reservedMovies);
+
+        //start(reservedMovies);
 
     }
 

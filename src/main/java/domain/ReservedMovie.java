@@ -23,4 +23,8 @@ public class ReservedMovie {
 
         return string;
     }
+
+    public int costIs() {
+        return movie.getPrice();
+    }
 }

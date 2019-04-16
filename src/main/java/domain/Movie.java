@@ -35,6 +35,9 @@ public class Movie {
         return playSchedules.get(id);
     }
 
+    public int getPrice() {
+        return price;
+    }
 
     @Override
     public String toString() {
