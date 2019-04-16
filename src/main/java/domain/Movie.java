@@ -32,11 +32,17 @@ public class Movie {
                 + sb.toString();
     }
 
-    public boolean isValidPlaySchedule(int playScheduleId,int audience){
+    public boolean isValidPlaySchedule(int playScheduleId, int audience) {
         return playSchedules.get(playScheduleId - 1).isValidCapacity(audience);
     }
 
-    public boolean isMatchedId(int id){
+    public boolean isMatchedId(int id) {
         return this.id == id;
+    }
+
+    public void showPlayScheduleList() {
+        for (PlaySchedule playSchedule : playSchedules) {
+            System.out.println(playSchedule);
+        }
     }
 }

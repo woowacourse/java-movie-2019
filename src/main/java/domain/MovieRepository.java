@@ -7,6 +7,7 @@ import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
+    private static SelectedMovie selectedMovie = new SelectedMovie();
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -47,6 +48,7 @@ public class MovieRepository {
         for(int i = 0; i < movies.size(); i++){
             boolean tmp = movies.get(i).isMatchedId(id);
             if(tmp == true){
+                selectedMovie.initMovie(movies.get(i));
                 return i;
             }
         }
@@ -57,7 +59,7 @@ public class MovieRepository {
         System.out.println(movies.get(indexOf(id)));
     }
 
-    public static int getMoivesSize() {
-        return movies.size();
+    public static SelectedMovie getSelectedMovie(){
+        return selectedMovie;
     }
 }
