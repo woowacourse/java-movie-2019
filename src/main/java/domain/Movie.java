@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -30,5 +31,14 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public int getId() { return id; }
+
+    public Optional<PlaySchedule> getScheduleByNumber(int no) {
+        if (1 <= no && no <= playSchedules.size()) {
+            return Optional.of(playSchedules.get(no));
+        }
+        return null;
     }
 }

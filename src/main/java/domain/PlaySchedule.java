@@ -17,4 +17,14 @@ public class PlaySchedule {
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
+
+    public boolean isNotStartedYet() {
+        return LocalDateTime.now().isBefore(startDateTime);
+    }
+
+    public int getCapacity() { return capacity; }
+
+    public void book(int capacity) { this.capacity -= capacity; }
+
+
 }
