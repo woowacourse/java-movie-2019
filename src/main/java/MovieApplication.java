@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -10,12 +11,14 @@ import domain.MovieRepository;
 public class MovieApplication {
     static HashSet<Integer> useableMovieNumberList;
     static private Movie movie;
+    static ArrayList<String> reservationedList ;
     static void init() {
         useableMovieNumberList = new HashSet<>();
         useableMovieNumberList.add(1);
         useableMovieNumberList.add(5);
         useableMovieNumberList.add(7);
         useableMovieNumberList.add(8);
+        reservationedList  = new ArrayList<>();
     }
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -52,10 +55,12 @@ public class MovieApplication {
         int reservationMovieCapacity = setReservationCapacity(reservationMoviewTime);
         int InputNextStep = InputView.inputNextStep();
         if (InputNextStep == 1) {
-            reservationInforMation(reservationMoviewTime,reservationMovieCapacity);
+            reservatedInforMation(reservationMoviewTime,reservationMovieCapacity);
+            outputReservation();
             return;
         }
         if (InputNextStep == 2) {
+            reservatedInforMation(reservationMoviewTime,reservationMovieCapacity);
             selectMovie();
             return;
         }
@@ -97,8 +102,15 @@ public class MovieApplication {
         return false;
     }
 
-    static void reservationInforMation(int reservationMoviewTime, int reservationMovieCapacity) {
+    static void reservatedInforMation(int reservationMoviewTime, int reservationMovieCapacity) {
+        reservationedList.add(movie.numberMovie(reservationMoviewTime, reservationMovieCapacity));
+    }
 
+    static void outputReservation() {
+        for (String output : reservationedList) {
+            System.out.println(output);
+            System.out.println("===================");
+        }
     }
 
 }

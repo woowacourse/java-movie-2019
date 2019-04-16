@@ -36,7 +36,6 @@ public class Movie {
         return id;
     }
 
-
     public int getMovieTimeSize() {
         return playSchedules.size();
     }
@@ -53,4 +52,11 @@ public class Movie {
         playSchedules.get(time).setCapacity(capacity);
     }
 
+    public String numberMovie(int reservationMoviewTime, int reservationMovieCapacity) {
+        StringBuilder sb = new StringBuilder();
+        sb.append( id + " - " + name + ", " + price + "원"+"\n");
+        sb.append(playSchedules.get(reservationMoviewTime).getDateTime()+"\n");
+        sb.append("예약인원: "+reservationMovieCapacity+"명" + "\n");
+        return sb.toString();
+    }
 }
