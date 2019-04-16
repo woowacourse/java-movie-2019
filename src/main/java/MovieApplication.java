@@ -12,11 +12,16 @@ public class MovieApplication {
         List<Movie> movies = movieBookingMachine.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        int playSchedule = InputView.inputPlaySchedule();
-        int personNumber = InputView.inputMovieCapacity();
+        int status;
+        do {
+            int movieId = InputView.inputMovieId();
+            int playSchedule = InputView.inputPlaySchedule();
+            int personNumber = InputView.inputMovieCapacity();
 
-        MovieSchedule movieSchedule = new MovieSchedule(movieId, playSchedule, personNumber);
-        movieBookingMachine.book(movieSchedule, personNumber);
+            MovieSchedule movieSchedule = new MovieSchedule(movieId, playSchedule, personNumber);
+            movieBookingMachine.book(movieSchedule, personNumber);
+            status = InputView.inputReservateContinue();
+        } while (status == 2);
+
     }
 }
