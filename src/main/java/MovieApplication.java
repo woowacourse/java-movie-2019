@@ -51,6 +51,7 @@ public class MovieApplication {
     private static boolean checkMovieAlreadyBooked(int movieId) {
         for (BookedMovie b : bookedMovies) {
             if (b.checkMovieId(movieId)) {
+                OutputView.printAlreadyBookedWarning();
                 return true;
             }
         }

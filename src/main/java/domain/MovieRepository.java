@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class MovieRepository {
                 return true;
             }
         }
+        OutputView.printNoSuchMovieWarning();
         return false;
     }
 }

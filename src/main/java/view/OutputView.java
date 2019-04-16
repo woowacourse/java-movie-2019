@@ -28,6 +28,14 @@ public class OutputView {
         }
     }
 
+    public static void printNoSuchMovieWarning() {
+        System.out.println("존재하지 않는 영화입니다.");
+    }
+
+    public static void printAlreadyBookedWarning() {
+        System.out.println("이미 예매하셨습니다.");
+    }
+
     public static void printInvalidScheduleIdWarning() {
         System.out.println("존재하지 않는 시간표입니다.");
     }
