@@ -48,6 +48,12 @@ public class MovieRepository {
 
 		return index >= 0 && movies.get(index).bookable(schedule);
 	}
+	
+	public static boolean capable(int movieId, int schedule, int numOfAudience) {
+		int index = getIndexByMovieId(movieId);
+
+		return index >= 0 && movies.get(index).bookable(schedule, numOfAudience);
+	}
 
 	private static int getIndexByMovieId(int movieId) {
 		int idx = -1;

@@ -29,6 +29,11 @@ public class Movie {
 	public boolean bookable(int schedule) {
 		return (this.playSchedules.size() >= schedule);
 	}
+	
+	public boolean bookable(int schedule, int numOfAudience) {
+		return (this.playSchedules.get(schedule - 1).capable(numOfAudience));
+	}
+	
 
 	@Override
 	public String toString() {
