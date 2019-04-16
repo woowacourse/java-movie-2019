@@ -29,6 +29,17 @@ public class MovieApplication {
         return totalPrice;
     }
 
+    public static double getFinalPrice(int totalPrice,
+                                    int usedPoint, int payment) {
+        double discountPrice = 0.95;
+
+        if (payment == 2) {
+            discountPrice = 0.98;
+        }
+
+        return (totalPrice - usedPoint) * discountPrice;
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservations = new ArrayList<>();
@@ -58,7 +69,8 @@ public class MovieApplication {
         int totalPrice = getTotalPrice(reservations);
         int usedPoint = InputView.inputPoint(totalPrice);
         int payment = InputView.inputPaymentMethod();
+        double finalPrice = getFinalPrice(totalPrice, usedPoint, payment);
 
-        
+        OutputView.printFinalPrice(finalPrice);
     }
 }
