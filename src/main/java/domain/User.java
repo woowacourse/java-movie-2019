@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
 
     private final List<Reservation> reservationList = new ArrayList<>();
+    private Money money;
 
     public void addReservation(Reservation reservation) {
         reservationList.add(reservation);

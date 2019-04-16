@@ -57,4 +57,15 @@ public class InputView {
         return Integer.parseInt(scanned);
     }
 
+    public static int inputCardOrCash(){
+        String scanned;
+
+        do{
+            System.out.println("## 신용카드는 1번, 현금은 2번");
+            scanned=SCANNER.nextLine();
+        }
+        while (!scanned.equals("1") && !scanned.equals("2"));
+        return Integer.parseInt(scanned);
+    }
+
 }
