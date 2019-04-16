@@ -45,5 +45,23 @@ public class InputView {
         return number;
     }
 
+    public static int inputNumberOfPeople(Movie selecetedMovie, int time){
+        try {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            int count = Integer.parseInt(scanner.nextLine());
+            return isValidNumberOfPeople(count, selecetedMovie, time);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: 올바른 숫자를 입력해주세요");
+            return inputMovieId();
+        }
+    }
+
+    private static int isValidNumberOfPeople(int number, Movie movie, int time) {
+        if(number > movie.getPlaySchedules().get(time).getCapacity()){
+            throw new IllegalArgumentException();
+        }
+        return number;
+    }
+
 }
 
