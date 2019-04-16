@@ -18,6 +18,14 @@ public class Movie {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
@@ -30,5 +38,13 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public String toStringTitile() {
+        StringBuilder sb = new StringBuilder();
+        for (PlaySchedule playSchedule : playSchedules) {
+            sb.append(playSchedule);
+        }
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 }
