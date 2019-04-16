@@ -22,8 +22,6 @@ public class Validation {
 
     public static void checkScheduleSize(int order,int schedual) throws Exception{
         if(schedual <= MovieRepository.getMovies().get(order).getPlaySchedules().size()){
-            System.out.println(schedual);
-            System.out.println(MovieRepository.getMovies().get(order).getPlaySchedules().size());
             return;
         }
         throw new Exception();

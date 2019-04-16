@@ -42,14 +42,17 @@ public class BookSystem {
     }
 
     public void selectSchedule(int order, int scheduleNumber) {
+        try {
+            Validation.checkScheduleSize(order, scheduleNumber);
             selectedScheduleList = bookMovie.getBookMovieList().get(order).getPlaySchedules();
             PlaySchedule selectedSchedule = selectedScheduleList.get(scheduleNumber - 1);
             bookMovie.getBookMovieList().get(order).getPlaySchedules().clear();
             bookMovie.getBookMovieList().get(order).getPlaySchedules().add(selectedSchedule);
-//        } catch (Exception e) {
-//            System.out.println("예약 불가능한 스케쥴을 입력하셨습니다.");
-//            selectSchedule(order, InputView.inputMovieSchedule());
-//        }
+            return;
+        } catch (Exception e) {
+            System.out.println("예약 불가능한 스케쥴을 입력하셨습니다.");
+            selectSchedule(order, InputView.inputMovieSchedule());
+        }
     }
 
     private BookMovie setBookMovie(Movie willBookMovie, int movieId) {
