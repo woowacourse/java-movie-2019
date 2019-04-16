@@ -12,6 +12,7 @@
 
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,16 +58,21 @@ public class Movie {
     }
 
     public int isValidTime(int timeCode) {
-        if (this.playSchedules.size() < timeCode) {
+        if (playSchedules.size() < timeCode) {
             throw new IllegalArgumentException(TIME_NOT_EXIST);
         }
-        if (this.playSchedules.get(timeCode).isNotPassedTime()) {
+        if (playSchedules.get(timeCode).isNotPassedTime()) {
             throw new IllegalArgumentException(TIME_PASSED);
         }
-        if (!this.playSchedules.get(timeCode).isCapacityPossible(MINIMUM_CAPACITY)) {
+        if (!playSchedules.get(timeCode).isCapacityPossible(MINIMUM_CAPACITY)) {
             throw new IllegalArgumentException(CAPACITY_NOT_ANYMORE);
         }
+        // TODO 다른 영화와 시간 차이를 검사하는 로직 필요함
         return timeCode;
+    }
+
+    public LocalDateTime getMovieLocalTime(int timeCode) {
+        return playSchedules.get(timeCode).getStartDateTime();
     }
 
     public int isValidCapacity(int id, int reserveCount) {

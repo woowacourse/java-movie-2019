@@ -31,6 +31,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
     public void modifyCapacity(int reserveCount) {
         this.capacity -= reserveCount;
     }
