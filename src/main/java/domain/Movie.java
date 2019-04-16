@@ -31,6 +31,13 @@ public class Movie {
         System.out.println(playSchedules.get(scheduleNo + START_NUMBER));
     }
 
+    public boolean modifyScheduleCapacity(int scheduleNo, int personnel){
+        if(playSchedules.get(scheduleNo).isValidCapacity(personnel)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
