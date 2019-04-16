@@ -1,3 +1,7 @@
+/*
+ * 예약한 티켓 내역을 나타내는 객체
+ */
+
 package domain;
 
 public class reserveList {

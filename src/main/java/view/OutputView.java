@@ -25,10 +25,6 @@ public class OutputView {
 		System.out.println(movie.getSchedule().get(movieTime));
 	}
 
-	public static void printState() {
-
-	}
-
 	public static void printResult(int payPrice) {
 		System.out.println("최종 결제한 금액은 " + payPrice + "원 입니다.");
 		System.out.println("예매를 완료했습니다. 즐거운 영화 관람 되세요.");

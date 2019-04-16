@@ -38,6 +38,9 @@ public class MovieApplication {
 					continue;
 				}
 				OutputView.printSelectTime(selectedMovie.getMovie(), movieTime - 1);
+				
+				
+				
 				break;
 			}
 
@@ -58,7 +61,6 @@ public class MovieApplication {
 
 		} while (InputView.inputStopOrGo());
 
-		OutputView.printState();
 		System.out.println("예약내역");
 		int total_price = 0;
 		for (reserveList l : reservedList) {
