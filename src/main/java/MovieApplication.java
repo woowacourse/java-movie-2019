@@ -51,7 +51,12 @@ public class MovieApplication {
         InputView.guideForPayment();
         MoviePoint moviePoint = InputView.inputMoviePoint();
         int selection = selectPaymentMethod();
-
+        if (selection == InputView.FIRST_SELECTION) {
+            // 신용카드로 결제 처리
+        }
+        if (selection == InputView.SECOND_SELECTION) {
+            // 현금으로 결제 처리
+        }
     }
 
     private int selectPaymentMethod() {
