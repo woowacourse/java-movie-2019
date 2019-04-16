@@ -32,6 +32,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String showMovieDetail(){
+        return id + " - " + name + ", " + price + "원";
+    }
+
     public boolean isValidPlaySchedule(int playScheduleId, int audience) {
         return playSchedules.get(playScheduleId - 1).isValidCapacity(audience);
     }
@@ -44,5 +48,13 @@ public class Movie {
         for (PlaySchedule playSchedule : playSchedules) {
             System.out.println(playSchedule);
         }
+    }
+
+    public int showPrice(int audience){
+        return audience * price;
+    }
+
+    public String showSelectedPlaySchedule(int id){
+        return playSchedules.get(id).toString();
     }
 }
