@@ -47,4 +47,8 @@ public class Movie {
             return null;
         }
     }
+
+    public int getChargeForPeople(int reservedPersonCount) {
+        return price * reservedPersonCount;
+    }
 }

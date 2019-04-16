@@ -30,4 +30,8 @@ public class BookedMovie {
     public boolean checkMovieId(int movieId) {
         return bookedMovie.hasSameId(movieId);
     }
+
+    public int getChargePerMovie() {
+        return bookedMovie.getChargeForPeople(reservedPersonCount);
+    }
 }
