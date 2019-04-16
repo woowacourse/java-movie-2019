@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String PLEASE_INPUT_AGAIN = "다시입력해주세요.";
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputMovieId() {
@@ -55,5 +57,37 @@ public class InputView {
             return inputReservePersonCount(movieId, scheduleIndex);
         }
         return personCount;
+    }
+
+    public static boolean inputWannaEndMovieChoice(){
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        String userInput = scanner.nextLine().trim();
+        // 정수 체크
+        if (!Validator.isInteger(userInput)) {
+            return inputWannaEndMovieChoice();
+        }
+        // 1도 아니고 2도아닌지 체크
+        int number = Integer.parseInt(userInput);
+        if((number != 1) && (number != 2)){
+            System.out.println(PLEASE_INPUT_AGAIN);
+            return inputWannaEndMovieChoice();
+        }
+        return (number == 1) ? true : false;
+    }
+
+    public static boolean inputIsCardUse(){
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        String userInput = scanner.nextLine().trim();
+        // 정수 체크
+        if (!Validator.isInteger(userInput)) {
+            return inputWannaEndMovieChoice();
+        }
+        // 1도 아니고 2도아닌지 체크
+        int number = Integer.parseInt(userInput);
+        if((number != 1) && (number != 2)){
+            System.out.println(PLEASE_INPUT_AGAIN);
+            return inputWannaEndMovieChoice();
+        }
+        return (number == 1) ? true : false;
     }
 }
