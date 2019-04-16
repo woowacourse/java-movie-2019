@@ -1,10 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList; import java.util.List;
 
-public class Movie {
-    private static final char NEW_LINE = '\n';
+public class Movie { private static final char NEW_LINE = '\n';
 
     private final int id;
     private final String name;
@@ -30,5 +28,22 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String numberMovie(int time, int humannum) {
+        time -=1;
+        StringBuilder sb = new StringBuilder();
+        sb.append( id + " - " + name + ", " + price + "원"+"\n");
+        sb.append(playSchedules.get(time).getDateTime()+"\n");
+        sb.append("예약인원: "+humannum+"명" + "\n");
+        return sb.toString();
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
