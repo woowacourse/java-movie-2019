@@ -12,15 +12,17 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = recurInputMovieId();
+        Movie selectedMovie = MovieRepository.getMovie(movieId);
+        System.out.println(selectedMovie);
         
 
         // TODO 구현 진행
         
     }
     static int inputMovieIdOnce(){
-    	int ret = InputView.inputMovieId();
-    	MovieRepository.isExist(ret);
-    	return ret;
+    	int id = InputView.inputMovieId();
+    	MovieRepository.isExist(id);
+    	return id;
     }
     
     static int recurInputMovieId() {

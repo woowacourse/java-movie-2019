@@ -3,6 +3,7 @@ package domain;
 import static utils.DateTimeUtils.createDateTime;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MovieRepository {
@@ -43,13 +44,24 @@ public class MovieRepository {
 		return movies;
 	}
 
-	public static void isExist(int id){
+	public static void isExist(int id) {
 		int isNot = 1;
 		for (Movie movie : movies) {
 			isNot *= (movie.isTheMovie(id)) ? 0 : 1;
 		}
-		if(isNot == 1) {
-			throw new IllegalArgumentException("해당 아이디의 영화가 없습니다. \n 다시 입력해주세요.");
+		if (isNot == 1) {
+			throw new IllegalArgumentException("해당 아이디의 영화가 없습니다. \n다시 입력해주세요.");
 		}
 	}
+
+	public static Movie getMovie(int id) {
+		Movie ret = null;
+		Iterator<Movie> it = movies.iterator();
+		while (it.hasNext() && ret == null) {
+			Movie tmp = it.next();
+			ret = (tmp.isTheMovie(id)) ? tmp : null;
+		}
+		return ret;
+	}
+
 }
