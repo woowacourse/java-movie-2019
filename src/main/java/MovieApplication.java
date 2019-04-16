@@ -11,8 +11,9 @@ public class MovieApplication {
 
     private static List<Movie> curMovies = new ArrayList<>();
     private static List<PlaySchedule> curSchedule = new ArrayList<>();
+    private static List<Integer> ppl = new ArrayList<>();
 
-    public static void printSelectMovie(int movieId,int no) {
+    private static void printSelectMovie(int movieId,int no) {
         Movie temp = MovieRepository.getSelectMovies(movieId);
         if (temp == null) {
             System.out.println("해당 영화가 없습니다.");
@@ -22,11 +23,16 @@ public class MovieApplication {
         }
     }
 
-    public static void selecMovieTime(int no){
+    private static void selecMovieTime(int no){
         int selectTime = InputView.inputTime();
         PlaySchedule tempSchedule = curMovies.get(no).getSchedule(selectTime);
         System.out.println(tempSchedule);
         curSchedule.add(tempSchedule);
+    }
+
+    private static void getPpl(int no){
+        int curPplNo = InputView.inputPpl();
+        ppl.add(curPplNo);
     }
 
     public static void main(String[] args) {

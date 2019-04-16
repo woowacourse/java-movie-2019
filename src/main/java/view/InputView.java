@@ -15,4 +15,9 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    public static int inputPpl(){
+        System.out.println("##예약할 인원을 입력하세요.");
+        return scanner.nextInt();
+    }
+
 }
