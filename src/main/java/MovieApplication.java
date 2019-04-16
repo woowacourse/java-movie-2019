@@ -7,21 +7,20 @@ import utils.Validator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class MovieApplication {
     public static void main(String[] args) {
+        List<ReserveMovie> reserveMovies = new ArrayList<>();
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         Movie selectedMovie;
         boolean validateCheck;
-        boolean reserveAdd;
 
-        int movieId = InputView.inputMovieId();
+        int movieId;
         while (true){
+            movieId = InputView.inputMovieId();
             selectedMovie = MovieRepository.getSelectedMovie(movieId);
             OutputView.printSelectedMovie(selectedMovie);
             validateCheck = Validator.nullChecker(selectedMovie);
@@ -54,7 +53,7 @@ public class MovieApplication {
             inputPayment = InputView.inputPayment();
             System.out.println();
             validateCheck = Validator.lastInputChecker(inputPayment);
-            reserveAdd = OutputView.printPayOrReserve(inputPayment, reserveMovie);
+            OutputView.printPayOrReserve(inputPayment, reserveMovie);
             if (validateCheck) break;
             System.out.println("1 또는 2만 입력해주세요!");
         }

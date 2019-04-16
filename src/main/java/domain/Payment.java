@@ -13,7 +13,6 @@ public class Payment {
         this.userPoint = userPoint;
     }
 
-
     private int calculatePrice(){
         if (paymentType == 1){//카드결제
             return creditCardPrice();
