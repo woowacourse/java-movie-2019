@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import utils.Validator;
+
 public class InputView {
 	private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -33,12 +35,11 @@ public class InputView {
 	}
 
 	public static int inputMoreBookingFlag() {
-		try {
-			System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+		String inputValue = SCANNER.nextLine();
+		if(Validator.isValidFlag(inputValue)) {
 			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputMoreBookingFlag();
 		}
+		return inputMoreBookingFlag();
 	}
 
 	public static int inputPoint() {
