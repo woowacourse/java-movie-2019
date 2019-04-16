@@ -7,6 +7,6 @@ public class InputView {
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 }
