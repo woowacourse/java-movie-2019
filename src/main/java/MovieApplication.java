@@ -9,9 +9,14 @@ import domain.Movie;
 import domain.MovieRepository;
 
 public class MovieApplication {
-    static HashSet<Integer> useableMovieNumberList;
+    static private HashSet<Integer> useableMovieNumberList;
     static private Movie movie;
     static ArrayList<String> reservationedList ;
+    static final int card = 1;
+    static final int cash = 2;
+    static final double cardDiscountRate = 0.05;
+    static final double cashDiscountRate = 0.02;
+    static int totalPrice = 0 ;
     static void init() {
         useableMovieNumberList = new HashSet<>();
         useableMovieNumberList.add(1);
@@ -19,6 +24,7 @@ public class MovieApplication {
         useableMovieNumberList.add(7);
         useableMovieNumberList.add(8);
         reservationedList  = new ArrayList<>();
+        totalPrice = 0;
     }
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -28,6 +34,8 @@ public class MovieApplication {
         // TODO 구현 진행
         init();
         selectMovie();
+        PaymentStep();
+        outputTotalPrice();
 
     }
 
@@ -53,6 +61,10 @@ public class MovieApplication {
     static void setReservationInformation() {
         int reservationMoviewTime = setReservationTime()-1;
         int reservationMovieCapacity = setReservationCapacity(reservationMoviewTime);
+        totalPrice += movie.getPrice() * reservationMovieCapacity;
+        nextStep(reservationMoviewTime,reservationMovieCapacity);
+    }
+    static void nextStep(int reservationMoviewTime, int reservationMovieCapacity) {
         int InputNextStep = InputView.inputNextStep();
         if (InputNextStep == 1) {
             reservatedInforMation(reservationMoviewTime,reservationMovieCapacity);
@@ -112,6 +124,53 @@ public class MovieApplication {
             System.out.println(output);
             System.out.println("===================");
         }
+    }
+
+    static void PaymentStep() {
+        OutputView.outputPaymentStep();
+        int point = inputPoint();
+        int cardOrCash = selectCardorCash();
+        if (cardOrCash == 1) {
+            totalPrice -= (int)(totalPrice*cardDiscountRate);
+        }
+        if (cardOrCash == 2) {
+            totalPrice -= (int)(totalPrice*cashDiscountRate);
+        }
+        totalPrice -= point;
+    }
+
+    static int inputPoint() {
+        int point = 0;
+        do {
+            point = InputView.inputMoviePoint();
+        } while(checkPoint(point));
+        return point ;
+    }
+
+    static boolean checkPoint(int point) {
+        if (point <0) {
+            return true;
+        }
+        return false;
+    }
+
+    static int selectCardorCash() {
+        int select = 0;
+        do {
+            select =  InputView.inputCardorCash();
+        } while(checkCardOrCash(select));
+        return select;
+    }
+
+    static boolean checkCardOrCash(int select) {
+        if (select == card || select == cash){
+            return false;
+        }
+        return true;
+    }
+
+    static void outputTotalPrice() {
+        OutputView.outputTotalPrice(totalPrice);
     }
 
 }

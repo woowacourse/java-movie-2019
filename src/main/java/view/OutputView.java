@@ -26,7 +26,8 @@ public class OutputView {
         System.out.println("## 결제를진행합니다");
     }
 
-    public static void outputconfirm() {
+    public static void outputTotalPrice(int totalprice) {
+        System.out.println("최종 결제한 금액은 "+totalprice +"원 입니다.");
         System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요");
     }
 
