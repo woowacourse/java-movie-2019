@@ -42,4 +42,13 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static List<Integer> getMovieIds() {
+        List<Integer> movieIdList = new ArrayList<>();
+        for (Movie movie : movies) {
+            movieIdList.add(movie.getId());
+        }
+
+        return movieIdList;
+    }
 }
