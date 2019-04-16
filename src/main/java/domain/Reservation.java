@@ -12,15 +12,24 @@ public class Reservation {
     private int reservationCount;
 
     public Reservation(List<Movie> movies) {
-        this.movies = movies;
-        OutputView.printMovies(this.movies);
-        int movieId = InputView.inputMovieId();
-        movie = OutputView.selectMovie(movies, movieId);
-        OutputView.printMovie(movie);
-        int scheduleId = InputView.inputScheduleId();
-        schedule = movie.getPlaySchedule(scheduleId);
-        reservationCount = InputView.inputReservationCount();
-        schedule.scheduleReservation(reservationCount);
+        init(movies);
+    }
+
+    private void init(List<Movie> movies) {
+        try {
+            this.movies = movies;
+            OutputView.printMovies(this.movies);
+            int movieId = InputView.inputMovieId();
+            movie = OutputView.selectMovie(movies, movieId);
+            OutputView.printMovie(movie);
+            int scheduleId = InputView.inputScheduleId();
+            schedule = movie.getPlaySchedule(scheduleId);
+            reservationCount = InputView.inputReservationCount();
+            schedule.scheduleReservation(reservationCount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            init(movies);
+        }
     }
 
     @Override
