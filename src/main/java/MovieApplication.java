@@ -13,7 +13,9 @@ public class MovieApplication {
 	    do {
 		    askReservation(reservationRepository);
 	    } while (askContinue());
-	    askPayment(reservationRepository);
+	    Payment payment = new Payment(reservationRepository);
+	    askPayment(payment);
+
     }
 
     private static void showMovies() {
@@ -67,10 +69,30 @@ public class MovieApplication {
 	    return InputView.inputContinueReservation() == CONTINUE_FLAG;
     }
 
-    private static void askPayment(ReservationRepository reservationRepository) {
+    private static void askPayment(Payment payment) {
     	OutputView.printStartPayment();
-    	InputView.inputPoint();
-    	InputView.inputPayType();
-    	OutputView.printPaymentResult(reservationRepository.getTotalPrice());
+    	askPoint(payment);
+	    int payPrice = askPay(payment);
+    	OutputView.printPaymentResult(payPrice);
+    }
+
+    private static int askPoint(Payment payment) {
+    	try {
+    		int point = InputView.inputPoint();
+    		payment.payPoint(new NaturalNumber(point));
+    		return point;
+	    } catch (IllegalArgumentException e) {
+    		System.out.println(e.getMessage());
+    		return askPoint(payment);
+	    }
+    }
+
+    private static int askPay(Payment payment) {
+	    try {
+		    return payment.pay(new NaturalNumber(InputView.inputPayType()));
+	    } catch (IllegalArgumentException e) {
+		    System.out.println(e.getMessage());
+		    return askPoint(payment);
+	    }
     }
 }

@@ -23,6 +23,10 @@ public class PlaySchedule {
         return neededCapacity <= this.capacity;
     }
 
+    public void consume(int neededCapacity) {
+    	this.capacity -= neededCapacity;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

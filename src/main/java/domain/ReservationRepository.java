@@ -37,4 +37,10 @@ public class ReservationRepository {
 		}
 		return totalPrice;
 	}
+
+	public void completeReservations() {
+		for (Reservation reservation : reservations) {
+			reservation.completeReservation();
+		}
+	}
 }

@@ -22,6 +22,10 @@ public class Reservation {
 		return playSchedule.isCapacity(neededCapacity);
 	}
 
+	public void completeReservation() {
+		playSchedule.consume(capacity);
+	}
+
 	public int calTotalPrice() {
 		return movie.calPrice(capacity);
 	}
