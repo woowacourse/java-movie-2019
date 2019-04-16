@@ -16,5 +16,17 @@ public class MovieApplication {
             System.out.println(InputView.NOT_MOVIE_ID);
             movieId = InputView.inputMovieId();
         }
+        Movie userSelectMovie = MovieRepository.getMovie(movieId);
+        System.out.println(userSelectMovie);
+
+        int scheduleId = InputView.inputScheduleId();
+        while(!userSelectMovie.isCorrectSheduleId(scheduleId)){
+            scheduleId = InputView.inputScheduleId();
+        }
+        while(!userSelectMovie.isPossibleWatch(scheduleId)){
+            System.out.println(InputView.NOT_MOVIE_SCHEDULE);
+            scheduleId = InputView.inputScheduleId();
+        }
+
     }
 }
