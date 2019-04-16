@@ -26,6 +26,18 @@ public class Movie {
         return (this.id == id);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
