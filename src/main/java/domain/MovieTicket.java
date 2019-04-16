@@ -43,12 +43,12 @@ public class MovieTicket {
 
 	private int getSchedule(int movieId) {
 		int schedule = InputView.inputSchedule();
-		if (!MovieRepository.isBeforeBeginning(movieId, schedule)) {
-			System.out.println(AFTER_SCREENING_MESSAGE);
-			return getSchedule(movieId);
-		}
 		if (!MovieRepository.bookableSchedule(movieId, schedule)) {
 			System.out.println(UNKNOWN_SCHEDULE_MESSAGE);
+			return getSchedule(movieId);
+		}
+		if (!MovieRepository.isBeforeBeginning(movieId, schedule)) {
+			System.out.println(AFTER_SCREENING_MESSAGE);
 			return getSchedule(movieId);
 		}
 		return schedule;
