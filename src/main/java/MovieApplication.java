@@ -1,32 +1,50 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Purchase;
-import domain.ReservedMovie;
+import domain.Reservation;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
 
 public class MovieApplication {
+    private static final int ADDITIONAL_INPUT = 2;
+
+    private static Reservation reservation;
+    private static List<Movie> movies = MovieRepository.getMovies();
+
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        reservation = new Reservation(movies);
 
-        // TODO 구현 진행
-        OutputView.outputReservedMovie(movies, movieId);
+        choiceMovie();
 
-        int movieTime = InputView.inputMovieTime();
-        int movieNumberOfPeople = InputView.inputMovieNumberOfPeople();
+        reservation.printReservationHistory();
 
-        ReservedMovie reservedMovie = new ReservedMovie(movies);
-        reservedMovie.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
-        reservedMovie.printReservationHistory();
-
-        Purchase purchase = new Purchase(reservedMovie.calculateTotalPrice());
+        Purchase purchase = new Purchase(reservation.calculateTotalPrice());
         int point = InputView.inputPoint();
         int methodOfPayment = InputView.inputCarOrCash();
         purchase.printTotalPayment(point, methodOfPayment);
+    }
+
+    private static void choiceMovie(){
+        do{
+            int movieId = InputView.inputMovieId();
+            OutputView.outputReservedMovie(movies, movieId);
+
+            int movieTime = InputView.inputMovieTime();
+            int movieNumberOfPeople = InputView.inputMovieNumberOfPeople();
+
+            reservation.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
+        }while(isAdditionalInput());
+    }
+
+    private static boolean isAdditionalInput(){
+        boolean result = false;
+        if(InputView.checkAdditionalInput() == ADDITIONAL_INPUT){
+            result = true;
+        }
+        return result;
     }
 }

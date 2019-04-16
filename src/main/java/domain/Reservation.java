@@ -6,12 +6,12 @@ import java.util.*;
  * 예약한 인원 수 만큼 List 에 Movie 객체를 저장하여
  * Set 을 이용하여 예약 인원 판단.
  */
-public class ReservedMovie {
+public class Reservation {
     private List<Movie> movies;
     private Map<Movie, Integer> timeMap = new HashMap<>();
     private List<Movie> reservedMovies = new ArrayList<>();
 
-    public ReservedMovie(List<Movie> movies) {
+    public Reservation(List<Movie> movies) {
         this.movies = movies;
     }
 
