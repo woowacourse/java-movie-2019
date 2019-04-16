@@ -14,4 +14,9 @@ public class InputView {
         System.out.println("## 예약할 시간을 선택하세요.");
         return scanner.nextInt();
     }
+
+    public static int inputMovieCustomer(){
+        System.out.println("## 예약할 인원을 선택하세요.");
+        return scanner.nextInt();
+    }
 }

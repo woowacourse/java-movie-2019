@@ -20,8 +20,13 @@ public class BookMovie {
     }
 
     public void run(){
-        showMovieList();
-        getMovieTime(getSelectedMovie());
+        try{
+
+            getMovieSchedule(getSelectedMovie());
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            run();
+        }
     }
 
     private void showMovieList(){
@@ -38,17 +43,23 @@ public class BookMovie {
         throw new IllegalArgumentException("해당하는 영화가 없습니다.");
     }
 
-    private void getMovieTime(Movie movie){
+    private void getMovieSchedule(Movie movie){
         PlaySchedule schedule = movie.getMovieSchedule(InputView.inputMovieTime()-1);
-        if (checkMovieTime(schedule.getStartDateTime())){
-            throw new IllegalArgumentException("상영시간이 이미 지났습니다.");
-        }
-
+        checkMovieTime(schedule.getStartDateTime());
+        checkCustomerCount(schedule);
         bookedMovies.add(movie);
     }
 
-    private boolean checkMovieTime(LocalDateTime startTime){
-        return !DateTimeUtils.isEarlyerThanMovieTime(startTime);
+    private void checkMovieTime(LocalDateTime startTime){
+        if (DateTimeUtils.isEarlyerThanMovieTime(startTime)){
+            throw new IllegalArgumentException("상영시간이 이미 지났습니다.");
+        }
+    }
+
+    private void checkCustomerCount(PlaySchedule schedule){
+        if (InputView.inputMovieCustomer() > schedule.getCapacity()){
+            throw new IllegalArgumentException("인원 초과입니다.");
+        }
     }
 
 }
