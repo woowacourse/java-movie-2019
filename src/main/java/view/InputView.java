@@ -1,5 +1,7 @@
 package view;
 
+import domain.Movie;
+import domain.PlaySchedule;
 import error.Validator;
 import utils.PrintUtils;
 
@@ -17,6 +19,18 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
             return inputMovieId();
+        }
+    }
+
+    public static PlaySchedule inputPlaySchedule(Movie movie) {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫 번째 상영 시간이 1번)");
+        try {
+            String playScheduleIdx = scanner.nextLine();
+            Validator.checkAccuracyOfPlayScheduleIdx(playScheduleIdx, movie);
+            return movie.getPlayScheduleByIdx(Integer.parseInt(playScheduleIdx) - 1);
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputPlaySchedule(movie);
         }
     }
 }

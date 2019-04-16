@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    private static final int MIN_SCHEDULE_IDX = 0;
 
     private final int id;
     private final String name;
@@ -26,6 +27,10 @@ public class Movie {
         return (this.id == id);
     }
 
+    public boolean containsPlayScheduleIdx(int playScheduleIdx) {
+        return ((playScheduleIdx >= MIN_SCHEDULE_IDX) && (playScheduleIdx < playSchedules.size()));
+    }
+
     public int getId() {
         return id;
     }
@@ -36,6 +41,10 @@ public class Movie {
 
     public int getPrice() {
         return price;
+    }
+
+    public PlaySchedule getPlayScheduleByIdx(int idx) {
+        return playSchedules.get(idx);
     }
 
     @Override

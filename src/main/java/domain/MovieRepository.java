@@ -6,6 +6,7 @@ import java.util.List;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
+    private static final int INDEX_TO_GET_VALUE = 0;
     private static List<Movie> movies = new ArrayList<>();
 
     static {
@@ -41,5 +42,9 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie getMovieById(int id) {
+        return (Movie) movies.stream().filter(movie -> movie.isSameId(id)).toArray()[INDEX_TO_GET_VALUE];
     }
 }

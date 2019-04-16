@@ -11,14 +11,25 @@ public class MovieApplication {
         OutputView.printMovies(movies);
     }
 
-    private void selectMovieToReserve() {
+    public void reserveMovie() {
+        Movie movieToReserve = selectMovieToReserve();
+        selectPlayScheduleToReserve(movieToReserve);
+    }
+
+    private Movie selectMovieToReserve() {
         int movieId = InputView.inputMovieId();
-        OutputView.printMovie(movieId);
+        Movie movieToReserve = MovieRepository.getMovieById(movieId);
+        OutputView.printMovie(movieToReserve);
+        return movieToReserve;
+    }
+
+    private void selectPlayScheduleToReserve(Movie movie) {
+        InputView.inputPlaySchedule(movie);
     }
 
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.showAllMovieInfo();
-        movieApplication.selectMovieToReserve();
+        movieApplication.reserveMovie();
     }
 }
