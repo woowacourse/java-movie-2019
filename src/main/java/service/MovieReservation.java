@@ -9,6 +9,8 @@ import utils.Validator;
 import view.InputView;
 import view.OutputView;
 
+import static view.OutputView.printUserInputAgainReservationFinishOrAddError;
+
 public class MovieReservation {
 	public static Movie getUserMovie() {
 		int movieId = InputView.inputMovieId();
@@ -48,12 +50,17 @@ public class MovieReservation {
 		return reservationNumber;
 	}
 
-/*	public static int getFinishReservationOrAddReservation(){
+	public static int getFinishReservationOrAddReservation() {
 		int finishOrAddNumber = InputView.inputFinishReservationOrAddReservation();
-		boolean result = Validator.check
-		while(){
+		boolean result = Validator.checkFinishReservationOrAddReservationNumberValid(finishOrAddNumber);
 
+		while (!result) {
+			printUserInputAgainReservationFinishOrAddError();
+			finishOrAddNumber = InputView.inputFinishReservationOrAddReservation();
+			result = Validator.checkFinishReservationOrAddReservationNumberValid(finishOrAddNumber);
 		}
-	}*/
+
+		return finishOrAddNumber;
+	}
 
 }

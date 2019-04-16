@@ -30,4 +30,11 @@ public class Validator {
 		}
 		return true;
 	}
+
+	public static boolean checkFinishReservationOrAddReservationNumberValid(int number){
+		if(!String.valueOf(number).matches("[1|2]")){
+			return false;
+		}
+		return true;
+	}
 }
