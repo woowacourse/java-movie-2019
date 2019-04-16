@@ -30,11 +30,27 @@ public class MovieApplication {
 
     private void start() {
         List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
-        Continue choice = startPurchase(reservedMovies);
+        choose(reservedMovies);
+        Continue choice = InputView.askContinuePurchaseOrNot();
+        OutputView.printReservedMovies(reservedMovies);
         if (choice == Continue.YES) {
-            start();
+            choose(reservedMovies);
         }
+
     }
+
+    private void choose(List<ReservedMovie> reservedMovies) {
+        List<Movie> movies = MovieRepository.getMovies();
+        OutputView.printMovies(movies);
+        Movie movie = InputView.inputMovie(movies);
+        OutputView.printMovies(movie);
+
+        int scheduleId = InputView.getScheduleId(movie);
+        int memberNumber = InputView.getMemberNumber(movie, scheduleId);
+        reservedMovies.add(new ReservedMovie(movie,scheduleId,memberNumber));
+    }
+
+
 
 
 }
