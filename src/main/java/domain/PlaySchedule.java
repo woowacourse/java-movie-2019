@@ -20,9 +20,12 @@ public class PlaySchedule {
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
+
+    public String toStringPurchaseInfo() {
+    	return "시작시간: " + format(startDateTime)+"\n";
+    }
     
     public boolean isSchedule() {
-    	//SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm");
     	LocalDateTime now = LocalDateTime.now();
     	
     	if (now.isAfter(startDateTime)) {

@@ -11,6 +11,12 @@ public class OutputView {
         }
     }
     
+    public static void printPurchaseMovies(List<Movie> movies) {
+    	for (Movie movie : movies) {
+    		System.out.println(movie.toStringPurchaseInfo());
+    	}
+    }
+    
     public static void printMovie(Movie movie) {
     	System.out.println(movie);
     }

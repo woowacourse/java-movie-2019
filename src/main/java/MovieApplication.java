@@ -1,6 +1,5 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -8,21 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
-	public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        List<Movie> MyMovies = new ArrayList<>();
+	public static Movie addMovie() {
+		List<Movie> movies = MovieRepository.getMovies();
         MovieRepository movierep = new MovieRepository();
         Movie movie;
         OutputView.printMovies(movies);
         int movieId;
         int movieScheduleId;
         int peopole;
-        PlaySchedule playSchedule;
         
         do {
         	movieId = InputView.inputMovieId();
 		} while ((movie = movierep.isMovie(movieId)) == null);
-        movies.add(movie);
         OutputView.printMovie(movie);
         
         do {
@@ -32,6 +28,19 @@ public class MovieApplication {
         do {
         	peopole = InputView.inputPeople();
         } while (!movie.isValidCapacity(movie.getPlaySchedule(), peopole));
-        
+		
+        return movie;
+	}
+	
+	public static void main(String[] args) {
+		List<Movie> MyMovies = new ArrayList<>();
+		int morePurchase;
+		
+        do {
+        	MyMovies.add(addMovie());
+        	morePurchase = InputView.inputMorePurchase();
+		} while (morePurchase == 2);
+		
+        OutputView.printPurchaseMovies(MyMovies);
     }
 }

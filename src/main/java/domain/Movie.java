@@ -11,6 +11,7 @@ public class Movie {
     private final int price;
     private final int idxMinus = 1;
     private PlaySchedule playSchedule;
+    private int people;
     
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
@@ -39,6 +40,12 @@ public class Movie {
                 + sb.toString();
     }
     
+    public String toStringPurchaseInfo() {
+		return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + playSchedule.toStringPurchaseInfo()
+                + "예약 인원 : "+people+"명" + NEW_LINE;
+    }
+    
     public boolean isMovieId(int movieId) {
     	if (this.id == movieId) {
 			return true;
@@ -56,7 +63,8 @@ public class Movie {
     }
 
     public boolean isValidCapacity(PlaySchedule playSchedule, int peopole) {
-		if (playSchedule.isCapacity(peopole)) {
+    	this.people = peopole;
+    	if (playSchedule.isCapacity(peopole)) {
 			return true;
 		}
     	return false;
@@ -64,5 +72,9 @@ public class Movie {
     
     public PlaySchedule getPlaySchedule() {
 		return playSchedule;
+    }
+    
+    public int getPeople() {
+    	return people;
     }
 }
