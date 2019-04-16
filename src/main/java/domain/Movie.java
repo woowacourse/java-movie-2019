@@ -60,4 +60,5 @@ public class Movie {
         PlaySchedule reserveSchedule = playSchedules.get(scheduleIndex);
         reserveSchedule.decreasePersonCount(personCount);
     }
+
 }

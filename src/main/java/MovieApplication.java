@@ -13,7 +13,7 @@ public class MovieApplication {
     public static final double SALE_RATE_CARD = 0.95;
     public static final double SALE_RATE_NOCARD = 0.98;
 
-    public static void makeReservation(List<MovieReservation> reservationList) {
+    public static void addReservation(List<MovieReservation> reservationList) {
         OutputView.printMovies(MovieRepository.getMovies());
 
         int movieId = InputView.inputMovieId();
@@ -26,7 +26,7 @@ public class MovieApplication {
         if (InputView.inputWannaEndMovieChoice()) {
             return;
         }
-        makeReservation(reservationList);
+        addReservation(reservationList);
     }
 
     public static void addToReservationList(List<MovieReservation> reservationList, MovieReservation movieReservation) {
@@ -91,7 +91,7 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservationList = new ArrayList<MovieReservation>();
 
-        makeReservation(reservationList);
+        addReservation(reservationList);
         showAllReservation(reservationList);
         int totalMoney = getTotalPayment(reservationList);
         int pointUseAmount = InputView.inputPoint();

@@ -2,9 +2,12 @@ package error;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MovieReservation;
+import domain.PlaySchedule;
 import utils.MovieDataRequester;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Validator {
 
@@ -66,6 +69,7 @@ public class Validator {
         return true;
     }
 
+
     public static boolean isScheduleReservePossible(int movieNumber, int scheduleIndex, int personCount) {
         boolean reservePossible = MovieDataRequester
                 .getMovie(movieNumber)
@@ -77,5 +81,4 @@ public class Validator {
         }
         return true;
     }
-
 }
