@@ -12,13 +12,16 @@ public class MovieApplication {
         int movieId;
         int scheduleNumber;
         int reservationCount;
+        int quitOrAdditionalReservation;
 
         OutputView.printMovies(movies);
-
         movieId = InputView.inputMovieId();
 
-        OutputView.printMovie(movies, movieId);
+        while (!ValidatorUtils.isNaturalMovieId(movieId)) {
+            movieId = InputView.inputMovieId();
+        }
 
+        OutputView.printMovie(movies, movieId);
         scheduleNumber = InputView.inputScheduleNumber();
 
         while (!ValidatorUtils.isNaturalScheduleNumber(movieId, scheduleNumber)) {
@@ -27,8 +30,14 @@ public class MovieApplication {
 
         reservationCount = InputView.inputReservationCount();
 
-        while (!ValidatorUtils.inNaturalReservationCount(movieId, scheduleNumber, reservationCount)) {
+        while (!ValidatorUtils.isNaturalReservationCount(movieId, scheduleNumber, reservationCount)) {
             reservationCount = InputView.inputReservationCount();
+        }
+
+        quitOrAdditionalReservation = InputView.inputQuitOrAdditionalReservation();
+
+        while (!ValidatorUtils.isNaturalResponseForQuit(quitOrAdditionalReservation)) {
+            quitOrAdditionalReservation = InputView.inputQuitOrAdditionalReservation();
         }
 
     }

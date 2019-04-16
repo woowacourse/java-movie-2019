@@ -1,21 +1,14 @@
 package view;
 
-import utils.ValidatorUtils;
-
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputMovieId() {
-        int movieId;
+        System.out.println("## 예약할 영화를 선택하세요.");
 
-        do {
-            System.out.println("## 예약할 영화를 선택하세요.");
-            movieId = scanner.nextInt();
-        } while (!ValidatorUtils.isNaturalMovieId(movieId));
-
-        return movieId;
+        return scanner.nextInt();
     }
 
     public static int inputScheduleNumber() {
@@ -26,6 +19,12 @@ public class InputView {
 
     public static int inputReservationCount() {
         System.out.println("## 예약할 인원을 입력하세요.");
+
+        return scanner.nextInt();
+    }
+
+    public static int inputQuitOrAdditionalReservation() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
 
         return scanner.nextInt();
     }

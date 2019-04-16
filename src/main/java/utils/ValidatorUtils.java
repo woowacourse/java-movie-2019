@@ -22,9 +22,18 @@ public class ValidatorUtils {
         return true;
     }
 
-    public static boolean inNaturalReservationCount(int movieId, int scheduleNumber, int reservationNumber) {
+    public static boolean isNaturalReservationCount(int movieId, int scheduleNumber, int reservationNumber) {
         if (!MovieRepository.isProperReservationCount(movieId, scheduleNumber, reservationNumber)) {
             System.out.println("예매 인원이 적절하지 않습니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isNaturalResponseForQuit(int response) {
+        if (response != 1 && response != 2) {
+            System.out.println("응답이 적절하지 않습니다.");
             return false;
         }
 
