@@ -14,5 +14,8 @@ public class OutputView {
 	public static void printMovie(Movie movie) {
 		System.out.println(movie);
 	}
-
+	
+	public static void printPlaySchedule(Movie movie, int startDateTime) {
+		System.out.println(movie.getPlaySchedules().get(startDateTime - 1));
+	}
 }
