@@ -29,4 +29,14 @@ public class InputView {
             return inputPlaySchedule(selectedMovie);
         }
     }
+
+    public static int inputReservationPeople(PlaySchedule schedule) {
+        try {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            return schedule.checkValidReservation(Integer.parseInt(scanner.nextLine().trim()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바르지 않은 입력입니다.");
+            return inputReservationPeople(schedule);
+        }
+    }
 }

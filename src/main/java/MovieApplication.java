@@ -1,6 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
+import jdk.internal.util.xml.impl.Input;
 import reservation.MovieReservation;
 import view.InputView;
 import view.OutputView;
@@ -12,6 +13,7 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         MovieReservation reservations = new MovieReservation();
         PlaySchedule schedule;
+        int reservePeopleNum;
 
         OutputView.printMovies(movies);
         int movieId = InputView.inputMovieId();
@@ -19,5 +21,6 @@ public class MovieApplication {
         do{
              schedule = InputView.inputPlaySchedule(selectedMovie);
         } while(!reservations.checkVaildSchedule(schedule));
+        reservePeopleNum = InputView.inputReservationPeople(schedule);
     }
 }
