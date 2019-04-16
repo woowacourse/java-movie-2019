@@ -1,6 +1,7 @@
 - class MovieRespository
 
     - getMovie() : 특정 id를 입력 받으면 그 영화의 정보만 반환하는 메서드
+    - playScheduleOfMovieOfNum() : 특정 id의 영화에서 특정 순서를 입력 받으면 그 입력된 순서의 영화 상영시간을 반환하는 메서드
 
 - class Movie
 
