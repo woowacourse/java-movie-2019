@@ -10,6 +10,17 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+   
+    public static void printSelectedMovie(Movie movieId) {
+    	
+    }
     
+    public static void printReservation() {
+    	
+    }
+    
+    public static void printResult() {
+    	
+    }
   
 }
