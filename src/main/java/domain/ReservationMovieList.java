@@ -1,5 +1,7 @@
 package domain;
 
+import com.sun.corba.se.spi.activation.RepositoryHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +9,9 @@ import static domain.Movie.NEW_LINE;
 
 public class ReservationMovieList {
     private static final String RESERVATION_HISTORY = "예약 내역";
-    private List<ReservationMovie> reservationMovieList;
+    private static List<ReservationMovie> reservationMovieList;
 
     private ReservationMovieList() {
-        this.reservationMovieList = new ArrayList<>();
     }
 
     private static class ReservationMovieListHolder {
@@ -18,6 +19,9 @@ public class ReservationMovieList {
     }
 
     public static ReservationMovieList getInstance() {
+        if (reservationMovieList == null) {
+            reservationMovieList = new ArrayList<>();
+        }
         return ReservationMovieListHolder.RESERVATION_MOVIE_LIST;
     }
 

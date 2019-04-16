@@ -31,6 +31,6 @@ public class ReservationMovie {
     public String toString() {
         return movieId + HYPHEN + movieName + COMMA + moviePrice + WON + NEW_LINE
                 + START_TIME + format(movieTime) + NEW_LINE
-                + NUMBER_OF_RESERVATION_PEOPLE + reservedNumberOfPeople + NUMBER_OF_PERSON;
+                + NUMBER_OF_RESERVATION_PEOPLE + reservedNumberOfPeople + NUMBER_OF_PERSON + NEW_LINE;
     }
 }
