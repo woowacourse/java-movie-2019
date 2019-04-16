@@ -77,4 +77,8 @@ public class Movie {
     public int getPeople() {
     	return people;
     }
+
+    public int getPrice() {
+    	return price;
+    }
 }
