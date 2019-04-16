@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 public class ChoiceMovie {
@@ -19,4 +21,9 @@ public class ChoiceMovie {
     public LocalDateTime getLocalDateTime(){
         return time;
    }
+
+    @Override
+    public String toString() {
+        return movie.getMovieinForm()+"시작시간:"+ DateTimeUtils.format(time)+"\n"+"예약인원:"+member+"\n";
+    }
 }

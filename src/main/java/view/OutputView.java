@@ -1,5 +1,6 @@
 package view;
 
+import domain.ChoiceMovie;
 import domain.Movie;
 
 import java.util.List;
@@ -11,6 +12,11 @@ public class OutputView {
         }
     }
 
+    public static void printReservation(List<ChoiceMovie> choiceMovies){
+        for(ChoiceMovie choice:choiceMovies){
+            System.out.println(choice.toString());
+        }
+    }
 
 
 }
