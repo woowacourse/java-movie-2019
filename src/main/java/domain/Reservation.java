@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.LocalDateTime;
+
 /**
  * 예매 한 번의 내용 역할을 하는 클래스
  */
@@ -22,4 +24,6 @@ public class Reservation {
     public int howMuch() {
         return movie.getPrice() * personnels;
     }
+
+    public LocalDateTime getDate() { return movie.getSchedule(scheduleId).getDate(); }
 }

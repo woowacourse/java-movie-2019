@@ -1,5 +1,6 @@
 package domain;
 
+import utils.DateTimeUtils;
 import view.OutputView;
 
 import java.util.ArrayList;
@@ -34,7 +35,12 @@ public class MovieReservationMachine {
     public static void addReservation(int movieId, int scheduleId, int personnels) {
         Movie thisMovie = MovieRepository.getMovieWithId(movieId);
         thisMovie.getSchedule(scheduleId).reduceCapacity(personnels);
-        reservationHistory.add(new Reservation(thisMovie, scheduleId, personnels));
+        Reservation newRes = new Reservation(thisMovie, scheduleId, personnels);
+        if (isValidReservation(newRes)) {
+            reservationHistory.add(newRes);
+        } else {
+            System.out.println("기존의 예매들과 시작 시간 차이가 1 시간 이내여야 합니다. 이 예매는 기록되지 않습니다.");
+        }
     }
 
     /**
@@ -75,4 +81,19 @@ public class MovieReservationMachine {
     public static void printGoodBye() {
         System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
+
+    /**
+     * 영화 시간이 1 시간 이하로 차이나는지 확인한다.
+     */
+    public static boolean isValidReservation(Reservation res) {
+        Iterator<Reservation> it = reservationHistory.iterator();
+        while (it.hasNext()) {
+            if (!DateTimeUtils.isOneHourWithinRange(it.next().getDate(), res.getDate())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }

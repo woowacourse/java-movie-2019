@@ -17,6 +17,7 @@ public class MovieApplication {
             int userScheduleId = User.selectSchedule(userMovieId);
             int userPersonnels = User.selectPersonnels(userMovieId, userScheduleId);
             MovieReservationMachine.addReservation(userMovieId, userScheduleId, userPersonnels);
+            if ()
             isEnd = User.isEndReservation();
         }
         MovieReservationMachine.showReservatoinHistory();

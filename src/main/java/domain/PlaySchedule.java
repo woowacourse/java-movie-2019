@@ -27,4 +27,6 @@ public class PlaySchedule {
     public void reduceCapacity(int personnels) {
         capacity -= personnels;
     }
+
+    public LocalDateTime getDate() { return startDateTime; }
 }
