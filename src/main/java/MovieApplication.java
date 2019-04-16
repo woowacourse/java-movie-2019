@@ -1,6 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
 
+import domain.ReservedMovie;
 import input.Continue;
 import input.MemberNumberInput;
 import input.ScheduleInput;
@@ -9,6 +10,7 @@ import view.OutputView;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
@@ -25,4 +27,14 @@ public class MovieApplication {
         System.out.println(choice);
 
     }
+
+    private void start() {
+        List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
+        Continue choice = startPurchase(reservedMovies);
+        if (choice == Continue.YES) {
+            start();
+        }
+    }
+
+
 }
