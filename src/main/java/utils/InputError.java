@@ -14,7 +14,7 @@ public class InputError {
     }
 
     public static boolean handleMovieStartTimeInputError(int movieStartTime, List<Movie> movies, int movieId) {
-        if (movieStartTime < 0 || !movies.get(movieId).isSmallerPlayScheduleSize(movieStartTime)) {
+        if (movieStartTime < 0 || !movies.get(movieId - 1).isSmallerPlayScheduleSize(movieStartTime)) {
             System.out.println("<오류> 상영 시간에 없는 영화입니다.");
             return false;
         }
