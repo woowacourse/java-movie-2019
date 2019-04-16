@@ -42,4 +42,9 @@ public class MovieRepository {
 	public static List<Movie> getMovies() {
 		return movies;
 	}
+
+	public static boolean contains(int movieId) {
+		return movies.stream()
+			.anyMatch(movie -> movie.getId() == movieId);
+	}
 }

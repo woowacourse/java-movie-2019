@@ -11,10 +11,14 @@ public class MovieApplication {
 		OutputView.printMovies(movies);
 
 		int movieId = InputView.inputMovieId();
-		int startDateTime = InputView.inputStartDateTime();
-		int movieCount = InputView.inputMovieCount();
-		int point = InputView.inputPoint();
-		int paymentMehotd = InputView.inputPaymentMethod();
+		if(MovieRepository.contains(movieId)) {
+			
+		}
+		
+//		int startDateTime = InputView.inputStartDateTime();
+//		int capacity = InputView.inputCapacity();
+//		int point = InputView.inputPoint();
+//		int paymentMehotd = InputView.inputPaymentMethod();
 		
 		
 	}
