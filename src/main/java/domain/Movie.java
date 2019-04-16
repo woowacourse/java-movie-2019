@@ -31,4 +31,10 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+
+    // 같은 영화가 맞는지
+    public boolean isSameMovie(int movieNumber){
+        return id == movieNumber;
+    }
 }
