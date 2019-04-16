@@ -10,4 +10,12 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
+    public static void printMovieInfo(List<Movie> movies, int id){
+        for(Movie i : movies){
+            if(i.getId() == id){
+                System.out.println(i);
+            }
+        }
+    }
 }
