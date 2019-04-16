@@ -6,7 +6,7 @@ import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
-    private int capacity;
+    private int capacity; //TODO 예약 가능 인원 줄이기
 
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;

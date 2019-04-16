@@ -37,4 +37,14 @@ public class OutputView {
         System.out.println("상영 시간이 아닙니다.");
         System.out.println("다시 입력해 주세요.");
     }
+
+    public static void printExitException(){
+        System.out.println("1번 또는 2번만 입력해주세요.");
+        System.out.println("다시 입력해 주세요.");
+    }
+
+    public static void printPointException(){
+        System.out.println("0 미만은 잘못된 포인트 값 입니다.");
+        System.out.println("다시 입력해 주세요.");
+    }
 }

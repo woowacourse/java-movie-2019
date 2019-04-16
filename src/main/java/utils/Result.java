@@ -1,7 +1,6 @@
 package utils;
 
 import domain.Movie;
-import domain.MovieRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -22,7 +21,7 @@ public class Result {
     public void startMovieResult() {
         int timeSize = movies.get(movieId.get(0)).getTimeSize();
         movieTime.add(InputView.inputMovieTime(timeSize));
-        moviePeople.add(InputView.inputMoviePeople());
+        moviePeople.add(InputView.inputMoviePeople()); //TODO 예외 처리하기
         setMovieResult(InputView.inputMovieExit());
     }
 
@@ -31,11 +30,11 @@ public class Result {
             startMovieSellect();
         }
         if (num == 1) {
-            startMoviePay(); // TODO 결제 진행하기
+            startMoviePay();
         }
     }
 
-    private void startMoviePay() { //TODO 결제 진행
+    private void startMoviePay() {
         int sum = 0;
         for (int i = 0; i < movieId.size(); i++) {
             movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), moviePeople.get(i));
@@ -52,9 +51,8 @@ public class Result {
 
         movieId.add(movieNumber);
         OutputView.printMovieInfo(movies.get(movieNumber).toString());
-
         movieTime.add(InputView.inputMovieTime(timeSize));
-        moviePeople.add(InputView.inputMoviePeople());
+        moviePeople.add(InputView.inputMoviePeople()); //TODO 예외처리하기
         setMovieResult(InputView.inputMovieExit());
     }
 }

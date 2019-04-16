@@ -1,6 +1,8 @@
 package view;
 
+import Exceptions.ExitException;
 import Exceptions.IdException;
+import Exceptions.PointException;
 import Exceptions.TimeException;
 
 import java.util.Scanner;
@@ -25,13 +27,13 @@ public class InputView {
 
     public static int inputMovieExit() {
         System.out.println("예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
-        return scanner.nextInt();
+        return ExitException.inputMovieExit(scanner.nextInt());
     }
 
     public static int inputPoint() {
         System.out.println("## 결제를 진행합니다.");
         System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-        return scanner.nextInt();
+        return PointException.inputPoint(scanner.nextInt());
     }
 
     public static double inputPay() {
