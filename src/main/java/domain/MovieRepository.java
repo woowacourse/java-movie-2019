@@ -42,4 +42,15 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static boolean isExistMovie(int movieId){
+        boolean exist = false;
+        for(Movie movie : movies){
+            if(movieId == movie.getMovieId()){
+                exist = true;
+                break;
+            }
+        }
+        return exist;
+    }
 }

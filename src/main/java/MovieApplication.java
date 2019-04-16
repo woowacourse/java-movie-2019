@@ -13,9 +13,13 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         int moviePlaySchedule = InputView.inputMoviePlaySchedule();
         int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation();
+
+
         int endOrAddReservation = InputView.inputEndOrAddReservation();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();
+
+
 
     }
 }

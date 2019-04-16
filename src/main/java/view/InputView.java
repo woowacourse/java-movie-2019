@@ -1,5 +1,6 @@
 package view;
 
+import domain.MovieRepository;
 import utils.InputNumber;
 
 import java.util.Scanner;
@@ -13,6 +14,8 @@ public class InputView {
     private static final String SELECT_END_OR_ADD_RESERVE_MESSAGE = "## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번";
     private static final String ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
     private static final String SELECT_PAYMENT_METHOD_MESSAGE = "## 신용카드는 1번, 현금은 2번";
+
+    private static final String NOT_EXIST_MOVIE_ID_ERROR_MESSAGE = "존재하지 않는 영화 입니다.";
 
     private static final int END_RESERVATION = 1;
     private static final int ADD_RESERVATION = 2;
@@ -28,7 +31,12 @@ public class InputView {
 
     public static int inputMovieId() {
         System.out.println(SELECT_MOVIE_TO_RESERVE_MESSAGE);
-        return InputNumber.getNaturalNumber();
+        int movieId = InputNumber.getNaturalNumber();
+        if(!MovieRepository.isExistMovie(movieId)){
+            System.out.println(NOT_EXIST_MOVIE_ID_ERROR_MESSAGE);
+            return inputMovieId();
+        }
+        return movieId;
     }
 
     public static int inputMoviePlaySchedule() {
