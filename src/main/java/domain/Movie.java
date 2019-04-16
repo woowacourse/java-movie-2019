@@ -30,6 +30,10 @@ public class Movie {
 		return (this.playSchedules.size() >= schedule);
 	}
 	
+	public boolean isBeforeBegging(int schedule) {
+		return this.playSchedules.get(schedule - 1).isBeforeBeginning();
+	}
+	
 	public boolean bookable(int schedule, int numOfAudience) {
 		return (this.playSchedules.get(schedule - 1).capable(numOfAudience));
 	}

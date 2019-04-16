@@ -43,10 +43,16 @@ public class MovieRepository {
 		return getIndexByMovieId(movieId) >= 0;
 	}
 
-	public static boolean containsSchedule(int movieId, int schedule) {
+	public static boolean bookableSchedule(int movieId, int schedule) {
 		int index = getIndexByMovieId(movieId);
 
-		return index >= 0 && movies.get(index).bookable(schedule);
+		return (index >= 0 && movies.get(index).bookable(schedule));
+	}
+	
+	public static boolean isBeforeBegging(int movieId, int schedule) {
+		int index = getIndexByMovieId(movieId);
+
+		return (index >= 0 && movies.get(index).isBeforeBegging(schedule));
 	}
 	
 	public static boolean capable(int movieId, int schedule, int numOfAudience) {

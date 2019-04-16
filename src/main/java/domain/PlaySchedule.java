@@ -16,6 +16,10 @@ public class PlaySchedule {
 	public boolean capable(int numOfAudience) {
 		return capacity >= numOfAudience;
 	}
+	
+	public boolean isBeforeBeginning() {
+		return startDateTime.isAfter(LocalDateTime.now());
+	}
 
 	@Override
 	public String toString() {
