@@ -1,8 +1,10 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MovieReservation;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
@@ -12,16 +14,23 @@ public class MovieApplication {
 
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
+        List<MovieReservation> reservations = new ArrayList<>();
         OutputView.printMovies(movies);
+        boolean isContinue = true;
 
-        int movieId = InputView.inputMovieId();
-        Movie movie = getMovieFromId(movieId);
-        System.out.println(movie);
+        while (isContinue) {
+            int movieId = InputView.inputMovieId();
+            Movie movie = getMovieFromId(movieId);
+            System.out.println(movie);
 
-        int scheduleId = InputView.inputScheduleId(movie);
-        int reservationNumber
-                = InputView.inputReservationNumber(movie, scheduleId);
+            int scheduleId = InputView.inputScheduleId(movie);
+            int reservationNumber
+                    = InputView.inputReservationNumber(movie, scheduleId);
 
-        // TODO 구현 진행
+            MovieReservation reservation
+                    = new MovieReservation(movie, scheduleId, reservationNumber);
+
+            reservations.add(reservation);
+        }
     }
 }

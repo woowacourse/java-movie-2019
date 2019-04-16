@@ -33,6 +33,14 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String getSimpleInfo() {
+        return id + " - " + name + ", " + price + "원";
+    }
+
+    public String getScheduleInfo(int scheduleId) {
+        return playSchedules.get(scheduleId).toString();
+    }
+
     public boolean isYourId(int movieId) {
         if (id == movieId) {
             return true;
