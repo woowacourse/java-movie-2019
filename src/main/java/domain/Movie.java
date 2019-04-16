@@ -43,4 +43,8 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    String summaryMessage(int scheduleNumber) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE + playSchedules.get(scheduleNumber - 1).resultMessage();
+    }
 }

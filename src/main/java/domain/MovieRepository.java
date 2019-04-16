@@ -67,7 +67,7 @@ public class MovieRepository {
         return movie.isProperReservationCount(scheduleNumber, reservationCount);
     }
 
-    private static Movie getMovieById(int movieId) {
+    static Movie getMovieById(int movieId) {
         for (Movie movie : movies) {
             if (movie.isContainsMovieId(movieId)) {
                 return movie;

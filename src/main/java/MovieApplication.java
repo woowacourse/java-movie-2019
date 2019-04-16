@@ -1,6 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
-import utils.ValidatorUtils;
+import domain.ReservationInfo;
+import domain.ReservationRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -9,36 +10,26 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
+        ReservationRepository reservationRepository = new ReservationRepository();
+
         int movieId;
         int scheduleNumber;
         int reservationCount;
         int quitOrAdditionalReservation;
 
-        OutputView.printMovies(movies);
-        movieId = InputView.inputMovieId();
+        do {
+            OutputView.printMovies(movies);
 
-        while (!ValidatorUtils.isNaturalMovieId(movieId)) {
             movieId = InputView.inputMovieId();
-        }
+            OutputView.printMovie(movies, movieId);
 
-        OutputView.printMovie(movies, movieId);
-        scheduleNumber = InputView.inputScheduleNumber();
-
-        while (!ValidatorUtils.isNaturalScheduleNumber(movieId, scheduleNumber)) {
-            scheduleNumber = InputView.inputScheduleNumber();
-        }
-
-        reservationCount = InputView.inputReservationCount();
-
-        while (!ValidatorUtils.isNaturalReservationCount(movieId, scheduleNumber, reservationCount)) {
-            reservationCount = InputView.inputReservationCount();
-        }
-
-        quitOrAdditionalReservation = InputView.inputQuitOrAdditionalReservation();
-
-        while (!ValidatorUtils.isNaturalResponseForQuit(quitOrAdditionalReservation)) {
+            scheduleNumber = InputView.inputScheduleNumber(movieId);
+            reservationCount = InputView.inputReservationCount(movieId, scheduleNumber);
             quitOrAdditionalReservation = InputView.inputQuitOrAdditionalReservation();
-        }
 
+            reservationRepository.add(new ReservationInfo(movieId, scheduleNumber, reservationCount));
+        } while (quitOrAdditionalReservation == 2);
+
+        OutputView.printReservationResult(reservationRepository);
     }
 }

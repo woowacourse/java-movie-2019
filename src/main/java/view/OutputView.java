@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.ReservationRepository;
 
 import java.util.List;
 
@@ -21,5 +22,9 @@ public class OutputView {
         if (movie.isContainsMovieId(movieId)) {
             System.out.println(movie);
         }
+    }
+
+    public static void printReservationResult(ReservationRepository reservationRepository) {
+        System.out.println(reservationRepository);
     }
 }
