@@ -15,6 +15,9 @@ public class PlaySchedule {
     public LocalDateTime getStartDateTime(){
         return startDateTime;
     }
+    public int getCapacity(){
+        return capacity;
+    }
 
     @Override
     public String toString() {

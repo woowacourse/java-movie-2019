@@ -22,12 +22,21 @@ public class Movie {
         this.name = name;
         this.price = price;
     }
+    public int getMovieId() { return this.id; }
 
     public LocalDateTime getMovieTime(int TimeNum){
         return playSchedules.get(TimeNum).getStartDateTime();
     }
 
-    public int getMovieId() { return this.id; }
+    public void decideMovieTime(int TimeNum){
+        PlaySchedule tmp = playSchedules.get(TimeNum - 1);
+        playSchedules.clear();
+        playSchedules.add(tmp);
+    }
+
+    public int getScheduleCapacity(){
+        return playSchedules.get(0).getCapacity();
+    }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
