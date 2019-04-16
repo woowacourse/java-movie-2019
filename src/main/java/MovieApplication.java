@@ -27,5 +27,6 @@ public class MovieApplication {
         /*## 예약할 시간표를 선택하세요." 메세지 출력, 
          *   예약할 시간표를 입력받는다.*/
         int scheduleId = InputView.inputScheduleId();
+        int reserveMenCount = InputView.inputreserveMenCount();
     }
 }
