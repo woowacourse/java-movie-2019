@@ -26,6 +26,12 @@ public class Movie {
         return (id == movieID);
     }
 
+    public String selectedMovieInfo(int startTime, int numberOfPeople) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + playSchedules.get(startTime - 1).getStartTime()
+                + "예약 인원: " + numberOfPeople + "명" + NEW_LINE;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
