@@ -16,10 +16,10 @@ public class MovieApplication {
         int price = 0;
         OutputView.printMovies(movies);
         bookTicket(reserveList);
-        int isContinue = InputView.inputContinue();
+        int isContinue = intputContinue();
         while(isContinue != 1){
             bookTicket(reserveList);
-            isContinue = InputView.inputContinue();
+            isContinue = intputContinue();
         }
         for(Reserve reserve : reserveList){
             price = price + reserve.getPrice();
@@ -27,7 +27,7 @@ public class MovieApplication {
         }
 
         int point = inputPoint(price);
-        int cashOrCredit = InputView.intputCashOrCredit();
+        int cashOrCredit = intputCashOrCredit();
         OutputView.printResult(cashOrCredit,price-point);
     }
     private static void bookTicket( List<Reserve> reserveList){
@@ -73,5 +73,21 @@ public class MovieApplication {
             point = InputView.inputPoint();
         }
         return point;
+    }
+    public static int intputContinue(){
+        int isContinue = InputView.inputContinue();
+        while(isContinue != 1 && isContinue != 2){
+            System.out.println(InputView.OneOrTwu);
+            isContinue = InputView.inputContinue();
+        }
+        return isContinue;
+    }
+    public static  int intputCashOrCredit(){
+        int cashOrCredit = InputView.intputCashOrCredit();
+        while(cashOrCredit != 1 && cashOrCredit != 2){
+            System.out.println(InputView.OneOrTwu);
+            cashOrCredit = InputView.intputCashOrCredit();
+        }
+        return cashOrCredit;
     }
 }
