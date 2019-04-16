@@ -31,8 +31,23 @@ public class Validator {
 		return true;
 	}
 
-	public static boolean checkFinishReservationOrAddReservationNumberValid(int number){
-		if(!String.valueOf(number).matches("[1|2]")){
+	public static boolean checkFinishReservationOrAddReservationNumberValid(int number) {
+		if (!String.valueOf(number).matches("[1|2]")) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean checkUserPointValid(Movie movie, int point, int reservationNumber) {
+		int movieMoney = movie.getPrice() * reservationNumber;
+
+		if (point < 0) {
+			OutputView.printUserInputAgainMoviePointError();
+			return false;
+		}
+
+		if (point > movieMoney) {
+			OutputView.printUserInputAgainMoviePointOver();
 			return false;
 		}
 		return true;

@@ -21,7 +21,6 @@ public class MovieReservation {
 			movieId = InputView.inputMovieId();
 			movie = MovieRepository.findMovie(movieId);
 		}
-
 		return movie;
 	}
 
@@ -46,7 +45,6 @@ public class MovieReservation {
 			reservationNumber = InputView.inputReservationNumber();
 			result = Validator.checkMovieReservationNumberValid(movie, movieTimeIdx - 1, reservationNumber);
 		}
-
 		return reservationNumber;
 	}
 
@@ -59,8 +57,19 @@ public class MovieReservation {
 			finishOrAddNumber = InputView.inputFinishReservationOrAddReservation();
 			result = Validator.checkFinishReservationOrAddReservationNumberValid(finishOrAddNumber);
 		}
-
 		return finishOrAddNumber;
+	}
+
+	public static int getUserPoint(Movie movie, int reservationNumber){
+		OutputView.printPayMentMovie();
+		int point = InputView.inputUserPoint();
+		boolean result = Validator.checkUserPointValid(movie, point, reservationNumber);
+
+		while(!result){
+			point = InputView.inputUserPoint();
+			result = Validator.checkUserPointValid(movie, point, reservationNumber);
+		}
+		return point;
 	}
 
 }
