@@ -10,17 +10,10 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final int PAYMENT = 1;
+    private static final int ADD_RESERVATION = 2;
 
     public static int inputMovieId() throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int movieId ;
-        try {
-            System.out.println("## 예약할 영화를 선택하세요.");
-            movieId = Integer.parseInt(bf.readLine());
-        }catch (IllegalArgumentException e){
-            System.out.println("## 올바른 형식으로 입력해 주세요. (숫자)");
-            return inputMovieId();
-        }
+        int movieId = valid("## 예약할 영화를 선택하세요.");
         if(MovieRepository.getMovie(movieId) == null){
             System.out.println("## 영화 번호를 정확히 입력해주세요.");
             return inputMovieId();
@@ -28,31 +21,33 @@ public class InputView {
         return movieId;
     }
 
-    public static int inputScheduleNumber() {
-        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-        return scanner.nextInt();
+    public static int inputScheduleNumber(int scheduleSize) throws IOException{
+        int scheduleNumber = valid("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+        if(scheduleNumber > scheduleSize){
+            System.out.println("## 없는 시간표 입니다. 다른 번호를 선택해주세요.");
+            return inputScheduleNumber(scheduleSize);
+        }
+        return scheduleNumber;
     }
 
-    public static int inputReservationPersonnel(){
-        System.out.println("## 예약 할 인원을 입력하세요.");
-        return scanner.nextInt();
+    public static int inputReservationPersonnel() throws IOException{
+        return valid("## 예약 할 인원을 입력하세요.");
     }
 
-    public static boolean goPaymentOrAddReservation(){
-        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
-        int number = scanner.nextInt();
+    public static boolean goPaymentOrAddReservation() throws IOException{
+        int number = valid("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
         if(number == PAYMENT){
             return false;
         }
-        return true;
+        if(number == ADD_RESERVATION){
+            return true;
+        }
+        System.out.println("잘못된 숫자를 입력하셨습니다.");
+        return goPaymentOrAddReservation();
     }
 
     public static long inputPoint(long beforeTotalPrice) throws IOException{
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int point;
-        System.out.println("## 결제를 진행합니다.");
-        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-        point = Integer.parseInt(bf.readLine());
+        int point = valid("## 결제를 진행합니다.\n"+"## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
         if(beforeTotalPrice - point < 0){
             System.out.println("## 포인트가 결제 금액보다 많습니다. 다시 입력해주세요.");
             return inputPoint(beforeTotalPrice);
@@ -61,8 +56,20 @@ public class InputView {
     }
 
     public static int inputCashOrCard() throws IOException{
-        System.out.println("## 신용카드는 1번, 현금은 2번");
+        int inputNumber = valid("## 신용카드는 1번, 현금은 2번");
+        return inputNumber;
+    }
+
+    private static int valid(String message) throws IOException{
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        return Integer.parseInt(bf.readLine());
+        System.out.println(message);
+        try{
+            int temp = Integer.parseInt(bf.readLine());
+            return temp;
+        }catch (IllegalArgumentException e){
+            System.out.println("## 올바른 형식으로 입력해 주세요. (숫자)");
+            return valid(message);
+        }
+
     }
 }

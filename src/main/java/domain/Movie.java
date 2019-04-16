@@ -35,6 +35,10 @@ public class Movie {
         return playSchedules.get(scheduleNo + START_NUMBER);
     }
 
+    public int getSchedulesCount(){
+        return playSchedules.size();
+    }
+
     public boolean modifyScheduleCapacity(int scheduleNo, int personnel){
         if(playSchedules.get(scheduleNo+START_NUMBER).isValidCapacity(personnel)){
             return true;

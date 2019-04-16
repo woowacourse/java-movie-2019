@@ -1,4 +1,3 @@
-import com.sun.corba.se.impl.orbutil.ObjectUtility;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
@@ -13,7 +12,6 @@ import java.util.List;
 public class MovieApplication {
 
     static final int CARD = 1;
-    static final int CASH = 2;
 
     static List<Reservation> reservations = new ArrayList<Reservation>();
     static List<Movie> movies = MovieRepository.getMovies();
@@ -34,15 +32,20 @@ public class MovieApplication {
             OutputView.printMovies(movies);
             Movie chooseMovie = movieChoose();
             OutputView.printMovie(chooseMovie);
-            int scheduleNumber = InputView.inputScheduleNumber();
+            int scheduleNumber = InputView.inputScheduleNumber(chooseMovie.getSchedulesCount());
             int reservationPersonnel = InputView.inputReservationPersonnel();
-            Reservation reservation = new Reservation(chooseMovie, reservationPersonnel, scheduleNumber);
-            validReservation(reservation);
-            reservations.add(reservation);
+            addReservation(chooseMovie, reservationPersonnel, scheduleNumber);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
+        if(reservations.size() == 0){ return true; }
         return InputView.goPaymentOrAddReservation();
+    }
+
+    private static void addReservation(Movie chooseMovie, int reservationPersonnel, int scheduleNumber){
+        Reservation reservation = new Reservation(chooseMovie, reservationPersonnel, scheduleNumber);
+        validReservation(reservation);
+        reservations.add(reservation);
     }
 
     private static void validReservation(Reservation Validreservation)throws IllegalArgumentException{
