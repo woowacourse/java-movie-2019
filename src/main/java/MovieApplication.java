@@ -17,10 +17,10 @@ public class MovieApplication {
         // TODO 구현 진행
         int process;
         do {
-            Movie aMovie = getMovie();
+            Movie aMovie = InputView.inputMovieId();
             OutputView.printAMovie(aMovie);
 
-            int movieTime = InputView.inputMovieTime();
+            int movieTime = InputView.inputMovieTime(aMovie);
             int reserveCount = InputView.inputReserveCount();
 
             process = InputView.inputChooseProcess();
@@ -33,11 +33,6 @@ public class MovieApplication {
 
         PayInfo payInfo = getPayInfo();
         OutputView.printPayResult(payInfo.getTotalPriceApplyPayInfo(reservationList));
-    }
-
-    private static Movie getMovie() {
-        int movieId = InputView.inputMovieId();
-        return MovieRepository.getMovieById(movieId);
     }
 
     private static PayInfo getPayInfo() {
