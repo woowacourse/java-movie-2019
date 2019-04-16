@@ -13,7 +13,7 @@ public class MovieApplication {
     public static final double SALE_RATE_CARD = 0.95;
     public static final double SALE_RATE_NOCARD = 0.98;
 
-    public static void addReservation(List<MovieReservation> reservationList) {
+    public static void makeReservation(List<MovieReservation> reservationList) {
         OutputView.printMovies(MovieRepository.getMovies());
 
         int movieId = InputView.inputMovieId();
@@ -26,18 +26,17 @@ public class MovieApplication {
         if (InputView.inputWannaEndMovieChoice()) {
             return;
         }
-        addReservation(reservationList);
+        makeReservation(reservationList);
     }
 
     public static void addToReservationList(List<MovieReservation> reservationList, MovieReservation movieReservation) {
         boolean isSameMovieExist = reservationList.stream().anyMatch(reserve -> reserve.isSameReservation(movieReservation));
+
         if (isSameMovieExist) {
-            for (int i = 0; i < reservationList.size(); i++) {
-                if (reservationList.get(i).isSameReservation(movieReservation)) {
-                    reservationList.get(i).increaseCount(movieReservation.getPersonCount());
-                    return;
-                }
-            }
+            reservationList.stream()
+                    .filter(reserve->reserve.isSameReservation(movieReservation))
+                    .forEach(reserve->reserve.increaseCount(movieReservation.getPersonCount()));
+            return;
         }
         reservationList.add(movieReservation);
     }
@@ -91,7 +90,7 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservationList = new ArrayList<MovieReservation>();
 
-        addReservation(reservationList);
+        makeReservation(reservationList);
         showAllReservation(reservationList);
         int totalMoney = getTotalPayment(reservationList);
         int pointUseAmount = InputView.inputPoint();
