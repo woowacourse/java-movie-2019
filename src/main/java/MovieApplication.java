@@ -17,9 +17,9 @@ public class MovieApplication {
 		for (Movie movie : movies) {
 			movieIdList.add(movie.getId());
 		}
-		
+
 		List<reserveList> reservedList = new ArrayList<>();
-		do{
+		do {
 			int movieId;
 			while (true) {
 				movieId = InputView.inputMovieId();
@@ -40,34 +40,46 @@ public class MovieApplication {
 				OutputView.printSelectTime(selectedMovie.getMovie(), movieTime - 1);
 				break;
 			}
-			
+
 			int ticketNum;
-			while(true){
+			while (true) {
 				ticketNum = InputView.ticketNum();
-				if(ticketNum>selectedMovie.getMovie().getSchedule().get(movieTime-1).getCapacity()){
+				if (ticketNum > selectedMovie.getMovie().getSchedule().get(movieTime - 1).getCapacity()) {
 					System.out.println("좌석수가 부족합니다. 다시 입력해 주세요.");
 					continue;
 				}
-				if(ticketNum<1){
+				if (ticketNum < 1) {
 					System.out.println("입력값이 유효하지 않습니다. 다시 입력해주세요");
 					continue;
 				}
 				break;
 			}
 			reservedList.add(new reserveList(selectedMovie.getMovie(), movieTime, ticketNum));
-			
-		}while(InputView.inputStopOrGo());
-		
+
+		} while (InputView.inputStopOrGo());
+
 		OutputView.printState();
 		System.out.println("예약내역");
-		int total_price=0;
-		for(reserveList l : reservedList){
+		int total_price = 0;
+		for (reserveList l : reservedList) {
 			l.printHistory();
 			total_price += l.getTotalPrice();
 		}
 		int point = InputView.inputPoint(total_price);
-		
+		int payPrice = total_price - point;
+		if (payPrice <= 0) {
+			OutputView.printResult(0);
+			return;
+		}
+
 		int cardOrCash = InputView.inputCardOrCash();
-		OutputView.printResult();
+		if (cardOrCash == 1) {
+			payPrice *= 0.95;
+			OutputView.printResult(payPrice);
+			return;
+		}
+		payPrice *= 0.98;
+		OutputView.printResult(payPrice);
+
 	}
 }

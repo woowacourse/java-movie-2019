@@ -27,7 +27,7 @@ public class InputView {
 	}
 
 	public static int inputPoint(int total_price) {
-		System.out.println("## 결제를 진행합니다. 총 결제 금액은 "+ total_price+"원 입니다.");
+		System.out.println("## 결제를 진행합니다. 총 결제 금액은 " + total_price + "원 입니다.");
 		System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력.");
 		return scanner.nextInt();
 	}
