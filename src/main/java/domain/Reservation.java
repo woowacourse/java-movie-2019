@@ -19,6 +19,11 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return movie.getInformation() + "예약 인원:" + peopleNum + "명\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(movie.getInformation());
+        sb.append("시작시간: " + scheduleTime + "\n");
+        sb.append("예약 인원: " + peopleNum + "명\n");
+
+        return sb.toString();
     }
 }

@@ -30,9 +30,10 @@ public class MovieApplication {
 
         // Reservation 객체 생성하고
         Reservation reservation = makeReservation(movies.get(movieId-1), scheduleIndex, peopleNumber);
+        reservations.add(reservation);
 
-        // reservations 리스트랑 모두 1시간 이내인지 확인해봐
-        //addReservations(reservation);
+        OutputView.printReservation(reservations);
+
     }
 
     public static boolean selectMovie(List<Movie> movies, int movieId) {
@@ -84,8 +85,4 @@ public class MovieApplication {
         return new Reservation(movie, scheduleIndex, peopleNumber);
     }
 
-    /*public static boolean addReservations(Reservation reservation) {
-
-
-    }*/
 }
