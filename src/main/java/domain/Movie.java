@@ -30,8 +30,15 @@ public class Movie {
         for (PlaySchedule playSchedule : playSchedules) {
             sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "원" + NEW_LINE
-                + sb.toString();
+        return toStringMovie() + sb.toString();
+    }
+
+    String toStringMovie(){
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
+
+    String toStringPlaySchedule(int bookingTime){
+        return playSchedules.get(bookingTime).toString();
     }
 
     int getId() {
@@ -46,7 +53,7 @@ public class Movie {
         return ((MIN_TIME <= bookingTime) && (bookingTime < playSchedules.size()));
     }
 
-    public LocalDateTime getshowTime(int bookingTime){
+    public LocalDateTime getShowTime(int bookingTime){
         return playSchedules.get(bookingTime).getStartDateTime();
     }
 

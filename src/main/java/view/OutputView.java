@@ -1,5 +1,6 @@
 package view;
 
+import domain.Booker;
 import domain.Movie;
 import domain.MovieRepository;
 
@@ -14,5 +15,13 @@ public class OutputView {
 
     public static void printMovie(int movieId) {
         System.out.println(MovieRepository.getMovie(movieId));
+    }
+
+    public static void printResultBooking(Booker booker){
+        System.out.println("예약 내역");
+        for(String result : booker.printResult()){
+            System.out.println(result);
+            System.out.println();
+        }
     }
 }

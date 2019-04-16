@@ -1,5 +1,6 @@
 package domain;
 
+import org.w3c.dom.ls.LSInput;
 import view.InputView;
 
 import java.util.ArrayList;
@@ -26,11 +27,25 @@ public class Booker {
         bookingTime.add(InputView.inputBookingTime(bookingMovies.get(tryBookingNumber)));
     }
 
-    public void selectBookingNumber(){
-        bookingNumber.add(InputView.inputBookingNumber(bookingMovies.get(tryBookingNumber),bookingTime.get(0)));
+    public void selectBookingNumber() {
+        bookingNumber.add(InputView.inputBookingNumber(bookingMovies.get(tryBookingNumber), bookingTime.get(0)));
+        tryBookingNumber++;
     }
-    
-    public int currentBookingMovieId(){
+
+    public int currentBookingMovieId() {
         return bookingMovies.get(tryBookingNumber).getId();
+    }
+
+
+    public List<String> printResult() {
+        List<String> resultBooking = new ArrayList<>();
+        String str = "";
+        for (int i = 0; i < tryBookingNumber; i++) {
+            str = bookingMovies.get(i).toStringMovie();
+            str += bookingMovies.get(i).toStringPlaySchedule(bookingTime.get(i));
+            str += "예약 인원: " + bookingNumber.get(i) + "명";
+            resultBooking.add(str);
+        }
+        return resultBooking;
     }
 }
