@@ -1,7 +1,5 @@
 import domain.Movie;
 import domain.MovieRepository;
-import view.InputView;
-import view.OutputView;
 
 import java.util.List;
 
