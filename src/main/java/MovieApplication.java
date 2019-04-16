@@ -103,6 +103,19 @@ public class MovieApplication {
 			System.out.println(myMovie.toString() + "\n");
 		}
 	}
+	
+	public void payMovie(int point, int payType, List<MyMovie> myMovies) {
+		int totalPrice = 0;
+		for (MyMovie myMovie : myMovies) {
+			totalPrice += (myMovie.getMyMovie().getMoviePrice() * myMovie.getPeopleNum());
+		}
+		
+	    int finalPrice = totalPrice - point;
+	    int payPrice = (payType == 1) ? (int) (finalPrice * 0.95) : (int) (finalPrice * 0.98);
+	    
+	    System.out.println("최종 결제한 금액은 " + payPrice + "원 입니다.");
+	    System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+	}
 
     public static void main(String[] args) {
     	MovieApplication movieApp = new MovieApplication();
@@ -114,6 +127,11 @@ public class MovieApplication {
     	} while(movieApp.payOrContinue());
     	
     	movieApp.printMyMovieInfo(myMovies);
+    	
+    	InputView.continuePayMessage();
+    	int point = InputView.inputPoint();
+    	int payType = InputView.selectCreditCardOrCash();
+    	movieApp.payMovie(point, payType, myMovies);
     	
     }
 }
