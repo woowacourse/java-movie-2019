@@ -41,6 +41,10 @@ public class Movie {
 	public void sellTicket(int indexOfSchedule, int numOfPeople) {
 		playSchedules.get(indexOfSchedule - 1).subtractCapacity(numOfPeople);
 	}
+	
+	public int getNumberOfTicket(int indexOfSchedule) {
+		return playSchedules.get(indexOfSchedule - 1).getCapacity();
+	}
 
 	public int getId() {
 		return id;
@@ -48,6 +52,10 @@ public class Movie {
 
 	public PlaySchedule getSchedule(int index) {
 		return playSchedules.get(index - 1);
+	}
+	
+	public int getNumberOfSchedule() {
+		return playSchedules.size();
 	}
 
 	public String getFirstLine() {

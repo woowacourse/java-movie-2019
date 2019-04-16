@@ -38,25 +38,32 @@ public class MovieApplication {
 		return ret;
 	}
 
-	static boolean isThereValidTicket(Movie newMovie, List<SelectedMovie> selectedMovies) {
-		return false;
-	}
-
-	static int inputMovieIdOnce(List<Movie> movies) {
+	static Movie inputMovieIdOnce(List<Movie> movies, List<SelectedMovie> selectedMovies) {
 		int id = InputView.inputMovieId();
 		isExist(movies, id);
-		return id;
+		Movie selectedMovie = getMovie(movies, id); 
+		if(numberOfValidTicket(selectedMovies, selectedMovie) == 0) 
+			throw new IllegalArgumentException("해당 영화에 구매 가능한 표가 없습니다.");
+		return selectedMovie;
 	}
 
-	static int recurInputMovieId(List<Movie> movies) {
-		int id = 0;
+	static Movie recurInputMovieId(List<Movie> movies, List<SelectedMovie> selectedMovies) {
+		Movie selectedMovie = null;
 		try {
-			id = inputMovieIdOnce(movies);
+			selectedMovie = inputMovieIdOnce(movies, selectedMovies);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			id = recurInputMovieId(movies);
+			selectedMovie = recurInputMovieId(movies, selectedMovies);
 		}
-		return id;
+		return selectedMovie;
+	}
+	
+	static int numberOfValidTicket(List<SelectedMovie> selectedMovies, Movie movie) {
+		int ticket = 0;
+		for(int index = 1; index < movie.getNumberOfSchedule(); index++) {
+			ticket += (isValidStartTime(selectedMovies, movie, index)) ? movie.getNumberOfTicket(index) : 0;
+		}
+		return ticket;
 	}
 
 	static int inputScheduleOnce(List<SelectedMovie> selectedMovies, Movie movie) {
@@ -107,8 +114,7 @@ public class MovieApplication {
 	}
 
 	static SelectedMovie inputSelectedMovieOnce(List<Movie> movies, List<SelectedMovie> selectedMovies) {
-		int movieId = recurInputMovieId(movies);
-		Movie selectedMovie = getMovie(movies, movieId);
+		Movie selectedMovie = recurInputMovieId(movies, selectedMovies);
 		System.out.println(selectedMovie);
 		int indexOfSelectedSchedule = recurInputSchedule(selectedMovies, selectedMovie);
 		int numOfPeople = recurInputPeople(selectedMovie, indexOfSelectedSchedule);
