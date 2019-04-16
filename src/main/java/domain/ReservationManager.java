@@ -7,7 +7,7 @@ public class ReservationManager {
     public static Reservation getReservation() {
         try {
             MovieId movieId = InputView.inputMovieId();
-            ScheduleNumber scheduleNumber = InputView.inputScheduleNumber();
+            ScheduleNumber scheduleNumber = InputView.inputScheduleNumberOf(movieId.getMovieId());
             NumberOfPeople numberOfPeople = InputView.inputNumberOfPeople();
             return new Reservation(movieId, scheduleNumber, numberOfPeople);
         } catch (IllegalArgumentException e) {

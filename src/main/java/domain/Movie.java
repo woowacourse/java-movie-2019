@@ -22,6 +22,10 @@ public class Movie {
         return id;
     }
 
+    public boolean contains(int playScheduleIdNumber) {
+        return playScheduleIdNumber <= this.playSchedules.size();
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }

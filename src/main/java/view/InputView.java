@@ -22,8 +22,16 @@ public class InputView {
         }
     }
 
-    public static ScheduleNumber inputScheduleNumber() {
-        return null;
+    public static ScheduleNumber inputScheduleNumberOf(int movieId) {
+        try {
+            System.out.println("## 예약할 시간표를 선택세요 (첫 번째 상영 시간이 1번)");
+            return new ScheduleNumber(movieId, Integer.parseInt(scanner.nextLine()));
+        } catch (NumberFormatException e) {
+            System.out.println("숫자만 입력할 수 있습니다.");
+            return inputScheduleNumberOf(movieId);
+        } catch (IllegalArgumentException e) {
+            return inputScheduleNumberOf(movieId);
+        }
     }
 
     public static NumberOfPeople inputNumberOfPeople() {
