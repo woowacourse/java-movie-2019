@@ -56,9 +56,9 @@ public class Reservation {
         return "예약 인원 :" + copyReservedMovies.size();
     }
 
-    public int calculateTotalPrice(){
+    public int calculateTotalPrice() {
         int totalPrice = 0;
-        for(Movie movie : reservedMovies){
+        for (Movie movie : reservedMovies) {
             totalPrice += movie.getPrice();
         }
         return totalPrice;

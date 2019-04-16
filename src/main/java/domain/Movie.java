@@ -45,7 +45,7 @@ public class Movie {
         return playSchedules.get(movieTime - 1).movieTime();
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return this.price;
     }
 }

@@ -28,8 +28,8 @@ public class MovieApplication {
         purchase.printTotalPayment(point, methodOfPayment);
     }
 
-    private static void choiceMovie(){
-        do{
+    private static void choiceMovie() {
+        do {
             int movieId = InputView.inputMovieId();
             OutputView.outputReservedMovie(movies, movieId);
 
@@ -37,12 +37,12 @@ public class MovieApplication {
             int movieNumberOfPeople = InputView.inputMovieNumberOfPeople();
 
             reservation.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
-        }while(isAdditionalInput());
+        } while (isAdditionalInput());
     }
 
-    private static boolean isAdditionalInput(){
+    private static boolean isAdditionalInput() {
         boolean result = false;
-        if(InputView.checkAdditionalInput() == ADDITIONAL_INPUT){
+        if (InputView.checkAdditionalInput() == ADDITIONAL_INPUT) {
             result = true;
         }
         return result;
