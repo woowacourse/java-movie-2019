@@ -1,6 +1,5 @@
 import domain.Movie;
 import domain.MovieRepository;
-import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -11,8 +10,8 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        int movieId = InputView.inputMovieId(movies);
 
-        PrintUtils.printSelectedMovie(movies,movieId);
+        OutputView.printSelectedMovie(movies,movieId);
     }
 }
