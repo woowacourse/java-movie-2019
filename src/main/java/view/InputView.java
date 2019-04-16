@@ -33,4 +33,16 @@ public class InputView {
             return inputPlaySchedule(movie);
         }
     }
+
+    public static int inputPeopleToReserve(PlaySchedule playSchedule) {
+        System.out.println("## 예약할 인원을 입력하세요.");
+        try {
+            String peopleToReserve = scanner.nextLine();
+            Validator.checkAccuracyOfPeopleToReserve(peopleToReserve, playSchedule);
+            return Integer.parseInt(peopleToReserve);
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputPeopleToReserve(playSchedule);
+        }
+    }
 }

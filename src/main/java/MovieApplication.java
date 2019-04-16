@@ -16,7 +16,9 @@ public class MovieApplication {
 
     public void reserveMovie() {
         Movie movieToReserve = selectMovieToReserve();
-        selectPlayScheduleToReserve(movieToReserve);
+        PlaySchedule playSchedule = selectPlayScheduleToReserve(movieToReserve);
+        int peopleToReserve = selectPeopleToReserve(playSchedule);
+        System.out.println(peopleToReserve);
     }
 
     private Movie selectMovieToReserve() {
@@ -26,8 +28,12 @@ public class MovieApplication {
         return movieToReserve;
     }
 
-    private void selectPlayScheduleToReserve(Movie movie) {
-        PlaySchedule playSchedule = InputView.inputPlaySchedule(movie);
+    private PlaySchedule selectPlayScheduleToReserve(Movie movie) {
+        return InputView.inputPlaySchedule(movie);
+    }
+
+    private int selectPeopleToReserve(PlaySchedule playSchedule) {
+        return InputView.inputPeopleToReserve(playSchedule);
     }
 
     public static void main(String[] args) {
