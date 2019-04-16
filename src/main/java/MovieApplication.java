@@ -116,7 +116,7 @@ public class MovieApplication {
 		isCashValid = false;
 
 		while (isMovieValid == true && isTimeValid == true && isCapacityValid == true && isNextStepValid == true
-				&& isPointValid == true) {
+				&& isPointValid == true && isCashValid == false) {
 			int cashOrCredit = InputView.inputCashOrCredit();
 			isCashValid = CheckValid.checkPointValid(cashOrCredit);
 			if (isCashValid == true) {
