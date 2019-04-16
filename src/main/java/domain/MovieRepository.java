@@ -38,6 +38,15 @@ public class MovieRepository {
         movie4.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 21:30"), 2));
         movies.add(movie4);
     }
+    
+    public static boolean containsMovieId(int movieId) {
+    	int containsCount = 0;
+    	
+    	for(Movie movie : movies) {
+    		containsCount += movie.equalsId(movieId) ? 1 : 0;
+    	}
+    	return containsCount > 0 ? true:false;
+    }
 
     public static List<Movie> getMovies() {
         return movies;
