@@ -30,10 +30,6 @@ public class Movie {
 		return price;
 	}
 
-	public List<PlaySchedule> getPlaySchedules() {
-		return playSchedules;
-	}
-
 	void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
@@ -47,4 +43,7 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+    public PlaySchedule getPlaySchedules(int movieTime) {
+		return playSchedules.get(movieTime-1);
+	}
 }
