@@ -34,4 +34,17 @@ public class InputCheckUtils {
                 }
                 return;
         }
+
+        public static void checkInputMoviePeople(int movieId, int schedule, int people) throws Exception {
+                boolean valid =false;
+                if(people <= 0)
+                        throw new Exception("음수 또는 0 입력 오류");
+                for(Movie movie : MovieRepository.getMovies()){
+                        valid = movie.isValidPeople(movieId,schedule,people) ? true : valid;
+                }
+                if(!valid){
+                        throw new Exception("예약 인원 수 입력 오류");
+                }
+                return;
+        }
 }

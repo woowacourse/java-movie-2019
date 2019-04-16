@@ -14,5 +14,7 @@ public class MovieApplication {
         OutputView.printSelectedMovie(movieId);
 
         int schedule = InputView.inputMovieSchedule(movieId);
+
+        int people = InputView.inputMoviePeople(movieId,schedule);
     }
 }

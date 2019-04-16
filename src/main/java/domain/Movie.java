@@ -37,6 +37,10 @@ public class Movie {
     }
 
     public boolean hasSchedule(int movieId, int schedule){
-        return (this.id == movieId && schedule < this.playSchedules.size());
+        return (this.id == movieId && schedule <= this.playSchedules.size());
+    }
+
+    public boolean isValidPeople(int movieId, int schedule, int people){
+        return (this.id == movieId && this.playSchedules.get(schedule-1).isValidPeople(people));
     }
 }
