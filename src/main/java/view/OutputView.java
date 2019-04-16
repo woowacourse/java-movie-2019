@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.ReservationList;
 
 import java.util.List;
 
@@ -15,9 +16,13 @@ public class OutputView {
         System.out.println(aMovie);
     }
 
-    public static void printReserveList(Movie aMovie, int movieTime, int reserveCount) {
+    public static void printReserveList(ReservationList reservationList) {
         System.out.println("예매 내역");
-        System.out.println(aMovie.toStringFromIdAndTime(movieTime, reserveCount));
+        for (Movie movie : reservationList.getMovieSet()) {
+            Integer movieTime       = reservationList.getTimeByMovie(movie);
+            Integer reserveCount    = reservationList.getCountByMovie(movie);
+            System.out.println(movie.toStringFromIdAndTime(movieTime, reserveCount));
+        }
     }
 
     public static void printProcessMessage() {
