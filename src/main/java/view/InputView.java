@@ -93,6 +93,27 @@ public class InputView {
 
 
     /**
+     * 예매 지속 여부를 입력받는 메소드. 1이면 종료, 2이면 지속
+     */
+    public static int inputContinue() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        try {
+            return getValidContinueInput();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputContinue();
+        }
+    }
+
+    private static int getValidContinueInput() {
+        int userInput = getInteger();
+        if (userInput == 1 || userInput == 2) {
+            return userInput;
+        }
+        throw new InputMismatchException("1 혹은 2의 숫자만 입력해 주세요.");
+    }
+
+    /**
      * 정수 하나를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getInteger() {
