@@ -31,4 +31,15 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+    public int getId() {
+        return id;
+    }
+    public Movie getMovie() {
+        return this;
+    }
+
+//    public Movie isContains (int movieNum) {
+//        if (this.id == movieNum){return this;}
+//        throw new IllegalArgumentException(movieNum + "는 유효하지 않은 값입니다.");
+//    }
 }
