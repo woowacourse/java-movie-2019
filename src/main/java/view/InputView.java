@@ -1,6 +1,7 @@
 package view;
 
 import domain.MovieRepository;
+import domain.Movie;
 
 import java.util.Scanner;
 
@@ -15,7 +16,18 @@ public class InputView {
             return movieId;
         }
 
-        System.out.println("입력하신 아이디에 해당하는 영화가 없습니다.");
         return inputMovieId();
     }
+
+    public static int inputScheduleId(Movie movie) {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영시간이 1번)");
+        int scheduleId = scanner.nextInt();
+
+        if (movie.isValidScheduleId(scheduleId)) {
+            return scheduleId;
+        }
+
+        return inputScheduleId(movie);
+    }
+
 }

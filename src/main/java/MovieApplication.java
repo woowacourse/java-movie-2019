@@ -6,20 +6,18 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-    public static boolean isStringNumber(String string) {
-        try {
-            Integer.parseInt(string);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    public static Movie getMovieFromId(int movieId) {
+        return MovieRepository.getMovie(movieId).get(0);
     }
-
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
+        Movie movie = getMovieFromId(movieId);
+        System.out.println(movie);
+
+        int scheduleId = InputView.inputScheduleId(movie);
 
         // TODO 구현 진행
     }

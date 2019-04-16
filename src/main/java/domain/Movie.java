@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +38,41 @@ public class Movie {
             return true;
         }
         return false;
+    }
+
+    public boolean isValidScheduleIdRange(int scheduleId) {
+        if ((1 <= scheduleId) && (scheduleId <= playSchedules.size())) {
+            return true;
+        }
+
+        System.out.println("입력하신 번호에 해당하는 시간표가 없습니다.");
+        return false;
+    }
+
+    public boolean isValidScheduleTime(int scheduleId) {
+        int INDEX_ADJUST_NUMBER = 1;
+        LocalDateTime now = LocalDateTime.now();
+        PlaySchedule schedule
+                = playSchedules.get(scheduleId - INDEX_ADJUST_NUMBER);
+
+        if (!schedule.isPassedSchedule(now)) {
+            return true;
+        }
+
+        System.out.println("이미 상영시작시간이 지난 시간표입니다.");
+        return false;
+    }
+
+    public boolean isValidScheduleId(int scheduleId) {
+
+        if (!isValidScheduleIdRange(scheduleId)) {
+            return false;
+        }
+
+        if (!isValidScheduleTime(scheduleId)) {
+            return false;
+        }
+
+        return true;
     }
 }

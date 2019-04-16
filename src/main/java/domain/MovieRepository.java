@@ -55,9 +55,10 @@ public class MovieRepository {
     }
 
     public static boolean isValidId(int movieId) {
-        if (getMovie(movieId).size() == 0) {
-            return false;
+        if (getMovie(movieId).size() > 0) {
+            return true;
         }
-        return true;
+        System.out.println("입력하신 아이디에 해당하는 영화가 없습니다.");
+        return false;
     }
 }
