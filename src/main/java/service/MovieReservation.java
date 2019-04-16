@@ -23,14 +23,29 @@ public class MovieReservation {
 		return movie;
 	}
 
-	public static void getMoiveTime(Movie movie){
+	public static int getMoiveTime(Movie movie) {
 		List<PlaySchedule> moviePlaySchedule = movie.getPlaySchedules();
-		boolean result = Validator.checkMovieTimeValid(moviePlaySchedule, InputView.inputMovieTime());
+		int movieTimeIdx = InputView.inputMovieTime();
+		boolean result = Validator.checkMovieTimeValid(moviePlaySchedule, movieTimeIdx);
 
-		while(!result){
-			result = Validator.checkMovieTimeValid(moviePlaySchedule, InputView.inputMovieTime());
+		while (!result) {
+			movieTimeIdx = InputView.inputMovieTime();
+			result = Validator.checkMovieTimeValid(moviePlaySchedule, movieTimeIdx);
+		}
+		return movieTimeIdx;
+	}
+
+	public static int getMovieReservationNumber(Movie movie, int movieTimeIdx) {
+		int reservationNumber = InputView.inputReservationNumber();
+		boolean result = Validator.checkMovieReservationNumber(movie, movieTimeIdx - 1, reservationNumber);
+
+		while (!result) {
+			OutputView.printUserInputAgainReservationNumberOver();
+			reservationNumber = InputView.inputReservationNumber();
+			result = Validator.checkMovieReservationNumber(movie, movieTimeIdx - 1, reservationNumber);
 		}
 
+		return reservationNumber;
 	}
 
 }
