@@ -18,5 +18,8 @@ public class MovieApplication {
             movieId = InputView.inputMovieId();
         }
 
+        OutputView.printMovie(movies, movieId);
+
+
     }
 }

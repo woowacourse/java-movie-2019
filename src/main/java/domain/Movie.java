@@ -22,7 +22,7 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    boolean isContainsMovieId(int id) {
+    public boolean isContainsMovieId(int id) {
         return this.id == id;
     }
 
