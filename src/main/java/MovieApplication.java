@@ -1,13 +1,13 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.Reservation;
-import domain.ReservationList;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
 
 public class MovieApplication {
+
+    public static final String RESERVATION_END_MESSAGE = "예매를 완료했습니다. 즐거운 영화관람 되세요";
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
@@ -35,6 +35,10 @@ public class MovieApplication {
         long totalAmountOfPayment = reservationList.getTotalAmountOfPayment();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();
+
+        Payment payment = new Payment(paymentMethod, amountOfPointToUse, totalAmountOfPayment);
+        System.out.println(payment);
+        System.out.println(RESERVATION_END_MESSAGE);
 
     }
 }
