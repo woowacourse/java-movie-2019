@@ -13,7 +13,7 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         OutputView.printMovies(MovieRepository.getMovies(movieId));
 
-        int movieTime = InputView.inputMovieTime();
+        int movieTime = InputView.inputMovieTime(movieId);
         int movieViewer = InputView.inputMovieViewer();
         int payOrReserve = InputView.inputPayOrAdditionalReservation();
 

@@ -1,6 +1,7 @@
 package view;
 
 import domain.MovieRepository;
+import utils.DateTimeUtils;
 
 import java.util.Scanner;
 
@@ -23,9 +24,20 @@ public class InputView {
         }
     }
 
-    public static int inputMovieTime() {
-        System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)");
-        return scanner.nextInt();
+    public static int inputMovieTime(int movieId) {
+        try {
+            System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)");
+            int time = scanner.nextInt();
+            MovieRepository.getMovies(movieId).get(0).getPlaySchedules().get(time-1).getStartDateTime();
+
+            return time;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("## 올바르지 않은 시간입니다.");
+            return inputMovieTime(movieId);
+        } catch (Exception e) {
+            System.out.println("## 상영 시간이 지난 영화입니다.");
+            return inputMovieTime(movieId);
+        }
     }
 
     public static int inputMovieViewer() {
