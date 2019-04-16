@@ -30,7 +30,8 @@ public class MovieApplication {
         if (userInputContinue == 2) {
             doGame(movies, servant);
         }
+        servant.finalizePayment();
         int total = servant.calculatePayment();
-        servant.printPayment(toal);
+        servant.printPayment(total);
     }
 }

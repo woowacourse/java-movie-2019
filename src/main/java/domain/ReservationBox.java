@@ -243,7 +243,14 @@ public class ReservationBox {
         for (int i=0, n=this.listOfSaleAmouts.size(); i<n; i++) {
             totalSales += listOfSaleAmouts.get(i);
         }
-        int result = (int) ((totalRevenues - totalPoints)*totalSales);
+        int result = (int) ((totalRevenues)*totalSales);
+        //int resultWitoutSales = totalRevenues
         return result;
+    }
+
+    public void printPayment(int total) {
+        System.out.println("최종 결제한 금액은 " + total +"원 입니다.");
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+
     }
 }
