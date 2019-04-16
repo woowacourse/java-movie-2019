@@ -243,8 +243,11 @@ public class ReservationBox {
         for (int i=0, n=this.listOfSaleAmouts.size(); i<n; i++) {
             totalSales += listOfSaleAmouts.get(i);
         }
-        int result = (int) ((totalRevenues)*totalSales);
+        //int result = (int) ((totalRevenues)*totalSales);
         //int resultWitoutSales = totalRevenues
+        int resultWithoutSales = totalRevenues - totalPoints;
+        double salePrice = resultWithoutSales*totalSales;
+        int result = (int) (resultWithoutSales - salePrice);
         return result;
     }
 
