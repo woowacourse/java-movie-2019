@@ -14,6 +14,10 @@ public class InputView {
     private static final String ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
     private static final String SELECT_PAYMENT_METHOD_MESSAGE = "## 신용카드는 1번, 현금은 2번";
 
+    private static final int MIN_POINT = 0;
+    private static final String POINT_INPUT_ERROR_MESSAGE = "포인트는 0보다 작을 수 없습니다.";
+
+
     public static int inputMovieId() {
         System.out.println(SELECT_MOVIE_TO_RESERVE_MESSAGE);
         return InputNumber.getNaturalNumber();
@@ -36,7 +40,16 @@ public class InputView {
 
     public static int inputAmountOfPointToUse() {
         System.out.println(ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE);
-        return InputNumber.getNaturalNumber();
+        try {
+            int point = InputNumber.getNaturalNumber();
+            if (point < MIN_POINT) {
+                System.out.println(POINT_INPUT_ERROR_MESSAGE);
+                throw new IllegalArgumentException();
+            }
+            return point;
+        } catch (Exception e) {
+            return inputAmountOfPointToUse();
+        }
     }
 
     public static int inputPaymentMethod() {
