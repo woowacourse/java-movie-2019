@@ -10,9 +10,9 @@ public class MovieApplication {
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
 		OutputView.printMovies(movies);
-
+		int curPoint = 0;
 		while (true) {
-
+			
 			int movieId = InputView.inputMovieId();
 
 			// TODO 구현 진행
@@ -38,6 +38,9 @@ public class MovieApplication {
 				payMent.setScheduleId(scheduleId);
 				payMent.printPayment();
 				payMentList.add(payMent);
+				
+				int usePoint = InputView.inputuserPoint(curPoint);
+				
 			}
 
 			/* 2번을 선택할 경우 추가 예약이 진행 되도록 사이클 */
