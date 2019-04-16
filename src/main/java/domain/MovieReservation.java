@@ -21,7 +21,7 @@ public class MovieReservation {
     @Override
     public String toString() {
         return movie.getSimpleInfo() + NEW_LINE
-                + movie.getSchedule(scheduleId) + NEW_LINE
+                + movie.getSchedule(scheduleId).getSimpleInfo() + NEW_LINE
                 + "예약 인원 : " + reservationNumber + "명";
     }
 

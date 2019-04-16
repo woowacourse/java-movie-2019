@@ -55,7 +55,7 @@ public class InputView {
     }
 
     public static int inputPoint(int totalPrice) {
-        System.out.println("\n## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
         int point = scanner.nextInt();
 
         if (point <= totalPrice) {

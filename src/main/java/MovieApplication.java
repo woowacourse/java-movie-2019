@@ -52,6 +52,8 @@ public class MovieApplication {
             isContinue = changeValueOfContinue(InputView.inputIsContinue());
         }
 
+        OutputView.printReservations(reservations);
+
         System.out.println("\n## 결재를 진행합니다.");
         int totalPrice = getTotalPrice(reservations);
         int usedPoint = InputView.inputPoint(totalPrice);

@@ -94,6 +94,7 @@ public class Movie {
             return false;
         }
         if (reservations.size() != 0 && !isValidTimeGap(reservations, scheduleId)) {
+            System.out.println("이전 예약과 1시간 이상 차이가 납니다.");
             return false;
         }
         return true;
