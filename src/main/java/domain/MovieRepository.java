@@ -44,6 +44,16 @@ public class MovieRepository {
     }
 
     public static Movie getMovieForMovieId(int movieId) {
-        return movies.get(movieId);
+        Movie resultMovie = null;
+        for (Movie movie : movies) {
+            if (movie.matchMovieId(movieId)) {
+                resultMovie = movie;
+            }
+        }
+        return resultMovie;
+    }
+
+    public static int getMovieListSize() {
+        return movies.size();
     }
 }

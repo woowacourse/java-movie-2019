@@ -12,6 +12,6 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
         OutputView.printSelectMovie(movieId);
-        // TODO 구현 진행
     }
+
 }
