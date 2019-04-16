@@ -4,7 +4,7 @@ public class MovieInputValidator implements Validator {
 
     private String input;
 
-    MovieInputValidator(String input) {
+    public MovieInputValidator(String input) {
         this.input = input;
     }
 
