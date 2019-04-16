@@ -1,9 +1,11 @@
 package utils;
 
+import domain.Movie;
+
 import java.util.List;
 
 public class CheckValidity {
-    protected boolean checkValidityIntegerFormat(String input) {
+    protected static boolean checkValidityIntegerFormat(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -13,11 +15,15 @@ public class CheckValidity {
         return true;
     }
 
-    protected boolean checkIsContainOfMovies(List<Integer> movieIdList, int input) {
+    protected static boolean checkIsContainOfMovies(List<Integer> movieIdList, int input) {
         if (!movieIdList.contains(input)) {
             System.out.println("없는 영화 번호입니다.");
             return false;
         }
         return true;
+    }
+
+    protected static boolean checkIsContainOfReservationTime(Movie movie, int reservationTime) {
+        return movie.isContainSchedule(reservationTime);
     }
 }

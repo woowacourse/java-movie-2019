@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    private static final int MIN_TIME = 1;
 
     private final int id;
     private final String name;
@@ -38,5 +39,9 @@ public class Movie {
 
     boolean isSameMovieId(int movieId) {
         return (id == movieId);
+    }
+
+    public boolean isContainSchedule(int reservationTime) {
+        return ((MIN_TIME <= reservationTime) && (reservationTime < playSchedules.size()));
     }
 }

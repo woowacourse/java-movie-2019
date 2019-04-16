@@ -1,3 +1,4 @@
+import domain.Booker;
 import domain.Movie;
 import domain.MovieRepository;
 import view.InputView;
@@ -8,12 +9,12 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
-        InputView inputView = new InputView();
         OutputView.printMovies(movies);
 
-        int movieId = inputView.inputMovieId();
+        int movieId = InputView.inputMovieId();
         OutputView.printMovie(movieId);
 
-        int reservationTime = 
+        Booker booker = new Booker(movieId);
+        booker.reservationTime();
     }
 }
