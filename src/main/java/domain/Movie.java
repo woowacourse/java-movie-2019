@@ -75,4 +75,10 @@ public class Movie {
 
         return true;
     }
+
+    public boolean isValidReservationNumber(int scheduleId,
+                                            int number) {
+        PlaySchedule schedule = playSchedules.get(scheduleId);
+        return schedule.isCapacityOK(number);
+    }
 }

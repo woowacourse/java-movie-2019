@@ -24,4 +24,13 @@ public class PlaySchedule {
         }
         return false;
     }
+
+    public boolean isCapacityOK(int number) {
+        if (capacity >= number) {
+            return true;
+        }
+
+        System.out.println("예약가능인원을 초과하였습니다.");
+        return false;
+    }
 }

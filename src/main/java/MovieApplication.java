@@ -9,6 +9,7 @@ public class MovieApplication {
     public static Movie getMovieFromId(int movieId) {
         return MovieRepository.getMovie(movieId).get(0);
     }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
@@ -18,6 +19,8 @@ public class MovieApplication {
         System.out.println(movie);
 
         int scheduleId = InputView.inputScheduleId(movie);
+        int reservationNumber
+                = InputView.inputReservationNumber(movie, scheduleId);
 
         // TODO 구현 진행
     }

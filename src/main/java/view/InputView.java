@@ -2,6 +2,7 @@ package view;
 
 import domain.MovieRepository;
 import domain.Movie;
+import domain.PlaySchedule;
 
 import java.util.Scanner;
 
@@ -30,4 +31,14 @@ public class InputView {
         return inputScheduleId(movie);
     }
 
+    public static int inputReservationNumber(Movie movie, int scheduleId) {
+        System.out.println("\n## 예약할 인원을 입력하세요.");
+        int reservationNumber = scanner.nextInt();
+
+        if (movie.isValidReservationNumber(scheduleId, reservationNumber)) {
+            return reservationNumber;
+        }
+
+        return inputReservationNumber(movie, scheduleId);
+    }
 }
