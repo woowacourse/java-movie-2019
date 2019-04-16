@@ -12,13 +12,21 @@ public class MovieApplication {
         return MovieRepository.getMovie(movieId).get(0);
     }
 
+    public static boolean changeValueOfContinue(int inputNumber) {
+        if (inputNumber == 2 ) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservations = new ArrayList<>();
-        OutputView.printMovies(movies);
         boolean isContinue = true;
 
         while (isContinue) {
+            OutputView.printMovies(movies);
+
             int movieId = InputView.inputMovieId();
             Movie movie = getMovieFromId(movieId);
             System.out.println(movie);
@@ -30,6 +38,10 @@ public class MovieApplication {
             MovieReservation reservation
                     = new MovieReservation(movie, scheduleId, reservationNumber);
             reservations.add(reservation);
+
+            isContinue = changeValueOfContinue(InputView.inputIsContinue());
         }
+
+
     }
 }

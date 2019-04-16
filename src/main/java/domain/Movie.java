@@ -58,10 +58,9 @@ public class Movie {
     }
 
     public boolean isValidScheduleTime(int scheduleId) {
-        int INDEX_ADJUST_NUMBER = 1;
         LocalDateTime now = LocalDateTime.now();
         PlaySchedule schedule
-                = playSchedules.get(scheduleId - INDEX_ADJUST_NUMBER);
+                = playSchedules.get(scheduleId);
 
         if (!schedule.isPassedSchedule(now)) {
             return true;
@@ -74,10 +73,12 @@ public class Movie {
     public boolean isValidTimeGap(List<MovieReservation> reservations,
                                   int scheduleId) {
         PlaySchedule schedule = playSchedules.get(scheduleId);
+        boolean result = true;
 
         for (MovieReservation reservation : reservations) {
-            reservation.isValidTimeGap(schedule);
+            result = result && reservation.isValidTimeGap(schedule);
         }
+        return result;
     }
 
     public boolean isValidScheduleId(List<MovieReservation> reservations,
