@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Purchase;
 import domain.ReservedMovie;
 import view.InputView;
 import view.OutputView;
@@ -23,5 +24,8 @@ public class MovieApplication {
         reservedMovie.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
 
         reservedMovie.printReservationHistory();
+
+        Purchase purchase = new Purchase(reservedMovie.calculateTotalPrice());
+        purchase.printTotalPrice();
     }
 }

@@ -44,4 +44,8 @@ public class Movie {
     public String printMovieTime(int movieTime) {
         return playSchedules.get(movieTime - 1).movieTime();
     }
+
+    public int getPrice(){
+        return this.price;
+    }
 }

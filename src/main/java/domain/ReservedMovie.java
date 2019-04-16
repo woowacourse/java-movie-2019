@@ -44,7 +44,7 @@ public class ReservedMovie {
     private void printOneMovieHistory(Movie movie) {
         System.out.println(movie.printMovieInfo());
         System.out.println(movie.printMovieTime(timeMap.get(movie)));
-        System.out.format(countNumberOfPeople(movie));
+        System.out.println(countNumberOfPeople(movie));
     }
 
     private String countNumberOfPeople(Movie movie) {
@@ -54,5 +54,13 @@ public class ReservedMovie {
 
         copyReservedMovies.retainAll(result);
         return "예약 인원 :" + copyReservedMovies.size();
+    }
+
+    public int calculateTotalPrice(){
+        int totalPrice = 0;
+        for(Movie movie : reservedMovies){
+            totalPrice += movie.getPrice();
+        }
+        return totalPrice;
     }
 }
