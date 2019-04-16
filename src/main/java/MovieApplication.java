@@ -24,9 +24,13 @@ public class MovieApplication {
     private void ExecuteAppAfterGoback(ReservateInformation reservateInformation) {
 
         OutputView.printReservateInfo(reservateInformation);
+
         Point point = InputView.inputPoint(reservateInformation);
         CardOrCash cardOrCash = InputView.inputCardOrCash();
-        
+
+        OutputView.pirntResult(cardOrCash,point,reservateInformation);
+        MovieRepository.UpdateMovieInfo(reservateInformation);
+        ReservateMovie();
 
     }
 
@@ -47,6 +51,6 @@ public class MovieApplication {
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.ReservateMovie();
-        // TODO 구현 진행
+
     }
 }

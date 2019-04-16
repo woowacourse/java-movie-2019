@@ -30,4 +30,11 @@ public class OutputView {
         System.out.println("예약인원 : "+ reservePeople.getReservePeople()+"명");
     };
 
+    public static void pirntResult(CardOrCash cardOrCash,Point point, ReservateInformation reservateInformation){
+
+        int result = cardOrCash.getResult(point,reservateInformation);
+        System.out.println("최종결제한 금액은 "+result+"원 입니다.");
+        System.out.println("예매를 완료했습니다. 즐거운 관람되세요.");
+    }
+
 }

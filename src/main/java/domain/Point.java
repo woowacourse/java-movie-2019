@@ -3,6 +3,10 @@ package domain;
 public class Point {
     private final int point;
 
+    public int getPoint() {
+        return point;
+    }
+
     public Point(ReservateInformation reservateInformation, int point){
         int wholePice = reservateInformation.getWholePrice();
         if(reservateInformation.getWholePrice() <  point){
