@@ -12,6 +12,9 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
 
+        OutputView.PrintChoiceMovie(movies, movieId);
+
         // TODO 구현 진행
     }
 }
+
