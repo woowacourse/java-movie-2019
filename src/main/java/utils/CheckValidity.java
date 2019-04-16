@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class CheckValidity {
-    protected static final int MIN_PAY_PROCESSING = 1;
-    private static final int MAX_PAY_PROCESSING = 2;
+    protected static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int MIN_POINT = 0;
 
     protected static boolean checkValidityIntegerFormat(String input) {
         try {
@@ -51,7 +52,11 @@ public class CheckValidity {
         return true;
     }
 
-    protected static boolean checkValidityScopeOfPayProcessing(int payProcessing){
-        return ((MIN_PAY_PROCESSING <= payProcessing) && (payProcessing <= MAX_PAY_PROCESSING));
+    protected static boolean checkValidityScopeOfBinary(int number) {
+        return ((ONE <= number) && (number <= TWO));
+    }
+
+    protected static boolean checkValidityScopeOfPoint(int point) {
+        return (point >= MIN_POINT);
     }
 }

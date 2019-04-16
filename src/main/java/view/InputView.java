@@ -47,22 +47,50 @@ public class InputView extends CheckValidity {
         return Integer.parseInt(bookingNumber);
     }
 
-    private static boolean validityBookingNumber(Movie movie, int bookingTime, String bookingNumber){
+    private static boolean validityBookingNumber(Movie movie, int bookingTime, String bookingNumber) {
         return checkValidityIntegerFormat(bookingNumber)
                 && checkIsValidityBookingNumber(movie, bookingTime, Integer.parseInt(bookingNumber));
     }
 
-    public static boolean inputPayProcessing(){
+    public static boolean inputPayProcessing() {
         String payProcessing;
-        do{
+        do {
             System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
             payProcessing = scanner.next();
-        }while(!validityPayProcessing(payProcessing));
+        } while (!validityPayProcessing(payProcessing));
         return Integer.parseInt(payProcessing) == MIN_PAY_PROCESSING;
     }
 
-    private static boolean validityPayProcessing(String  payProcessing){
+    private static boolean validityPayProcessing(String payProcessing) {
         return checkValidityIntegerFormat(payProcessing)
-                && checkValidityScopeOfPayProcessing(Integer.parseInt(payProcessing));
+                && checkValidityScopeOfBinary(Integer.parseInt(payProcessing));
+    }
+
+    public static int inputPoint() {
+        String point;
+        do {
+            System.out.println("포인트 사용 금액을 입력하세요. 포인트가 없으면 0입력");
+            point = scanner.next();
+        } while (validityPoint(point));
+        return Integer.parseInt(point);
+    }
+
+    private static boolean validityPoint(String point) {
+        return checkValidityIntegerFormat(point)
+                && checkValidityScopeOfPoint(Integer.parseInt(point));
+    }
+
+    public static int inputPaymentType(){
+        String paymentType;
+        do{
+            System.out.println("신용카드는 1번, 현금은 2번");
+            paymentType = scanner.next();
+        }while(validityPaymentType(paymentType));
+        return Integer.parseInt(paymentType);
+    }
+
+    private static boolean validityPaymentType(String paymentType){
+        return checkValidityIntegerFormat(paymentType)
+                && checkValidityScopeOfBinary(Integer.parseInt(paymentType));
     }
 }

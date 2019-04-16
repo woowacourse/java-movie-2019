@@ -7,7 +7,7 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-    Booker bookProcessing(){
+    private Booker bookProcessing() {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         Booker booker = new Booker();
@@ -17,13 +17,15 @@ public class MovieApplication {
             OutputView.printMovie(booker.currentBookingMovieId());
             booker.selectBookingTime();
             booker.selectBookingNumber();
-        }while(!InputView.inputPayProcessing());
+        } while (!InputView.inputPayProcessing());
 
         return booker;
     }
 
-    void processOfPayment(Booker booker){
+    private void processOfPayment(Booker booker) {
         OutputView.printResultBooking(booker);
+        int point = InputView.inputPoint();
+        int paymentType = InputView.inputPaymentType();
     }
 
     public static void main(String[] args) {
