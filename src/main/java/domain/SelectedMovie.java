@@ -12,25 +12,33 @@ public class SelectedMovie {
 		this.selectedPlaySchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
 		this.numOfPeople = numOfpeople;
 	}
+
 	public Movie getMovie() {
 		return this.selectedMovie;
 	}
-	public int getIndexOfSelectedSchedule () {
+
+	public int getIndexOfSelectedSchedule() {
 		return this.indexOfSelectedSchedule;
 	}
+
 	public PlaySchedule getPlaySchedule() {
 		return this.selectedPlaySchedule;
 	}
-	public int getNumOfPeople( ) {
+
+	public int getNumOfPeople() {
 		return this.numOfPeople;
 	}
-	
+
+	public boolean isWithInOneHour(Movie movie, int scheduleIndex) {
+		return selectedPlaySchedule.isWithInOneHour(movie.getSchedule(scheduleIndex));
+	}
+
 	@Override
 	public String toString() {
-        StringBuilder sb = new StringBuilder(selectedMovie.getFirstLine());
-        sb.append(selectedPlaySchedule);
-        sb.append("예약인원 : "+numOfPeople+"명 \n");
-        return  sb.toString();
+		StringBuilder sb = new StringBuilder(selectedMovie.getFirstLine());
+		sb.append(selectedPlaySchedule.getFirstLine());
+		sb.append("예약인원 : " + numOfPeople + "명 \n");
+		return sb.toString();
 	}
 
 }

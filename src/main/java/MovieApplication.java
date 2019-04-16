@@ -4,7 +4,6 @@ import java.util.List;
 
 import domain.Movie;
 import domain.MovieRepository;
-import domain.PlaySchedule;
 import domain.SelectedMovie;
 import view.InputView;
 import view.OutputView;
@@ -39,6 +38,10 @@ public class MovieApplication {
 		return ret;
 	}
 
+	static boolean isThereValidTicket(Movie newMovie, List<SelectedMovie> selectedMovies) {
+		return false;
+	}
+
 	static int inputMovieIdOnce(List<Movie> movies) {
 		int id = InputView.inputMovieId();
 		isExist(movies, id);
@@ -59,7 +62,7 @@ public class MovieApplication {
 	static int inputScheduleOnce(List<SelectedMovie> selectedMovies, Movie movie) {
 		int input = InputView.inputSchedule();
 		movie.isValidSchedule(input);
-		if (!isValidStartTime(selectedMovies, movie.getSchedule(input)))
+		if (!isValidStartTime(selectedMovies, movie, input))
 			throw new IllegalArgumentException("이미 선택한 영화와 시작시간이 한시간 이상 차이납니다. \n다시 입력해주세요.");
 		return input;
 	}
@@ -75,30 +78,30 @@ public class MovieApplication {
 		return input;
 	}
 
-	static boolean isValidStartTime(List<SelectedMovie> selectedMovies, PlaySchedule newSchedule) {
+	static boolean isValidStartTime(List<SelectedMovie> selectedMovies, Movie movie, int scheduleIndex) {
 		int isValid = 1;
 		for (SelectedMovie selectedMovie : selectedMovies) {
-			isValid *= selectedMovie.getPlaySchedule().isWithInOneHour(newSchedule) ? 1 : 0;
+			isValid *= selectedMovie.isWithInOneHour(movie, scheduleIndex) ? 1 : 0;
 		}
 		return (isValid == 1);
 	}
 
-	static int inputPeopleOnce(PlaySchedule schedule) {
+	static int inputPeopleOnce(Movie movie, int scheduleIndex) {
 		int input = InputView.inputNumOfPeople();
 		if (input < 0)
 			throw new IllegalArgumentException("인원 수는 0보다 크거나 같아야 합니다. \n다시 입력해 주세요.");
-		if (!schedule.isValidPeople(input))
+		if (!movie.isThereEnoughTicket(scheduleIndex, input))
 			throw new IllegalArgumentException("예약 가능 인원을 초과합니다. \n다시 입력해 주세요.");
 		return input;
 	}
 
-	static int recurInputPeople(PlaySchedule schedule) {
+	static int recurInputPeople(Movie movie, int scheduleIndex) {
 		int input = 0;
 		try {
-			input = inputPeopleOnce(schedule);
+			input = inputPeopleOnce(movie, scheduleIndex);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			input = recurInputPeople(schedule);
+			input = recurInputPeople(movie, scheduleIndex);
 		}
 		return input;
 	}
@@ -108,8 +111,7 @@ public class MovieApplication {
 		Movie selectedMovie = getMovie(movies, movieId);
 		System.out.println(selectedMovie);
 		int indexOfSelectedSchedule = recurInputSchedule(selectedMovies, selectedMovie);
-		PlaySchedule selectedSchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
-		int numOfPeople = recurInputPeople(selectedSchedule);
+		int numOfPeople = recurInputPeople(selectedMovie, indexOfSelectedSchedule);
 		return new SelectedMovie(selectedMovie, indexOfSelectedSchedule, numOfPeople);
 	}
 
@@ -118,7 +120,7 @@ public class MovieApplication {
 		int indexOfSchedule = selectedMovie.getIndexOfSelectedSchedule();
 		int numOfPeople = selectedMovie.getNumOfPeople();
 		Movie movie = getMovie(movies, movieId);
-		movie.getSchedule(indexOfSchedule).subtractCapacity(numOfPeople);
+		movie.sellTicket(indexOfSchedule, numOfPeople);
 	}
 
 	static int recurInputRechoiceOrNot() {
