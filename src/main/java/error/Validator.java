@@ -12,7 +12,7 @@ public class Validator {
     private static final String WARNING_WHEN_MOVIE_DONT_HAVE_VACANCY = "해당 영화는 공석이 존재하지 않습니다.";
     private static final String WARNING_WHEN_SCHEDULE_NOT_EXIST = "해당 스캐줄은 존재하지 않습니다.";
     private static final String WARNING_WHEN_SCHEDULE_DONT_HAVE_VACANCY = "해당 스캐줄은 공석이 존재하지 않습니다.";
-    
+
     // 정수인지
     public static boolean isInteger(String number) {
         try {
