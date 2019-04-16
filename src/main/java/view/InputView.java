@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String PATTERN = "^[0-9]*$";
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
@@ -44,9 +45,7 @@ public class InputView {
     }
 
     private static boolean checkContainsChar(String movieId) {
-        String pattern = "^[0-9]*$";
-
-        if (!Pattern.matches(pattern, movieId)) {
+        if (!Pattern.matches(PATTERN, movieId)) {
             System.err.println("문자가 입력되었습니다.");
             return true;
         }
