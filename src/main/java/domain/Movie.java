@@ -40,4 +40,8 @@ public class Movie {
 			System.out.print(playSchedule);
 		}
 	}
+
+	public int getMovieCounts() {
+		return playSchedules.size();
+	}
 }

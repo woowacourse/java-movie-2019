@@ -9,4 +9,13 @@ public class MovieReserveManager {
 			return inputValidatedMovieId();
 		return inputMovieId;
 	}
+
+	private int inputValidatedMovieTime(Movie movie) {
+		int inputMovieTime = new InputView().inputMovieTime();
+		if (inputMovieTime > movie.getMovieCounts()) {
+			System.out.println("존재하지 않는 시간입니다.");
+			return inputValidatedMovieTime(movie);
+		}
+		return inputMovieTime;
+	}
 }
