@@ -49,6 +49,6 @@ public class MovieRepository {
                 return movie;
             }
         }
-        return null;
+        throw new IllegalArgumentException("해당되는 영화의 ID 가 존재하지 않습니다.");
     }
 }
