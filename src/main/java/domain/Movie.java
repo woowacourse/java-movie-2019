@@ -36,4 +36,8 @@ public class Movie {
   public int getId() {
     return id;
   }
+
+  public List<PlaySchedule> getPlaySchedule(){
+    return playSchedules;
+  }
 }

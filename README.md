@@ -6,6 +6,7 @@
 - class Movie
 
     - getId() : movie의 id를 반환하는 메서드
+    - getPlaySchedule() : movie의 상영 시간표를 반환하는 메서드
 
 - class OutputView
 
