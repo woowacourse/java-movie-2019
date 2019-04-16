@@ -51,6 +51,7 @@ public class InputView {
             return inputNumber;
         }
 
+        System.out.println("\n1 또는 2로 제대로 응답해주세요.");
         return inputIsContinue();
     }
 
@@ -65,5 +66,17 @@ public class InputView {
         System.out.println(String.format(
                 "## 총 금액보다 포인트 사용 금액이 큽니다. 총 금액은 %d 입니다.", totalPrice));
         return inputPoint(totalPrice);
+    }
+
+    public static int inputPaymentMethod() {
+        System.out.println("\n## 신용카드는 1번, 현금은 2번");
+        int inputNumber = scanner.nextInt();
+
+        if ((inputNumber == 1) || (inputNumber == 2)) {
+            return inputNumber;
+        }
+
+        System.out.println("\n1 또는 2로 제대로 응답해주세요.");
+        return inputPaymentMethod();
     }
 }
