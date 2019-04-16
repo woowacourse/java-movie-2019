@@ -19,6 +19,9 @@ public class ResultPay {
         if (paymentMethod == MONEY) {
             this.pay = (int) (pay * MONEY_RATIO) - point;
         }
+        if(pay < 0){
+            this.pay = 0;
+        }
     }
 
     public static int checkPoint(int point) {
