@@ -5,6 +5,15 @@ import java.time.LocalDateTime;
 import view.InputView;
 
 public class MovieReserveManager {
+	public ReservedMovie getReservedMovie() {
+		int movieId = inputValidatedMovieId();
+		Movie movie = MovieRepository.getMovieById(movieId);
+		movie.printMovieTimes();
+		int movieTime = inputValidatedMovieTime(movie);
+		int peopleNumber = inputValidatedPeopleNumber(movie, movieTime);
+		return new ReservedMovie(movie, movie.getPlaySchedule(movieTime), peopleNumber);
+	}
+	
 	private int inputValidatedMovieId() {
 		int inputMovieId = new InputView().inputMovieId();
 		if (!MovieRepository.getMovieIds().contains(inputMovieId))
