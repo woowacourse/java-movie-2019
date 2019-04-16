@@ -42,5 +42,7 @@ public class Movie {
         return null;
     }
 
+    public String getTitle() { return name; }
+
     public int getPrice() { return price; }
 }

@@ -26,5 +26,5 @@ public class PlaySchedule {
 
     public void book(int capacity) { this.capacity -= capacity; }
 
-
+    public LocalDateTime getTime() { return startDateTime; }
 }

@@ -40,6 +40,8 @@ public class MovieApplication {
 
             System.out.println();
             if (validateCommand(InputView.inputPayOrRepeatMenu()) == PROCEED_AND_PAY) {
+                printBookingList();
+
                 System.out.println();
                 point = validatePoint(InputView.inputPoint());
 
@@ -99,6 +101,14 @@ public class MovieApplication {
         return validateCommand(InputView.inputPayOrRepeatMenu());
     }
 
+    private static void printBookingList() {
+        System.out.println("예약 내역");
+        for (int i = 0; i < bookingList.size(); i++) {
+            BookingInfo info = bookingList.get(i);
+            System.out.println((i + 1) + " - " + info.getInfo());
+        }
+    }
+
     private static void book(Movie movie, PlaySchedule schedule, int capacity) {
         Optional<BookingInfo> info = bookingList.stream().filter(x -> x.getId() == movie.getId()).findFirst();
 
@@ -149,6 +159,11 @@ class BookingInfo {
     public int getId() { return movie.getId(); }
 
     public void addCapacity(int capacity) { this.capacity += capacity; }
+
+    public String getInfo() {
+        return movie.getTitle() + ", " + movie.getPrice()
+                + "원\n시작시간: " + schedule.getTime() + "\n예약 인원: " + capacity + "명";
+    }
 
     public int getTotalPricePerMovie() { return movie.getPrice() * capacity; }
 }
