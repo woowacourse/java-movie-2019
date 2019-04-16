@@ -100,8 +100,20 @@ public class BookControl {
 
     }
 
-    // 예매를 더 할지 결제로 넘어갈지 판단하는 함수
+    // #1-5 예매를 더 할지 결제로 넘어갈지 판단하는 함수
     public boolean checkMoreBook() {
+        int input_num = -1;
+        do {
+            input_num = InputView.inputMoreBook();
+        } while(!(isCorrectInput(input_num)));
+        System.out.println("## 결제를 진행합니다.");
+        return false;
+    }
+
+    // #1-5-1 유저의 입력이 정확한지 판단하는 함수
+    private boolean isCorrectInput(int input) {
+        if (input == 1 || input == 2) return true;
+        System.out.println("잘못된 입력입니다.");
         return false;
     }
 
