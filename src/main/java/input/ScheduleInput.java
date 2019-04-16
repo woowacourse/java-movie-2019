@@ -40,7 +40,7 @@ public class ScheduleInput {
 
     private boolean checkValidity(PlaySchedule schedule) {
         LocalDateTime nowTime = LocalDateTime.now();
-        if (schedule.dateTimeIs().compareTo(nowTime) == -1) {
+        if (schedule.dateTimeIs().compareTo(nowTime) < 0) {
             return false;
         }
         return true;

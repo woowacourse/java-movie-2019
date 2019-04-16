@@ -15,31 +15,21 @@ import java.util.List;
 
 public class MovieApplication {
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-
-        Movie movie = InputView.inputMovie(movies);
-        OutputView.printMovies(movie);
-        int scheduleId = InputView.getScheduleId(movie);
-        // TODO 구현 진행
-        int memberNumber = InputView.getMemberNumber(movie, scheduleId);
-        Continue choice = InputView.askContinuePurchaseOrNot();
-        System.out.println(choice);
+        List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
+        start(reservedMovies);
 
     }
 
-    private void start() {
-        List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
+    private static void start(List<ReservedMovie> reservedMovies) {
         choose(reservedMovies);
         Continue choice = InputView.askContinuePurchaseOrNot();
         OutputView.printReservedMovies(reservedMovies);
         if (choice == Continue.YES) {
-            choose(reservedMovies);
+            start(reservedMovies);
         }
-
     }
 
-    private void choose(List<ReservedMovie> reservedMovies) {
+    private static void choose(List<ReservedMovie> reservedMovies) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         Movie movie = InputView.inputMovie(movies);

@@ -21,6 +21,6 @@ public class ReservedMovie {
         string += movie.getScheduleById(scheduleId).toStringWithoutCapacity();
         string += RESERVED_MEMBER_IS + memberNumber + PEOPLE_COUNT;
 
-        return super.toString();
+        return string;
     }
 }
