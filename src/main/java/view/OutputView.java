@@ -12,15 +12,15 @@ public class OutputView {
         }
     }
 
-    public static void printChoiceMovies(List<Movie> movies, int movieId) {
+    public static Movie printChoiceMovies(List<Movie> movies, int movieId) {
         for (Movie movie : movies) {
             if(movie.getId() == movieId){
                 System.out.println(movie);
+                return movie;
             }
         }
+        return null;
     }
-
-    
 
 //    private static Movie checkMovieId(Movie movie, int movieId) {
 //        if (movie.getId() == movieId) {
