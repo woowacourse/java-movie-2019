@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
-
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 
@@ -43,6 +42,13 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie getMovie(int movieId) {
+
+        Movie movie = movies.stream().filter(m -> m.getId() ==movieId).findAny().orElse(null);
+
+        return movie;
+    }
+
     public static boolean isValidMovieId(int movieId) {
         if (movies.stream().filter(m -> m.getId() == movieId).count() == 0) {
             return false;
@@ -56,7 +62,6 @@ public class MovieRepository {
 
         return (count == 0) ? true : false;
     }
-
 
 
 }
