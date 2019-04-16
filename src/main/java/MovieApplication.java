@@ -26,6 +26,7 @@ public class MovieApplication {
         OutputView.printResultBooking(booker);
         int point = InputView.inputPoint();
         int paymentType = InputView.inputPaymentType();
+        OutputView.printMoney(booker.getTotalPrice(paymentType, point));
     }
 
     public static void main(String[] args) {

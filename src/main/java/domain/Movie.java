@@ -45,6 +45,10 @@ public class Movie {
         return id;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     boolean isSameMovieId(int movieId) {
         return (id == movieId);
     }

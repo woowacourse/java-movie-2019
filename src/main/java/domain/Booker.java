@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Booker {
+    private static final double SALE_CARD = 0.95;
+    private static final double SALE_MONEY = 0.98;
+    private static final int PAYMENT_TYPE_CARD = 1;
+
     private List<Movie> bookingMovies;
     private List<Integer> bookingTime;
     private List<Integer> bookingNumber;
@@ -47,5 +51,18 @@ public class Booker {
             resultBooking.add(str);
         }
         return resultBooking;
+    }
+
+    public int getTotalPrice(int paymentType, int point) {
+        int totalPrice = 0;
+        for (int i = 0; i < tryBookingNumber; i++) {
+            totalPrice = bookingMovies.get(i).getPrice();
+            totalPrice *= bookingNumber.get(i);
+        }
+        totalPrice -= point;
+        if (paymentType == PAYMENT_TYPE_CARD) {
+            return (int) (totalPrice * SALE_CARD);
+        }
+        return (int) (totalPrice * SALE_MONEY);
     }
 }
