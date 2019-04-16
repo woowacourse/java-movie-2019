@@ -21,7 +21,7 @@ public class MovieApplication {
             OutputView.printAMovie(aMovie);
 
             int movieTime = InputView.inputMovieTime(aMovie);
-            int reserveCount = InputView.inputReserveCount();
+            int reserveCount = InputView.inputReserveCount(movieTime, aMovie);
 
             process = InputView.inputChooseProcess();
             reservationList.add(aMovie, reserveCount, movieTime);
