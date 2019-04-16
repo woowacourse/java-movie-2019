@@ -33,7 +33,8 @@ public class ReservationManager {
     }
 
     public static void printReservationList() {
-        // TO DO
+        System.out.println("예약내역");
+        ReservationRepository.printList();
     }
 
 

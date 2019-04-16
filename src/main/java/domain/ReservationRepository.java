@@ -23,7 +23,9 @@ public class ReservationRepository {
         }
     }
 
-    public static List<Reservation> getList() {
-        return reservationList;
+    public static void printList() {
+        for(Reservation reservation : reservationList) {
+            System.out.println(reservation);
+        }
     }
 }

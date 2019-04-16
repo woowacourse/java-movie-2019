@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.DateTimeUtils.format;
+
 public class Reservation {
     private static final char NEW_LINE = '\n';
     private final int id;
@@ -22,5 +24,11 @@ public class Reservation {
 
     public LocalDateTime getPlaySchedule() {
         return playSchedule;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + "시작시간: " + format(playSchedule) + NEW_LINE + "예약 인원: " + number + NEW_LINE;
     }
 }
