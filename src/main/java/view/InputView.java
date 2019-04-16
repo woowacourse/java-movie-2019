@@ -48,7 +48,7 @@ public class InputView {
             int time = isContainTime(choiceMovie, index);
             LocalDateTime movieStartTime = choiceMovie.getPlaySchedules().get(time - 1).getStartDateTime();
             movieStartTime = isBeforeTime(isOverOneHour(choiceMovies, movieStartTime));
-            return new ChoiceMovie(choiceMovie, choiceMovie.getPlaySchedules().get(time).getStartDateTime());
+            return new ChoiceMovie(choiceMovie, choiceMovie.getPlaySchedules().get(time-1).getStartDateTime());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputMovieTime(choiceMovies, choiceMovie);
