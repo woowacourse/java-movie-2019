@@ -8,6 +8,7 @@ import view.OutputView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class MovieApplication {
@@ -43,14 +44,29 @@ public class MovieApplication {
 		return DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime());
 	}
 	
+	private int inputPeopleNumber() {
+		int peopleNum = 0;
+		try {
+			peopleNum = InputView.inputPeopleNumber();
+		} catch (InputMismatchException e)  {
+			System.out.println("1 이상의 숫자를 입력하세요.");
+			peopleNum = InputView.inputPeopleNumber();
+		}
+		
+		return peopleNum;
+	}
+	
     public static void main(String[] args) {
         MovieApplication movieApp = new MovieApplication();
     	
     	List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         
-        Movie selectedMovie = movieApp.selectMovie(movies);
-        PlaySchedule selectedMovieTime = movieApp.selectMovieTime(selectedMovie);
-    	movieApp.checkMovieTime(selectedMovieTime);
+        
+        Movie selectedMovie = movieApp.selectMovie(movies); // 영화 선택  
+        PlaySchedule selectedMovieTime = movieApp.selectMovieTime(selectedMovie); // 상영시간 선택
+    	movieApp.checkMovieTime(selectedMovieTime); // 상영 시간과 현재 시간 비교
+    	
+    	movieApp.inputPeopleNumber());
     }
 }
