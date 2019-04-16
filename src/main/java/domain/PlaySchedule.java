@@ -12,16 +12,17 @@ public class PlaySchedule {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
-    public LocalDateTime getStartDateTime(){
+
+    public LocalDateTime getStartDateTime() {
         return this.startDateTime;
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return this.capacity;
     }
 
-    public void subCapacity(int numberOfPeople){
-        this.capacity-=numberOfPeople;
+    public void subCapacity(int numberOfPeople) {
+        this.capacity -= numberOfPeople;
     }
 
     @Override

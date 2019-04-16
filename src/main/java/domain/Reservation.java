@@ -12,7 +12,7 @@ public class Reservation {
 
     public Reservation(int movieId, int scheduleNumber, int numberOfPeople) {
         this.movieId = movieId;
-        this.scheduleNumber = scheduleNumber-1;
+        this.scheduleNumber = scheduleNumber;
         if (numberOfPeople > MovieRepository.getMovieById(movieId).getPlaySchedule(scheduleNumber).getCapacity()) {
             throw new IllegalArgumentException
                     ("예약 가능 인원보다 더 많은 예약인원을 입력하였습니다.");
@@ -30,8 +30,8 @@ public class Reservation {
 
     @Override
     public String toString() {
-        Movie movie=MovieRepository.getMovieById(movieId);
-        return movie.getId()+" - "+ movie.getName()+" , " + movie.getPrice()+"원\n"
+        Movie movie = MovieRepository.getMovieById(movieId);
+        return movie.getId() + " - " + movie.getName() + " , " + movie.getPrice() + "원\n"
                 + "시작시간: " + format(this.getStartTime()) + "\n예약인원: " + this.numberOfPeople + "\n";
     }
 

@@ -22,7 +22,7 @@ public class InputView {
             scannedMovieSchedule = SCANNER.nextLine();
         }
         while (!Validator.isNaturalNumber(scannedMovieSchedule) || scannedMovieSchedule.equals("0"));
-        return Integer.parseInt(scannedMovieSchedule);
+        return Integer.parseInt(scannedMovieSchedule) - 1;
     }
 
     public static int inputNumberOfPeople() {
@@ -35,9 +35,9 @@ public class InputView {
         return Integer.parseInt(scanned);
     }
 
-    public static int inputContinue(){
+    public static int inputContinue() {
         String scanned;
-        do{
+        do {
             System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
             scanned = SCANNER.nextLine().trim();
         }
@@ -45,27 +45,27 @@ public class InputView {
         return Integer.parseInt(scanned);
     }
 
-    public static int inputPoint(){
+    public static int inputPoint() {
         String scanned;
 
         System.out.println("## 결제를 진행합니다.");
-        do{
+        do {
             System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-            scanned=SCANNER.nextLine();
+            scanned = SCANNER.nextLine();
         }
         while (!Validator.isNaturalNumber(scanned));
         return Integer.parseInt(scanned);
     }
 
-    public static int inputCardOrCash(){
+    public static boolean inputCardOrNot() {
         String scanned;
 
-        do{
+        do {
             System.out.println("## 신용카드는 1번, 현금은 2번");
-            scanned=SCANNER.nextLine();
+            scanned = SCANNER.nextLine();
         }
         while (!scanned.equals("1") && !scanned.equals("2"));
-        return Integer.parseInt(scanned);
+        return scanned.equals("1");
     }
 
 }

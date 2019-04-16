@@ -3,6 +3,7 @@ package view;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
+import domain.User;
 
 import java.util.List;
 
@@ -14,14 +15,18 @@ public class OutputView {
         }
     }
 
-    public static void printMovieById(int movieId){
+    public static void printMovieById(int movieId) {
         System.out.println(MovieRepository.getMovieById(movieId));
     }
 
-    public static void printUserReservationList(List<Reservation> reservations){
-        for(Reservation reservation:reservations){
+    public static void printUserReservationList(List<Reservation> reservations) {
+        for (Reservation reservation : reservations) {
             System.out.println(reservation.toString());
         }
+    }
+
+    public static void printPayment(User user) {
+        System.out.println(user.toString());
     }
 
 }
