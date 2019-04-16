@@ -9,22 +9,7 @@
 ## 바람직한 입/출력 예시
 
 ## 폴더 구조
-```
-|-- main
-|   -- java
-|       -- controller
-|           |-- DataReceiver.java       유저로부터 데이터를 받는 로직 담당
-|           |-- LottoGame.java          게임 전체 진행 담당
-|           |-- Validator.java          데이터의 유효성 체크 담당
-|       -- database
-|           |-- GameSetting.java        게임 세팅데이터 담당
-|           |-- UserViewData.java       게임 출력데이터 담당
-|       -- lottodata
-|           |-- Lotto.java              로또 1장 객체
-|           |-- Rank.java               로또 1장 당첨결과 객체
-|           |-- WinningLotto.java       당첨로또 객체
-|       -- Main.java
-```
+
 ## 구현로직 분류
 - [x] 메인로직 1: 사용자로 부터 영화 번호 입력 받고 그에 맞는 영화 출력하기
     - [x] 서브로직 1-1: 입력이 정수로 변환가능한지 확인
@@ -51,57 +36,3 @@
 - [x] 메인로직 7: 전체 게임 진행 로직 구현
 
 ## 클래스별 세부 기능
-
-|LottoGame|로또게임 진행을 담당|
-|---|---|
-|getLottoCountFromUser|유저로부터 로또갯수 입력받기|
-|createLottos| 특정갯수의 로또객체를 생성해 반환|
-|printLottos|특정갯수의 로또객체정보를 출력|
-|createWinningLotto|당첨로또 생성|
-|transformWinningNumberInputToIntegerList|유저로부터 받은 로또넘버6개 입력을 리스트로 변환해서 반환|
-|createInitializedRankCounter|로또 당첨결과 계산하기위한 자료구조(Map)생성 후 반환|
-|calculateLottoMatch|로또 당첨결과를 계산|
-|calculateProfitRate|수익률 계산|
-|printLottoResult|로또 당첨 결과를 출력(당첨로또 현황, 수익률)|
-|playGame|게임 실행 함수|
-
-|Lotto|로또 1장 객체|
-|---|---|
-|getNumbers|로또넘버 반환|
-|getCountOfMatch|로또넘버 일치갯수 반환|
-|checkNumberContain|입력된 로또넘버 포함 여부 반환|
-|createPossibleNumbers|로또넘버로 가능한 숫자들을 반환|
-|createRandomLotto|랜덤하게 로또한개를 생성해 반환|
-|printLottoNumbers|로또넘버를 출력|
-
-|WinningLotto|당첨 로또 객체|
-|---|---|
-|match|특정 로또객체의 당첨결과를 반환|
-
-|Rank|당첨결과 객체|
-|---|---|
-|printRank|당첨결과 출력|
-
-|Validator|값이 에러를 갖는지 확인하는 로직을 담당|
-|---|---|
-|checkIsInteger|정수로 변환가능한지 확인|
-|checkIsLottoNumberInRange|범위안에 있는 값인지 확인|
-|checkNumbersLengthIsValid|당첨로또입력의 갯수 확인|
-|checkEachStringIsInteger|당첨로또입력의 모든숫자가 정수로 변환가능한지 확인|
-|checkEachStringInRange|당첨로또입력의 모든숫자가 1~45인지 확인|
-|checkEachStringDontOverlap|당첨로또입력이 중복 없는지 확인|
-|checkIsAlreadyInLottoNumbers|입력이 이미 로또번호에 포함된 번호인지 확인해 반환|
-|checkInputLottoMoneyIsUnderMinvalue|인풋 금액이 로또1장금액보다 낮은지 체크|
-|checkWinningLottoNumbers|당첨로또번호 입력에 오류가있는지 종합 체크|
-
-|GameSetting|게임의 세팅데이터 담당|
-|---|---|
-
-|UserViewData|게임의 출력데이터 담당|
-|---|---|
-
-|DataReceiver|유저로부터 데이터 입력받는 로직 담당|
-|---|---|
-|getLottoMoneyFromUser|유저로부터 로또구입금액을 입력받음|
-|getWinningLottoNumbersFromUser|유저로부터 유효한 로또넘버 6개를 받음|
-|getBonusNumberFromUser|유저로부터 보너스넘버를 입력받음|
