@@ -62,4 +62,8 @@ public class Movie {
     public int getCapacity(int movieTime) {
         return playSchedules.get(movieTime - 1).getCapacity();
     }
+
+    public void discountScheduleCapacity(int time, int num){
+        this.playSchedules.get(time-1).disCapacity(num);
+    }
 }

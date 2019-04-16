@@ -21,4 +21,7 @@ public class PlaySchedule {
     public int getCapacity() {
         return capacity;
     }
+    public void disCapacity(int num){
+        this.capacity = this.capacity - num;
+    }
 }

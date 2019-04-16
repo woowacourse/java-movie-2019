@@ -50,4 +50,9 @@ public class OutputView {
         System.out.println("포인트가 구매 금액보다 높습니다");
     }
 
+    public static void printResult(int money){
+        System.out.format( "최종 결제한 금액은 %d원 입니다.%n", money);
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
+
     }

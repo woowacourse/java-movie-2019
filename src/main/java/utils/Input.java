@@ -63,4 +63,15 @@ public class Input {
             return pointInput(price);
         }
     }
+
+    public static int creditCashInput(){
+        try{
+            int inputNum = InputView.inputCredit();
+            CheckException.checkZeroOne(inputNum);
+            return inputNum;
+        } catch (InputMismatchException | IllegalArgumentException e) {
+            OutputView.printNotZeroOne();
+            return creditCashInput();
+        }
+    }
 }

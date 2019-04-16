@@ -30,4 +30,9 @@ public class InputView {
         return Integer.parseInt(scan.nextLine().trim());
     }
 
+    public static int inputCredit(){
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        return Integer.parseInt(scan.nextLine().trim());
+    }
+
 }
