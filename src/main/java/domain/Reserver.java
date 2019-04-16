@@ -3,6 +3,12 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 예약자 정보를 관리하는 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class Reserver {
     private static final char NEW_LINE = '\n';
 
@@ -11,7 +17,7 @@ public class Reserver {
     void addReservation(Reservation reservation){
         reservationList.add(reservation);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

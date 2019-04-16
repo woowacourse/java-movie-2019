@@ -5,6 +5,12 @@ import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
 
+/**
+ * 영화 레퍼지토리
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 

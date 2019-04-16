@@ -4,6 +4,12 @@ import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
 
+/**
+ * 영화 스케줄과 예약 가능한 인원을 관리하는 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
     private int capacity;

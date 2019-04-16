@@ -3,6 +3,12 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 영화를 관리하는 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class Movie {
     private static final char NEW_LINE = '\n';
 

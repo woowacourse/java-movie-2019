@@ -6,6 +6,12 @@ import view.OutputView;
 
 import java.util.List;
 
+/**
+ * 프로그램 실행 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();

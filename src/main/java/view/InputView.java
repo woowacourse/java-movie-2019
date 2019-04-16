@@ -1,13 +1,17 @@
 package view;
 
 import domain.Movie;
-import domain.MovieRepository;
-import domain.MovieService;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 입력 값을 관리하는 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String INPUT_MOVIE_ID_MSG = "## 예약할 영화를 선택하세요.";

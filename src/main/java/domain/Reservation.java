@@ -1,5 +1,11 @@
 package domain;
 
+/**
+ * 예약 관리 객체
+ *
+ * @version 1.0(2019.04.16)
+ * @author jongyoon Kim
+ */
 public class Reservation {
     private static final char NEW_LINE = '\n';
 
