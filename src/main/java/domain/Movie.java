@@ -27,7 +27,7 @@ public class Movie {
     }
 
     public PlaySchedule getPlaySchedule(int scheduleNumber){
-        return playSchedules.get(scheduleNumber);
+        return playSchedules.get(scheduleNumber-1);
     }
 
     public String movieInfo(){

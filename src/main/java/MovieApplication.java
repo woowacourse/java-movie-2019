@@ -15,18 +15,23 @@ public class MovieApplication {
         List<ReservedMovie> reservedMovies = new ArrayList<>();
         int check = 2;
         while (check == 2) {
-            Movie reserveMovie = getReserveMovie(movies);
-            OutputView.printMovie(reserveMovie);
-            PlaySchedule reserveSchedule = getValidSchedule(reservedMovies, reserveMovie);
-            if (reserveSchedule == null) {
-                continue;
-            }
-            int reserveAmount = getReserveAmount(reserveSchedule);
-            reservedMovies.add(new ReservedMovie(reserveMovie,
-                    reserveSchedule.getStartDateTime(), reserveAmount));
+            movieReserve(movies, reservedMovies);
+            check = getContinueReserve();
         }
+        OutputView.printReservedMovies(reservedMovies);
     }
 
+    private static void movieReserve(List<Movie> movies, List<ReservedMovie> reservedMovies){
+        Movie reserveMovie = getReserveMovie(movies);
+        OutputView.printMovie(reserveMovie);
+        PlaySchedule reserveSchedule = getValidSchedule(reservedMovies, reserveMovie);
+        if (reserveSchedule == null) {
+            return;
+        }
+        int reserveAmount = getReserveAmount(reserveSchedule);
+        reservedMovies.add(new ReservedMovie(reserveMovie,
+                reserveSchedule.getStartDateTime(), reserveAmount));
+    }
     private static int getValidMovieId(List<Movie> movies) {
         OutputView.printMovies(movies);
         try {
@@ -58,7 +63,7 @@ public class MovieApplication {
         try {
             scheduleNumber = InputView.inputScheduleNumber();
             PlaySchedule schedule = movie.getPlaySchedule(scheduleNumber);
-            if (!MovieValidator.isOneHourWithinOtherReservedMovie(reservedMovies, schedule)){
+            if (!MovieValidator.scheduleValidate(reservedMovies, schedule)){
                 return null;
             }
             return schedule;
@@ -75,5 +80,13 @@ public class MovieApplication {
         } while (!schedule.isPossibleReserve(reserveAmount));
         schedule.reserve(reserveAmount);
         return reserveAmount;
+    }
+
+    private static int getContinueReserve(){
+        int continueCheck = NOT_EXIST_NUMBER;
+        do {
+            continueCheck = InputView.isContinueReserve();
+        } while(!MovieValidator.isValidContinueInput(continueCheck));
+        return continueCheck;
     }
 }
