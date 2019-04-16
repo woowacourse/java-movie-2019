@@ -1,6 +1,12 @@
 package domain;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import utils.DateTimeUtils;
+
 public class ReservationPlanner {
+
+    List<ReservationRecord> reservationRecords;
 
     Integer displayMovieSchedule(Integer movieId) {
         if (MovieRepository.isMovieExists(movieId)) {
@@ -24,6 +30,17 @@ public class ReservationPlanner {
             MovieRepository.consumeCapacity(movieId, movieEntryNumber, capacity);
         }
         throw new IllegalArgumentException("올바른 예약인원이 아닙니다.");
+    }
+
+    boolean checkReservationRecordsAllInOneHour() {
+        boolean isWithinHour = true;
+        for (ReservationRecord reservationRecord : reservationRecords) {
+            LocalDateTime dateTime2 = reservationRecord.getMovieStartDateTime();
+            isWithinHour = isWithinHour && reservationRecords.stream().map(
+                ReservationRecord::getMovieStartDateTime)
+                .allMatch(dateTime1 -> DateTimeUtils.isOneHourWithinRange(dateTime1, dateTime2));
+        }
+        return isWithinHour;
     }
 }
 
