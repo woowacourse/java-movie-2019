@@ -22,6 +22,10 @@ public class Movie {
         return price;
     }
 
+    public boolean isMovieId(int id) {
+        return (this.id == id);
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
