@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MovieReservationMachine;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ public class InputView {
 
 
     /**
-     * 현재 상영중인 영화의 번호들 중 하나를 입력는 메소드. 성공할 때까지 반복함.
+     * 현재 상영중인 영화의 번호들 중 하나를 입력받는 메소드. 성공할 때까지 반복함.
      */
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
