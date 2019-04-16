@@ -9,6 +9,7 @@ public class MemberNumberInput {
         if (checkValidity(movie, scheduleId, input) ==  false) {
             throw new IllegalStateException();
         }
+        memberNumber = Integer.parseInt(input);
     }
 
     private boolean checkValidity(Movie movie, int scheduleId, String input) {

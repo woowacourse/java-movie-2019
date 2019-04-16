@@ -19,8 +19,8 @@ public class MovieApplication {
         OutputView.printMovies(movie);
         int scheduleId = InputView.getScheduleId(movie);
         // TODO 구현 진행
-        MemberNumberInput memberNumberInput = new MemberNumberInput(movie,
-                scheduleId, "22");
+        int memberNumber = InputView.getMemberNumber(movie, scheduleId);
+        System.out.println(memberNumber);
 
     }
 }
