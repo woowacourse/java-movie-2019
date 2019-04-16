@@ -28,7 +28,8 @@ public class Movie {
     }
 
     public boolean containsPlayScheduleIdx(int playScheduleIdx) {
-        return ((playScheduleIdx >= MIN_SCHEDULE_IDX) && (playScheduleIdx < playSchedules.size()));
+        int realIdx = playScheduleIdx - 1;
+        return ((realIdx >= MIN_SCHEDULE_IDX) && (realIdx < playSchedules.size()));
     }
 
     public int getId() {
@@ -44,7 +45,8 @@ public class Movie {
     }
 
     public PlaySchedule getPlayScheduleByIdx(int idx) {
-        return playSchedules.get(idx);
+        int realIdx = idx - 1;
+        return playSchedules.get(realIdx);
     }
 
     @Override

@@ -1,8 +1,11 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MovieApplication {
@@ -24,7 +27,7 @@ public class MovieApplication {
     }
 
     private void selectPlayScheduleToReserve(Movie movie) {
-        InputView.inputPlaySchedule(movie);
+        PlaySchedule playSchedule = InputView.inputPlaySchedule(movie);
     }
 
     public static void main(String[] args) {

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
 
-public class MovieToReserve {
+public class ReservedMovie {
     private static final char NEW_LINE = '\n';
 
     private final int id;
@@ -13,7 +13,7 @@ public class MovieToReserve {
     private final LocalDateTime startDateTime;
     private final int peopleToReserve;
 
-    public MovieToReserve(Movie movie, LocalDateTime startDateTime, int peopleToReserve) {
+    public ReservedMovie(Movie movie, LocalDateTime startDateTime, int peopleToReserve) {
         this.id = movie.getId();
         this.name = movie.getName();
         this.price = movie.getPrice();
