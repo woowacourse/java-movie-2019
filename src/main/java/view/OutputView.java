@@ -14,8 +14,8 @@ public class OutputView {
         System.out.println(movie);
     }
 
-    public static void printError(String message) {
-        System.out.println(message);
+    public static void printError(String errorMessage) {
+        System.err.println(errorMessage);
     }
 
     public static void printPaymentBegin() {
