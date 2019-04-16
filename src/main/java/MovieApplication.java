@@ -16,5 +16,7 @@ public class MovieApplication {
 			int movieTime = InputView.inputMovieTime();
 			int ticketNum = InputView.ticketNum();
 		} while (InputView.inputStopOrGo());
+		int point = InputView.inputPoint();
+		int cardOrCash = InputView.inputCardOrCash();
 	}
 }
