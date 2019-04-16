@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
+    public static final int SELECT_NUM_ONE = 1;
+    public static final int SELECT_NUM_TWO = 2;
+    public static final double CARD_SALES = 0.95;
+    public static final double CASH_SALES = 0.98;
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
@@ -30,6 +35,7 @@ public class MovieApplication {
             movie = selectMovie(movies);
             playSchedule = selectSchedule(movie);
             isReservation = checkStartTime(playSchedule, now);
+
             if (isReservation) {
                 addSelectMovie(selectMovies, movie);
                 addSelectSchedules(selectSchedules, playSchedule);
@@ -39,7 +45,7 @@ public class MovieApplication {
 
         sum = sumMoviesPrice(selectMovies, personnel);
         amount = resultAmount(sum , InputView.inputPoint());
-        
+
         result(amount);
     }
 
@@ -52,12 +58,12 @@ public class MovieApplication {
         int selectNum = InputView.inputSelectPayment();
         double amount = sum - point;
 
-        if (selectNum == 1) {
-            amount = amount * 0.95;
+        if (selectNum == SELECT_NUM_ONE) {
+            amount = amount * CARD_SALES;
         }
 
-        if (selectNum == 2) {
-            amount = amount * 0.98;
+        if (selectNum == SELECT_NUM_TWO) {
+            amount = amount * CASH_SALES;
         }
 
         return amount;
@@ -76,11 +82,11 @@ public class MovieApplication {
     public static boolean selectReservation() {
         int selectNum = InputView.inputSelectStatus();
 
-        if (selectNum == 1) {
+        if (selectNum == SELECT_NUM_ONE) {
             return false;
         }
 
-        if (selectNum == 2) {
+        if (selectNum == SELECT_NUM_TWO) {
             return true;
         }
 
@@ -115,7 +121,7 @@ public class MovieApplication {
             PlaySchedule playSchedule = movie.getPlaySchedules().get(movieSchedule - 1);
             return playSchedule;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("범위를 벗어났습니다.");
+            System.out.println("선택된 영화는 존재하지 않습니다.");
             return selectSchedule(movie);
         }
 
@@ -139,18 +145,5 @@ public class MovieApplication {
 
     public static void addSelectSchedules(List<PlaySchedule> selectSchedule, PlaySchedule playSchedule) {
             selectSchedule.add(playSchedule);
-    }
-
-    /* tset */
-    public static void printMovie(List<Movie> selectMovies) {
-        for (Movie movie : selectMovies) {
-            System.out.println(movie);
-        }
-    }
-
-    public static void printSchedule(List<PlaySchedule> playSchedules) {
-        for (PlaySchedule playSchedule : playSchedules) {
-            System.out.println(playSchedule);
-        }
     }
 }

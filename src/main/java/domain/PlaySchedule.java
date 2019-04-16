@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -23,6 +25,10 @@ public class PlaySchedule {
 
     public boolean checkStartDateTime(LocalDateTime now) {
         return startDateTime.isAfter(now);
+    }
+
+    public boolean checkOneHour(PlaySchedule playSchedule) {
+        return DateTimeUtils.isOneHourWithinRange(startDateTime, playSchedule.startDateTime);
     }
 
     @Override
