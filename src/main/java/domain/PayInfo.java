@@ -19,6 +19,8 @@ public class PayInfo {
 
     public int getTotalPriceApplyPayInfo(ReservationList reservationList) {
         int totalPrice = reservationList.getTotalPrice();
-        return (int)((totalPrice - this.pointAmount) * discountRate(isCard()));
+        int afterUsingPoint = totalPrice - this.pointAmount;
+        double applyDiscountRate = 1 - discountRate(isCard());
+        return (int) (afterUsingPoint * applyDiscountRate);
     }
 }
