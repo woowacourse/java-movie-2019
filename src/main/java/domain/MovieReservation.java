@@ -7,6 +7,10 @@ import java.util.List;
 public class MovieReservation {
     
 	private static List<ReservationHistory> reservationHistories = new ArrayList<>();
+	
+	public static List<ReservationHistory> getreservationHistories() {
+		return reservationHistories;
+	}
     
     public static void reserveMovie() {
 		Movie movie = choiceMovie();
