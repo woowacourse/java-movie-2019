@@ -42,4 +42,12 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovie(int id) {
+        return movies.get(id);
+    }
+
+    public static int getMoivesSize() {
+        return movies.size();
+    }
 }
