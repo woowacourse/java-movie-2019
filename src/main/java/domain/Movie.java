@@ -35,4 +35,8 @@ public class Movie {
     public boolean isThisMovie(int id) {
         return this.id == id;
     }
+
+    public PlaySchedule getPlaySchedule(int id) {
+        return this.playSchedules.get(id);
+    }
 }
