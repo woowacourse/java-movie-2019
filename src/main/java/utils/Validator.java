@@ -40,7 +40,7 @@ public class Validator {
 		if (reservationSize <= ONLY_ONE) {
 			return true;
 		}
-		if (DateTimeUtils.isOneHourWithinRange(reservations.get(0).getPlaySchedule().getStartDateTime(),
+		if (!DateTimeUtils.isOneHourWithinRange(reservations.get(0).getPlaySchedule().getStartDateTime(),
 			reservations.get(reservationSize - 1).getPlaySchedule().getStartDateTime())) {
 			return false;
 		}
