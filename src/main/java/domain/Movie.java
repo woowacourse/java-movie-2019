@@ -51,11 +51,13 @@ public class Movie {
 
     public void checkMovieValid() {
         if (!isMoviePossible()) {
-            throw new IllegalArgumentException("영화를 예매할 수 없습니다.");
+            throw new IllegalArgumentException("영화를 예매할 수 없습니다.");  // 영화 좌석이 없는 경우
         }
     }
 
     public void checkTimeScheduleValid(int timeScheduleIndex) {
+        // 시간이 이미 지났는지 확인하는 메소드
+
         playSchedules.get(timeScheduleIndex - ONE);
         if (!checkMovieSchedule(timeScheduleIndex - ONE)) {
             throw new IllegalArgumentException("이미 지난 시간표입니다");
