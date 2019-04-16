@@ -51,6 +51,6 @@ public class MovieRepository {
                 return m;
             }
         }
-        throw new NoSuchElementException("해당 ID와 일치하는 영화가 존재하지 않습니다.");
+        throw new IllegalArgumentException("해당 ID의 영화가 없습니다.");
     }
 }

@@ -30,10 +30,6 @@ public class Movie {
         return this.id == id;
     }
 
-    public boolean withinRangeOneHour(Movie movie) {
-        return false;
-    }
-
     public PlaySchedule getPlaySchedule(int index) {
         return this.playSchedules.get(index);
     }
@@ -44,12 +40,14 @@ public class Movie {
 
     @Override
     public String toString() {
-        int index = 1;
         StringBuilder sb = new StringBuilder();
         for (PlaySchedule playSchedule : playSchedules) {
-            sb.append(String.format("[%d] %s", index++, playSchedule));
+            sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "원" + NEW_LINE
-                + sb.toString();
+        return getBasicMoveInfo() + NEW_LINE + sb.toString();
+    }
+
+    public String getBasicMoveInfo() {
+        return id + " - " + name + ", " + price + "원";
     }
 }

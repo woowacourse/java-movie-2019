@@ -5,6 +5,7 @@ import domain.MovieBookingInfo;
 import domain.UserInfo;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OutputView {
     public static void printMovies(List<Movie> movies) {
@@ -19,6 +20,7 @@ public class OutputView {
     }
 
     public static void printReservedMovieList(UserInfo user) {
+        System.out.println("예약 내역");
         for (MovieBookingInfo bookingInfo : user.getBookingList()) {
             System.out.println(bookingInfo);
         }
@@ -28,4 +30,10 @@ public class OutputView {
         System.out.println(String.format("최종 결제한 금액은 %d원 입니다.", price));
         System.out.println("예매를 완료했습니다. 즐거운 영화관람 되세요.");
     }
+
+    public static void printText(Object string) {
+        System.out.println(string.toString());
+    }
+
+
 }

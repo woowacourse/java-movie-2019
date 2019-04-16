@@ -1,8 +1,13 @@
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_MULTIPLYPeer;
 import domain.*;
+import jdk.nashorn.internal.ir.visitor.NodeVisitor;
+import org.omg.CORBA.OBJ_ADAPTER;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.function.BiPredicate;
 
 public class MovieApplication {
     private static List<Movie> movies = MovieRepository.getMovies();
@@ -14,7 +19,6 @@ public class MovieApplication {
 
         int price = processPayment();
         OutputView.printReserveSuccess(price);
-
     }
 
     private static void reserveMovie() {
@@ -25,7 +29,7 @@ public class MovieApplication {
 
             reserveMovie(movie, playSchedule, nPeople); // 예약
 
-        } while (InputView.selectMoreReseve());
+        } while (InputView.selectMoreReserve());
     }
 
     private static void reserveMovie(Movie movie, PlaySchedule playSchedule, int number) {
@@ -34,23 +38,48 @@ public class MovieApplication {
     }
 
     private static Movie selectMovie() {
-        // TODO: 예외에 따른 입력 반복 구현
-        OutputView.printMovies(movies);
-        int movieId = InputView.inputMovieId();
-        return MovieRepository.findById(movieId);
+        Movie movie;
+        while ((movie = inputMovie()) == null) ;
+        return movie;
+    }
+
+    private static Movie inputMovie() {
+        try {
+            OutputView.printMovies(movies);
+            int movieId = InputView.inputMovieId();
+            return MovieRepository.findById(movieId);
+
+        } catch (IllegalArgumentException e) {
+            OutputView.printText(e.getMessage());
+            return null;
+        }
     }
 
     private static PlaySchedule selectSchedule(Movie movie) {
-        // TODO: 예외에 따른 입력 반복 구현
-        OutputView.printPlaySchedule(movie);
-        int scheduleIndex = InputView.inputPlaySchedule() - 1;
-        return movie.getPlaySchedule(scheduleIndex);
+        PlaySchedule playSchedule;
+        while ((playSchedule = inputPlaySchedule(movie)) == null) ;
+        return playSchedule;
+    }
+
+    private static PlaySchedule inputPlaySchedule(Movie movie) {
+
+        try {
+            OutputView.printPlaySchedule(movie);
+            int scheduleIndex = InputView.inputPlaySchedule() - 1;
+            return movie.getPlaySchedule(scheduleIndex);
+
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            OutputView.printText("정확히 입력해 주세요");
+            return null;
+        }
     }
 
     private static int selectPeopleNumber(PlaySchedule playSchedule) {
-        int nPeople = InputView.inputPeopleNumber();
-        // TODO: 인원 체크
-        return nPeople;
+        int nPeople;
+        do {
+            nPeople = InputView.inputPeopleNumber();
+            return nPeople;
+        } while (!playSchedule.isFull(nPeople));
     }
 
     private static int processPayment() {

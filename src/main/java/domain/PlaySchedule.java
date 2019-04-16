@@ -20,12 +20,12 @@ public class PlaySchedule {
         return startDateTime;
     }
 
-    public boolean isFull() {
-        return !(capacity > 0);
+    public boolean isFull(int n) {
+        return !(capacity - n > 0);
     }
 
     public boolean withinRangeOneHour(PlaySchedule playSchedule) {
-        return  DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
+        return DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
     }
 
     @Override

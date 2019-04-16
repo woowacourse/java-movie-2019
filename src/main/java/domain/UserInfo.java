@@ -9,38 +9,35 @@ import java.util.List;
 public class UserInfo {
     private final static int DEFAULT_POINT = 10_000;
 
-    private List<MovieBookingInfo> bookingList = new ArrayList<>();
+    private List<MovieBookingInfo> movieList = new ArrayList<>();
     private int point = DEFAULT_POINT;
-
-    public int  plusPoint(int n) {
-        return (point += n);
-    }
 
     public int getPoint() {
         return point;
     }
 
     public void addMove(MovieBookingInfo movieBookingInfo) {
-        bookingList.add(movieBookingInfo);
+        movieList.add(movieBookingInfo);
     }
 
-    private boolean hasMovieOneHourWithinRange(Movie movie) {
-        for (MovieBookingInfo bookingInfo : bookingList) {
-
+    private boolean hasMovieOneHourWithinRange(PlaySchedule playSchedule) {
+        for (MovieBookingInfo bookingInfo : movieList) {
+            bookingInfo.isRangeWithinOneHour(playSchedule);
         }
         return false;
     }
 
     public int getPrice() {
         int sum = 0;
-        for (MovieBookingInfo m : bookingList) {
+        for (MovieBookingInfo m : movieList) {
             sum += m.getPrice();
         }
         return sum;
     }
 
     public List<MovieBookingInfo> getBookingList() {
-        return this.bookingList;
+        return new ArrayList<>(movieList);
     }
+
 
 }
