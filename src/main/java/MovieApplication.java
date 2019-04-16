@@ -102,6 +102,7 @@ public class MovieApplication {
         if(payOrMoreBook == 1) {
         	System.out.println(movie.toString());
         	int point = InputView.inputPoint();
+        	int payType = InputView.selectCreditCardOrCash();
         }
  
     }
