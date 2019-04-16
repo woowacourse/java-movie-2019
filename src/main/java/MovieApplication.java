@@ -1,10 +1,8 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.MovieValidator;
-import domain.PlaySchedule;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -14,28 +12,38 @@ public class MovieApplication {
 
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
-        Movie reserveMovie = getReserveMovie(movies, true);
-        OutputView.printMovie(reserveMovie);
-        PlaySchedule reserveSchedule = getValidSchedule(reserveMovie);
-        int reserveAmount = getReserveAmount(reserveSchedule);
+        List<ReservedMovie> reservedMovies = new ArrayList<>();
+        int check = 2;
+        while (check == 2) {
+            Movie reserveMovie = getReserveMovie(movies);
+            OutputView.printMovie(reserveMovie);
+            PlaySchedule reserveSchedule = getValidSchedule(reservedMovies, reserveMovie);
+            if (reserveSchedule == null) {
+                continue;
+            }
+            int reserveAmount = getReserveAmount(reserveSchedule);
+            reservedMovies.add(new ReservedMovie(reserveMovie,
+                    reserveSchedule.getStartDateTime(), reserveAmount));
+        }
     }
 
-    private static int getValidMovieId(List<Movie> movies){
+    private static int getValidMovieId(List<Movie> movies) {
         OutputView.printMovies(movies);
         try {
             int movieId = InputView.inputMovieId();
             return movieId;
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             OutputView.printMisMatchInputType();
             InputView.makeLine();
             return getValidMovieId(movies);
         }
     }
 
-    private static Movie getReserveMovie(List<Movie> movies, boolean isFirst){
+    private static Movie getReserveMovie(List<Movie> movies) {
         int validMovieId = NOT_EXIST_NUMBER;
+        boolean isFirst = true;
         do {
-            if (!isFirst){
+            if (!isFirst) {
                 OutputView.printNotExistMovie(validMovieId);
             }
             validMovieId = getValidMovieId(movies);
@@ -44,18 +52,23 @@ public class MovieApplication {
         return MovieRepository.getMovie(validMovieId);
     }
 
-    private static PlaySchedule getValidSchedule(Movie movie){
+    private static PlaySchedule getValidSchedule
+            (List<ReservedMovie> reservedMovies, Movie movie) {
         int scheduleNumber = NOT_EXIST_NUMBER;
         try {
             scheduleNumber = InputView.inputScheduleNumber();
-            return movie.getPlaySchedule(scheduleNumber);
+            PlaySchedule schedule = movie.getPlaySchedule(scheduleNumber);
+            if (!MovieValidator.isOneHourWithinOtherReservedMovie(reservedMovies, schedule)){
+                return null;
+            }
+            return schedule;
         } catch (IndexOutOfBoundsException e) {
             OutputView.printNotExistSchedule(scheduleNumber);
-            return getValidSchedule(movie);
+            return getValidSchedule(reservedMovies, movie);
         }
     }
 
-    private static int getReserveAmount(PlaySchedule schedule){
+    private static int getReserveAmount(PlaySchedule schedule) {
         int reserveAmount = NOT_EXIST_NUMBER;
         do {
             reserveAmount = InputView.inputReserveNumber();

@@ -30,6 +30,10 @@ public class Movie {
         return playSchedules.get(scheduleNumber);
     }
 
+    public String movieInfo(){
+        return id + " - " + name + ", " + price + "원";
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
