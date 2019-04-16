@@ -11,7 +11,7 @@ public class ReservationInputValidator {
     public ReservationInputValidator() {
     }
 
-    List<Integer> getReservationMovieNumbers(String line) {
+    public List<Integer> getReservationMovieNumbers(String line) {
         List<Integer> idCandidates = parseIntegers(line);
         if (idAllExists(idCandidates) && idIsNotDuplicated(idCandidates, line)) {
             return idCandidates;
@@ -19,7 +19,7 @@ public class ReservationInputValidator {
         throw new IllegalArgumentException("올바른 영화 번호가 아닙니다.");
     }
 
-    Integer getReservationEntryNumber(String line) {
+    public Integer getReservationEntryNumber(String line) {
         try {
             return Integer.parseInt(line);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class ReservationInputValidator {
         }
     }
 
-    Integer getReservationCapacityNumber(String line) {
+    public Integer getReservationCapacityNumber(String line) {
         try {
             return Integer.parseInt(line);
         } catch (Exception e) {
