@@ -25,7 +25,8 @@ public class MovieApplication {
 
         OutputView.printReservateInfo(reservateInformation);
         Point point = InputView.inputPoint(reservateInformation);
-
+        CardOrCash cardOrCash = InputView.inputCardOrCash();
+        
 
     }
 

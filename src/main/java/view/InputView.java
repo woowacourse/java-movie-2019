@@ -14,8 +14,7 @@ public class InputView {
     public static Movie inputMovieId() {
         try {
             System.out.println("## 예약할 영화를 선택하세요.");
-            int reserveMovie = scanner.nextInt();
-            ReservedMovie reservedMovie = new ReservedMovie(reserveMovie);
+            ReservedMovie reservedMovie = new ReservedMovie(scanner.nextInt());
             return reservedMovie.getReservedMovie();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -26,9 +25,8 @@ public class InputView {
     public static PlaySchedule inputReserveTime(Movie movie) {
         try {
             System.out.println("##예약할시간표를선택하세요.(첫번째상영시간이1번)");
-            int reserveTime = scanner.nextInt();
-            ReserveTime reserveTime1 = new ReserveTime(movie, reserveTime);
-            return reserveTime1.getReserveSchedule();
+            ReserveTime reserveTime = new ReserveTime(movie,scanner.nextInt());
+            return reserveTime.getReserveSchedule();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputReserveTime(movie);
@@ -38,9 +36,8 @@ public class InputView {
     public static ReservePeople inputReservePeople(PlaySchedule reserveSchedule) {
         try {
             System.out.println("##예약할인원을입력하세요. ");
-            int reservePeople = scanner.nextInt();
-            ReservePeople reservePeople1 = new ReservePeople(reserveSchedule, reservePeople);
-            return reservePeople1;
+            ReservePeople reservePeople = new ReservePeople(reserveSchedule,  scanner.nextInt());
+            return reservePeople;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputReservePeople(reserveSchedule);
@@ -50,9 +47,8 @@ public class InputView {
     public static PaymentOrReservation inputPaymentOrReservation() {
         try {
             System.out.println("##예약을종료하고결제를진행하려면1번, 추가예약을진행하려면2번 ");
-            int paymentOrReservation = scanner.nextInt();
-            PaymentOrReservation paymentOrReservation1 = new PaymentOrReservation(paymentOrReservation);
-            return paymentOrReservation1;
+            PaymentOrReservation paymentOrReservation = new PaymentOrReservation(scanner.nextInt());
+            return paymentOrReservation;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputPaymentOrReservation();
@@ -63,13 +59,24 @@ public class InputView {
         try {
             System.out.println("##결제를진행합니다.");
             System.out.println("##포인트사용금액을입력하세요.포인트가없으면0입력");
-            int point = scanner.nextInt();
-            Point point1 = new Point(reservateInformation, point);
-            return point1;
+            Point point = new Point(reservateInformation, scanner.nextInt());
+            return point;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputPoint(reservateInformation);
         }
+    }
+
+    public static CardOrCash inputCardOrCash(){
+        try {
+            System.out.println("신용카드는 1번, 카드는 2번입니다.");
+            CardOrCash cardOrCash = new CardOrCash(scanner.nextInt());
+            return cardOrCash;
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            return inputCardOrCash();
+        }
+
     }
 
     public static List<Integer> ConvertStringToInt(List<String> movies) {
