@@ -3,6 +3,7 @@ import domain.MovieRepository;
 import domain.MyMovie;
 import domain.PlaySchedule;
 import utils.DateTimeUtils;
+import utils.ExceptionCheckedNumber;
 import view.InputView;
 import view.OutputView;
 
@@ -18,29 +19,29 @@ public class MovieApplication {
 	private static final int MORE_BOOK = 2;
 	
 	private Movie selectMovie(List<Movie> movies) {
-        int movieId = 0;
+		ExceptionCheckedNumber movieId;
         try {
-        	movieId = InputView.inputMovieId();
+        	movieId = new ExceptionCheckedNumber(InputView.inputMovieId());
         } catch (IndexOutOfBoundsException e) {
             System.out.println("1 ~ 4 사이의 영화를 선택하세요.");
-            movieId = InputView.inputMovieId();
+            movieId = new ExceptionCheckedNumber(InputView.inputMovieId());
         }
-    	System.out.println(movies.get(movieId));
+    	System.out.println(movies.get(movieId.toArrayIndex()));
     	
-        return movies.get(movieId);
+        return movies.get(movieId.toArrayIndex());
 	}
 	
 	private PlaySchedule selectMovieTime(Movie movie) {
-        int movieTime =0;
+		ExceptionCheckedNumber movieTime;
         try {
-            movieTime = InputView.inputMovieTime();  
+            movieTime = new ExceptionCheckedNumber(InputView.inputMovieTime());  
         } catch (IndexOutOfBoundsException e) {
         	System.out.println("상영시간을 확인 후 다시 선택해주세요");
-            movieTime = InputView.inputMovieTime();
+        	movieTime = new ExceptionCheckedNumber(InputView.inputMovieTime());
         }
-        System.out.println(movie.getPlayMovieSchedule(movieTime));
+        System.out.println(movie.getPlayMovieSchedule(movieTime.toArrayIndex()));
         
-        return movie.getPlayMovieSchedule(movieTime);
+        return movie.getPlayMovieSchedule(movieTime.toArrayIndex());
 	}
 	
 	private boolean checkMovieTime(PlaySchedule selectedMovieTime) {
@@ -54,18 +55,18 @@ public class MovieApplication {
 	}
 	
 	private int inputPeopleNumber() {
-		int peopleNum = 0;
+		ExceptionCheckedNumber peopleNum;
 		try {
-			peopleNum = InputView.inputPeopleNumber();
+			peopleNum = new ExceptionCheckedNumber(InputView.inputPeopleNumber());
 		} catch (InputMismatchException e)  {
 			System.out.println("1 이상의 숫자를 입력하세요.");
-			peopleNum = InputView.inputPeopleNumber();
+			peopleNum = new ExceptionCheckedNumber(InputView.inputPeopleNumber());
 		}
 		
-		return peopleNum;
+		return peopleNum.getNumber();
 	}
 	
-	public boolean checkPeopleNumber(PlaySchedule selectedMovieTime, int peopleNum) {
+	private boolean checkPeopleNumber(PlaySchedule selectedMovieTime, int peopleNum) {
 		boolean isPossible = selectedMovieTime.getCapacity() >= peopleNum ? true : false;
 		if (isPossible == false) {
 			System.out.println("예약 가능 인원을 초과하였습니다.");
@@ -74,14 +75,14 @@ public class MovieApplication {
 		return isPossible;
 	}
 	
-	public List<Movie> getAllMovie() {
+	private List<Movie> getAllMovie() {
 		List<Movie> movies = MovieRepository.getMovies();
 	    OutputView.printMovies(movies);
 	    
 	    return movies;
 	}
 	
-	public MyMovie bookMovie(List<Movie> movies, List<MyMovie> myMovies) {
+	private MyMovie bookMovie(List<Movie> movies, List<MyMovie> myMovies) {
 		MyMovie myMovie;
 		
 		do {
@@ -106,17 +107,17 @@ public class MovieApplication {
 		return isNotOverlaped;
 	}
 	
-	public boolean payOrContinue() {
+	private boolean payOrContinue() {
 		return (InputView.payOrMoreBook() == MORE_BOOK) ? true : false;
 	}
 	
-	public void printMyMovieInfo(List<MyMovie> myMovies) {
+	private void printMyMovieInfo(List<MyMovie> myMovies) {
 		for (MyMovie myMovie : myMovies) {
 			System.out.println(myMovie.toString() + "\n");
 		}
 	}
 	
-	public void payMovie(int point, int payType, List<MyMovie> myMovies) {
+	private void payMovie(int point, int payType, List<MyMovie> myMovies) {
 		int totalPrice = 0;
 		for (MyMovie myMovie : myMovies) {
 			totalPrice += (myMovie.getMyMovie().getMoviePrice() * myMovie.getPeopleNum());
