@@ -37,24 +37,18 @@ public class Movie {
     return this.id == movieId;
   }
 
-  public int getBookableNumber(int movieId) {
-    if (this.id == movieId) {
-      return playSchedules.size();
-    }
-    return 0;
+  public boolean IsBookableSequence(int movieSequence) {
+    return this.playSchedules.size()>=movieSequence
+        && movieSequence>0;
+  }
+
+  public boolean IsBookableNumber(int movieSequence, int bookNum){
+    return this.playSchedules.get(movieSequence-1).ExceedCapacity(bookNum);
   }
 
   public String getOneSchedule(int movieSchedule) {
     StringBuilder sb = new StringBuilder();
     sb.append(playSchedules.get(movieSchedule - 1));
     return sb.toString();
-  }
-
-  public PlaySchedule getSchedule(int movieSchedule) {
-    return playSchedules.get(movieSchedule -1);
-  }
-
-  public boolean getBookableNumber(int movieSchedule, int bookNum) {
-    return playSchedules.get(movieSchedule - 1).ExceedCapacity(bookNum);
   }
 }

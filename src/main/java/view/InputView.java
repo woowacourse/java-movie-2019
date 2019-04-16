@@ -15,13 +15,8 @@ public class InputView {
   }
 
   private static boolean IsCorrectMovieSchedule(int movieId, int movieSchedule) {
-    for (Movie movie : MovieRepository.getMovies()) {
-      int movieScheduleNumber = movie.getBookableNumber(movieId);
-      if (movieSchedule != 0) {
-        return movieSchedule <= movieScheduleNumber;
-      }
-    }
-    return false;
+    Movie movie = MovieRepository.getIdOfMovie(movieId);
+    return movie.IsBookableSequence(movieSchedule);
   }
 
   public static int InputValidNumber() {
@@ -52,8 +47,13 @@ public class InputView {
     return movieSchedule;
   }
 
-  public static int InputBookingNumber() {
+  public static int InputBookingNumber(int movieId, int movieSequence) {
+    Movie movie = MovieRepository.getIdOfMovie(movieId);
+    int bookNum;
+    do {
       System.out.println("## 예약할 인원을 입력하세요.");
-      return InputValidNumber();
+      bookNum = InputValidNumber();
+    }while(movie.IsBookableNumber(movieSequence, bookNum));
+    return bookNum;
   }
 }

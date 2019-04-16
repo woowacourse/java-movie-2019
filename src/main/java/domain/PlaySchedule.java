@@ -20,6 +20,6 @@ public class PlaySchedule {
   }
 
   public boolean ExceedCapacity(int bookNum) {
-    return this.capacity > bookNum;
+    return this.capacity < bookNum;
   }
 }

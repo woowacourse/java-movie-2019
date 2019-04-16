@@ -17,10 +17,10 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         OutputView.printOneMovie(movies, movieId);
 
-        int movieSchedule = InputView.InputMovieSchedule(movieId);
-        int bookNum = InputView.InputBookingNumber();
-        bookList.add(new Book(movieId, movieSchedule, bookNum));
-        //OutputView.printOneMovieSchedule(movies, movieId, movieSchedule);
+        int movieSequence = InputView.InputMovieSchedule(movieId);
+        int bookNum = InputView.InputBookingNumber(movieId, movieSequence);
+        bookList.add(new Book(movieId, movieSequence, bookNum));
+        //OutputView.printOnemovieSequence(movies, movieId, movieSequence);
         // TODO 구현 진행
     }
 }
