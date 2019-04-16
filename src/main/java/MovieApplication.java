@@ -11,12 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
-
     static final int CARD = 1;
 
     static List<Reservation> reservations = new ArrayList<Reservation>();
     static List<Movie> movies = MovieRepository.getMovies();
-
 
     public static void main(String[] args) throws IOException {
         boolean flag = true;
@@ -57,7 +55,6 @@ public class MovieApplication {
             }
         }
     }
-
 
     private static Movie movieChoose() throws IOException{
         int movieId;
