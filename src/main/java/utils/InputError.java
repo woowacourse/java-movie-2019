@@ -13,7 +13,16 @@ public class InputError {
         return true;
     }
 
-    public static boolean isContains(int movieID, List<Movie> movies) {
+    public static boolean handleMovieStartTimeInputError(int movieStartTime, List<Movie> movies, int movieId) {
+        if (movieStartTime < 0 || !movies.get(movieId).isSmallerPlayScheduleSize(movieStartTime)) {
+            System.out.println("<오류> 상영 시간에 없는 영화입니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean isContains(int movieID, List<Movie> movies) {
         for (Movie movie : movies) {
             if (movie.isMatchMovieID(movieID))
                 return true;

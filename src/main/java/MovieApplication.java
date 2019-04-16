@@ -11,13 +11,14 @@ public class MovieApplication {
 
     private static List<Movie> movies = MovieRepository.getMovies();
     private static List<ReservingMovie> reservedMovies = new ArrayList<>();
+    private static int movieId;
 
     public static void main(String[] args) {
         OutputView.printMovies(movies);
 
         boolean reservingProcess = true;
         while (reservingProcess) {
-            int movieId = inputMovieID();
+            movieId = inputMovieID();
             Movie selectedMovie = MovieRepository.getMovieUsingMovieID(movieId);
             OutputView.printSelectedMovie(selectedMovie);
             addReservedMovie(selectedMovie);
@@ -31,7 +32,7 @@ public class MovieApplication {
     private static int inputMovieID() {
         boolean rightInput = false;
         int inputMovieId = 0;
-        while(!rightInput) {
+        while (!rightInput) {
             inputMovieId = InputView.inputMovieId();
             rightInput = InputError.handleMovieIdInputError(inputMovieId, movies);
         }
@@ -39,9 +40,19 @@ public class MovieApplication {
     }
 
     private static void addReservedMovie(Movie selectedMovie) {
-        int moveStartTimeNumber = InputView.inputMovieStartTime();
+        int movieStartTimeNumber = inputMovieStartTimeNumber();
         int numberOfPeople = InputView.inputNumberOfPeople();
-        reservedMovies.add(new ReservingMovie(selectedMovie, moveStartTimeNumber, numberOfPeople));
+        reservedMovies.add(new ReservingMovie(selectedMovie, movieStartTimeNumber, numberOfPeople));
+    }
+
+    private static int inputMovieStartTimeNumber() {
+        boolean rightInput = false;
+        int inputMovieStartTimeNumber = 0;
+        while (!rightInput) {
+            inputMovieStartTimeNumber = InputView.inputMovieStartTime();
+            rightInput = InputError.handleMovieStartTimeInputError(inputMovieStartTimeNumber, movies, movieId);
+        }
+        return inputMovieStartTimeNumber;
     }
 
     private static int calculateTotalMoviePrice(List<ReservingMovie> reservedMovies) {

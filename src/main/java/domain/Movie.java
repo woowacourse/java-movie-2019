@@ -26,6 +26,10 @@ public class Movie {
         return price;
     }
 
+    public boolean isSmallerPlayScheduleSize(int size) {
+        return (size >= playSchedules.size());
+    }
+
     public boolean isMatchMovieID(int movieID) {
         return (id == movieID);
     }
