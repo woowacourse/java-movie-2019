@@ -10,10 +10,12 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        OutputView.printSelectMovie(movieId);
-        int movieTime = InputView.inputMovieTime(movieId);
-        int capacity = InputView.inputMovieCapacity(movieId, movieTime);
+        do {
+            int movieId = InputView.inputMovieId();
+            OutputView.printSelectMovie(movieId);
+            int movieTime = InputView.inputMovieTime(movieId);
+            int capacity = InputView.inputMovieCapacity(movieId, movieTime);
+        } while (InputView.inputRestart());
     }
 
 }

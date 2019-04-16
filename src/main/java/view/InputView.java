@@ -39,4 +39,16 @@ public class InputView {
         return capacity;
     }
 
+    public static boolean inputRestart() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        int flag = scanner.nextInt();
+        if (flag == 1) {
+            return false;
+        }
+        if (flag == 2) {
+            return true;
+        }
+        return inputRestart();
+    }
+
 }
