@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,5 +43,28 @@ public class Movie {
 
     public boolean hasID(int id) {
         return this.id == id;
+    }
+
+    public boolean canAccessSchedule(int idx) {
+        return 0 <= idx && idx < playSchedules.size();
+    }
+
+    public PlaySchedule getPlaySchedule(int idx) {
+        return playSchedules.get(idx);
+    }
+
+    public void reserve(MovieReservation reservation) {
+        PlaySchedule schedule = getSchedule(reservation.getTime());
+        schedule.use(reservation.getNumReserve());
+    }
+
+    private PlaySchedule getSchedule(LocalDateTime time) {
+        for (PlaySchedule schedule : playSchedules) {
+            if (schedule.getStartDateTime().equals(time)) {
+                return schedule;
+            }
+        }
+        //
+        return null;
     }
 }

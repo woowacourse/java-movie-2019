@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 public class MovieReservation {
@@ -25,7 +27,23 @@ public class MovieReservation {
         this.numReserve = numReserve;
     }
 
+    public int getNumReserve() {
+        return numReserve;
+    }
+
     public int totalPrice() {
         return price * numReserve;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public boolean isOneHourWithinRange(LocalDateTime time) {
+        return DateTimeUtils.isOneHourWithinRange(this.time, time);
+    }
+
+    public int getID() {
+        return id;
     }
 }

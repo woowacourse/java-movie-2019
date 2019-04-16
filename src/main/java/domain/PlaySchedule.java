@@ -17,6 +17,14 @@ public class PlaySchedule {
         return startDateTime;
     }
 
+    public boolean isOverCapacity(int num) {
+        return capacity < num;
+    }
+
+    public void use(int num) {
+        capacity -= num;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
