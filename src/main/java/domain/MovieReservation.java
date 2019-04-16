@@ -18,12 +18,21 @@ public class MovieReservation {
 
     public void reservationMovie() {
         try {
+            OutputView.printMovies(MovieRepository.getMovies());
             Movie selectedMovie = selectMovie();
             selectScheduleAndPerson(selectedMovie);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             reservationMovie();
         }
+    }
+
+    public int totalPrice() {
+        int total = 0;
+        for (Reservation reservation : reservationList) {
+            total += reservation.calculatePrice();
+        }
+        return total;
     }
 
     private Movie selectMovie() {

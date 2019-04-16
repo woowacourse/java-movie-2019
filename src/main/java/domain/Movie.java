@@ -41,7 +41,7 @@ public class Movie {
 
     Reservation reservation(int scheduleNumber, int numberOfPerson) {
         playSchedules.get(scheduleNumber - 1).reduceCapacity(numberOfPerson);
-        return new Reservation(playSchedules.get(scheduleNumber - 1).getStartDateTime());
+        return new Reservation(playSchedules.get(scheduleNumber - 1).getStartDateTime(), price, numberOfPerson);
     }
 
     @Override
