@@ -14,28 +14,30 @@ public class MovieApplication {
 		int totalPayment = 0;
 		List<Payment> payMentList = new ArrayList<>();
 		Payment payMent = null;
-		
+
 		while (true) {
 
 			int movieId = InputView.inputMovieId();
-			
-			if ( !checkMovieList(movies, movieId)) continue;
-			
+
+			if (!checkMovieList(movies, movieId))
+				continue;
+
 			payMent = new Payment(searchMovieList(movies, movieId));
-			
-			/* ## 예약할 시간표를 선택하세요." 메세지 출력, 예약할 시간표를 입력받는다. */
-			//if ( !checkinputScheduleId()) continue;
-			
-			int scheduleId = InputView.inputScheduleId();
+
+			/* 상영 시작 시간이 이미 지난 영화를 선택하는 경우 검사 */
+			// if ( !checkinputScheduleId()) continue;
+			payMent.setScheduleId(InputView.inputScheduleId());
+
 			int reserveMenCount = InputView.inputreserveMenCount();
-			int reserveEndorContinue = InputView.inputreserveEndorContinue();
-			totalPayment += payMent.getMovie().getPrice()*reserveMenCount;
+			//if (!chcekinputMencount(reserveMenCount)) continue;
+			
+			payMent.setReserveMenCount(reserveMenCount);
+
+			totalPayment += payMent.getMovie().getPrice() * payMent.getReserveMenCount();
 
 			/* 결제를 진행한다 */
-			if (reserveEndorContinue == 1) {
-				
-				payMent.setReserveMenCount(reserveMenCount);
-				payMent.setScheduleId(scheduleId);
+			if (InputView.inputreserveEndorContinue() == 1) {
+
 				payMent.printPayment();
 				payMentList.add(payMent);
 
@@ -45,8 +47,8 @@ public class MovieApplication {
 
 				/* 최종금액 계산 */
 				totalPayment = calcTotalpayment(totalPayment, cardORcash);
-				System.out.println("최종 결제한 금액은"+totalPayment+"원 입니다.");
-				System.out.println("예매를 완료했습니다. 즐거운 영화관람되세요.");
+				System.out.println("최종 결제한 금액은" + totalPayment + "원 입니다.");
+				System.out.println("예매를 완료했습니다.즐거운 영화관람되세요.");
 				break;
 			}
 
@@ -57,8 +59,15 @@ public class MovieApplication {
 
 	}
 
+	private static boolean chcekinputMencount(int reserveMenCount) {
+		
+		
+		return false;
+	}
+
 	private static boolean checkinputScheduleId() {
-		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
 
@@ -69,20 +78,20 @@ public class MovieApplication {
 				return true;
 			}
 		}
-		
+
 		System.out.println("해당 영화가 목록에 없습니다. 다시 입력 하세요.");
-		
+
 		return false;
 	}
 
-	private static  Movie searchMovieList(List<Movie> movies, int movieId) {
+	private static Movie searchMovieList(List<Movie> movies, int movieId) {
 		/* 입력 받은 영화를 추가한다. */
 		for (int i = 0; i < movies.size(); i++) {
 			if (movieId == movies.get(i).getId()) {
 				return movies.get(i);
 			}
 		}
-		
+
 		return null;
 	}
 

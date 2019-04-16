@@ -38,7 +38,7 @@ public class Payment {
 	public void printPayment() {
 		System.out.println("예약 내역");
 		System.out.println(movie.getId() + "-" + movie.getName() + "," + movie.getPrice());
-		System.out.println(movie.getPlaySchedules().get(scheduleId-1));
+		System.out.print(movie.getPlaySchedules().get(scheduleId-1));
 		System.out.println("예약인원 : " + reserveMenCount);
 	}
 
