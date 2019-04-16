@@ -44,6 +44,11 @@ public class MovieRepository {
     }
 
     public static Movie getMovieById(int id) {
-        return movies.get(id - 1);
+        for (Movie movie : movies) {
+            if (movie.isMovieId(id)) {
+                return movie;
+            }
+        }
+        return null;
     }
 }
