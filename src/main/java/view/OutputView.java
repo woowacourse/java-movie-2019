@@ -12,11 +12,12 @@ public class OutputView {
         }
     }
 
-    public static String getMoviePlaySchedule(int movieId){
+    public static Movie getMoviePlaySchedule(int movieId){
         Movie movie = MovieRepository.findMovieById(movieId);
         if(movie == null){
             throw new IllegalArgumentException("해당 영화가 없습니다.");
         }
-        return movie.toString();
+        System.out.println(movie.toString());
+        return movie;
     }
 }

@@ -12,18 +12,18 @@ public class Movie {
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
 
-    public Movie(int id, String name, int price) {
+    Movie(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public int getId(){
-        return this.id;
-    }
-
     boolean isEqualId(int movieId){
         return this.id == movieId;
+    }
+
+    public List<PlaySchedule> getPlaySchedules(){
+        return this.playSchedules;
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
