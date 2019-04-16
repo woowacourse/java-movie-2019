@@ -15,13 +15,13 @@ public class MovieApplication {
 
 
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-
-        Movie movie = check(movies);
-        OutputView.printEachMovie(movie);
-
-        PlaySchedule schedule = askSchedule(movie);
+        do {
+            List<Movie> movies = MovieRepository.getMovies();
+            OutputView.printMovies(movies);
+            Movie movie = check(movies);
+            OutputView.printEachMovie(movie);
+            PlaySchedule schedule = askSchedule(movie);
+        }while(askPurchse());
 
     }
 
@@ -59,6 +59,8 @@ public class MovieApplication {
         }
     }
 
-
+    public static boolean askPurchse(){
+        return (InputView.inputAgain() != 1);
+    }
 
 }
