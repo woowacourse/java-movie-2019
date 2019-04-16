@@ -11,10 +11,18 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-
         OutputView.printMovies(MovieRepository.getMovies(movieId));
 
-        int movietime = InputView.inputMovieTime();
-        // TODO 구현 진행
+        int movieTime = InputView.inputMovieTime();
+        int movieViewer = InputView.inputMovieViewer();
+        int payOrReserve = InputView.inputPayOrAdditionalReservation();
+
+
+
+
+
+
+
+
     }
 }

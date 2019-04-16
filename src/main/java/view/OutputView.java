@@ -10,4 +10,7 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+    public static void printReservationHistory() {
+
+    }
 }
