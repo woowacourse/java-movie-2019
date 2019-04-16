@@ -1,9 +1,9 @@
 package domain;
 
 public class PaymentInfo {
-    Movie movie;
-    PlaySchedule playSchedule;
-    int countOfUser;
+    private Movie movie;
+    private PlaySchedule playSchedule;
+    private int countOfUser;
 
     public PaymentInfo(Movie movie, int timeNumber, int countOfUser) {
         this.movie = movie;
