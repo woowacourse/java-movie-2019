@@ -21,6 +21,10 @@ public class Movie {
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
+    
+    boolean isTheMovie(int id) {
+    	return this.id == id;
+    }
 
     @Override
     public String toString() {
