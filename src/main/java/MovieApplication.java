@@ -15,11 +15,11 @@ public class MovieApplication {
 
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
-		OutputView.printMovies(movies);
 
 		int moreReservationFlag = MORE_BOOK;
 		reservations = new ArrayList<>();
 		while (moreReservationFlag == MORE_BOOK) {
+			OutputView.printMovies(movies);
 			addMovieSchedule();
 			moreReservationFlag = InputView.inputMoreBookingFlag();
 		}
