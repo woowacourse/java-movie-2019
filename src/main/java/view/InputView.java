@@ -2,12 +2,19 @@ package view;
 
 import java.util.Scanner;
 
+import domain.ErrorCheck;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId() {
+    public static int inputMovieId () {
         System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+        int movieId = scanner.nextInt();
+        if(!ErrorCheck.isValidMovie(movieId)) {
+        	return inputMovieId();
+        }
+        return movieId;
+       
     }
     
     public static int inputMovieTime() {
