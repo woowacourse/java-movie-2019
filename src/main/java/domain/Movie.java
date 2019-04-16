@@ -24,11 +24,17 @@ public class Movie {
     }
 
     public boolean movie_Id_Get(int input) {
-        if (id != input){
+        if (id != input) {
             return false;
         }
         return true;
     }
+
+
+    public String getMovieDataTime(int datatime){
+        return playSchedules.get(datatime).selctDatatime();
+    }
+
 
     @Override
     public String toString() {

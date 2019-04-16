@@ -13,8 +13,13 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
-       OutputView.selectMovies(movieId);
+        OutputView.selectMovies(movies, movieId);
 
+        int movidDatatime = InputView.inputMovieDataTime();
+
+        OutputView.userMovie_SelectDatatime(movidDatatime);
+
+        int moviePerson = InputView.inputMoviePerson();
 
 
     }
