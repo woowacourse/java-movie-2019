@@ -16,6 +16,10 @@ public class ReservationMovie extends Movie{
                 schedule.getStartDateTime());
     }
 
+    public int getCapacity(){
+        return schedule.getCapacity();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

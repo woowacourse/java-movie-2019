@@ -37,4 +37,12 @@ public class MovieReservation {
             System.out.println(reservationMovie);
         }
     }
+
+    public int getPay() {
+        int pay = 0;
+        for (ReservationMovie reservationMovie : reservations) {
+            pay += reservationMovie.getPrice() * reservationMovie.getCapacity();
+        }
+        return pay;
+    }
 }

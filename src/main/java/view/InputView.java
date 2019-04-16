@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.PlaySchedule;
+import domain.ResultPay;
 import reservation.MovieReservation;
 
 import java.util.Scanner;
@@ -58,5 +59,15 @@ public class InputView {
             return true;
         }
         throw new IllegalArgumentException();
+    }
+
+    public static int InputPoint() {
+        try {
+            System.out.println("## 포인트 사용 금액을 입력하세요, 포인트가 없으면 0 입력");
+            return ResultPay.checkPoint(Integer.parseInt(scanner.nextLine().trim()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바르지 않은 입력입니다.");
+            return InputPoint();
+        }
     }
 }

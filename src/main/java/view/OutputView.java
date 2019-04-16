@@ -19,4 +19,8 @@ public class OutputView {
         System.out.println(selectedMovie);
         return selectedMovie;
     }
+
+    public static void PaymentStart(){
+        System.out.println("결제를 진행합니다.");
+    }
 }
