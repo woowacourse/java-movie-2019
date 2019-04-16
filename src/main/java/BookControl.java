@@ -93,9 +93,10 @@ public class BookControl {
     // #1-4 예약한 영화를 저장할 함수
     private void addBookedMovies(int id, int time, int num) {
         Movie target = getMovieByID(id);
-        bookedMovies.add(new BookedMovie(id, target.getName(), 
-                    target.getPrice(), target.getPlaySchedules().get(time).getStartDateTime(), num));
-        PlaySchedule temp = new PlaySchedule(target.getPlaySchedules().get(time).getStartDateTime(), target.getPlaySchedules().get(time).getCapacity() - num);
+        bookedMovies.add(new BookedMovie(id, target.getName(), target.getPrice(),
+                target.getPlaySchedules().get(time).getStartDateTime(), num));
+        PlaySchedule temp = new PlaySchedule(target.getPlaySchedules().get(time).getStartDateTime(),
+                target.getPlaySchedules().get(time).getCapacity() - num);
         target.getPlaySchedules().remove(time);
         target.getPlaySchedules().add(time, temp);
 
@@ -106,15 +107,16 @@ public class BookControl {
         int input_num = -1;
         do {
             input_num = InputView.inputMoreBook();
-        } while(!(isCorrectInput(input_num)));
-        if (input_num == 1) return true;
-        System.out.println("## 결제를 진행합니다.");
+        } while (!(isCorrectInput(input_num)));
+        if (input_num == 1)
+            return true;
         return false;
     }
 
     // #1-5-1 유저의 입력이 정확한지 판단하는 함수
     private boolean isCorrectInput(int input) {
-        if (input == 1 || input == 2) return true;
+        if (input == 1 || input == 2)
+            return true;
         System.out.println("잘못된 입력입니다.");
         return false;
     }
@@ -126,6 +128,34 @@ public class BookControl {
 
     // #3 결제를 진행할 함수
     public void purchaseMovieTickets() {
+        System.out.println("## 결제를 진행합니다.");
+        int points = getPoints();
+        InputView.inputCashOrCredit();
+        printEndBook(points);
+    }
 
+    // #3-1 포인트 입력받는 함수
+    private int getPoints() {
+        int points = -1;
+        do {
+            points = InputView.inputPoints();
+        } while (isCorrectPoints(points));
+        return points;
+    }
+
+    // #3-1-1 포인트 입력이 제대로 되었는지 판단하는 함수
+    private boolean isCorrectPoints(int points) {
+        if (points > -1) return true;
+        System.out.println("포인트가 없으면 0을 입력하세요.");
+        return false;
+    }
+
+    // #3-2 결제 결과를 출력할 함수
+    private void printEndBook(int points) {
+        System.out.println("최종 결제한 금액은" + totalPrice(points) + "원 입니다.\n예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
+
+    private int totalPrice(int points) {
+        return 0;
     }
 }
