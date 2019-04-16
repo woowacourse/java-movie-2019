@@ -43,5 +43,8 @@ public class InputCheckFunc {
         if(!DateTimeUtils.isNotPastMovieSch(movie.getSchStartTime(inputSch-1))){
             throw new InputMovException("지난 시간의 영화는 예매할 수 없습니다.");
         }
+        if(!movie.isCapacityNotZero(inputSch-1)){
+            throw new InputMovException("예약할 수 있는 인원이 없습니다.");
+        }
     }
 }

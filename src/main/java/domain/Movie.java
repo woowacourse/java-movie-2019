@@ -48,4 +48,8 @@ public class Movie {
     public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
     }
+
+    public boolean isCapacityNotZero(int sch){
+        return playSchedules.get(sch).isCapacityNotZero();
+    }
 }

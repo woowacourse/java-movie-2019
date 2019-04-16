@@ -14,7 +14,7 @@ public class MovieRepository {
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 14:40"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 17:00"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 19:40"), 3));
-        movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 22:00"), 3));
+        movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 22:00"), 0));
         movies.add(movie1);
 
         Movie movie2 = new Movie(5, "돈", 10_000);
