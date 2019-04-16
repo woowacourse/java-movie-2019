@@ -12,7 +12,7 @@ public class Movie {
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
 
-    public Movie(int id, String name, int price) {
+    Movie(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -20,6 +20,10 @@ public class Movie {
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
+    }
+
+    boolean contains(int movieId) {
+        return this.id == movieId;
     }
 
     @Override
@@ -31,4 +35,5 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
 }
