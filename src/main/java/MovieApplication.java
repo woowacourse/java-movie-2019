@@ -107,6 +107,7 @@ public class MovieApplication {
     }
 
     static void outputReservation() {
+        OutputView.outputInforMationMovie();
         for (String output : reservationedList) {
             System.out.println(output);
             System.out.println("===================");

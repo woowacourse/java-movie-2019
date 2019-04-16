@@ -18,6 +18,10 @@ public class OutputView {
         System.out.println(movie);
     }
 
+    public static void outputInforMationMovie() {
+        System.out.println("예약 내역");
+    }
+
     public static void outputPaymentStep() {
         System.out.println("## 결제를진행합니다");
     }
