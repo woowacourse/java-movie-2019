@@ -36,4 +36,7 @@ public class Movie {
     	return id == idNumber;
     }
     //플레이 스케쥴 출력 
+    public List<PlaySchedule> getPlaySchedule() {
+    	return playSchedules;
+    }
 }

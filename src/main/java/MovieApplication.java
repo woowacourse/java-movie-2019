@@ -16,6 +16,7 @@ public class MovieApplication {
         	movieId = InputView.inputMovieId();
         }
         // TODO 구현 진행
-        //
+        ////출력해야대.
+        OutputView.printSchedule(movies,movieId);
     }
 }
