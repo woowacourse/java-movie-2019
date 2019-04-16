@@ -13,8 +13,17 @@ public class MovieApplication {
 		
 	
 
-	public static void makeReservation() {
-		
+	public static int makeReservation() {
+		OutputView.printMovies(MovieRepository.getMovies());
+		int movieId = InputView.inputMovieId();
+		Movie movieToReserve = MovieRepository.getMovie(movieId);
+		OutputView.printSelectedMovie(movieToReserve);
+		int movieTime = InputView.inputMovieTime();
+		int moviePeople = InputView.inputMoviePeople();
+		if(InputView.inputCalculateOrAddMovie()==2) {
+			return 1;
+		}
+		return 0;
 
 	}
 	

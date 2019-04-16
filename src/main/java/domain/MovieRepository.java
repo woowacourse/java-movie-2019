@@ -43,7 +43,9 @@ public class MovieRepository {
         return movies;
     }
     
-   
+   public static Movie getMovie(int movieId) {
+	  
+   }
     
   
 }
