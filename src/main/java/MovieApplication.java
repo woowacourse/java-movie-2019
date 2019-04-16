@@ -12,6 +12,5 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
 
-        // TODO 구현 진행
     }
 }

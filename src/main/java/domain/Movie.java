@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    boolean isContainsMovieId(int id) {
+        return this.id == id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
