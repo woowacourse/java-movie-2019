@@ -6,6 +6,8 @@ import view.OutputView;
 import java.util.List;
 
 public class ReservationManager {
+    private static final String POINT_ERROR_MENT = "마일리지가 구매금액보다 큽니다.";
+
     private ReservationMovieList reservationMovieList = ReservationMovieList.getInstance();
 
     public void initReservation() {
@@ -16,7 +18,6 @@ public class ReservationManager {
     public void startReserve() {
         int movieId = InputView.inputMovieId();
         OutputView.printSelectedMovie(movieId);
-
         int movieTime = InputView.inputMovieTime();
         int movieNumberOfPeople = InputView.inputNumberOfPeople();
 
@@ -37,7 +38,19 @@ public class ReservationManager {
 
     private void payReservation() {
         int userPoint = InputView.inputPoint();
+        int totalReservationPrice = reservationMovieList.getTotalReservationPrice();
         InputView.inputPaymentMethod();
-        OutputView.printEndReservation(reservationMovieList.getTotalReservationPrice() - userPoint);
+        try{
+            checkPointValidate(userPoint, totalReservationPrice);
+        } catch (Exception e){
+            throw new IllegalArgumentException(POINT_ERROR_MENT);
+        }
+        OutputView.printEndReservation(totalReservationPrice - userPoint);
+    }
+
+    private void checkPointValidate(int userPoint, int totalReservationPrice) {
+        if (userPoint > totalReservationPrice) {
+            throw new IllegalArgumentException();
+        }
     }
 }
