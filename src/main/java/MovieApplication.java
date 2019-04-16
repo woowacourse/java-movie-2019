@@ -10,11 +10,13 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
+        Booker booker = new Booker();
 
         int movieId = InputView.inputMovieId();
         OutputView.printMovie(movieId);
 
-        Booker booker = new Booker(movieId);
-        booker.reservationTime();
+        booker.selectMovie(movieId);
+        booker.selectBookingTime();
+        booker.selectBookingNumber();
     }
 }

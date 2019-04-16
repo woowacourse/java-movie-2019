@@ -23,7 +23,11 @@ public class CheckValidity {
         return true;
     }
 
-    protected static boolean checkIsContainOfReservationTime(Movie movie, int reservationTime) {
-        return movie.isContainSchedule(reservationTime);
+    protected static boolean checkIsContainOfBookingTime(Movie movie, int bookingTime) {
+        return movie.isContainSchedule(bookingTime);
+    }
+
+    protected static boolean checkIsValidityBookingNumber(Movie movie, int bookingTime, int bookingNumber){
+        return movie.isValidityBookingNumber(bookingTime, bookingNumber);
     }
 }

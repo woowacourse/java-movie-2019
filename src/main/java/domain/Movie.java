@@ -44,4 +44,8 @@ public class Movie {
     public boolean isContainSchedule(int reservationTime) {
         return ((MIN_TIME <= reservationTime) && (reservationTime < playSchedules.size()));
     }
+
+    public boolean isValidityBookingNumber(int bookingTime, int bookingNumber){
+        return playSchedules.get(bookingTime).isValidityCapacity(bookingNumber);
+    }
 }

@@ -23,17 +23,31 @@ public class InputView extends CheckValidity {
                 && checkIsContainOfMovies(MovieRepository.getMovieIds(), Integer.parseInt(movieId));
     }
 
-    public static int inputReservationTime(Movie movie) {
-        String reservationTime;
+    public static int inputBookingTime(Movie movie) {
+        String bookingTime;
         do {
             System.out.println("## 예약할 시간표를 선택하세요. (첫번째 사영 시간이 1번)");
-            reservationTime = scanner.next();
-        } while (!validityReservationTime(movie, reservationTime));
-        return Integer.parseInt(reservationTime);
+            bookingTime = scanner.next();
+        } while (!validityBookingTime(movie, bookingTime));
+        return Integer.parseInt(bookingTime);
     }
 
-    private static boolean validityReservationTime(Movie movie, String reservationTime) {
-        return checkValidityIntegerFormat(reservationTime)
-                && checkIsContainOfReservationTime(movie, Integer.parseInt(reservationTime));
+    private static boolean validityBookingTime(Movie movie, String bookingTime) {
+        return checkValidityIntegerFormat(bookingTime)
+                && checkIsContainOfBookingTime(movie, Integer.parseInt(bookingTime));
+    }
+
+    public static int inputBookingNumber(Movie movie, int bookingTime) {
+        String bookingNumber;
+        do {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            bookingNumber = scanner.next();
+        } while (!validityBookingNumber(movie, bookingTime, bookingNumber));
+        return Integer.parseInt(bookingNumber);
+    }
+
+    private static boolean validityBookingNumber(Movie movie, int bookingTime, String bookingNumber){
+        return checkValidityIntegerFormat(bookingNumber)
+                && checkIsValidityBookingNumber(movie, bookingTime, Integer.parseInt(bookingNumber));
     }
 }

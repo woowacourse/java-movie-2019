@@ -6,22 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Booker {
-    private List<Movie> reservationMovies;
-    private List<Integer> reservationTime;
+    private List<Movie> bookingMovies;
+    private List<Integer> bookingTime;
+    private List<Integer> bookingNumber;
 
-    private int tryReservationNumber = 0;
+    private int trybookingNumber = 0;
 
-    public Booker(int movieId) {
-        reservationMovies = new ArrayList<>();
-        reservationTime = new ArrayList<>();
-        addReservationMovie(movieId);
+    public Booker() {
+        bookingMovies = new ArrayList<>();
+        bookingTime = new ArrayList<>();
+        bookingNumber = new ArrayList<>();
     }
 
-    public void addReservationMovie(int movieId) {
-        reservationMovies.add(MovieRepository.getMovie(movieId));
+    public void selectMovie(int movieId) {
+        bookingMovies.add(MovieRepository.getMovie(movieId));
     }
 
-    public void reservationTime() {
-        reservationTime.add(InputView.inputReservationTime(reservationMovies.get(tryReservationNumber)));
+    public void selectBookingTime() {
+        bookingTime.add(InputView.inputBookingTime(bookingMovies.get(trybookingNumber)));
+    }
+
+    public void selectBookingNumber(){
+        bookingNumber.add(InputView.inputBookingNumber(bookingMovies.get(trybookingNumber),bookingTime.get(0)));
     }
 }
