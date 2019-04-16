@@ -45,20 +45,26 @@ public class MovieRepository {
 
 	public static boolean bookableSchedule(int movieId, int schedule) {
 		int index = getIndexByMovieId(movieId);
-
-		return (index >= 0 && movies.get(index).bookable(schedule));
+		if(index < 0) {
+			return false;
+		}
+		return (movies.get(index).bookable(schedule));
 	}
 	
 	public static boolean isBeforeBeginning(int movieId, int schedule) {
 		int index = getIndexByMovieId(movieId);
-
-		return (index >= 0 && movies.get(index).isBeforeBeginning(schedule));
+		if(index < 0 || schedule < 1) {
+			return false;
+		}
+		return (movies.get(index).isBeforeBeginning(schedule));
 	}
 	
 	public static boolean capable(int movieId, int schedule, int numOfAudience) {
 		int index = getIndexByMovieId(movieId);
-
-		return index >= 0 && movies.get(index).bookable(schedule, numOfAudience);
+		if(index < 0) {
+			return false;
+		}
+		return movies.get(index).bookable(schedule, numOfAudience);
 	}
 
 	public static int getIndexByMovieId(int movieId) {
@@ -70,6 +76,7 @@ public class MovieRepository {
 
 		return idx;
 	}
+	
 
 	public static List<Movie> getMovies() {
 		return movies;
