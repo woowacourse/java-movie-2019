@@ -10,4 +10,8 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
+    public static void notExistedMovie() {
+        System.out.println("상영목록에 해당 영화는 존재하지 않습니다.");
+    }
 }

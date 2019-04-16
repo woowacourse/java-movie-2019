@@ -13,13 +13,19 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
+        selectMovie(movies, movieId);
+
+        int scheduleNumber = InputView.inputMovieSchedule();
+    }
+
+    public static boolean selectMovie(List<Movie> movies, int movieId) {
         for (Movie movie : movies) {
             if (movie.isSameId(movieId)) {
                 System.out.println(movie.toString());
-                break;
+                return true;
             }
         }
-
-        int scheduleNumber = InputView.inputMovieSchedule();
+        OutputView.notExistedMovie();
+        return false;
     }
 }
