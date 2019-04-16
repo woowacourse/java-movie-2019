@@ -20,15 +20,25 @@ public class OutputView {
     	}
     	return null;
     }
+
     
-    public static void printSelectTime(Movie movie, int inputNum) {
-    	System.out.println(movie.getPlaySchedule().get(inputNum - 1));
-    }
-    
-    public static void printMovieTicket(Movie movie, int inputTime , int inputNum) {
+    public static int printMovieTicket(Movie movie, int inputTime , int inputNum) {
     	System.out.println("예약 내역");
     	System.out.println(movie.getId() + "-" + movie.getName() + "," + movie.getPrice());
-    	System.out.print(movie.getPlaySchedule().get(inputNum - 1));
+    	System.out.print(movie.getPlaySchedule().get(inputTime));
     	System.out.println("예약 인원:" + inputNum);
+    	return movie.getPrice() * inputNum;
+    }
+    
+    public static int printResultPay(int payMethod , int MoviePay , int PointPay) {
+    	MoviePay -= PointPay;
+    	if (payMethod == 1) {  // 신용카드 결제 
+    		MoviePay = (int) (MoviePay * 0.95);
+    	}
+    	
+    	if (payMethod == 2) { // 현금 결제
+    		MoviePay = (int) (MoviePay * 0.98);
+    	}
+    	return MoviePay;
     }
 }

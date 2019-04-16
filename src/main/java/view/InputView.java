@@ -19,4 +19,10 @@ public class InputView {
     	System.out.println("## 예약할 인원을 입력하세요.");
     	return scanner.nextInt();
     }
+    
+    public static int inputPoint() {
+    	System.out.println("## 결제를 진행합니다.");
+    	System.out.println("포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+    	return scanner.nextInt();
+    }
 }
