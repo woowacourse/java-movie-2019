@@ -39,4 +39,11 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public int getCapacity(int time) {
+        int capacity = 0;
+        capacity = playSchedules.get(time-1).getCapacity();
+
+        return capacity;
+    }
 }

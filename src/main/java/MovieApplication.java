@@ -22,16 +22,32 @@ public class MovieApplication {
     private static final int DUMBO = 8;
 
     private static int movieTime = 0;
-    private static int movieNum = 0;
+    private static ArrayList<Integer> movieNum = new ArrayList<>();
     private static int movieContinue = 0;
     private static Movie choiceMovie;
     private static List<Movie> movies = MovieRepository.getMovies();
     private static ArrayList<Movie> choiceMovies = new ArrayList<>();
+    private static boolean possible[] = new boolean[10];
 
     public static void main(String[] args) {
         System.out.println(INFO_MOVIE);
         OutputView.printMovies(movies);
+        continueBooking();
+    }
 
+    public static void impossibleBooking() {
+        for (int i = 0 ; i < movieNum.size(); i++) {
+           if(choiceMovie.getCapacity(movieTime) < movieNum.get(i)) {
+               System.out.println("예약 인원이 최대수용인원보다 많습니다.");
+               continueBooking();
+           }
+
+        }
+        System.out.println("최대수용인원 : " +choiceMovie.getCapacity(movieTime));
+        System.out.println("예약 인원 : " + movieNum.get(0));
+    }
+
+    public static void continueBooking() {
         int movieId = InputView.inputMovieId();
         choiceMovie = choiceMovie(movies, movieId);
         System.out.println(choiceMovie);
@@ -44,17 +60,13 @@ public class MovieApplication {
     public static void checkBooking() {
         if(movieContinue == 1) {
             choiceMovies.add(choiceMovie);
+            impossibleBooking();
             showBooking();
         }
         if(movieContinue == 2) {
             choiceMovies.add(choiceMovie);
-            int movieId = InputView.inputMovieId();
-            choiceMovie = choiceMovie(movies, movieId);
-            System.out.println(choiceMovie);
-            movieTime();
-            movieNumber();
-            movieContinue();
-            checkBooking();
+            impossibleBooking();
+            continueBooking();
         }
     }
 
@@ -62,7 +74,9 @@ public class MovieApplication {
         System.out.println(INFO_BOOKING);
         for(int i = 0 ; i < choiceMovies.size(); i++) {
             System.out.println(choiceMovies.get(i).choiceTime(movieTime));  //choice Time
-            System.out.println("예약 인원 : " + movieNum + "명");
+        }
+        for(int i = 0; i< movieNum.size(); i++) {
+            System.out.println("예약 인원 : " + movieNum.get(i) + "명");
         }
     }
 
@@ -73,9 +87,11 @@ public class MovieApplication {
     }
 
     public static void movieNumber() {
+        int num = 0;
         System.out.println(INFO_NUM);
         Scanner scan = new Scanner(System.in);
-        movieNum = scan.nextInt();
+        num = scan.nextInt();
+        movieNum.add(num);
     }
 
     public static void movieContinue() {
