@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class Movie {
 
     public int getSchSize(){
         return playSchedules.size();
+    }
+
+    public LocalDateTime getSchStartTime(int sch){
+        return playSchedules.get(sch).getStartDateTime();
     }
 }

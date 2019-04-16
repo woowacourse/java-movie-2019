@@ -1,5 +1,7 @@
 package utils;
 
+//import jdk.vm.ci.meta.Local;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,5 +27,12 @@ public class DateTimeUtils {
         LocalDateTime startDateTime = dateTime1.minusHours(ONE_HOURS);
         LocalDateTime endDateTime = dateTime1.plusHours(ONE_HOURS);
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
+    }
+
+    public static boolean isPastMovieSch(LocalDateTime dateTime){
+        if(LocalDateTime.now().isBefore(dateTime)){
+            return true;
+        }
+        return false;
     }
 }

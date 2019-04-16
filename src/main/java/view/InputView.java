@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import exception.InputMovException;
+import utils.DateTimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,24 +23,28 @@ public class InputView {
         }
     }
 
-    public static int inputMovieSch(Movie movie){
+    public static int inputMovieSch(Movie movie, List<Movie> movReservation){
         try{
-            return checkInputMovieSch(movie);
+            return checkInputMovieSch(movie, movReservation);
         } catch (NumberFormatException e){
             System.out.println("숫자만 입력해주세요");
-            return inputMovieSch(movie);
+            return inputMovieSch(movie, movReservation);
         } catch (InputMovException e){
             System.out.println(e.EXCEPTION_STR);
-            return inputMovieSch(movie);
+            return inputMovieSch(movie, movReservation);
         }
     }
 
-    private static int checkInputMovieSch(Movie movie){
+    private static int checkInputMovieSch(Movie movie, List<Movie> movReservation){
         System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)");
         int inputSch = Integer.parseInt(scanner.nextLine());
         if(!checkMovieSch(inputSch,movie)){
             throw new InputMovException("시간표의 숫자만 입력해주세요.");
         }
+        if(!DateTimeUtils.isPastMovieSch(movie.getSchStartTime(inputSch-1))){
+            throw new InputMovException("지난 시간의 영화는 예매할 수 없습니다.");
+        }
+
         return inputSch;
     }
 
