@@ -32,6 +32,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public int getPrice() {
+        return price*1;
+    }
+
     public int getId() {
         return id;
     }

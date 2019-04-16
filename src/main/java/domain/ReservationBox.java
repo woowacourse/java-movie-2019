@@ -8,7 +8,9 @@ public class ReservationBox {
     private List<Integer>listOfMovieTimes = new ArrayList<>();
     private List<Integer> listOfPeopleCount = new ArrayList<>();
     private List<Integer> listOfPoints = new ArrayList<>();
-    private List<Integer> listOfCashOrCredit = new ArrayList<>();
+    private List<Double> listOfSaleAmouts = new ArrayList<>();
+    private List<Integer> listOfPayments = new ArrayList<>();
+    private List<Integer> listOfRevenues = new ArrayList<>();
 
     public String askUserWhatMovie() {
         boolean isUserInputRight = false;
@@ -125,6 +127,9 @@ public class ReservationBox {
         listOfMovieTimes.add(intWhatTime);
         int intHowManyPeople = Integer.parseInt(howManyPeople);
         listOfPeopleCount.add(intHowManyPeople);
+        int currentRevenue = selectedMovie.getPrice()*intHowManyPeople;
+        listOfRevenues.add(currentRevenue);
+
     }
 
     public int askUserContinue() {
@@ -166,7 +171,16 @@ public class ReservationBox {
         int intPointAmount = Integer.parseInt(pointAmount);
         this.listOfPoints.add(intPointAmount);
         int intCashOrCredit = Integer.parseInt(cashOrCredit);
-        this.listOfCashOrCredit.add(intCashOrCredit);
+        double saleAmount = returnSaleAmount(intCashOrCredit);
+        this.listOfSaleAmouts.add(saleAmount);
+
+    }
+
+    public static double returnSaleAmount(int intCashOrCredit) {
+        if (intCashOrCredit == 1) {
+            return 0.05;
+        }
+        return 0.02;
     }
 
     public String askCashOrCredit() {
@@ -210,5 +224,26 @@ public class ReservationBox {
             return true;
         }
         return false;
+    }
+
+    public int calculatePayment() {
+        // get all the movie prices
+        int totalRevenues = 0;
+        for (int i=0, n=this.listOfRevenues.size(); i<n; i++) {
+            totalRevenues += listOfRevenues.get(i);
+        }
+
+        //get all the points
+        int totalPoints = 0;
+        for (int i=0, n=this.listOfPoints.size(); i<n; i++) {
+            totalPoints += listOfPoints.get(i);
+        }
+        //get all the saleAmounts
+        double totalSales = 0;
+        for (int i=0, n=this.listOfSaleAmouts.size(); i<n; i++) {
+            totalSales += listOfSaleAmouts.get(i);
+        }
+        int result = (int) ((totalRevenues - totalPoints)*totalSales);
+        return result;
     }
 }
