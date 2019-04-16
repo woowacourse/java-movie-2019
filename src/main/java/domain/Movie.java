@@ -22,16 +22,20 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    public boolean isSameMovieId(int movieId){
+    public int getPrice() {
+        return this.price;
+    }
+
+    public String movieInfo() {
+        return id + " - " + name + ", " + price + "원";
+    }
+
+    public boolean isSameMovieId(int movieId) {
         return this.id == movieId;
     }
 
-    public PlaySchedule getPlaySchedule(int scheduleNumber){
-        return playSchedules.get(scheduleNumber-1);
-    }
-
-    public String movieInfo(){
-        return id + " - " + name + ", " + price + "원";
+    public PlaySchedule getPlaySchedule(int scheduleNumber) {
+        return playSchedules.get(scheduleNumber - 1);
     }
 
     @Override

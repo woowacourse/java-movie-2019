@@ -9,7 +9,11 @@ import java.util.List;
 public class MovieValidator {
 
     public static boolean isExistMovie(int movieId) {
-        return MovieRepository.getMovie(movieId) == null;
+        if (MovieRepository.getMovie(movieId) == null){
+            OutputView.printNotExistMovie(movieId);
+            return false;
+        }
+        return true;
     }
 
     public static boolean scheduleValidate(List<ReservedMovie> reservedMovies, PlaySchedule schedule) {
@@ -29,6 +33,13 @@ public class MovieValidator {
     public static boolean isValidContinueInput(int continueCheck){
         if (continueCheck > 2 || continueCheck < 1){
             OutputView.printContinueError();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean pointValidation(int point){
+        if (point < 0){
             return false;
         }
         return true;

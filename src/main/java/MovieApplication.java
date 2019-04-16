@@ -19,6 +19,9 @@ public class MovieApplication {
             check = getContinueReserve();
         }
         OutputView.printReservedMovies(reservedMovies);
+        OutputView.printStartPayment();
+        Payment payment = calculatePrice(reservedMovies);
+        payment.applyPoint(getUsagePoint());
     }
 
     private static void movieReserve(List<Movie> movies, List<ReservedMovie> reservedMovies){
@@ -46,14 +49,9 @@ public class MovieApplication {
 
     private static Movie getReserveMovie(List<Movie> movies) {
         int validMovieId = NOT_EXIST_NUMBER;
-        boolean isFirst = true;
         do {
-            if (!isFirst) {
-                OutputView.printNotExistMovie(validMovieId);
-            }
             validMovieId = getValidMovieId(movies);
-            isFirst = false;
-        } while (MovieValidator.isExistMovie(validMovieId));
+        } while (!MovieValidator.isExistMovie(validMovieId));
         return MovieRepository.getMovie(validMovieId);
     }
 
@@ -86,7 +84,23 @@ public class MovieApplication {
         int continueCheck = NOT_EXIST_NUMBER;
         do {
             continueCheck = InputView.isContinueReserve();
-        } while(!MovieValidator.isValidContinueInput(continueCheck));
+        } while (!MovieValidator.isValidContinueInput(continueCheck));
         return continueCheck;
+    }
+
+    private static Payment calculatePrice(List<ReservedMovie> reservedMovies){
+        int totalPrice = 0;
+        for (ReservedMovie reservedMovie : reservedMovies){
+            totalPrice += reservedMovie.getPrice();
+        }
+        return new Payment(totalPrice);
+    }
+
+    private static int getUsagePoint(){
+        int point = NOT_EXIST_NUMBER;
+        do {
+            point = InputView.inputPoint();
+        } while (!MovieValidator.pointValidation(point));
+        return point;
     }
 }

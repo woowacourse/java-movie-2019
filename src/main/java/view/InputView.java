@@ -33,4 +33,9 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    public static int inputPoint(){
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        return scanner.nextInt();
+    }
+
 }

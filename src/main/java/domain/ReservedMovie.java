@@ -2,6 +2,7 @@ package domain;
 
 import java.time.LocalDateTime;
 
+
 import static utils.DateTimeUtils.format;
 
 public class ReservedMovie {
@@ -11,16 +12,20 @@ public class ReservedMovie {
     private final LocalDateTime startDateTime;
     private final int reserveAmount;
 
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
-    }
-
     public ReservedMovie(Movie reservedMovie,
                          LocalDateTime startDateTime,
                          int reserveAmount) {
         this.reservedMovie = reservedMovie;
         this.startDateTime = startDateTime;
         this.reserveAmount = reserveAmount;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public int getPrice() {
+        return reserveAmount * reservedMovie.getPrice();
     }
 
     @Override

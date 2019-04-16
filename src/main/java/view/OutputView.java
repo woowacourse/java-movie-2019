@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public static void printNotExistMovie(int movieId) {
-        System.out.println("영화번호 2번은" + movieId + "번은 없는 영화 번호입니다.");
+        System.out.println("영화번호 " + movieId + "번은 없는 영화 번호입니다.");
     }
 
     public static void printNotExistSchedule(int scheduleNumber) {
@@ -44,5 +44,9 @@ public class OutputView {
 
     public static void printContinueError(){
         System.out.println("결제를 진행하려면 1번, 추가 예약을 하시려면 2번을 입력하셔야합니다.");
+    }
+
+    public static void printStartPayment(){
+        System.out.println("## 결제를 진행합니다.");
     }
 }
