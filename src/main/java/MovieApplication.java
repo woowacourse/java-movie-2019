@@ -12,10 +12,11 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        ReservationInputValidator inputValidator = new ReservationInputValidator();
-        List<Integer> movieNumbers = inputValidator.getReservationMovieNumbers();
-        ReservationPlanner reservationPlanner = new ReservationPlanner();
         Scanner scanner = new Scanner(System.in);
+        String line = scanner.nextLine();
+        ReservationInputValidator inputValidator = new ReservationInputValidator();
+        List<Integer> movieNumbers = inputValidator.getReservationMovieNumbers(line);
+        ReservationPlanner reservationPlanner = new ReservationPlanner();
         for (Integer movieNumber : movieNumbers) {
             reservationPlanner.displayMovieSchedule(movieNumber);
             Integer movieEntry = scanner.nextInt();
@@ -23,5 +24,6 @@ public class MovieApplication {
             reservationPlanner.selectReservationEntry(movieNumber, movieEntry);
             reservationPlanner.selectReservationCapacity(movieNumber, movieEntry, capacity);
         }
+        reservationPlanner.getPlans().forEach(System.out::println);
     }
 }

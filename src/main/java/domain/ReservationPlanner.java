@@ -3,6 +3,7 @@ package domain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import utils.DateTimeUtils;
 
 public class ReservationPlanner {
@@ -52,5 +53,8 @@ public class ReservationPlanner {
         return MovieRepository.hasStarted(movieId, movieEntryNumber);
     }
 
+    public List<ReservationRecord>  getPlans() {
+        return this.reservationRecords;
+    }
 }
 
