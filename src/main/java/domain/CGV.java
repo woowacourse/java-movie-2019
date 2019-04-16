@@ -62,10 +62,9 @@ public class CGV {
 
     public ReserveMsg checkCnt(Ticket ticket) {
         final int maxCnt = getMovie(ticket.movieId).getPlaySchedules().get(ticket.time).getCapacity();
-        // todo: 0 이하 예외 아직 안했음
-        if (maxCnt < ticket.cnt) {
+        if (ticket.cnt < 0 || maxCnt < ticket.cnt) {
             return ReserveMsg.CNT_ERROR;
-        }
+        } 
         return ReserveMsg.NONE;
     }
 
