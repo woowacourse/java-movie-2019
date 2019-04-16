@@ -43,13 +43,13 @@ public class MovieRepository {
         return movies;
     }
     
-    public boolean isMovie(int movieId) {
+    public Movie isMovie(int movieId) {
 		for (Movie movie : movies) {
 			if (movie.isMovieId(movieId)) {
-				return true;
+				return movie;
 			}
 		}
 		System.out.println("상영목록에 없는 영화입니다.");
-		return false;
+		return null;
     }
 }

@@ -9,6 +9,7 @@ public class Movie {
     private final int id;
     private final String name;
     private final int price;
+    private final int idxMinus = 1;
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
 
@@ -40,6 +41,24 @@ public class Movie {
     	if (this.id == movieId) {
 			return true;
 		}
+    	return false;
+    }
+
+    public boolean isValidSchedule(int movieScheduleId) {
+    	PlaySchedule playSchedule = 
+    			playSchedules.get(movieScheduleId-idxMinus);
+		if (playSchedule.isSchedule()) {
+			return true;
+		}
+    	return false;
+    }
+
+    public boolean isValidCapacity(int purchaseAmount) {
+    	for (PlaySchedule playSchedule : playSchedules) {
+    		if (playSchedule.isCapacity(purchaseAmount)) {
+    			return true;
+    		}
+    	}
     	return false;
     }
 }

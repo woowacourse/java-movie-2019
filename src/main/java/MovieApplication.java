@@ -9,11 +9,20 @@ public class MovieApplication {
 	public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         MovieRepository movierep = new MovieRepository();
+        Movie movie;
         OutputView.printMovies(movies);
         int movieId;
+        int movieScheduleId;
         
         do {
         	movieId = InputView.inputMovieId();
-		} while (!movierep.isMovie(movieId));
+		} while ((movie = movierep.isMovie(movieId)) == null);
+        
+        System.out.println(movie.toString());
+        
+        do {
+        	movieScheduleId = InputView.inputSchedule();
+        } while (!movie.isValidSchedule(movieScheduleId));
+        
     }
 }
