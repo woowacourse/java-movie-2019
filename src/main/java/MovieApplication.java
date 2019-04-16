@@ -13,6 +13,7 @@ public class MovieApplication {
 
     public static void main(String[] args) {
         BookingList bookingList = getBookingList();
+        OutputView.printBookingList(bookingList);
     }
 
     private static BookingList getBookingList() {
