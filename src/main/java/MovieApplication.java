@@ -1,18 +1,19 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
-import domain.ScheduledMovie;
 import view.InputView;
 import view.OutputView;
 
-import java.sql.SQLSyntaxErrorException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class MovieApplication {
 
     static List<Movie> books = new LinkedList<>();
+    static List<PlaySchedule> schedules = new LinkedList<>();
 
+    static private int people;
+    static private int scheduleId;
 
     public static void main(String[] args) {
         do {
@@ -20,9 +21,9 @@ public class MovieApplication {
             OutputView.printMovies(movies);
             Movie movie = check(movies);
             OutputView.printEachMovie(movie);
-            PlaySchedule schedule = askSchedule(movie);
+            schedules.add(askSchedule(movie));
         }while(askPurchse());
-
+        showBooks();
     }
 
     public static Movie check(List<Movie> movies){
@@ -48,8 +49,8 @@ public class MovieApplication {
 
     public static PlaySchedule askSchedule(Movie movie){
         try {
-            int scheduleId = InputView.inputScheduleId() -1;
-            int people = InputView.inputPerson();
+            scheduleId = InputView.inputScheduleId() -1;
+            people = InputView.inputPerson();
 
             return movie.checkSchedue(scheduleId, people);
 
@@ -63,4 +64,15 @@ public class MovieApplication {
         return (InputView.inputAgain() != 1);
     }
 
+    public static void showBooks(){
+        System.out.print("예약 내역");
+
+        for (Movie each : books){
+            System.out.print(each.showBooks());
+        }
+
+        for(PlaySchedule schedule : schedules){
+            System.out.print(schedule.showResult());
+        }
+    }
 }

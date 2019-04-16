@@ -32,6 +32,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String showBooks(){
+        return String.format(id + " - " + name + ", " + price + "원" + NEW_LINE);
+    }
+
     public boolean movieMatchOf(int id){
         return (this.id == id);
     }
