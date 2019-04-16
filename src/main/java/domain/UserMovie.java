@@ -14,4 +14,12 @@ public class UserMovie {
     public int getTimeId(){
         return timeTableId;
     }
+
+    public int getMovieId(){
+        return movieId;
+    }
+
+    public int getPeopleCount(){
+        return peopleCount;
+    }
 }

@@ -63,7 +63,7 @@ public class Manager {
         List<UserMovie> userList = User.getUserList();
         for(int i=0; i<userList.size(); i++){
             UserMovie userMovie = userList.get(i);
-            Movie movie = getMovie(movieId);
+            Movie movie = getMovie(userMovie.getMovieId());
             System.out.print(movie.getId());
             System.out.print(" - ");
             System.out.print(movie.getName());
@@ -71,8 +71,8 @@ public class Manager {
             System.out.println(movie.getPrice());
             System.out.println(movie.getStartTime(userMovie.getTimeId()));
             System.out.print("예약 인원: ");
-            System.out.println(movie.getPeopleCount(userMovie.getTimeId()));
-            totalAmount += movie.getPrice() * movie.getPeopleCount(userMovie.getTimeId());
+            System.out.println(userMovie.getPeopleCount());
+            totalAmount += movie.getPrice() * userMovie.getPeopleCount();
             System.out.println();
         }
     }
