@@ -27,6 +27,10 @@ public class MovieInput {
         throw new IllegalStateException();
     }
 
+    public Movie toMovie() {
+        return movie;
+    }
+
     private boolean checkValidity(List<Movie> movies, String input) {
         List<Integer> ids = new ArrayList<>();
         for (Movie movie : movies
