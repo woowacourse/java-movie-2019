@@ -1,13 +1,14 @@
 package domain;
 
 import java.time.LocalDateTime;
+import utils.DateTimeUtils;
 
 public class ReservationRecord {
 
-    public Movie movie;
+    private Movie movie;
     public int movieEntryNumber;
-    public int movieCapacity;
-    public LocalDateTime movieStartDateTime;
+    private int movieCapacity;
+    private LocalDateTime movieStartDateTime;
 
     ReservationRecord(int movieId, int movieCapacity, int movieEntryNumber) {
         Movie movie = MovieRepository.getMovies().get(movieId);
@@ -19,6 +20,12 @@ public class ReservationRecord {
 
     LocalDateTime getMovieStartDateTime() {
         return this.movieStartDateTime;
+    }
+
+    @Override
+    public String toString() {
+        String formattedDate = DateTimeUtils.format(movieStartDateTime);
+        return String.format("%s\n 시작시간 %s\n예약인원: %d", movie, formattedDate, movieCapacity);
     }
 }
 
