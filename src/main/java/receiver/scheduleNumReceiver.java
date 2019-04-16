@@ -35,15 +35,15 @@ public class scheduleNumReceiver {
         if (1 > movieNum || movieNum > 9) {    // 적은 금액인지
             throw new NotValidException();
         }
-        for (Movie movie : movies) {
-            int mid = movie.getId();
-            if (mid == movieNum) {
-                int length = movie.getPlaySchedules().size();
-                if (Integer.parseInt(inputFromUser) < length) {
-                    return;
-                }
-            }
-        }
-        throw new NotInRangeException();
+//        for (Movie movie : movies) {
+//            int mid = movie.getId();
+//            if (mid == movieNum) {
+//                int length = movie.getPlaySchedules().size();
+//                if (Integer.parseInt(inputFromUser) < length) {
+//                    return;
+//                }
+//            }
+//        }
+//        throw new NotInRangeException();
     }
 }

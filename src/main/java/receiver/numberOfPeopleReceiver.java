@@ -25,9 +25,5 @@ public class numberOfPeopleReceiver {
         if (!Validator.isInteger(inputFromUser)) {    // 정수 변환 가능한지
             throw new NotIntegerException();
         }
-        int movieNum = Integer.parseInt(inputFromUser);
-        if (1 > movieNum || movieNum > 9) {    // 적은 금액인지
-            throw new NotValidException();
-        }
     }
 }

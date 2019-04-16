@@ -26,7 +26,7 @@ public class getSelectNumberReciever {
             throw new NotIntegerException();
         }
         int movieNum = Integer.parseInt(inputFromUser);
-        if (1 > movieNum || movieNum > 9) {    // 적은 금액인지
+        if (Integer.parseInt(inputFromUser) != 1 && Integer.parseInt(inputFromUser) != 2) {    // 적은 금액인지
             throw new NotValidException();
         }
     }

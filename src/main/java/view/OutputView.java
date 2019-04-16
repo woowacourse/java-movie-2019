@@ -24,12 +24,15 @@ public class OutputView {
     }
     public static void reservationInformation(List<Movie> movies, int movieNum,int scheduleNum, int peopleNum) {
         System.out.println("예약 내역");
-        System.out.println(movieNum);
+
         for (Movie movie : movies) {
             int mid = movie.getId();
             if (mid == movieNum) {
+                String movieName = movie.getMovie();
+                int moviePrice = movie.getPrice();
                 List<PlaySchedule> playSchedules= movie.getPlaySchedules();
                 System.out.println(playSchedules.get(scheduleNum-1));
+                System.out.println(String.format("%d - %s,%d원",movieNum,movieName,moviePrice));
             }
         }
         System.out.println(String.format("예약 인원:%d명",peopleNum));
