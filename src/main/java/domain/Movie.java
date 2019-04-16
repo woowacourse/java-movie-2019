@@ -59,7 +59,7 @@ public class Movie {
         playSchedules.get(scheduleNumber - 1).validateSchedule();
     }
 
-    public void istmp(PlaySchedule playSchedule) {
-
+    public int getPrice(int watcher) {
+        return watcher * price;
     }
 }

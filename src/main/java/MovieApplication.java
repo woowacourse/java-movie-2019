@@ -19,6 +19,27 @@ public class MovieApplication {
             movieReservations.add(getMovieReservation(movies));
         } while (moreReservation());
 
+        OutputView.printReservations(movieReservations);
+        payment();
+    }
+
+    private static void payment() {
+        System.out.println("##결제를 진행합니다.");
+        int finalPrice = getPrice() - InputView.inputPoint();
+        double discountRate = 0.05;
+        if (InputView.inputPaymentMethod() == 2) {
+            discountRate = 0.02;
+        }
+        finalPrice = (int)(finalPrice * (1 - discountRate));
+        OutputView.printPaymentResult(finalPrice);
+    }
+
+    private static int getPrice() {
+        int price = 0;
+        for (MovieReservation movieReservation : movieReservations) {
+            price +=movieReservation.getPrice();
+        }
+        return price;
     }
 
     private static MovieReservation getMovieReservation(List<Movie> movies) {
