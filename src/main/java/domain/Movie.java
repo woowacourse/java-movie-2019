@@ -35,9 +35,9 @@ public class Movie {
     public int getId() {
         return this.id;
     }
-    /*
+
     public int getScheduleSize(){
         return playSchedules.size();
     }
-    */
+
 }
