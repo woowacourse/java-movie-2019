@@ -60,4 +60,14 @@ public class InputView {
         return point;
     }
 
+    public static int inputSelectPayWith() {
+        System.out.println("## 신용카드는 1번,현금은 2번");
+        int payWith = scanner.nextInt();
+        if (payWith == 1 || payWith == 2) {
+            return payWith;
+        }
+        return inputSelectPayWith();
+    }
+
+
 }
