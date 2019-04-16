@@ -10,49 +10,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
+    private static final int MIN_RESERVED_PERSON_COUNT = 1;
+
     public static void main(String[] args) {
-
         List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-
         List<BookedMovie> bookedMovies = new ArrayList<>();
+        boolean isBooking = true;
+        while (isBooking) {
+            OutputView.printMovies(movies);
+            int movieId = getValidMovieId(bookedMovies);
+            BookedMovie bookedMovie = bookOneMovie(movieId);
+            bookedMovies.add(bookedMovie);
+            isBooking = InputView.inputAdditionalReservation() == 2;
+        }
+        OutputView.printBookedMovies(bookedMovies);
+        //결제
+    }
+
+    private static int getValidMovieId(List<BookedMovie> bookedMovies) {
         int movieId = InputView.inputMovieId();
-        // 중복 체크
-        //Movie selectedMovie = MovieRepository.getMovieById(movieId);
-        Movie selectedMovie = null;
-        for (Movie m : movies) {
-            if (m.hasSameId(movieId)) {
-                selectedMovie = m;
+        if (MovieRepository.isValidMovieId(movieId)
+                && !checkMovieBooked(movieId, bookedMovies)) {
+            return movieId;
+        }
+        return getValidMovieId(bookedMovies);
+    }
+
+    private static boolean checkMovieBooked(int movieId, List<BookedMovie> bookedMovies) {
+        for (BookedMovie b : bookedMovies) {
+            if (b.checkMovieId(movieId)) {
+                return true;
             }
         }
-        BookedMovie bookedMovie;
+        return false;
+    }
 
-        //if (selectedMovie != null) {
-        bookedMovie = new BookedMovie(selectedMovie);
-        bookedMovies.add(bookedMovie);
-        System.out.println(selectedMovie);
-        //}
+    private static BookedMovie bookOneMovie(int movieId) {
+        Movie selectedMovie = MovieRepository.getMovieById(movieId);
+        assert selectedMovie != null;
 
+        BookedMovie bookedMovie = new BookedMovie(selectedMovie);
+        OutputView.printSelectedMovie(selectedMovie);
+
+        PlaySchedule selectedSchedule = decideSchedule(selectedMovie, bookedMovie);
+        decidePersonCount(bookedMovie, selectedSchedule);
+        return bookedMovie;
+    }
+
+    private static PlaySchedule decideSchedule(Movie selectedMovie, BookedMovie bookedMovie) {
         int scheduleId = InputView.inputScheduleId();
-        // 유효성 체크
         PlaySchedule selectedSchedule = selectedMovie.getScheduleById(scheduleId);
-        if (selectedSchedule != null) {
-            bookedMovie.updateSchedule(selectedSchedule);
+        while (selectedSchedule == null) {
+            scheduleId = InputView.inputScheduleId();
+            selectedSchedule = selectedMovie.getScheduleById(scheduleId);
         }
+        bookedMovie.updateSchedule(selectedSchedule);
+        return selectedSchedule;
+    }
 
+    private static void decidePersonCount(BookedMovie bookedMovie, PlaySchedule selectedSchedule) {
         int personCount = InputView.inputPersonCount();
-        // 유효성 체크
-        if (selectedSchedule.reserveTickets(personCount)) {
-            bookedMovie.updateReservedPersonCount(personCount);
+        while (!selectedSchedule.reserveTickets(personCount, MIN_RESERVED_PERSON_COUNT)) {
+            personCount = InputView.inputPersonCount();
         }
-
-        int additionalReservation = InputView.inputAdditionalReservation();
-
-        if (additionalReservation == 1) {
-            OutputView.printBookedMovies(bookedMovies);
-        } else if (additionalReservation == 2) {
-            // 중복 예약
-        }
-
+        bookedMovie.updateReservedPersonCount(personCount);
     }
 }
