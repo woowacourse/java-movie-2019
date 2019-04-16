@@ -5,26 +5,35 @@ import view.InputView;
 public class SelectedMovie {
     private Movie movie;
     private int selectedPlayScheduleId;
+    private PlaySchedule playSchedule;
     private int audience;
 
     public SelectedMovie(Movie movie) {
         this.movie = movie;
     }
 
+    public PlaySchedule getPlaySchedule() {
+        return playSchedule;
+    }
+
     public boolean updateAudienceCount(){
         return movie.updateAudienceCount(selectedPlayScheduleId, audience);
     }
+
     public void getData() {
         selectedPlayScheduleId = InputView.inputPlaySchedule() - 1;
+        setPlaySchedule();
         audience = InputView.inputAudienceNumber();
     }
 
-    public boolean isValidPlaySchedule() {
-        return movie.isValidPlaySchedule(selectedPlayScheduleId, audience);
+    public void setPlaySchedule(){
+        playSchedule = movie.getPlaySchedule(selectedPlayScheduleId);
     }
 
-    public void showPlaySchedule() {
-        movie.showPlayScheduleList();
+    public boolean comparePlayScheduleTime(SelectedMovie other){
+        System.out.println(playSchedule);
+        System.out.println(other.playSchedule);
+        return playSchedule.compare(other.getPlaySchedule());
     }
 
     public int showPrice() {

@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +45,10 @@ public class Movie {
         return this.id == id;
     }
 
-    public void showPlayScheduleList() {
-        for (PlaySchedule playSchedule : playSchedules) {
-            System.out.println(playSchedule);
-        }
+    public PlaySchedule getPlaySchedule(int selectedPlayScheduleId){
+        return playSchedules.get(selectedPlayScheduleId);
     }
+
 
     public int showPrice(int audience){
         return audience * price;
@@ -61,4 +61,5 @@ public class Movie {
     public boolean updateAudienceCount(int selectedPlayScheduleId, int audience){
         return playSchedules.get(selectedPlayScheduleId).updateCapacity(audience);
     }
+
 }

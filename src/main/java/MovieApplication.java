@@ -1,8 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.SelectedMovie;
 import domain.Reservation;
-import view.InputView;
 import view.OutputView;
 import java.util.List;
 

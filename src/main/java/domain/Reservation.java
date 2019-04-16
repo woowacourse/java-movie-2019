@@ -1,8 +1,10 @@
 package domain;
 
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +30,24 @@ public class Reservation {
     }
 
     public void startSelectedMovies() {
-        boolean updateFlag = false;
         do {
             selectedMovies.get(index).getData();
-            updateFlag = updateAudience();
-        } while (!updateFlag);
+            System.out.println(isValidPlayScehdule());
+            if(!isValidPlayScehdule()) continue;
+        } while (!updateAudience());
         selectedMovies.get(index).showSelectedMovieSchecule();
         index += 1;
+    }
+
+    public boolean isValidPlayScehdule() {
+        if (index == 0) {
+            return true;
+        }
+        return comparePlaySchedules();
+    }
+
+    public boolean comparePlaySchedules(){
+        return selectedMovies.get(index - 1).comparePlayScheduleTime(selectedMovies.get(index));
     }
 
     public boolean updateAudience() {
@@ -58,11 +71,7 @@ public class Reservation {
         return null;
     }
 
-    public void startStatistics() {
-
-    }
-
-    public void calculationTotalPrice(){
+    public void calculationTotalPrice() {
         point = InputView.inputPoint();
         totalPrice -= point;
     }
