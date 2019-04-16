@@ -12,23 +12,31 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
+        OutputView.printMovies(movies);
+
         List<Movie> selectMovies = new ArrayList<>();
         List<PlaySchedule> selectSchedules = new ArrayList<>();
-
         String nowStr = DateTimeUtils.format(LocalDateTime.now());
         LocalDateTime now = DateTimeUtils.createDateTime(nowStr);
+
         Movie movie;
         PlaySchedule playSchedule;
-        int movieSchedule;
         int personnel;
+        boolean isReservation;
 
-        OutputView.printMovies(movies);
-        movie = selectMovie(movies, selectMovies);
-        playSchedule = selectSchedule(selectSchedules, movie);
-        personnel = selectPersonnel(playSchedule);
+        do {
+            movie = selectMovie(movies, selectMovies);
+            playSchedule = selectSchedule(selectSchedules, movie);
+            personnel = selectPersonnel(playSchedule);
+            isReservation = checkStartTime(playSchedule, now);
+        } while (!isReservation);
 
         printMovie(selectMovies);
         printSchedule(selectSchedules);
+    }
+
+    public static boolean checkStartTime(PlaySchedule playSchedule, LocalDateTime now) {
+        return playSchedule.checkStartDateTime(now);
     }
 
     public static int selectPersonnel(PlaySchedule playSchedule) {
@@ -43,6 +51,7 @@ public class MovieApplication {
     }
 
     public static PlaySchedule selectSchedule(List<PlaySchedule> playSchedules, Movie movie) {
+        playSchedules.clear();
         int movieSchedule = InputView.inputMovieSchedule();
 
         try {
@@ -57,6 +66,7 @@ public class MovieApplication {
     }
 
     public static Movie selectMovie(List<Movie> movies, List<Movie> selectMovies) {
+        selectMovies.clear();
         int movieId = InputView.inputMovieId();
         Movie movie = OutputView.printMovieSchedule(movies, movieId);
 
