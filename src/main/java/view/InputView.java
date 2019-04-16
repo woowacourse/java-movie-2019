@@ -28,6 +28,17 @@ public class InputView {
         return Integer.parseInt(selectSchedule);
     }
 
+    public static int inputPeopleNumber() {
+        System.out.println("## 예약할 인원을 입력하세요.");
+        String number = scanner.nextLine();
+
+        if (checkValid(number)) {
+            return inputPeopleNumber();
+        }
+
+        return Integer.parseInt(number);
+    }
+
     private static boolean checkValid(String input) {
         return isEmpty(input) || checkContainsChar(input);
     }
