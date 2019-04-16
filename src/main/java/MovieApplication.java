@@ -54,7 +54,7 @@ public class MovieApplication {
             System.out.println(InputView.NOT_MOVIE_SCHEDULE);
             scheduleId = InputView.inputScheduleId();
         }
-        while(isImpossibleSchedule(reserveList, userSelectMovie.getSchedule(scheduleId)))
+        while(userSelectMovie.isImpossibleSchedule(reserveList, scheduleId))
             scheduleId = InputView.inputScheduleId();
         return userSelectMovie.getSchedule(scheduleId);
     }
@@ -65,16 +65,6 @@ public class MovieApplication {
             personCount = InputView.inputPerson();
         }
         return personCount;
-    }
-    private static boolean isImpossibleSchedule(List<Reserve> reserveList, PlaySchedule userSelcetSchedule){
-        boolean result = false;
-        for(Reserve reserve : reserveList){
-            result = result || !isOneHourWithinRange(reserve.getSchedule().getStartDateTime(), userSelcetSchedule.getStartDateTime());
-        }
-        if(result){
-            System.out.println(InputView.OVER_ONEHOUR);
-        }
-        return result;
     }
     private static int inputPoint(int price){
         int point = InputView.inputPoint();

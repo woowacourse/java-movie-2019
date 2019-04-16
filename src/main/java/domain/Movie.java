@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.DateTimeUtils.isOneHourWithinRange;
+
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -47,6 +49,18 @@ public class Movie {
         PlaySchedule userSelectSchedule = playSchedules.get(scheduleId - 1);
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.isBefore(userSelectSchedule.getStartDateTime());
+    }
+
+    public boolean isImpossibleSchedule(List<Reserve> reserveList, int scheduleId){
+        boolean result = false;
+        PlaySchedule userSelectSchedule = playSchedules.get(scheduleId - 1);
+        for(Reserve reserve : reserveList){
+            result = result || !isOneHourWithinRange(reserve.getSchedule().getStartDateTime(), userSelectSchedule.getStartDateTime());
+        }
+        if(result){
+            System.out.println(InputView.OVER_ONEHOUR);
+        }
+        return result;
     }
     public PlaySchedule getSchedule(int scheduleId){
         return playSchedules.get(scheduleId-1);
