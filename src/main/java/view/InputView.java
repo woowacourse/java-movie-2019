@@ -33,13 +33,11 @@ public class InputView {
      * 영화 번호를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getValidMovieId() {
-        int id = getInteger();
-        if (isValidId(id, MovieRepository.getMovies())) {
-            return id;
-        } else {
-            throw new InputMismatchException(NOT_AVAILABLE_MOVIE_ID_ERROR_MESSAGE);
-        }
+        int userMovieId = getInteger();
+        MovieRepository.getMovieWithId(userMovieId);
+        return userMovieId;
     }
+
 
     /**
      * 정수 하나를 입력받는 메소드. 실패할 경우 예외를 던짐.
@@ -52,16 +50,4 @@ public class InputView {
         }
     }
 
-    /**
-     * 영화의 번호가 영화들의 번호 중에 존재하는 지 확인하는 메소드
-     */
-    private static boolean isValidId(int id, List<Movie> movies) {
-        Iterator<Movie> it = movies.iterator();
-        boolean isValid = false;
-        while (it.hasNext()) {
-            Movie thisMovie = it.next();
-            isValid = (thisMovie.isId(id)) ? true : isValid;
-        }
-        return isValid;
-    }
 }
