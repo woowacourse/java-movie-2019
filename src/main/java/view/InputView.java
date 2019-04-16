@@ -17,6 +17,10 @@ public class InputView {
     private static final int MIN_POINT = 0;
     private static final String POINT_INPUT_ERROR_MESSAGE = "포인트는 0보다 작을 수 없습니다.";
 
+    private static final int CREDIT_CARD_PAYMENT_METHOD = 1;
+    private static final int CASH_PAYMENT_METHOD = 2;
+    private static final String PAYMENT_METHOD_ERROR_MESSAGE = "유요한 결제 방식(1 또는 2)을 선택하셔야 합니다.";
+
 
     public static int inputMovieId() {
         System.out.println(SELECT_MOVIE_TO_RESERVE_MESSAGE);
@@ -54,6 +58,15 @@ public class InputView {
 
     public static int inputPaymentMethod() {
         System.out.println(SELECT_PAYMENT_METHOD_MESSAGE);
-        return InputNumber.getNaturalNumber();
+        try {
+            int paymentMethod = InputNumber.getNaturalNumber();
+            if (paymentMethod != CREDIT_CARD_PAYMENT_METHOD && paymentMethod != CASH_PAYMENT_METHOD) {
+                System.out.println(PAYMENT_METHOD_ERROR_MESSAGE);
+                throw new IllegalArgumentException();
+            }
+            return paymentMethod;
+        } catch (Exception e) {
+            return inputPaymentMethod();
+        }
     }
 }
