@@ -21,6 +21,5 @@ public class MovieApplication {
         }
         OutputView.printHistory(reserveMovies);
         Ticketing.startPayment(reserveMovies);
-
     }
 }

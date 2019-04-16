@@ -4,28 +4,26 @@ import view.InputView;
 import view.OutputView;
 import java.util.List;
 
+/**
+ * 영화 예매 전체를 위한 클래스
+ * 영화 예매 과정, 결제 과정 메소드 구현
+ * 사용자 입력에 대한 처리
+ */
+
 public class Ticketing {
     public static ReserveMovie startTitcketing() {
         int movieId = InputView.inputMovieId();
         Movie currentMovie = MovieRepository.searchMovies(movieId, 0);
         OutputView.printMovie(currentMovie);
-        int movieTimeTable = InputView.inputTimetable();
-        while (currentMovie.getPlaySchedules().get(movieTimeTable).isOverStartTime()) {
-            System.out.println("상영 시간이 지났습니다. 다시 선택 해 주세요.");
-            movieTimeTable = InputView.inputTimetable();
-        }
-        int movieNumOfPerson = InputView.inputNumOfPerson();
-        while (currentMovie.getPlaySchedules().get(movieTimeTable).isOverCapacity(movieNumOfPerson)) {
-            System.out.println("예매 가능 인원을 초과합니다. 다시 선택 해 주세요.");
-            movieNumOfPerson = InputView.inputNumOfPerson();
-        }
+        int movieTimeTable = InputView.inputTimetable(currentMovie);
+        int movieNumOfPerson = InputView.inputNumOfPerson(currentMovie, movieTimeTable);
         return new ReserveMovie(currentMovie, currentMovie.getPlaySchedules().get(movieTimeTable), movieNumOfPerson);
     }
 
     public static void startPayment(List<ReserveMovie> reserveMovieList) {
         int point = InputView.inputPayment();
         int totalPrice = 0;
-        int credit = InputView.inputCreditCard();
+        int credit = InputView.inputCreditCard(reserveMovieList);
 
         for (ReserveMovie reserveMovie : reserveMovieList) {
             totalPrice += reserveMovie.getMovie().getPrice() * reserveMovie.getNumOfPerson();
