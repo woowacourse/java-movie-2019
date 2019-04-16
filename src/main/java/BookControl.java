@@ -155,7 +155,14 @@ public class BookControl {
         System.out.println("최종 결제한 금액은" + totalPrice(points) + "원 입니다.\n예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 
+    // #3-2-1 총 금액을 구하는 함수
     private int totalPrice(int points) {
+        int total = 0;
+        for (BookedMovie movie : bookedMovies) {
+            total += movie.getPeople()*movie.getPrice();
+        }
+        total -= points;
+        if (total > 0) return total;
         return 0;
     }
 }

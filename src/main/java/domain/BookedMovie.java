@@ -27,4 +27,12 @@ public class BookedMovie {
                 + format(startDateTime) + NEW_LINE
                 + "예약 인원: "+people+"명";
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getPeople() {
+        return people;
+    }
 }
