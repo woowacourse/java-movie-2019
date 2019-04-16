@@ -9,9 +9,15 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-
-        int movieId = InputView.inputMovieId();
-
-        // TODO 구현 진행
+        int movieId = 0;
+        
+        try {
+            movieId = InputView.inputMovieId();
+            System.out.println(movies.get(movieId));
+        } catch (IndexOutOfBoundsException e) {
+        	System.out.println("0 ~ 4 사이의 영화를 선택하세요.");
+        	movieId = InputView.inputMovieId();
+        }
+        
     }
 }
