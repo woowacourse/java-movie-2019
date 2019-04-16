@@ -41,6 +41,12 @@ public class Vaild {
 			System.out.println("해당 시간에 상영하는 영화가 없습니다.");
 			result = true;
 		}
+		selectMovie.getPlaySchedule();
+		return result;
+	}
+	
+	public boolean ViewNumVaild(Movie selectMovie , int ViewNum) {
+		boolean result = false;
 		return result;
 	}
 }

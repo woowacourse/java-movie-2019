@@ -9,6 +9,9 @@ public class MovieApplication {
     public static void main(String[] args) {
     	int movieId = 0;
     	int movieTime = 0;
+    	int ViewNum = 0;
+    	int MoviePay = 0;
+    	int PointPay = 0;
         List<Movie> movies = MovieRepository.getMovies();
         domain.Vaild va = new domain.Vaild();
         OutputView.printMovies(movies);
@@ -20,10 +23,14 @@ public class MovieApplication {
         do {
         	movieTime = InputView.inputMovieTime();
         }while(va.movieTimeVaild(SelectMovie, movieTime));
-        int ViewNum = InputView.inputMovieViewNum();
-        int MoviePay = OutputView.printMovieTicket(SelectMovie, movieTime , ViewNum); 
-        int PointPay = InputView.inputPoint();
-        va.PaymentVaild(MoviePay,PointPay);
+        
+        do {
+        	ViewNum = InputView.inputMovieViewNum();
+        }while(va.ViewNumVaild(SelectMovie, ViewNum)); // 미구현
+        do {
+        	MoviePay = OutputView.printMovieTicket(SelectMovie, movieTime , ViewNum); 
+        	PointPay = InputView.inputPoint();
+        }while(va.PaymentVaild(MoviePay,PointPay));
         int payMethod = InputView.inputPayMethod();
         OutputView.printResultPay(payMethod, MoviePay, PointPay);
         
