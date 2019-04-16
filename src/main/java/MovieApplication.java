@@ -8,11 +8,14 @@ import view.OutputView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 
 public class MovieApplication {
+	
+	private static final int MORE_BOOK = 2;
 	
 	private Movie selectMovie(List<Movie> movies) {
         int movieId = 0;
@@ -90,20 +93,27 @@ public class MovieApplication {
 		MyMovie myMovie = new MyMovie(selectedMovie, peopleNum, selectedMovieTime);
 		return myMovie;
 	}
+	
+	public boolean payOrContinue() {
+		return (InputView.payOrMoreBook() == MORE_BOOK) ? true : false;
+	}
+	
+	public void printMyMovieInfo(List<MyMovie> myMovies) {
+		for (MyMovie myMovie : myMovies) {
+			System.out.println(myMovie.toString() + "\n");
+		}
+	}
 
     public static void main(String[] args) {
     	MovieApplication movieApp = new MovieApplication();
     	List<Movie> movies = movieApp.getAllMovie();
+    	List<MyMovie> myMovies = new ArrayList<MyMovie>();
     	
-    	MyMovie movie = movieApp.bookMovie(movies);
+    	do {
+        	myMovies.add(movieApp.bookMovie(movies));
+    	} while(movieApp.payOrContinue());
     	
-        int payOrMoreBook = InputView.payOrMoreBook();
-        
-        if(payOrMoreBook == 1) {
-        	System.out.println(movie.toString());
-        	int point = InputView.inputPoint();
-        	int payType = InputView.selectCreditCardOrCash();
-        }
- 
+    	movieApp.printMyMovieInfo(myMovies);
+    	
     }
 }

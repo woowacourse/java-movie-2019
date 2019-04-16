@@ -29,6 +29,10 @@ public class Movie {
     public String getMovieInfo() {
     	return this.id + " -" + this.name + ", " + this.price + "원";
     }
+    
+    public int getMoviePrice() {
+    	return this.price;
+    }
 
     @Override
     public String toString() {
