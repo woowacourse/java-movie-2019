@@ -32,7 +32,7 @@ public class InputView {
 	public static int inputCapacity(PlaySchedule playSchedule) {
 		System.out.println("## 예약할 인원을 입력하세요.");
 		String inputValue = SCANNER.nextLine();
-		if(Validator.isValidCapacity(inputValue, playSchedule)) {
+		if (Validator.isValidCapacity(inputValue, playSchedule)) {
 			return Integer.parseInt(inputValue);
 		}
 		return inputCapacity(playSchedule);
@@ -48,13 +48,13 @@ public class InputView {
 	}
 
 	public static int inputPoint() {
-		try {
-			System.out.println("## 결제를 진행합니다.");
-			System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputPoint();
+		System.out.println("## 결제를 진행합니다.");
+		System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+		String inputValue = SCANNER.nextLine();
+		if (Validator.isNaturalNumber(inputValue)) {
+			return Integer.parseInt(inputValue);
 		}
+		return inputPoint();
 	}
 
 	public static int inputPaymentMethod() {
