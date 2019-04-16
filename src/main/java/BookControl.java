@@ -1,4 +1,5 @@
 import domain.Movie;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -15,6 +16,7 @@ public class BookControl {
     public void bookMovie() {
         int movieId = chooseMovie();
         int time_index = chooseTime(movieId);
+        int people = howManyPeople(movieId, time_index);
     }
 
     // #1-1 예약할 영화를 입력받는 함수
@@ -23,14 +25,15 @@ public class BookControl {
         int movieId = -1;
         do {
             movieId = InputView.inputMovieId();
-        } while(checkMovieId(movieId));
+        } while (checkMovieId(movieId));
         return movieId;
     }
 
     // #1-1-1 상영목록의 영화인지 체크하는 함수
     private boolean checkMovieId(int id) {
         for (Movie movie : movies) {
-            if (id == movie.getID()) return true;
+            if (id == movie.getID())
+                return true;
         }
         System.out.println("상영목록엔 없는 영화입니다.");
         return false;
@@ -41,14 +44,15 @@ public class BookControl {
         int index = -1;
         do {
             index = InputView.inputMovieTime() - 1;
-        } while(checkIndex(index, id));
+        } while (checkIndex(index, id));
         return index;
     }
 
     // #1-2-1 예약할 영화의 시간이 정확한지 체크하는 함수
     private boolean checkIndex(int index, int id) {
         Movie temp = getMovieByID(id);
-        if (temp.getPlaySchedules().size() > index) return true;
+        if (temp.getPlaySchedules().size() > index)
+            return true;
         System.out.println("상영시간을 잘못 입력하였습니다.");
         return false;
     }
@@ -56,9 +60,28 @@ public class BookControl {
     // #1-2-2 해당 ID의 영화를 불러오는 함수
     private Movie getMovieByID(int id) {
         for (Movie movie : movies) {
-            if (id == movie.getID()) return movie;
+            if (id == movie.getID())
+                return movie;
         }
         return null;
+    }
+
+    // #1-3 예약 인원을 입력받는 함수
+    private int howManyPeople(int id, int index) {
+        int num = -1;
+        PlaySchedule temp = getMovieByID(id).getPlaySchedules().get(index);
+        do {
+            num = InputView.inputPeopleNum();
+        } while (checkPeople(num, temp));
+        return num;
+    }
+
+    // #1-3-1 입력받은 인원이 가능한지 판별하는 함수
+    private boolean checkPeople(int num, PlaySchedule playSchedule) {
+        if (num <= playSchedule.getCapacity())
+            return true;
+        System.out.println("예약 가능인원을 초과하였습니다.");
+        return false;
     }
 
     // 예매를 더 할지 결제로 넘어갈지 판단하는 함수
