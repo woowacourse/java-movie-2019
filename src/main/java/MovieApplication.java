@@ -24,7 +24,8 @@ public class MovieApplication {
         	}
         }
         
-        System.out.println("##예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번");
-        
+        /*## 예약할 시간표를 선택하세요." 메세지 출력, 
+         *   예약할 시간표를 입력받는다.*/
+        int scheduleId = InputView.inputScheduleId();
     }
 }
