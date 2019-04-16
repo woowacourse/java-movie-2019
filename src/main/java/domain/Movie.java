@@ -45,15 +45,21 @@ public class Movie {
     public void reserveMovie(int movieTime, int numberOfPeople) {
         try {
             checkValidateTime(movieTime);
+            checkValidateNumberOfPeople(movieTime, numberOfPeople);
             playSchedules.get(movieTime - ONE).decreaseCapacity(numberOfPeople);
         } catch (Exception e) {
             throw new IllegalArgumentException(INTPUT_TIME_ERROR_MENT);
         }
+    }
 
+    private void checkValidateNumberOfPeople(int movieTime, int numberOfPeople) {
+        if (numberOfPeople > playSchedules.get(movieTime - ONE).getCapacity()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void checkValidateTime(int movieTime) {
-        if (movieTime < 1 || movieTime > playSchedules.size()){
+        if (movieTime < 1 || movieTime > playSchedules.size()) {
             throw new IllegalArgumentException();
         }
     }

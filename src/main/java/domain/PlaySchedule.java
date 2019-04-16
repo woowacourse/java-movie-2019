@@ -6,6 +6,7 @@ import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
+
     private int capacity;
 
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
@@ -15,6 +16,10 @@ public class PlaySchedule {
 
     LocalDateTime getStartDateTime() {
         return startDateTime;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     public void decreaseCapacity(int decreaseNumber) {
