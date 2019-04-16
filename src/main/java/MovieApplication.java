@@ -34,7 +34,7 @@ public class MovieApplication {
         Movie movie = InputView.inputMovie(movies);
         OutputView.printMovies(movie);
 
-        int scheduleId = InputView.getScheduleId(movie);
+        int scheduleId = InputView.getScheduleId(movie, reservedMovies);
         int memberNumber = InputView.getMemberNumber(movie, scheduleId);
         reservedMovies.add(new ReservedMovie(movie,scheduleId,memberNumber));
     }

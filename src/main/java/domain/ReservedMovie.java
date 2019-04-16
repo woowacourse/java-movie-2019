@@ -24,6 +24,14 @@ public class ReservedMovie {
         return string;
     }
 
+    public Movie movieIs() {
+        return movie;
+    }
+
+    public int getScheduleId() {
+        return scheduleId;
+    }
+
     public int costIs() {
         return movie.getPrice() * memberNumber;
     }

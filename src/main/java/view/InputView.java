@@ -40,14 +40,15 @@ public class InputView {
         }
     }
 
-    public static int getScheduleId(Movie movie) {
+    public static int getScheduleId(Movie movie, List<ReservedMovie> reservedMovies) {
         System.out.println(ASK_SCHEDULE_ID);
         try {
-            ScheduleInput scheduleInput = new ScheduleInput(movie, scanner.nextLine().trim());
+            ScheduleInput scheduleInput = new ScheduleInput(movie,
+                    scanner.nextLine().trim(), reservedMovies);
             return scheduleInput.scheduleIdIs();
         } catch (Exception e) {
             System.out.println(SCHEDULE_ID_ERROR);
-            return getScheduleId(movie);
+            return getScheduleId(movie, reservedMovies);
         }
     }
 

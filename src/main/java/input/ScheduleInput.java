@@ -2,14 +2,17 @@ package input;
 
 import domain.Movie;
 import domain.PlaySchedule;
+import domain.ReservedMovie;
+import utils.DateTimeUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ScheduleInput {
     private int scheduleId;
 
-    public ScheduleInput(Movie movie, String input) {
-        if (checkValidity(movie, input) == false) {
+    public ScheduleInput(Movie movie, String input, List<ReservedMovie> reservedMovies) {
+        if (checkValidity(movie, input, reservedMovies) == false) {
             throw new IllegalStateException();
         }
         scheduleId = convertInputToScheduleId(input);
@@ -25,10 +28,26 @@ public class ScheduleInput {
         return number - 1;
     }
 
-    private boolean checkValidity(Movie movie, String input) {
+    private boolean checkValidity(Movie movie, String input, List<ReservedMovie> reservedMovies) {
         int Id = convertInputToScheduleId(input);
         if (checkValidity(movie, Id) == false) {
             return false;
+        }
+        if (checkValidity(movie, Id, reservedMovies) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkValidity(Movie movie, int id, List<ReservedMovie> reservedMovies) {
+        LocalDateTime thisOne = movie.getScheduleById(id).dateTimeIs();
+        for (ReservedMovie reservedMovie : reservedMovies
+             ) {
+            LocalDateTime anotherOne = reservedMovie.movieIs().
+                    getScheduleById(reservedMovie.getScheduleId()).dateTimeIs();
+            if (!DateTimeUtils.isOneHourWithinRange(thisOne, anotherOne)) {
+                return false;
+            }
         }
         return true;
     }
