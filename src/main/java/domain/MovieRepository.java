@@ -1,3 +1,13 @@
+/*
+ * MovieRepository Class
+ *
+ * @version 1
+ *
+ * @date 2019-04-16
+ *
+ * Copyright (c) 2019. JIhun oh
+ * All rights reserved.
+ */
 package domain;
 
 import java.util.ArrayList;
@@ -7,6 +17,7 @@ import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
+    private static final int NEXT_INDEX = 1;
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -42,4 +53,18 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static boolean isContainMovieId(int selecteID){
+        return findMovieIDatAtMovieList(0, selecteID);
+    }
+
+    private static boolean findMovieIDatAtMovieList(int thMovie, int selecteID){
+        if(thMovie >= movies.size() )
+            return false;
+
+        if(movies.get(thMovie).isMatchId(selecteID))
+            return true;
+        return findMovieIDatAtMovieList(thMovie+NEXT_INDEX, selecteID);
+    }
+
 }

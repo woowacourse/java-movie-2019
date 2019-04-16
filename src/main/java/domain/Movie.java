@@ -1,3 +1,13 @@
+/*
+ * Movie Class
+ *
+ * @version 1
+ *
+ * @date 2019-04-16
+ *
+ * Copyright (c) 2019. JIhun oh
+ * All rights reserved.
+ */
 package domain;
 
 import java.util.ArrayList;
@@ -30,5 +40,9 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public boolean isMatchId(int seletedID){
+        return this.id == seletedID;
     }
 }

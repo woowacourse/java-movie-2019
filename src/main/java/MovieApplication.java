@@ -1,3 +1,13 @@
+/*
+ * MovieApplication Class
+ *
+ * @version 1
+ *
+ * @date 2019-04-16
+ *
+ * Copyright (c) 2019. JIhun oh
+ * All rights reserved.
+ */
 import domain.Movie;
 import domain.MovieRepository;
 import view.InputView;
@@ -10,8 +20,10 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-
+        while(true) {
+            int movieId = InputView.inputMovieId();
+            System.out.println(MovieRepository.isContainMovieId(movieId));
+        }
         // TODO 구현 진행
     }
 }
