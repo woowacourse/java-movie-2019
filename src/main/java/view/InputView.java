@@ -1,5 +1,8 @@
 package view;
 
+import error.Validator;
+import utils.PrintUtils;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -7,6 +10,13 @@ public class InputView {
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+        try {
+            String id = scanner.nextLine();
+            Validator.checkAccuracyOfMovieId(id);
+            return Integer.parseInt(id);
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputMovieId();
+        }
     }
 }
