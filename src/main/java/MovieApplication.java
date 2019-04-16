@@ -11,7 +11,11 @@ public class MovieApplication {
 		OutputView.printMovies(movies);
 
 		int movieId = InputView.inputMovieId();
-
-		// TODO 구현 진행
+		int startDateTime = InputView.inputStartDateTime();
+		int movieCount = InputView.inputMovieCount();
+		int point = InputView.inputPoint();
+		int paymentMehotd = InputView.inputPaymentMethod();
+		
+		
 	}
 }
