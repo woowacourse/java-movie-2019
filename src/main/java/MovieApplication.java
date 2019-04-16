@@ -1,7 +1,7 @@
 /*
  * MovieApplication Class
  *
- * @version 1.4
+ * @version 1.5
  *
  * @date 2019-04-16
  *
@@ -33,15 +33,19 @@ public class MovieApplication {
     //구매 진행 프로세스
     public static void movieReserveProcess() {
         int movieID ;
+        int movieTime;
         try {
             movieID = selectMovieByID();
             printSelectedMovieInfo(movieID);
-            selectMovieTimeAtMovieID(movieID);
-
+            movieTime = selectMovieTimeAtMovieID(movieID);
+            selectPeopleNum();
         } catch (IllegalArgumentException e) {
             OutputView.printRestartReservation(e);
             movieReserveProcess();
         }
+    }
+    public static int selectPeopleNum(){
+        return InputView.inputPeopleNum();
     }
 
     //구매할 ID 선택

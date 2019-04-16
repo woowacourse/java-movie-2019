@@ -1,7 +1,7 @@
 /*
  * InputView Class
  *
- * @version 1.1
+ * @version 1.2
  *
  * @date 2019-04-16
  *
@@ -25,6 +25,11 @@ public class InputView {
     public static int inputTime(){
         System.out.println("## 예약할 시간표를 선택하세요. (첫번쨰 상영 시간이 1번)");
         return scanner.nextInt()- Movie.PLAYSCHECULE_START_INDEX;
+    }
+
+    public static int inputPeopleNum(){
+        System.out.println("##예약할 인원을 입력하세요.");
+        return scanner.nextInt();
     }
 
 }
