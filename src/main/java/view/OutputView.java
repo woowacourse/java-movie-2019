@@ -12,15 +12,28 @@ public class OutputView {
     }
   }
 
-  private static void FindMovieId(Movie movie, int movieid){
-    if(movie.IsCorrectNumberOfMovie(movieid)){
+  private static void FindMovieId(Movie movie, int movieId){
+    if(movie.IsCorrectNumberOfMovie(movieId)){
       System.out.println(movie);
+    }
+  }
+
+  private static void FindMovieSchedule(Movie movie, int movieId, int movieSchedule){
+    if(movie.IsCorrectNumberOfMovie(movieId)) {
+      String schedule = movie.getOneSchedule(movieSchedule);
+      System.out.println(schedule);
     }
   }
 
   public static void printOneMovie(List<Movie> movies, int movieId) {
     for(Movie movie : movies){
       FindMovieId(movie, movieId);
+    }
+  }
+
+  public static void printOneMovieSchedule(List<Movie> movies, int movieId, int movieSchedule){
+    for(Movie movie : movies){
+      FindMovieSchedule(movie, movieId, movieSchedule);
     }
   }
 }

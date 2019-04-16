@@ -11,22 +11,17 @@ public class InputView {
   private static final Scanner scanner = new Scanner(System.in);
 
   public static boolean IsCorrectMovieId(int movieId) {
-    List<Movie> movies = MovieRepository.getMovies();
-    for (Movie movie : movies) {
-      if (movie.IsCorrectNumberOfMovie(movieId)) {
-        return true;
+    return MovieRepository.IsIncludeMovie(movieId);
+  }
+
+  private static boolean IsCorrectMovieSchedule(int movieId, int movieSchedule){
+    for(Movie movie : MovieRepository.getMovies()){
+      int movieScheduleNumber = movie.getBookableNumber(movieId);
+      if(movieSchedule!=0){
+        return movieSchedule<=movieScheduleNumber;
       }
     }
     return false;
-  }
-
-  public static int inputMovieId() {
-    int movieId;
-    do {
-      System.out.println("## 예약할 영화를 선택하세요.");
-      movieId = InputValidNumber();
-    } while (!IsCorrectMovieId(movieId));
-    return movieId;
   }
 
   public static int InputValidNumber() {
@@ -39,8 +34,21 @@ public class InputView {
     return -1;
   }
 
-  public static int InputMovieSchedule() {
-    System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-    return scanner.nextInt();
+  public static int inputMovieId() {
+    int movieId;
+    do {
+      System.out.println("## 예약할 영화를 선택하세요.");
+      movieId = InputValidNumber();
+    } while (!IsCorrectMovieId(movieId));
+    return movieId;
+  }
+
+  public static int InputMovieSchedule(int movieId) {
+    int movieSchedule;
+    do{
+      System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+      movieSchedule = scanner.nextInt();
+    }while(!IsCorrectMovieSchedule(movieId, movieSchedule));
+    return movieSchedule;
   }
 }

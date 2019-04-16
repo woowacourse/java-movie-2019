@@ -13,7 +13,8 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         OutputView.printOneMovie(movies, movieId);
 
-        int movieSchedule = InputView.InputMovieSchedule();
+        int movieSchedule = InputView.InputMovieSchedule(movieId);
+        OutputView.printOneMovieSchedule(movies, movieId, movieSchedule);
         // TODO 구현 진행
     }
 }
