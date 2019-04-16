@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MovieService;
 import view.InputView;
 import view.OutputView;
 
@@ -10,10 +11,12 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        OutputView.printMoviePlaySchedule(movies, movieId);
-
-
-        // TODO 구현 진행
+        int movieId = InputView.inputMovieId(movies);
+        Movie selectedMovie = MovieService.findMovieForId(movies, movieId);
+        OutputView.printMovieInfo(selectedMovie);
+        int selectedMoviePlayTime = InputView.inputMoviePlaySchedule(selectedMovie);
+        int numOfReservation = InputView.inputReservationNumber(selectedMovie, selectedMoviePlayTime);
+        MovieService.updateMoviePlayScheduleCapacity(selectedMovie, selectedMoviePlayTime, numOfReservation);
+        int answer = InputView.inputPlayPaymentOrAdditionalOrder();
     }
 }

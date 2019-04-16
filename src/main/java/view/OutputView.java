@@ -12,15 +12,7 @@ public class OutputView {
         }
     }
 
-    public static void printMoviePlaySchedule(List<Movie> movies, int movieId){
-        for(Movie movie : movies){
-            findMovieForId(movie, movieId);
-        }
-    }
-
-    private static void findMovieForId(Movie movie, int movieId){
-        if(movie.isMatchedMovieId(movieId)){
-            System.out.println(movie);
-        }
+    public static void printMovieInfo(Movie movie){
+        System.out.println(movie);
     }
 }

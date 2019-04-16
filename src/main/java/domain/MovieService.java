@@ -11,4 +11,9 @@ public class MovieService {
         }
         return null;
     }
+
+    public static void updateMoviePlayScheduleCapacity(Movie selectedMovie,
+                                                       int selectedMoviePlayTime, int reservationNum){
+        selectedMovie.updateMoviePlaySchedule(selectedMoviePlayTime, reservationNum);
+    }
 }

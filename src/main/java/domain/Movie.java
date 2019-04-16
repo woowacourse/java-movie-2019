@@ -32,7 +32,23 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String movieInfoToString(){
+        return id + " - " + name + ", " + price + "원";
+    }
+
     public boolean isMatchedMovieId(int movieId){
         return movieId == this.id;
+    }
+
+    public boolean isOverPlaySchedule(int timeNum){
+        return this.playSchedules.size() < timeNum;
+    }
+
+    public boolean isPossibleTime(int timeNum, int ReservationNum){
+        return this.playSchedules.get(timeNum - 1).isPossibleReserve(ReservationNum);
+    }
+
+    public void updateMoviePlaySchedule(int selectedMoviePlayTime, int reservationNum){
+        this.playSchedules.get(selectedMoviePlayTime - 1).updateCapacity(reservationNum);
     }
 }
