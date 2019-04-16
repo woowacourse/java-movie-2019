@@ -11,15 +11,17 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<ReservationCategory> reservationCategory = new ArrayList<>();
         List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+        int isPayment;
 
-        // TODO 구현 진행
-        Movie choiceMovie =  OutputView.printChoiceMovies(movies);
-        reservationCategory = reservedTimeSchedule(choiceMovie, reservationCategory);
+        do{
+            OutputView.printMovies(movies);
 
-        int isPayment = InputView.inputIsPayment();
-        OutputView.printReservedCategory(reservationCategory, isPayment);
-        OutputView.progressPayment(reservationCategory);
+            Movie choiceMovie =  OutputView.printChoiceMovies(movies);
+            reservationCategory = reservedTimeSchedule(choiceMovie, reservationCategory);
+            isPayment = InputView.inputIsPayment();
+
+        } while(OutputView.printReservedCategory(reservationCategory, isPayment));
+
 
     }
 
@@ -35,7 +37,6 @@ public class MovieApplication {
             return reservedTimeSchedule(choiceMovie, reservationCategories);
         }
         reservationCategories.add(new ReservationCategory(choiceMovie, choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime(), reservedPerson));
-
         return reservationCategories;
     }
 
