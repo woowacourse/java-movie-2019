@@ -55,5 +55,15 @@ public class OutputView {
         return true;
     }
 
+    /*
+     * 두 영화의 시간 차이가 1시간 이내인지 여부
+     */
+    public static boolean judgeOneHour(List<LocalDateTime> times, LocalDateTime localDateTime) {
+        boolean answer = true;
+        for (int i = 0; i < times.size() - 2; i++) {
+            answer = answer && isOneHourWithinRange(times.get(i), localDateTime);
+        }
 
+        return answer;
+    }
 }
