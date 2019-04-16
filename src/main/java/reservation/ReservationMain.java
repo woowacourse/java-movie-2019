@@ -8,16 +8,14 @@ import view.OutputView;
 
 public class ReservationMain {
     public static MovieReservation reservationRun(MovieReservation reservations) {
-        PlaySchedule schedule;
         int reservePeopleNum;
         int movieId = InputView.inputMovieId();
-        Movie selectedMovie = OutputView.printPlaySchedule(movieId);
-        do {
-            schedule = InputView.inputPlaySchedule(selectedMovie);
-        } while (!reservations.checkVaildSchedule(schedule));
-        reservePeopleNum = InputView.inputReservationPeople(schedule);
+
+        Movie selectedMovie = ReservationCreater.inputMovie(movieId);
+        PlaySchedule schedule = ReservationCreater.inputSchedule(reservations, selectedMovie);
+        reservePeopleNum = ReservationCreater.inputReserveNum(schedule);
         reservations.insertRervation(selectedMovie, schedule, reservePeopleNum);
-        MovieRepository.reduceCapacity(selectedMovie,schedule,reservePeopleNum);
+        MovieRepository.reduceCapacity(selectedMovie, schedule, reservePeopleNum);
         return reservations;
     }
 }
