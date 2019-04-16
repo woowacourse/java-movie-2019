@@ -1,10 +1,7 @@
 package utils;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DateTimeUtils {
     public static final String PLAYING_TIME_FORMAT = "yyyy-MM-dd HH:mm";
@@ -24,8 +21,8 @@ public class DateTimeUtils {
         return dateTime.format(formatter);
     }
     
-    public String createNowDateTime() {
-		String nowDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(PLAYING_TIME_FORMAT));
+    public static LocalDateTime createNowDateTime() {
+    	LocalDateTime nowDateTime = LocalDateTime.now();
 		return nowDateTime;
     }
 

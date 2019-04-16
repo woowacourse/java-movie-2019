@@ -1,9 +1,13 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MovieApplication {
@@ -34,12 +38,19 @@ public class MovieApplication {
         return movie.getPlayMovieSchedule(movieTime - 1);
 	}
 	
+	private boolean checkMovieTime(PlaySchedule selectedMovieTime) {
+		System.out.println(DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime()));
+		return DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime());
+	}
+	
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
+        MovieApplication movieApp = new MovieApplication();
+    	
+    	List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         
-
-
-        
+        Movie selectedMovie = movieApp.selectMovie(movies);
+        PlaySchedule selectedMovieTime = movieApp.selectMovieTime(selectedMovie);
+    	movieApp.checkMovieTime(selectedMovieTime);
     }
 }
