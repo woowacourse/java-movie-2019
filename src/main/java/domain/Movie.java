@@ -26,6 +26,10 @@ public class Movie {
         return this.id == movieId;
     }
 
+    public PlaySchedule getPlaySchedule(int scheduleNumber){
+        return playSchedules.get(scheduleNumber);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

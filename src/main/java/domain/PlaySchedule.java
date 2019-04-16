@@ -13,6 +13,14 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public void reserve(int reserveAmount){
+        this.capacity -= reserveAmount;
+    }
+
+    public boolean isPossibleReserve(int reserveAmount){
+        return reserveAmount > 0 && this.capacity >= reserveAmount;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
