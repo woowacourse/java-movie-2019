@@ -15,3 +15,8 @@
 - class InputView
 
     - inputMovieScheduleNum() : 상영 시간표에서 특정 시간을 선택했을 때 그 시간표의 번호를 입력받는 메서드
+    - inputPeopleWatchingMovie() : 영화를 보는 인원 수를 입력받는 메서드
+
+- class PartialApplication
+
+    - appOfOne() : 한 번의 예매 상황을 구현하는 메서드
