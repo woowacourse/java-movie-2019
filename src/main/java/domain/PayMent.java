@@ -10,7 +10,7 @@ public class PayMent {
     public static void pay(int totalMoney) {
         System.out.println("할인전금액 : " + totalMoney);
         System.out.println("## 결제를 진행합니다");
-        int point = getPoints();
+        int point = getPoints(totalMoney);
         int carOrCash = getCardOrCash();
 
         System.out.print("최종 결제 금액은 ");
@@ -18,12 +18,15 @@ public class PayMent {
         System.out.println("입니다.\n" + "즐거운 관람 되세요.");
     }
 
-    private static int getPoints() {
+    private static int getPoints(int totalMoney) {
         System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입니다");
         int point = scanner.nextInt();
         while (point < 0) {
             System.out.println("!! 포인트는 0 이상입니다.");
-            return getPoints();
+            return getPoints(totalMoney);
+        }
+        while (totalMoney < point) {
+            System.out.println("!! 포인트는 최종 금액 이하입니다.");
         }
         return point;
     }
