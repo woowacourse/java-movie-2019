@@ -9,8 +9,7 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-
-        OutputView.printMovie(MovieReservation.getUserMovie());
+        System.out.println(MovieReservation.getUserMovie().toString());
 
         // TODO 구현 진행
     }

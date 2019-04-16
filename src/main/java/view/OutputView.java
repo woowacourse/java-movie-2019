@@ -13,10 +13,6 @@ public class OutputView {
 		}
 	}
 
-	public static void printMovie(Movie movie) {
-		System.out.println(movie);
-	}
-
 	public static void printUserInputAgain() {
 		System.out.println(DEMAND_USER_INPUT_AGAIN);
 	}
