@@ -20,7 +20,7 @@ public class DateTimeUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PLAYING_TIME_FORMAT);
         return dateTime.format(formatter);
     }
-//영화 상영시간이 1시간 이내인지
+
     public static boolean isOneHourWithinRange(LocalDateTime dateTime1, LocalDateTime dateTime2) {
         LocalDateTime startDateTime = dateTime1.minusHours(ONE_HOURS);
         LocalDateTime endDateTime = dateTime1.plusHours(ONE_HOURS);

@@ -1,8 +1,12 @@
 package view;
 
+import domain.ChoiceMovie;
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
+import utils.DateTimeUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -50,6 +54,16 @@ public class InputView {
             throw new IllegalArgumentException("올바른 상영시간표를 선택해 주세요.");
         }
         return inputTime;
+    }
+
+    public static LocalDateTime isOverOneHour(List<ChoiceMovie> choiceMovies, ChoiceMovie movie){
+        LocalDateTime movieTime = movie.getPlaySchedules().getStartDateTime();
+        for(ChoiceMovie choice :choiceMovies){
+            if(!DateTimeUtils.isOneHourWithinRange(choice.getPlaySchedules().getStartDateTime(),movieTime)){
+                throw new IllegalArgumentException("한가지 이상의 영화를 예매했을 경우 예매하려는 영화의 시작시간과 차이가 1시간 이상 차이날 수 없습니다.");
+            }
+        }
+        return movieTime;
     }
     public static int inputMember(){
         try {
