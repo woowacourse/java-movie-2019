@@ -36,5 +36,10 @@ public class OutputView {
         }
     }
 
+    public static void printPayment() {
+        System.out.println("## 결제를 진행합니다.");
+    }
+
+    //public static void print
 
 }

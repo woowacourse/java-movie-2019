@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Payment;
 import domain.SelectedMovie;
 import view.InputView;
 import view.OutputView;
@@ -65,6 +66,7 @@ public class MovieApplication {
 
             int exitOrAddReserve = InputView.inputExitOrAddReservation();
             if (exitOrAddReserve == EXIT_RESERVATION) {
+                System.out.println();
                 OutputView.printSelectedMovies(ReserveMovie.getSelectedMovies());
                 break;
             }
@@ -72,5 +74,10 @@ public class MovieApplication {
             System.out.println();
         }
 
+        OutputView.printPayment();
+        int usingPoints = InputView.inputUsingPoints();
+
+        int inputCardOrCash = InputView.inputCardOrCash();
+        //OutputView.printnew Payment(ReserveMovie.getSelectedMovies(), usingPoints, inputCardOrCash).getMoney();
     }
 }

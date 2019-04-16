@@ -21,8 +21,16 @@ public class SelectedMovie {
         this.people = people;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public LocalDateTime getStartDateTime() {
         return startDateTime;
+    }
+
+    public int getPeople() {
+        return people;
     }
 
     @Override
