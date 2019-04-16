@@ -49,4 +49,13 @@ public class Movie {
     public PlaySchedule getSchedule(int indexIndex){
         return playSchedules.get(indexIndex);
     }
+
+    // 영화정보만 출력하기
+    public void showBasicInfo(){
+        System.out.println(id + " - " + name + ", " + price + "원");
+    }
+    // 전체 예약금액 계산하기
+    public int calculateTotalReserveMoney(int personCount){
+        return price*personCount;
+    }
 }

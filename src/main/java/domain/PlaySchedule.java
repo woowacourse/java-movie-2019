@@ -26,4 +26,8 @@ public class PlaySchedule {
     public boolean isReservePossible(int count){
         return capacity >= count;
     }
+    // 시간만 출력하기
+    public void showOnlyTimeInfo(){
+        System.out.println("시작시간: " + format(startDateTime));
+    }
 }

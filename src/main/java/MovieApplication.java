@@ -24,6 +24,19 @@ public class MovieApplication {
         }
     }
 
+    public static int getTotalPayment(List<MovieReservation> reservationList) {
+        System.out.println("## 결제를 진행합니다.");
+        int totalMoney = 0;
+        for (int i = 0; i < reservationList.size(); i++) {
+            MovieReservation reserveInfo = reservationList.get(i);
+            Movie movie = MovieRepository.getMovie(reserveInfo.getMovieId());
+            int printPersonCount = reserveInfo.getPersonCount();
+
+            totalMoney += movie.calculateTotalReserveMoney(printPersonCount);
+        }
+        return totalMoney;
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
