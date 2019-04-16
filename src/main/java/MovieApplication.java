@@ -15,10 +15,6 @@ public class MovieApplication {
         List<MovieReservation> reservations =  reserver.reserveMovies(movies);
 
         // 결제
-        pay();
-    }
-
-    public static void pay() {
-        System.out.println("결제시도!");
+        Payer.pay(reservations);
     }
 }

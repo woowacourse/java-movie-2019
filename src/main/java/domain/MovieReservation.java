@@ -24,4 +24,8 @@ public class MovieReservation {
         this.time = time;
         this.numReserve = numReserve;
     }
+
+    public int totalPrice() {
+        return price * numReserve;
+    }
 }

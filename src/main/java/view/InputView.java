@@ -1,5 +1,6 @@
 package view;
 
+import domain.PayDiscount;
 import domain.ReservationCommand;
 
 import java.util.Scanner;
@@ -31,5 +32,24 @@ public class InputView {
             return inputReservationCommand();
         }
         return command;
+    }
+
+    public static int inputPoint() {
+        System.out.println("##결제를진행합니다.");
+        System.out.println("##포인트사용금액을입력하세요.포인트가없으면0입력");
+        int point = scanner.nextInt();
+
+        return point;
+    }
+
+    public static PayDiscount inputPayDiscount() {
+        System.out.println("##신용카드는1번,현금은2번");
+        int command = scanner.nextInt();
+        PayDiscount discount = PayDiscount.valueOf(command);
+        if (discount == PayDiscount.NOT_EXIST) {
+            System.out.println("잘못된 번호입니다.");
+            return inputPayDiscount();
+        }
+        return discount;
     }
 }
