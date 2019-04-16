@@ -26,10 +26,29 @@ public class Movie {
 		return (this.id == id ? true : false);
 	}
 
+	public boolean isValidTime(int time) {
+		if (0 < time && time <= playSchedules.size()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isValidPeople(int timeIndex, int people) {
+		return playSchedules.get(timeIndex - 1).isValidPeopleCount(people);
+	}
+
 	void addPlaySchedule(PlaySchedule playSchedule) {
 		playSchedules.add(playSchedule);
 	}
 
+	public String getMovieInfoString() {
+		return id + " - " + name + ", " + price + "원";
+	}
+	
+	public String getMovieTime(int timeIndex) {
+		return playSchedules.get(timeIndex - 1).getMovieTime();
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
