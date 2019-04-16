@@ -33,6 +33,13 @@ public class Movie {
         return timeCode;
     }
 
+    public int isValidCapacity(int id, int reserveCount) {
+        if (!this.playSchedules.get(id).isCapacityPossible(reserveCount)) {
+            throw new IllegalArgumentException("예약 가능 인원 수를 초과하였습니다.");
+        }
+        return reserveCount;
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
