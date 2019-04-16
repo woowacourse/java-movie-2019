@@ -19,6 +19,6 @@ public class MovieRepositoryTest {
         MovieRepository movieRepository = new MovieRepository();
         int selectMovieId = 2;
         Movie selectMovie = MovieRepository.getSelectMovie(selectMovieId);
-//        assertThat(selectMovie.getName()).isEqualTo("생일");
+//        assertThat(selectSchedule.getName()).isEqualTo("생일");
     }
 }

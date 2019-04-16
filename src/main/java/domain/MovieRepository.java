@@ -46,7 +46,7 @@ public class MovieRepository {
     }
 
     public static Movie getSelectMovie(int selectMovieId) {
-        return movies.stream().filter(movie -> movie.getId() == selectMovieId).findFirst().orElseThrow(() -> new IllegalArgumentException("존재하지 않는 영화 번호 입니다."));
+        return movies.stream().filter(movie -> movie.getId() == selectMovieId).findFirst().orElseThrow(() -> new IndexOutOfBoundsException("존재하지 않는 영화 번호 입니다."));
 
 
     }

@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -13,18 +14,30 @@ public class Movie {
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
 
-    public String getName() {
-        return name;
-    }
-
     public Movie(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
+    public List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public PlaySchedule select(int selectMovieSchedule) {
+        return Optional.ofNullable(playSchedules.get(selectMovieSchedule - 1)).orElseThrow(() -> new ArrayIndexOutOfBoundsException("없는 스케쥴 입니다."));
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
