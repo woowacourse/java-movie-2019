@@ -13,6 +13,14 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public boolean checkCapacity(int capacity) {
+        if (this.capacity >= capacity) {
+            return false;
+        }
+        System.out.println("범위를 벗어났습니다.");
+        return true;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

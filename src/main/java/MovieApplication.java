@@ -14,28 +14,35 @@ public class MovieApplication {
 
         List<Movie> selectMovies = new ArrayList<>();
         List<PlaySchedule> playSchedules = new ArrayList<>();
-        Movie movie = null;
+        Movie movie;
+        PlaySchedule playSchedule;
+        int movieSchedule;
+        int personnel;
 
         do {
             int movieId = InputView.inputMovieId();
             movie = OutputView.printMovieSchedule(movies, movieId);
-            addSelectMovie(selectMovies, movie);
         } while (movie == null);
-
-        int movieSchedule = 0;
+        addSelectMovie(selectMovies, movie);
 
         do {
             movieSchedule = InputView.inputMovieSchedule();
-        } while (addSelectSchedules(playSchedules, movie, movieSchedule));
+            playSchedule = movie.getPlaySchedules().get(movieSchedule - 1);
+        } while (addSelectSchedules(playSchedules, playSchedule, movieSchedule));
+
+        do {
+            personnel = InputView.inputPersonnel();
+        } while (playSchedule.checkCapacity(personnel));
+
     }
 
     public static void addSelectMovie(List<Movie> selectMovies, Movie movie) {
         selectMovies.add(movie);
     }
 
-    public static boolean addSelectSchedules(List<PlaySchedule> playSchedules, Movie movie, int movieSchedule) {
+    public static boolean addSelectSchedules(List<PlaySchedule> playSchedules, PlaySchedule playSchedule, int movieSchedule) {
         try {
-            playSchedules.add(movie.getPlaySchedules().get(movieSchedule - 1));
+            playSchedules.add(playSchedule);
             return false;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("범위를 벗어났습니다.");
