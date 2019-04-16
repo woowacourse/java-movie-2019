@@ -30,10 +30,10 @@ public class Movie {
         return true;
     }
 
-
     public String getMovieDataTime(int datatime){
         return playSchedules.get(datatime).selctDatatime();
     }
+
 
 
     @Override
