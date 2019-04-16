@@ -20,4 +20,12 @@ public class ReservationList {
         }
     }
 
+    public long getTotalAmountOfPayment(){
+        long total = 0;
+        for(Reservation reservation: list){
+            total += reservation.getAmoutOfPayment();
+        }
+        return total;
+    }
+
 }

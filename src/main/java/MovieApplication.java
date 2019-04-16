@@ -28,13 +28,13 @@ public class MovieApplication {
             endOrAddReservation = InputView.inputEndOrAddReservation();
         }
 
+        // 예약 내역 보여주기
         reservationList.showResrvationList();
 
         // 결제
+        long totalAmountOfPayment = reservationList.getTotalAmountOfPayment();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();
-
-
 
     }
 }

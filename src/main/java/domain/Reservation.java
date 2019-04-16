@@ -22,4 +22,9 @@ public class Reservation {
 
     }
 
+    public long getAmoutOfPayment(){
+        Movie movie = MovieRepository.getMovie(movieId);
+        return movie.getPrice()*peopleNumberOfResrvation;
+    }
+
 }
