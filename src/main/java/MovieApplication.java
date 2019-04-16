@@ -7,12 +7,14 @@ import java.util.List;
 
 public class MovieApplication {
     public static void main(String[] args) {
-    	
+    	int movieId = 0;
         List<Movie> movies = MovieRepository.getMovies();
         domain.Vaild va = new domain.Vaild();
         OutputView.printMovies(movies);
         
-        int movieId = InputView.inputMovieId(); // 보고 싶은 영화의 숫자 입력 받음
+        do {
+        	movieId = InputView.inputMovieId();
+        }while(va.movieNumVaild(movieId));
         Movie SelectMovie = OutputView.printSelectMovie(movies, movieId);
         int movieTime = InputView.inputMovieTime();
         int ViewNum = InputView.inputMovieViewNum();
