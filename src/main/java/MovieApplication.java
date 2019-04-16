@@ -13,12 +13,33 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         List<Movie> selectMovies = new ArrayList<>();
+        List<PlaySchedule> playSchedules = new ArrayList<>();
         Movie movie = null;
 
         do {
             int movieId = InputView.inputMovieId();
             movie = OutputView.printMovieSchedule(movies, movieId);
-            selectMovies.add(movie);
+            addSelectMovie(selectMovies, movie);
         } while (movie == null);
+
+        int movieSchedule = 0;
+
+        do {
+            movieSchedule = InputView.inputMovieSchedule();
+        } while (addSelectSchedules(playSchedules, movie, movieSchedule));
+    }
+
+    public static void addSelectMovie(List<Movie> selectMovies, Movie movie) {
+        selectMovies.add(movie);
+    }
+
+    public static boolean addSelectSchedules(List<PlaySchedule> playSchedules, Movie movie, int movieSchedule) {
+        try {
+            playSchedules.add(movie.getPlaySchedules().get(movieSchedule - 1));
+            return false;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("범위를 벗어났습니다.");
+            return true;
+        }
     }
 }

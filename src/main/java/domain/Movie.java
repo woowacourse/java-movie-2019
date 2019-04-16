@@ -25,7 +25,7 @@ public class Movie {
     public int getMovieId() {
         return id;
     }
-    public List<PlaySchedule> getPlaySchedules() { return playSchedules; }
+    public List<PlaySchedule> getPlaySchedules() { return playSchedules;}
 
     @Override
     public String toString() {
