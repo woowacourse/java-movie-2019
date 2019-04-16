@@ -31,4 +31,12 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public String choiceTime(int time) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(playSchedules.get(time - 1));
+
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + sb.toString();
+    }
 }

@@ -11,6 +11,7 @@ public class MovieApplication {
     private static final String INFO_CHOIE= "##예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
     private static final String INFO_NUM = "##예약할 인원을 입력하세요.";
     private static final String INFO_CONTINUE = "##예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번";
+    private static final String INFO_BOOKING = "예약내역";
     private static final String INFO_PAY = "## 결제를 진행합니다.";
     private static final String INFO_POINT = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
     private static final String INFO_CARD = "## 신용카드는 1번, 현금은 2번";
@@ -22,19 +23,41 @@ public class MovieApplication {
     private static int movieTime = 0;
     private static int movieNum = 0;
     private static int movieContinue = 0;
+    private static Movie choiceMovie;
+    private static List<Movie> movies = MovieRepository.getMovies();
 
     public static void main(String[] args) {
         System.out.println(INFO_MOVIE);
-        List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-        // TODO 구현 진행
-        Movie choiceMovie = choiceMovie(movies, movieId);
+        choiceMovie = choiceMovie(movies, movieId);
         System.out.println(choiceMovie);
         movieTime();
         movieNumber();
         movieContinue();
+        checkBooking();
+    }
+
+    public static void checkBooking() {
+        if(movieContinue == 1) {
+            showBooking();
+        }
+        if(movieContinue == 2) {
+            int movieId = InputView.inputMovieId();
+            choiceMovie = choiceMovie(movies, movieId);
+            System.out.println(choiceMovie);
+            movieTime();
+            movieNumber();
+            movieContinue();
+            checkBooking();
+        }
+    }
+
+    public static void showBooking() {
+        System.out.println(INFO_BOOKING);
+        System.out.println(choiceMovie.choiceTime(movieTime));  //choice Time
+        System.out.println("예약 인원 : " + movieNum + "명");
     }
 
     public static void movieTime() {
