@@ -32,5 +32,10 @@ public class ReservationManager {
             initReservation();
             return;
         }
+        payReservation();
+    }
+
+    private void payReservation() {
+        int userPoint = InputView.inputPoint();
     }
 }
