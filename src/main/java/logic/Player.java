@@ -31,14 +31,23 @@ public class Player {
     private void BuyWithTimeschedule(Movie movie) {
         try {
             OutputView.printPlaySchedule(movie);
-            int timeSchedule = InputView.InputTimeScheduleIndex(movie);
+            int timeScheduleIndex = InputView.InputTimeScheduleIndex(movie);
             int countOfBuy = InputView.inputCustomerBuyCount();
-            reservations.add(new Reservation(movie, timeSchedule, countOfBuy));
+            checkReservationAndAdd(movie, timeScheduleIndex, countOfBuy);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             BuyWithTimeschedule(movie);
         }
     }
+
+    private void checkReservationAndAdd(Movie movie, int timeScheduleIndex, int countOfBuy) {
+        for (Reservation reservation : reservations) {
+            reservation.isMatchInOneHour(timeScheduleIndex);
+        }
+        reservations.add(new Reservation(movie, timeScheduleIndex, countOfBuy));
+    }
+
+
 
     public void calculateCost() {
         for (Reservation reservation : reservations) {

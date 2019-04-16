@@ -28,7 +28,11 @@ public class PlaySchedule {
 
     private boolean isScheduleValidTime() {
         LocalDateTime currentTime = LocalDateTime.now();
-        return currentTime.isBefore(this.startDateTime);
+        return currentTime.isAfter(this.startDateTime);
+    }
+
+    public boolean isOneHourWithinRangeSchedule(PlaySchedule inputSchedule) {
+        return DateTimeUtils.isOneHourWithinRange(this.startDateTime, inputSchedule.startDateTime);
     }
 
     @Override

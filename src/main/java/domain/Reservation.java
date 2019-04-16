@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 public class Reservation {
 
     private final Movie movie;
@@ -25,4 +27,9 @@ public class Reservation {
         return buyCount;
     }
 
+    public void isMatchInOneHour(int timeIndex) {
+        if (movie.isOneHourWithRangeMovie(timeIndex)) {
+            throw new IllegalArgumentException("1시간 이내의 영화는 예매 불가능합니다");
+        }
+    }
 }

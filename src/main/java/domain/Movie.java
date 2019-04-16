@@ -70,4 +70,10 @@ public class Movie {
     public boolean checkMovieSchedule(int timeScheduleIndex) {
         return playSchedules.get(timeScheduleIndex).isSchedulePossible();
     }
+
+    public boolean isOneHourWithRangeMovie(int timeIndex) {
+        PlaySchedule inputSchedule = playSchedules.get(timeIndex - ONE);
+        return playSchedules.stream()
+                .anyMatch(playschdule -> playschdule.isOneHourWithinRangeSchedule(inputSchedule));
+    }
 }
