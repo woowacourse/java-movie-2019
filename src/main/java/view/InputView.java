@@ -23,12 +23,12 @@ public class InputView {
 		}
 	}
 	
-	public static int inputMovieCount() {
+	public static int inputCapacity() {
 		try {
 			System.out.println("## 예약할 인원을 입력하세요.");
 			return Integer.parseInt(SCANNER.nextLine());
 		} catch (IllegalArgumentException e) {
-			return inputMovieCount();
+			return inputCapacity();
 		}
 	}
 	
