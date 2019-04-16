@@ -101,4 +101,12 @@ public class InputView {
         return input;
    }
 
+   }
+    public static int isOverPrice(int point,int price){
+        if(point>price || point<0){
+            throw new IllegalArgumentException("포인트는 결제금액보다 적게 입력해 주세요.");
+        }
+        return point;
+  }
+
 }
