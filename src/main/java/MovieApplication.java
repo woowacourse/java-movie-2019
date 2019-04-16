@@ -11,6 +11,5 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         
-        
     }
 }

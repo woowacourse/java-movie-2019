@@ -25,6 +25,10 @@ public class Movie {
 	public boolean equalsId(int id) {
 		return (this.id == id);
 	}
+	
+	public boolean bookable(int schedule) {
+		return (this.playSchedules.size() >= schedule);
+	}
 
 	@Override
 	public String toString() {
