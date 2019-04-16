@@ -16,7 +16,7 @@ public class InputView {
     }
     
     public static int inputNumOfPeople() {
-        System.out.println("## 예약할 인원을 입력하세요.");
+        System.out.println("## 예약할 인원을 입력하세요. 구매를 취소하려면 0을 입력하세요.");
         return scanner.nextInt();
     }
     

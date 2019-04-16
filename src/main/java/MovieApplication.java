@@ -65,6 +65,14 @@ public class MovieApplication {
 		}
 		return ticket;
 	}
+	
+	static int numberOfValidTicket(List<Movie> movies, List<SelectedMovie> selectedMovies) {
+		int ticket = 0;
+		for(Movie movie : movies) {
+			ticket += numberOfValidTicket(selectedMovies, movie);
+		}
+		return ticket;
+	}
 
 	static int inputScheduleOnce(List<SelectedMovie> selectedMovies, Movie movie) {
 		int input = InputView.inputSchedule();
@@ -152,7 +160,9 @@ public class MovieApplication {
 		int swc = 2;
 		do {
 			selectMovie(movies, selectedMovies);
-			swc = recurInputRechoiceOrNot();
+			swc = (numberOfValidTicket(movies, selectedMovies) != 0) ? recurInputRechoiceOrNot() : -1;
 		} while (swc == 2);
+		if(swc == -1)
+			System.out.println("## 더이상 구매 가능한 표가 없습니다. 예약을 종료합니다.");
 	}
 }
