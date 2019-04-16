@@ -48,4 +48,8 @@ public class PlaySchedule {
 
         capacity -= numOfPeople;
     }
+
+    public LocalDateTime getStartDateTime() {
+        return this.startDateTime;
+    }
 }
