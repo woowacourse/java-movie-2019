@@ -25,6 +25,10 @@ public class Movie {
 	public int getTotalPrice(int capacity) {
 		return price * capacity;
 	}
+	
+	public String getMovieSummary() {
+		return id + " - " + name + ", " + price + "원\n";
+	}
 
 	public List<PlaySchedule> getPlaySchedules() {
 		return playSchedules;

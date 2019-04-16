@@ -23,6 +23,10 @@ public class PlaySchedule {
 		}
 		return false;
 	}
+	
+	public String getPlayScheduleSummary() {
+		return "시작시간: " + format(startDateTime);
+	}
 
 	@Override
 	public String toString() {
