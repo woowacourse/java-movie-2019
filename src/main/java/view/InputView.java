@@ -21,7 +21,7 @@ public class InputView {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력하세요.");
-            return inputMovieId();
+            return inputPlaySchedule();
         }
     }
 
@@ -31,7 +31,7 @@ public class InputView {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력하세요.");
-            return inputMovieId();
+            return inputCapacity();
         }
     }
 
@@ -41,7 +41,27 @@ public class InputView {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력하세요.");
-            return inputMovieId();
+            return inputContinueReservation();
         }
     }
+
+	public static int inputPoint() {
+		try {
+			System.out.println("##포인트사용금액을입력하세요.포인트가없으면0입력");
+			return Integer.parseInt(scanner.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("숫자를 입력하세요.");
+			return inputPoint();
+		}
+	}
+
+	public static int inputPayType() {
+		try {
+			System.out.println("##신용카드는 1번, 현금은 2번");
+			return Integer.parseInt(scanner.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("숫자를 입력하세요.");
+			return inputPayType();
+		}
+	}
 }
