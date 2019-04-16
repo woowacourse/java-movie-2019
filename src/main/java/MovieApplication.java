@@ -50,7 +50,7 @@ public class MovieApplication {
         int inputMovieStartTimeNumber = 0;
         while (!rightInput) {
             inputMovieStartTimeNumber = InputView.inputMovieStartTime();
-            rightInput = InputError.handleMovieStartTimeInputError(inputMovieStartTimeNumber, movies, movieId);
+            rightInput = InputError.handleMovieStartTimeInputError(inputMovieStartTimeNumber, movieId);
         }
         return inputMovieStartTimeNumber;
     }

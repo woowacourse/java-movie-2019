@@ -1,6 +1,7 @@
 package utils;
 
 import domain.Movie;
+import domain.MovieRepository;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class InputError {
         return true;
     }
 
-    public static boolean handleMovieStartTimeInputError(int movieStartTime, List<Movie> movies, int movieId) {
-        if (movieStartTime < 0 || !movies.get(movieId - 1).isSmallerPlayScheduleSize(movieStartTime)) {
+    public static boolean handleMovieStartTimeInputError(int movieStartTime, int movieId) {
+        if (movieStartTime < 0 || !MovieRepository.getMovieUsingMovieID(movieId).isSmallerPlayScheduleSize(movieStartTime)) {
             System.out.println("<오류> 상영 시간에 없는 영화입니다.");
             return false;
         }
