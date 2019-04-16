@@ -49,4 +49,26 @@ public class InputView {
             return inputMovieId();
         }
     }
+
+    public static int inputPoint() {
+        System.out.println("## 결제를 진행합니다.\n## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력 ");
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("잘못된 입력입니다. 다시 입력해주시기 바랍니다.");
+            scanner.next();
+            return inputMovieId();
+        }
+    }
+
+    public static int inputPayType() {
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("잘못된 입력입니다. 다시 입력해주시기 바랍니다.");
+            scanner.next();
+            return inputMovieId();
+        }
+    }
 }

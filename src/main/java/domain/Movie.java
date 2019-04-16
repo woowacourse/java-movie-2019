@@ -36,9 +36,11 @@ public class Movie {
     public int getId() { return id; }
 
     public Optional<PlaySchedule> getScheduleByNumber(int no) {
-        if (1 <= no && no <= playSchedules.size()) {
-            return Optional.of(playSchedules.get(no));
+        if ((1 <= no) && (no <= playSchedules.size())) {
+            return Optional.of(playSchedules.get(no - 1));
         }
         return null;
     }
+
+    public int getPrice() { return price; }
 }

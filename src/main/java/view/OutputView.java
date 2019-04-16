@@ -27,4 +27,20 @@ public class OutputView {
     public static void printAlreadyStartedMessage() {
         System.out.println("이미 상영이 시작된 영화입니다. 다시 입력해주시기 바랍니다.");
     }
+
+    public static void printInvalidCommandMessage() {
+        System.out.println("1번(결제)과 2번(추가 예매) 중에 선택하여 주시기 바랍니다.");
+    }
+
+    public static void printInvalidPointMessage() {
+        System.out.println("포인트는 마이너스일 수 없습니다. 다시 입력해주시기 바랍니다.");
+    }
+
+    public static void printInvalidPayType() {
+        System.out.println("1번(신용 카드)과 2번(현금) 중에 선택하여 주시기 바랍니다.");
+    }
+
+    public static void printResult(int total) {
+        System.out.println("최종 결제한 금액은 " + total + "원 입니다.\n예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
 }
