@@ -1,7 +1,7 @@
 /*
  * Movie Class
  *
- * @version 1
+ * @version 1.1
  *
  * @date 2019-04-16
  *
@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    public static final int PLAYSCHECULE_START_INDEX = 1;
 
     private final int id;
     private final String name;
@@ -44,5 +45,12 @@ public class Movie {
 
     public boolean isMatchId(int seletedID) {
         return this.id == seletedID;
+    }
+
+    public boolean isContainPlaySchedule(int selectedSchedule) {
+        if (selectedSchedule >= playSchedules.size()) {
+            return false;
+        }
+        return true;
     }
 }
