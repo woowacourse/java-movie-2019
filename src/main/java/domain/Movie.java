@@ -74,6 +74,6 @@ public class Movie {
     public boolean isOneHourWithRangeMovie(int timeIndex) {
         PlaySchedule inputSchedule = playSchedules.get(timeIndex - ONE);
         return playSchedules.stream()
-                .anyMatch(playschdule -> playschdule.isOneHourWithinRangeSchedule(inputSchedule));
+                .anyMatch(playschedule -> playschedule.isOneHourWithinRangeSchedule(inputSchedule));
     }
 }

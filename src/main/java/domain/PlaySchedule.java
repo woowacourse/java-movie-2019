@@ -26,11 +26,13 @@ public class PlaySchedule {
         return (capacity > 0 && isScheduleValidTime());
     }
 
+    // 현재 시간 이후인지 체크
     private boolean isScheduleValidTime() {
         LocalDateTime currentTime = LocalDateTime.now();
         return currentTime.isAfter(this.startDateTime);
     }
 
+    // 1시간 이내인지 체크
     public boolean isOneHourWithinRangeSchedule(PlaySchedule inputSchedule) {
         return DateTimeUtils.isOneHourWithinRange(this.startDateTime, inputSchedule.startDateTime);
     }
