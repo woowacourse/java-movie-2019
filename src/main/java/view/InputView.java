@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class InputView {
 
-  private static final int continueBook = 1;
-  private static final int finishBook = 2;
+  private static final int continueBook = 2;
+  private static final int finishBook = 1;
   private static final Scanner scanner = new Scanner(System.in);
 
   public static boolean IsCorrectMovieId(int movieId) {
@@ -64,7 +64,7 @@ public class InputView {
     do {
       System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
       continueGame = InputValidNumber();
-    } while (continueGame == continueBook || continueGame == finishBook);
+    } while (continueGame != continueBook && continueGame != finishBook);
     if (continueGame == continueBook) {
       return true;
     }

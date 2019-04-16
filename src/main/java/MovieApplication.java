@@ -26,7 +26,7 @@ public class MovieApplication {
     do {
       ContinueGame(movies);
     }while(InputView.InputContinue());
-    
+    OutputView.PrintReservation(bookList);
     //OutputView.printOnemovieSequence(movies, movieId, movieSequence);
     // TODO 구현 진행
   }

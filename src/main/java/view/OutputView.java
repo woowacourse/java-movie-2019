@@ -1,5 +1,6 @@
 package view;
 
+import domain.Book;
 import domain.Movie;
 
 import java.util.List;
@@ -18,17 +19,15 @@ public class OutputView {
     }
   }
 
-  private static void FindMovieSchedule(Movie movie, int movieId, int movieSchedule){
-    if(movie.IsCorrectNumberOfMovie(movieId)) {
-      String schedule = movie.getOneSchedule(movieSchedule);
-      System.out.println(schedule);
-    }
-  }
-
   public static void printOneMovie(List<Movie> movies, int movieId) {
     for(Movie movie : movies){
       FindMovieId(movie, movieId);
     }
   }
 
+  public static void PrintReservation(List<Book> bookList){
+    for (int i = 0; i < bookList.size(); i++) {
+      System.out.println(bookList.get(i).ViewBooking());
+    }
+  }
 }

@@ -38,17 +38,21 @@ public class Movie {
   }
 
   public boolean IsBookableSequence(int movieSequence) {
-    return this.playSchedules.size()>=movieSequence
-        && movieSequence>0;
+    return this.playSchedules.size() >= movieSequence
+        && movieSequence > 0;
   }
 
-  public boolean IsBookableNumber(int movieSequence, int bookNum){
-    return this.playSchedules.get(movieSequence-1).ExceedCapacity(bookNum);
+  public boolean IsBookableNumber(int movieSequence, int bookNum) {
+    return this.playSchedules.get(movieSequence - 1).ExceedCapacity(bookNum);
   }
 
   public String getOneSchedule(int movieSchedule) {
     StringBuilder sb = new StringBuilder();
     sb.append(playSchedules.get(movieSchedule - 1));
     return sb.toString();
+  }
+
+  public String getMovieInfo() {
+    return id + " - " + name + ", " + price + "원" + NEW_LINE;
   }
 }
