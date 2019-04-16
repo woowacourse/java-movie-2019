@@ -8,19 +8,26 @@ import domain.Book;
 import java.util.List;
 
 public class MovieApplication {
-    public static List<Book> bookList = new ArrayList<>();
 
-    public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+  public static List<Book> bookList = new ArrayList<>();
 
-        int movieId = InputView.inputMovieId();
-        OutputView.printOneMovie(movies, movieId);
+  public static void ContinueGame(List<Movie> movies) {
+    int movieId = InputView.inputMovieId();
+    OutputView.printOneMovie(movies, movieId);
 
-        int movieSequence = InputView.InputMovieSchedule(movieId);
-        int bookNum = InputView.InputBookingNumber(movieId, movieSequence);
-        bookList.add(new Book(movieId, movieSequence, bookNum));
-        //OutputView.printOnemovieSequence(movies, movieId, movieSequence);
-        // TODO 구현 진행
-    }
+    int movieSequence = InputView.InputMovieSchedule(movieId);
+    int bookNum = InputView.InputBookingNumber(movieId, movieSequence);
+    bookList.add(new Book(movieId, movieSequence, bookNum));
+  }
+
+  public static void main(String[] args) {
+    List<Movie> movies = MovieRepository.getMovies();
+    OutputView.printMovies(movies);
+    do {
+      ContinueGame(movies);
+    }while(InputView.InputContinue());
+    
+    //OutputView.printOnemovieSequence(movies, movieId, movieSequence);
+    // TODO 구현 진행
+  }
 }
