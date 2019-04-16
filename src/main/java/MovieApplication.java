@@ -5,12 +5,17 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class MovieApplication {
     private static final int ARRAY_DEFAULT_VALUE = -1;
     private static final int QUIT_SIGNAL = 1;
     private static final int CONTINUE_SIGNAL = 2;
+    private static final int PAY_CARD = 1;
+    private static final double CARD_DISCOUNT = 0.95;
+    private static final int PAY_CASH = 2;
+    private static final double CASH_DISCOUNT = 0.98;
 
     private static List<Reservation> reservations;
     private static boolean isReserving;
@@ -27,10 +32,7 @@ public class MovieApplication {
 
         OutputView.printReservations(reservations);
 
-        int point = InputView.inputPoint();
-        InputView.inputPayMethod();
-
-        OutputView.printReceipt(reservations, point);
+        pay();
     }
 
     public static boolean makeReservation(List<Movie> movies) {
@@ -82,6 +84,32 @@ public class MovieApplication {
                 return false;
         reservations.add(newReservation);
         return true;
+    }
+
+    public static void pay() {
+        int point = 0;
+        int payMethod = 0;
+        try {
+            point = InputView.inputPoint();
+            payMethod = InputView.inputPayMethod();
+        } catch (InputMismatchException e) {
+            OutputView.printErrorMessage();
+            pay();
+        }
+        OutputView.printReceipt(countTotalPrice(point, payMethod));
+    }
+
+    public static int countTotalPrice(int point, int payMethod) {
+        int totalPrice = 0;
+        for (Reservation reservation : reservations)
+            totalPrice += reservation.getPricePerReservation();
+        if (totalPrice <= point)
+            return 0;
+        if (payMethod == PAY_CARD) {
+            totalPrice = (int) ((totalPrice - point) * CARD_DISCOUNT);
+            return totalPrice;
+        }
+        return (int) ((totalPrice - point) * CASH_DISCOUNT);
     }
 
 }
