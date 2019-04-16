@@ -18,4 +18,8 @@ public class Reservation {
     public String toString() {
         return movie.toStringWithoutSchedules() + movie.getSchedule(scheduleId).toStringWithoutCapacity() + "예약 인원: " + personnels + "명\n";
     }
+
+    public int howMuch() {
+        return movie.getPrice() * personnels;
+    }
 }

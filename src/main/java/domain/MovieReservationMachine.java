@@ -55,4 +55,19 @@ public class MovieReservationMachine {
         System.out.println("## 결제를 진행합니다.");
     }
 
+    /**
+     * 결제 금액을 계산한다
+     */
+    public static int calculatePayment(int point, int howToPay) {
+        double reduceRate = (howToPay == 1) ? 0.05 : 0.02;
+
+        int totalPay = 0;
+        Iterator<Reservation> it = reservationHistory.iterator();
+        while (it.hasNext()) {
+            totalPay += it.next().howMuch();
+        }
+
+        return (int)((totalPay - point) * (1-reduceRate));
+    }
+
 }

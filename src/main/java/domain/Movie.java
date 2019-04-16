@@ -51,4 +51,6 @@ public class Movie {
         return null;
     }
 
+    public int getPrice() { return price; }
+
 }
