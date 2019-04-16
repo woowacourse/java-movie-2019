@@ -30,7 +30,7 @@ public class PlaySchedule {
          }
     }
 
-    public boolean checkOneHourGapwithOthers(PlaySchedule playSchedule) {
+    public boolean checkOneHourGapWithOthers(PlaySchedule playSchedule) {
         return playSchedule.checkOtherScheduleTime(startDateTime);
     }
 

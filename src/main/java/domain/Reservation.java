@@ -11,6 +11,16 @@ public class Reservation {
         this.theNumberOfPerson = theNumberOfPerson;
     }
 
+    public void checkOneHourGap(Reservation reservation){
+        if(reservation.calcTimeGapOverOneHour(playSchedule)){
+            throw new IllegalArgumentException("1시간 차이의 영화 시간표를 골라주세요.");
+        }
+    }
+
+    private boolean calcTimeGapOverOneHour(PlaySchedule playSchedule){
+        return playSchedule.checkOneHourGapWithOthers(playSchedule);
+    }
+
     @Override
     public String toString() {
         return "예약 내역" + "\n" +

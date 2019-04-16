@@ -22,10 +22,18 @@ public class MovieApplication {
         //TODO 상영시간이 지났는지 여부 확인
 
         List<Reservation> reservedMovies = new ArrayList<>();
-        do{
+        do {
             Movie selectedMovie = getPlaySchedulesOfSelectedMovie();
-            selectMovieSchedule(reservedMovies, selectedMovie);
-        }while(checkAdditionalReserveOrNot() == 2);
+            PlaySchedule selectedPlaySchedule = getPlayScheduleByNumber(selectedMovie);
+            int theNumberOfPerson = getTheNumberOfPeron(selectedPlaySchedule);
+            try {
+                addReservationList(reservedMovies, new Reservation(selectedMovie, selectedPlaySchedule,
+                        theNumberOfPerson));
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        } while (checkAdditionalReservationOrNot() == 2);
+
         OutputView.printReservation(reservedMovies);
     }
 
@@ -41,29 +49,33 @@ public class MovieApplication {
 
     private static PlaySchedule getPlayScheduleByNumber(Movie selectedMovie) {
         try {
-            int scheduleId = InputView.inputMovieScheduleNumber();             // 시간표 선택
-            return selectedMovie.getPlaySchedules().get(scheduleId);
+            int scheduleId = InputView.inputMovieScheduleNumber();
+            return selectedMovie.getPlaySchedules().get(scheduleId-1);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getPlayScheduleByNumber(selectedMovie);
         }
     }
 
-    /* 영화 선택이후 결제 전까지의 영화 선택 과정을 담은 메소드 */
-    private static List<Reservation> selectMovieSchedule(List<Reservation> reservedMovies, Movie movie) {
+    private static int getTheNumberOfPeron(PlaySchedule playSchedule) {
         try {
-            PlaySchedule selectedPlaySchedule = getPlayScheduleByNumber(movie);
             int theNumberOfPerson = InputView.inputTheNumberOfPerson();
-            selectedPlaySchedule.checkPersonOverCapacity(theNumberOfPerson);
-            reservedMovies.add(new Reservation(movie, selectedPlaySchedule, theNumberOfPerson));
-            return reservedMovies;
+            playSchedule.checkPersonOverCapacity(theNumberOfPerson);
+            return theNumberOfPerson;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return selectMovieSchedule(reservedMovies, movie);
+            return getTheNumberOfPeron(playSchedule);
         }
     }
 
-    private static int checkAdditionalReserveOrNot() {
+    private static void addReservationList(List<Reservation> reservationList, Reservation curReservation) {
+        for (Reservation reservation : reservationList) {
+            curReservation.checkOneHourGap(reservation);
+        }
+        reservationList.add(curReservation);
+    }
+
+    private static int checkAdditionalReservationOrNot() {
         try {
             int checkReservationEnd = InputView.inputAdditionalReserveOrNot();
             if (checkReservationEnd != 1 && checkReservationEnd != 2) {
@@ -72,7 +84,7 @@ public class MovieApplication {
             return checkReservationEnd;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return checkAdditionalReserveOrNot();
+            return checkAdditionalReservationOrNot();
         }
     }
 }
