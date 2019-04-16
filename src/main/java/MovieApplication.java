@@ -10,9 +10,8 @@ public class MovieApplication {
         int totalPrice = movieReservation.totalPrice();
         OutputView.printPaymentBegin();
         Payment payment = new Payment(totalPrice);
-        payment.addPoint();
-        payment.howToPay();
-        OutputView.printTotalPrice(payment.caculateFinalPrice());
+        payment.addPointAndChoosePayMethod();
+        OutputView.printTotalPrice(payment.calculateFinalPrice());
         InputView.closeInputView();
     }
 }

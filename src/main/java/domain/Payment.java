@@ -12,7 +12,12 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
-    public void addPoint() {
+    public void addPointAndChoosePayMethod() {
+        addPoint();
+        howToPay();
+    }
+
+    private void addPoint() {
         try {
             point = new Point(InputView.inputPoint());
         } catch (IllegalArgumentException e) {
@@ -21,7 +26,7 @@ public class Payment {
         }
     }
 
-    public void howToPay() {
+    private void howToPay() {
         try {
             paymentWay = new PaymentWay(InputView.inputPaymentWay());
         } catch (IllegalArgumentException e) {
@@ -30,7 +35,7 @@ public class Payment {
         }
     }
 
-    public int caculateFinalPrice() {
+    public int calculateFinalPrice() {
         totalPrice = point.discountAmount(totalPrice);
         totalPrice = paymentWay.discountPrice(totalPrice);
         return totalPrice;

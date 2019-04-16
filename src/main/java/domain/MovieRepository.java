@@ -52,9 +52,9 @@ public class MovieRepository {
     }
 
     private static int findMovieFromList(int movieID) {
-        int result;
-        for (result = 0; result < movies.size() && movies.get(result).notThisMovie(movieID); result++){
+        int index;
+        for (index = 0; index < movies.size() && movies.get(index).notThisMovie(movieID); index++) {
         }
-        return result;
+        return index;
     }
 }
