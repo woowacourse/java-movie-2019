@@ -21,4 +21,8 @@ public class Reservation {
     public int getPricePerReservation() {
         return movie.getPrice() * numPeople;
     }
+
+    public boolean checkOneHourWithinRange(Reservation reservation) {
+        return movie.getSchedule(tableId).isOneHourWithinRange(reservation.movie.getSchedule(reservation.tableId));
+    }
 }

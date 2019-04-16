@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -28,6 +30,10 @@ public class PlaySchedule {
             return true;
         }
         return false;
+    }
+
+    public boolean isOneHourWithinRange(PlaySchedule playSchedule) {
+        return DateTimeUtils.isOneHourWithinRange(startDateTime, playSchedule.startDateTime);
     }
 
 }

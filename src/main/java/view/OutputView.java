@@ -36,4 +36,8 @@ public class OutputView {
     public static void printInputWrongValueMessage() {
         System.out.println("잘못된 값을 입력하셨습니다." + NEW_LINE);
     }
+
+    public static void printErrorMessage() {
+        System.out.println("티켓을 구매 할 수 없습니다." + NEW_LINE);
+    }
 }

@@ -33,13 +33,16 @@ public class MovieApplication {
         OutputView.printReceipt(reservations, point);
     }
 
-    public static void makeReservation(List<Movie> movies) {
+    public static boolean makeReservation(List<Movie> movies) {
         int movieId = InputView.inputMovieId();
         OutputView.printMovie(findMovieById(movies, movieId));
         int tableId = InputView.inputMovieTable() + ARRAY_DEFAULT_VALUE;
         int numPeople = InputView.inputNumPeople();
-        confirmReservation(findMovieById(movies, movieId), tableId, numPeople);
-        enterQuitOrContinue();
+        if (!confirmReservation(findMovieById(movies, movieId), tableId, numPeople)) {
+            OutputView.printErrorMessage();
+            return false;
+        }
+        return enterQuitOrContinue();
     }
 
     public static boolean enterQuitOrContinue() {
@@ -62,12 +65,23 @@ public class MovieApplication {
         return null;
     }
 
-    public static boolean confirmReservation(Movie movie, int movieTable, int numPeople) {
-        if (movie.makeReserve(movieTable, numPeople)) {
-            reservations.add(new Reservation(movie, movieTable, numPeople));
-            return true;
+    public static boolean confirmReservation(Movie movie, int tableId, int numPeople) {
+        Reservation newReservation;
+
+        if (movie.makeReserve(tableId, numPeople)) {
+            newReservation = new Reservation(movie, tableId, numPeople);
+            return checkOutOfOneHourRange(newReservation);
         }
+
         return false;
+    }
+
+    public static boolean checkOutOfOneHourRange(Reservation newReservation) {
+        for (Reservation reservation : reservations)
+            if (!newReservation.checkOneHourWithinRange(reservation))
+                return false;
+        reservations.add(newReservation);
+        return true;
     }
 
 }
