@@ -198,7 +198,7 @@ public class MovieApplication {
 
         int payByCreditOrCash = InputView.inputPayByCreditCardOrCash();
 
-        printPaymentAmount(reservedMovieList,amountOfPointToUse,payByCreditOrCash);
+        m.printPaymentAmount(reservedMovieList,amountOfPointToUse,payByCreditOrCash);
 
         //예약 내역 프린트. 이건 movie 정보를 받아야겟지
 
