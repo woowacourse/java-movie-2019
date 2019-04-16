@@ -46,4 +46,14 @@ public class MovieRepository {
     public static boolean isMovieExist(int movieNumber){
         return movies.stream().anyMatch(movie->movie.isSameMovie(movieNumber));
     }
+
+
+    public static Movie getMovie(int movieNumber){
+        for (int i = 0; i < movies.size(); i++) {
+            if(movies.get(i).isSameMovie(movieNumber)){
+                return movies.get(i);
+            }
+        }
+        return null;
+    }
 }

@@ -32,7 +32,6 @@ public class Movie {
                 + sb.toString();
     }
 
-
     // 같은 영화가 맞는지
     public boolean isSameMovie(int movieNumber){
         return id == movieNumber;

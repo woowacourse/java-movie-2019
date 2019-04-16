@@ -3,6 +3,8 @@ package error;
 import domain.Movie;
 import domain.MovieRepository;
 
+import java.util.List;
+
 public class Validator {
 
     private static final String WARNING_WHEN_NOT_INTEGER = "정수가 아닙니다";
@@ -30,7 +32,8 @@ public class Validator {
     }
 
     // 그무비가 공석이 있는지
-    public static boolean isMovieHasVacancy(Movie movie) {
+    public static boolean isMovieHasVacancy(int movieNumber) {
+        Movie movie = MovieRepository.getMovie(movieNumber);
         if (movie.vacancyExist()) {
             return true;
         }
