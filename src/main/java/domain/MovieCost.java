@@ -5,7 +5,7 @@ public class MovieCost {
 
     public MovieCost(Reservation reservation) {
         Movie movie = reservation.getMovie();
-        int count  = reservation.getBuyCount();
+        int count = reservation.getBuyCount();
 
         cost = movie.getPrice() * count;
     }

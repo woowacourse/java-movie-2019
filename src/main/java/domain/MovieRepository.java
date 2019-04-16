@@ -81,6 +81,6 @@ public class MovieRepository {
 
     public static boolean isAllMoviePossible() {
         return movies.stream()
-                    .anyMatch(movie -> movie.isMoviePossible());
+                .anyMatch(movie -> movie.isMoviePossible());
     }
 }

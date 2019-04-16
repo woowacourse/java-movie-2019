@@ -1,7 +1,5 @@
 package domain;
 
-import utils.DateTimeUtils;
-
 public class Reservation {
 
     private final Movie movie;
