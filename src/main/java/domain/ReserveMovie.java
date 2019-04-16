@@ -13,16 +13,16 @@ public class ReserveMovie {
         this.numOfPerson = numOfPerson;
     }
 
-    public ReserveMovie getReserveMovie() {
-        return this;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(playSchedule);
         return movie.getId() + " - " + movie.getName() + ", " + movie.getPrice() + "원" + NEW_LINE
                 + sb.toString() + "예약 인원: " + this.numOfPerson + "명";
+    }
+
+    public Movie getMovie() {
+        return this.movie;
     }
 
     public int getNumOfPerson() {

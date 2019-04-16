@@ -20,8 +20,7 @@ public class MovieApplication {
             additionalTicketing = InputView.inputAdditionalTicketing();
         }
         OutputView.printHistory(reserveMovies);
-        //int point = InputView.inputPayment();
-        //int credit = InputView.inputCreditCard();
+        Ticketing.startPayment(reserveMovies);
 
     }
 }

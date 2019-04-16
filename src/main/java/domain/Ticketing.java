@@ -2,6 +2,7 @@ package domain;
 
 import view.InputView;
 import view.OutputView;
+import java.util.List;
 
 public class Ticketing {
     public static ReserveMovie startTitcketing() {
@@ -19,5 +20,18 @@ public class Ticketing {
             movieNumOfPerson = InputView.inputNumOfPerson();
         }
         return new ReserveMovie(currentMovie, currentMovie.getPlaySchedules().get(movieTimeTable), movieNumOfPerson);
+    }
+
+    public static void startPayment(List<ReserveMovie> reserveMovieList) {
+        int point = InputView.inputPayment();
+        int totalPrice = 0;
+        int credit = InputView.inputCreditCard();
+
+        for (ReserveMovie reserveMovie : reserveMovieList) {
+            totalPrice += reserveMovie.getMovie().getPrice() * reserveMovie.getNumOfPerson();
+        }
+        totalPrice -= point;
+        totalPrice *= (credit == 1) ? 0.95 : 0.98;
+        OutputView.printPayment(totalPrice);
     }
 }
