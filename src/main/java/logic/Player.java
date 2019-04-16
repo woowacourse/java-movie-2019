@@ -16,19 +16,13 @@ public class Player {
         movieCosts = new ArrayList<>();
     }
 
-    public void init() {
-
-    }
-
     public void play() {
         do {
             OutputView.printMovies(MovieRepository.getMovies());
             Movie movie = InputView.inputMovie();
-            OutputView.printPlaySchedule(movie);
             BuyWithTimeschedule(movie);
             OutputView.printPlaySchedule(movie);    // 테스트할때만 쓰는거 나중에 지울것
         } while (InputView.checkExit());
-        //calculateCost();
     }
 
     public void calculateCost() {
@@ -40,8 +34,14 @@ public class Player {
     }
 
     private void BuyWithTimeschedule(Movie movie) {
-        int timeSchedule = InputView.InputTimeScheduleIndex();
-        int countOfBuy = InputView.inputCustomerBuyCount();
-        reservations.add(new Reservation(movie, timeSchedule, countOfBuy));
+        try {
+            OutputView.printPlaySchedule(movie);
+            int timeSchedule = InputView.InputTimeScheduleIndex(movie);
+            int countOfBuy = InputView.inputCustomerBuyCount();
+            reservations.add(new Reservation(movie, timeSchedule, countOfBuy));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            BuyWithTimeschedule(movie);
+        }
     }
 }

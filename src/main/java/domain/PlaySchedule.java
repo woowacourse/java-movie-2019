@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -18,6 +20,10 @@ public class PlaySchedule {
             throw new IllegalArgumentException("인원 초과");
         }
         this.capacity -= buyCount;
+    }
+
+    public boolean isOneHour(PlaySchedule otherPlayerSchedule) {
+        return DateTimeUtils.isOneHourWithinRange(this.startDateTime, otherPlayerSchedule.startDateTime);
     }
 
     @Override

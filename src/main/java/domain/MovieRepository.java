@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinTask;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -64,5 +65,19 @@ public class MovieRepository {
     public static void buyMovieTickets(Movie movie, int playScheduleIndex, int buyCount) {
         List<PlaySchedule> playScheduleList = getPlaySchedule(movie);
         playScheduleList.get(playScheduleIndex - 1).buyTicket(buyCount);
+    }
+
+    public static void checkIfOneHourWithRange(Movie inputMovie, int BuyIndex) {
+        List<PlaySchedule> existSchedules = getPlaySchedule(inputMovie);
+        PlaySchedule buyPlayerSchedule = existSchedules.get(BuyIndex);
+        for (PlaySchedule playSchedule : existSchedules) {
+            checkIfOneHour(buyPlayerSchedule, playSchedule);
+        }
+    }
+
+    private static void checkIfOneHour(PlaySchedule buyPlayerSchedule, PlaySchedule playSchedule) {
+        if (playSchedule.isOneHour(buyPlayerSchedule)) {
+            throw new IllegalArgumentException("한시간 이내 차이나는 영화는 예매 불가");
+        }
     }
 }

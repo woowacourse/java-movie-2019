@@ -14,14 +14,18 @@ public class InputView {
         //여기서 예외처리해서 없는 영화 확인할 것
         return MovieRepository.getWantMovie(InputUtil.getInt());
     }
-    public static int inputMovieId() {
-        System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
-    }
 
-    public static int InputTimeScheduleIndex() {
-        System.out.println("# 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번");
-        return InputUtil.getInt();
+    public static int InputTimeScheduleIndex(Movie movie) {
+        System.out.println("# 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+        //여기서 스케쥴 1시간 이내 차이나면 처리할것.
+        try {
+            int timeScheduleIndex = InputUtil.getInt();
+           // MovieRepository.checkIfOneHourWithRange(movie, timeScheduleIndex);
+            return timeScheduleIndex;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return InputTimeScheduleIndex(movie);
+        }
     }
 
     public static int inputCustomerBuyCount() {
