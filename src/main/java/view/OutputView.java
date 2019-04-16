@@ -14,4 +14,10 @@ public class OutputView {
     public static void printMovieInfo(String movie){
         System.out.println(movie);
     }
+
+    public static void printMoviePayState(String movie, String movieTime, int people){
+        System.out.println(movie);
+        System.out.println(movieTime);
+        System.out.println("예약 인원 : " + people + "명");
+    }
 }

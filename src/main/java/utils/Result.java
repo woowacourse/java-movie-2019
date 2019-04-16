@@ -35,7 +35,9 @@ public class Result {
     }
 
     private void startMoviePay(){ //TODO
-
+        for(int i=0; i<movieId.size(); i++){
+            movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), moviePeople.get(i));
+        }
     }
 
     private void startMovieSellect(){
@@ -44,6 +46,6 @@ public class Result {
         OutputView.printMovieInfo(movies.get(movieNumber).toString());
         movieTime.add(InputView.inputMovieTime());
         moviePeople.add(InputView.inputMoviePeople());
-        startMovieResult();
+        setMovieResult(InputView.inputMovieExit());
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,5 +32,11 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public void toStringInfo(int time, int people) {
+        String movieData = (id + " - " + name + ", " + price + "원");
+        String movieTime = playSchedules.get(time-1).toStringData();
+        OutputView.printMoviePayState(movieData, movieTime, people);
     }
 }
