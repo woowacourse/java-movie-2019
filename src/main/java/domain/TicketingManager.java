@@ -10,6 +10,7 @@
 package domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import view.InputView;
@@ -24,6 +25,10 @@ import view.OutputView;
 public class TicketingManager {
 	private List<Ticket> tickets;
 	
+	public TicketingManager() {
+		this.tickets = new ArrayList<Ticket>();
+	}
+	
 	public void ticketing() {
 		try {
 			int movieId = InputView.inputMovieId();
@@ -31,9 +36,9 @@ public class TicketingManager {
 			OutputView.printMovie(movieId);
 			int scheduleNumber = InputView.inputScheduleNumber();
 			checkSchedule(movieId, scheduleNumber);
+			checkTimeInterval(movieId, scheduleNumber);
 			int ticketCount = InputView.inputTicketCount();
 			checkTicketCount(movieId, scheduleNumber, ticketCount);
-			checkTimeInterval(movieId, scheduleNumber);
 			tickets.add(new Ticket(movieId, scheduleNumber, ticketCount));
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
@@ -63,6 +68,7 @@ public class TicketingManager {
 	}
 	
 	private void checkTimeInterval(int movieId, int scheduleNumber) {
+		
 		LocalDateTime dateTime = MovieRepository.getStartDateTime(movieId, scheduleNumber);
 		for	(Ticket ticket: tickets) {
 			ticket.checkOneHourWithinRange(dateTime);
