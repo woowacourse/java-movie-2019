@@ -17,9 +17,7 @@ public class MovieApplication {
         // TODO 구현 진행
         int process;
         do {
-            int movieId = InputView.inputMovieId();
-
-            Movie aMovie = MovieRepository.getMovieById(movieId);
+            Movie aMovie = getMovie();
             OutputView.printAMovie(aMovie);
 
             int movieTime = InputView.inputMovieTime();
@@ -32,11 +30,20 @@ public class MovieApplication {
         OutputView.printReserveList(reservationList);
 
         OutputView.printProcessMessage();
-        int pointAmount = InputView.inputPointAmount();
 
+        PayInfo payInfo = getPayInfo();
+        OutputView.printPayResult(payInfo.getTotalPriceApplyPayInfo(reservationList));
+    }
+
+    private static Movie getMovie() {
+        int movieId = InputView.inputMovieId();
+        return MovieRepository.getMovieById(movieId);
+    }
+
+    private static PayInfo getPayInfo() {
+        int pointAmount = InputView.inputPointAmount();
         int payType = InputView.inputPayType();
 
-        PayInfo payInfo = new PayInfo(pointAmount, payType);
-        OutputView.printPayResult(payInfo.getTotalPriceApplyPayInfo(reservationList));
+        return new PayInfo(pointAmount, payType);
     }
 }
