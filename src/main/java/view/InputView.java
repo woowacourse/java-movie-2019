@@ -37,4 +37,8 @@ public class InputView {
         System.out.println("## 포인트 사용 금액을 입력해주세요. 없으면 0을 입력해주세요.");
         return scanner.nextInt();
     }
+    
+    public static int inputCardOrCash() {
+    	return inputCase("## 신용카드는 1번, 현금은 2번을 입력하세요.");
+    }
 }
