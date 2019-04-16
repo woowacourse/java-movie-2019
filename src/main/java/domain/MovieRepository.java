@@ -44,17 +44,4 @@ public class MovieRepository {
         return movies;
     }
 
-    public static Movie showMovie(int id) {
-        for(int i = 0; i < movies.size(); i++){
-            boolean tmp = movies.get(i).isMatchedId(id);
-            if(tmp == true){
-                return movies.get(i);
-            }
-        }
-        return null;
-    }
-
-    public static List<SelectedMovie> getSelectedMovies(){
-        return selectedMovies;
-    }
 }

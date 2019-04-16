@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reservation {
+    private static final int FIRST_INDEX = 0;
     private static List<Movie> movies = MovieRepository.getMovies();
     private static List<SelectedMovie> selectedMovies = new ArrayList<>();
     private static boolean flag = true;
     private static int index = 0;
     private int totalPrice = 0;
     private int point = 0;
+
 
     public Reservation() {
 
@@ -41,7 +43,7 @@ public class Reservation {
     }
 
     public boolean isValidPlayScehdule() {
-        if (index == 0) {
+        if (index == FIRST_INDEX) {
             return true;
         }
         return comparePlaySchedules();
