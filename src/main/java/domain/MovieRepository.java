@@ -2,8 +2,10 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static utils.DateTimeUtils.createDateTime;
+import static utils.DateTimeUtils.isOneHourWithinRange;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
@@ -41,5 +43,14 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie findById(int id) throws NoSuchElementException {
+        for (Movie m : movies) {
+            if (m.isId(id)) {
+                return m;
+            }
+        }
+        throw new NoSuchElementException("해당 ID와 일치하는 영화가 존재하지 않습니다.");
     }
 }

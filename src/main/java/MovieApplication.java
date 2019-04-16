@@ -11,6 +11,9 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
+        Movie movie = MovieRepository.findById(movieId);
+        OutputView.printMovieInfo(movie);
+
 
         // TODO 구현 진행
     }
