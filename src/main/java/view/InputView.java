@@ -1,6 +1,5 @@
 package view;
 
-import domain.PlaySchedule;
 import domain.Movie;
 import domain.PurchasedMovie;
 import utils.DateTimeUtils;
@@ -29,25 +28,32 @@ public class InputView {
 
     public static int inputMovieSchedule(List<Movie> movies, int movieId, List<PurchasedMovie> purchasedMovies) {
         System.out.println("## 예약할 시간표를 입력하세요. (첫번째 상영이 1번)");
-
         int scheduleNumber = scanner.nextInt();
 
-        while (scheduleNumber < MIN_NUM || scheduleNumber > COUNT_OF_SCHEDULES) {
-            System.out.println("!! 없는 스케쥴 입니다.");
+        while (scheduleNumberCheck(scheduleNumber)) {
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
-
-        if (purchasedMovies.size() == 0) {
-            return scheduleNumber;
-        }
-
-        while (DateTimeUtils.isOneHourWithinRange(purchasedMovies.get(0).getLocalDateTime(),
-                movies.get(movieId).getSchedule(scheduleNumber).getStartDateTime())) {
-            System.out.println("!! 1시간 이상 차이가 납니다.");
+        while (purchasedMovies.size() == 0 || scheduleGapCheck(purchasedMovies.get(0), movies.get(movieId), scheduleNumber)) {
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
-
         return scheduleNumber;
+    }
+
+    private static boolean scheduleNumberCheck(int scheduleNumber) {
+        if(scheduleNumber < MIN_NUM || scheduleNumber > COUNT_OF_SCHEDULES) {
+            System.out.println("!! 없는 스케쥴 입니다.");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean scheduleGapCheck(PurchasedMovie purchasedMovie, Movie movie, int scheduleNumber) {
+        if (DateTimeUtils.isOneHourWithinRange(purchasedMovie.getLocalDateTime(),
+                movie.getSchedule(scheduleNumber).getStartDateTime())) {
+            System.out.println("!! 1시간 이상 차이가 납니다.");
+            return true;
+        }
+        return false;
     }
 
     public static int inputCountOfTickets(List<Movie> movies, int movieId, int scheduleNumber) {
