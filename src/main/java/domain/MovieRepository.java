@@ -61,7 +61,7 @@ public class MovieRepository {
 		return index >= 0 && movies.get(index).bookable(schedule, numOfAudience);
 	}
 
-	private static int getIndexByMovieId(int movieId) {
+	public static int getIndexByMovieId(int movieId) {
 		int idx = -1;
 
 		for (int i = 0, len = movies.size(); i < len && idx < 0; i++) {

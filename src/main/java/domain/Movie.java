@@ -38,13 +38,24 @@ public class Movie {
 		return (this.playSchedules.get(schedule - 1).capable(numOfAudience));
 	}
 	
-
+	public String getMovieInformation() {
+		return id + " - " + name + ", " + price + "원" + NEW_LINE;
+	}
+	
+	public String getPlayScheduleInformation(int schedule) {
+		return playSchedules.get(schedule - 1).getPlayScheduleInformation();
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (PlaySchedule playSchedule : playSchedules) {
 			sb.append(playSchedule);
 		}
-		return id + " - " + name + ", " + price + "원" + NEW_LINE + sb.toString();
+		return getMovieInformation() + sb.toString();
 	}
 }
