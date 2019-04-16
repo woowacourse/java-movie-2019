@@ -8,6 +8,7 @@ public class InputView {
 	private static final String INPUT_MOVIE_ID_MESSAGE = "## 예약할 영화를 선택하세요.";
 	private static final String INPUT_SCHEDULE_NUMBER_MESSAGE = "## 예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)";
 	private static final String INPUT_TICKET_COUNT = "## 예약할 인원을 입력하세요.";
+	private static final String INPUT_PAYMENT_OR_ADD_TICKET = "## 예약을 종료하고 결제를 진행하려면 1번,추가 예약을 진행하려면 2번";
 
 	public static int inputMovieId() {
 		System.out.println(INPUT_MOVIE_ID_MESSAGE);
@@ -36,6 +37,16 @@ public class InputView {
 		} catch (Exception e) {
 			System.out.println(WRONG_INPUT);
 			return inputTicketCount();
+		}
+	}
+	
+	public static int inputPaymentOrAddTicket() {
+		System.out.println(INPUT_PAYMENT_OR_ADD_TICKET);
+		try {
+			return Integer.parseInt(scanner.next());
+		} catch (Exception e) {
+			System.out.println(WRONG_INPUT);
+			return inputPaymentOrAddTicket();
 		}
 	}
 }
