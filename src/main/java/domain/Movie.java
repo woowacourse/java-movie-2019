@@ -29,6 +29,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public void reserveMovie(int movieTime, int numberOfPeople) {
+        playSchedules.get(movieTime).decreaseCapacity(numberOfPeople);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
