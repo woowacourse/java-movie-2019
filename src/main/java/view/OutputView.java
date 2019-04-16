@@ -10,4 +10,8 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
+    public static void printAMovie(Movie aMovie) {
+        System.out.println(aMovie);
+    }
 }
