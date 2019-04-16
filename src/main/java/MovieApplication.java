@@ -10,10 +10,11 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        /*int movieId = 0;
+        do { movieId = InputView.inputMovieId(); }
+        while (!selectMovie(movies, movieId));*/
 
-        // TODO 구현 진행
-        selectMovie(movies, movieId);
+        while (!selectMovie(movies, InputView.inputMovieId())) {};
 
         int scheduleNumber = InputView.inputMovieSchedule();
     }
