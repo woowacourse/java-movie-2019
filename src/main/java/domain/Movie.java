@@ -44,15 +44,15 @@ public class Movie {
         return this.price * people;
     }
 
-    public void setPeople(int time, int people){
+    public void setPeople(int time, int people) {
         playSchedules.get(time).setCapacity(people);
     }
 
-    public int getPeople(int time){
+    public int getPeople(int time) {
         return playSchedules.get(time).getCapacity();
     }
 
-    public int getTimeSize(){
+    public int getTimeSize() {
         return playSchedules.size();
     }
 }

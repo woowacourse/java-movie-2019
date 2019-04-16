@@ -10,24 +10,24 @@ import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
     private final LocalDateTime startDateTime;
-    private int capacity; //TODO 예약 가능 인원 줄이기
+    private int capacity;
 
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
 
-    public void setCapacity(int people){
-        if(!PeopleException.setCapacity(capacity, people)){
+    public void setCapacity(int people) {
+        if (!PeopleException.setCapacity(capacity, people)) {
             OutputView.printPeopleException();
             setCapacity(InputView.inputMoviePeople());
         }
-        if(PeopleException.setCapacity(capacity, people)){
+        if (PeopleException.setCapacity(capacity, people)) {
             this.capacity = capacity - people;
         }
-    } // TODO
+    }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return capacity;
     }
 

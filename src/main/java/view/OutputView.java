@@ -28,27 +28,27 @@ public class OutputView {
         System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 
-    public static void printIdException(){
+    public static void printIdException() {
         System.out.println("해당 영화가 없습니다.");
         System.out.println("다시 입력해 주세요.");
     }
 
-    public static void printTImeException(){
+    public static void printTImeException() {
         System.out.println("상영 시간이 아닙니다.");
         System.out.println("다시 입력해 주세요.");
     }
 
-    public static void printExitException(){
+    public static void printExitException() {
         System.out.println("1번 또는 2번만 입력해주세요.");
         System.out.println("다시 입력해 주세요.");
     }
 
-    public static void printPointException(){
+    public static void printPointException() {
         System.out.println("0 미만은 잘못된 포인트 값 입니다.");
         System.out.println("다시 입력해 주세요.");
     }
 
-    public static void printPeopleException(){
+    public static void printPeopleException() {
         System.out.println("자리가 부족합니다.");
         System.out.println("다시 입력해 주세요.");
     }

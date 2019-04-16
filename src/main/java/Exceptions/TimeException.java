@@ -6,10 +6,10 @@ import view.OutputView;
 public class TimeException {
 
     public static int inputMovieTime(int number, int size) {
-        if(number <= 0 || number > size){
+        if (number <= 0 || number > size) {
             OutputView.printTImeException();
             return InputView.inputMovieTime(size);
         }
-        return number-1;
+        return number - 1;
     }
 }

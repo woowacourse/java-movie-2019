@@ -5,7 +5,7 @@ import view.OutputView;
 
 public class PointException {
     public static int inputPoint(int point) {
-        if(point < 0 ){
+        if (point < 0) {
             OutputView.printPointException();
             return InputView.inputPoint();
         }
