@@ -31,4 +31,22 @@ public class InputView {
             return inputPerson();
         }
     }
+
+    public static int inputAgain(){
+        try{
+            System.out.println("## 예약을 종료하고 결제 진행하려면 1번, 추가 예약을 진행하려면 2번 ");
+            return checkNumber();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputAgain();
+        }
+    }
+
+    public static int checkNumber(){
+        int again = Integer.parseInt(scanner.nextLine());
+        if(again == 1 || again == 2){
+            return again;
+        }
+        throw new IllegalArgumentException("잘못 입력하셨습니다.");
+    }
 }
