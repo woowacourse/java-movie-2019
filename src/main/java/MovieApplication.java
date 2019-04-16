@@ -14,5 +14,10 @@ public class MovieApplication {
 
         // TODO 구현 진행
         OutputView.outputReservedMovie(movies, movieId);
+
+        int movieTime = InputView.inputMovieTime();
+        int movieNumberOfPeople = InputView.inputMovieNumberOfPeople();
+
+        
     }
 }
