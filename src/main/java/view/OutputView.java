@@ -26,4 +26,8 @@ public class OutputView {
 		System.out.println(playSchedule);
 		System.out.println("예약 인원 : " + capacity);
 	}
+	
+	public static void printBookingFinishMessage() {
+		System.out.println("예매를 완료했습니다. 즐거운 영화 관람 되세요.");
+	}
 }
