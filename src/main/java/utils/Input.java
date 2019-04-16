@@ -41,4 +41,15 @@ public class Input {
             return peopleInput(movie, movieTime);
         }
     }
+
+    public static int restartInput(){
+        try{
+            int inputNum = InputView.inputRestart();
+            CheckException.checkZeroOne(inputNum);
+            return inputNum;
+        } catch (InputMismatchException | IllegalArgumentException e) {
+            OutputView.printNotZeroOne();
+            return restartInput();
+        }
+    }
 }

@@ -5,15 +5,16 @@ import view.OutputView;
 import domain.Movie;
 
 public class CheckException {
-    public static void checkInMovieNum(int checkNum){
-        if(MovieRepository.getMovieIdList().contains(checkNum)){
+
+    public static void checkInMovieNum(int checkNum) {
+        if (MovieRepository.getMovieIdList().contains(checkNum)) {
             return;
         }
         throw new IllegalArgumentException();
     }
 
-    public static void checkInMovieTime(Movie movie, int checkNum){
-        if(movie.getScheduleSize() >= checkNum && checkNum > Constant.MIN_SCHEDULE_SIZE){
+    public static void checkInMovieTime(Movie movie, int checkNum) {
+        if (movie.getScheduleSize() >= checkNum && checkNum > Constant.MIN_SCHEDULE_SIZE) {
             return;
         }
         throw new IllegalArgumentException();
@@ -27,12 +28,18 @@ public class CheckException {
 //        throw new IllegalArgumentException();
 //    }
 
-    public static void checkcheckCapacity(Movie movie, int checkNum, int movieTime){
-        if(movie.getCapacity(movieTime)>=checkNum && checkNum>Constant.MIN_PEOPLE_SIZE){
+    public static void checkcheckCapacity(Movie movie, int checkNum, int movieTime) {
+        if (movie.getCapacity(movieTime) >= checkNum && checkNum > Constant.MIN_PEOPLE_SIZE) {
             return;
         }
         OutputView.printNotInPeopleNum();
+        throw new IllegalArgumentException();
+    }
 
+    public static void checkZeroOne(int checkNum) {
+        if (checkNum == 1 || checkNum == 0) {
+            return;
+        }
         throw new IllegalArgumentException();
     }
 }

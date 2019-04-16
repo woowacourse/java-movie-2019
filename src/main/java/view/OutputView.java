@@ -28,7 +28,15 @@ public class OutputView {
     }
 
     public static void printNotInPeopleNum(){
-        System.out.println("0에서 가능한 예약 가능 인원 이내의 숫자를 입력해 주세요");
+        System.out.println("0에서 가능한 예약 가능 인원 이내의 숫자를 입력해 주세요.");
+    }
+
+    public static void printNotZeroOne(){
+        System.out.println("0 혹은 1을 입력해 주세요.");
+    }
+
+    public static void printTicketHistory(){
+
     }
 
 }
