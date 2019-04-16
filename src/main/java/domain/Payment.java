@@ -13,7 +13,7 @@ public class Payment {
         this.point = point;
     }
 
-    public int caclTotalAmount() {
+    public int calcTotalAmount() {
         int totalAmount = 0;
         for (Reservation reservation : reservationList) {
             totalAmount += reservation.calcMoviePrice();
@@ -21,8 +21,9 @@ public class Payment {
         return totalAmount;
     }
 
-    public int calcDiscountedTotalAmoumt(int totalAmount) {
+    public int calcDiscountedTotalAmount(int totalAmount) {
         Double discount = (paymentMethod == 1) ? 0.95 : 0.98;
-        return (int) ((totalAmount - point) * discount);
+        int totalAmountExceptPoint = totalAmount - point;
+        return (totalAmountExceptPoint <= 0) ? 0 : (int) (totalAmountExceptPoint * discount);
     }
 }

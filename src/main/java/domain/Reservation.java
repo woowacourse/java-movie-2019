@@ -12,8 +12,8 @@ public class Reservation {
     }
 
     public void checkOneHourGap(Reservation reservation){
-        if(reservation.calcTimeGapOverOneHour(playSchedule)){
-            throw new IllegalArgumentException("1시간 차이의 영화 시간표를 골라주세요.");
+        if(!reservation.calcTimeGapOverOneHour(playSchedule)){
+            throw new IllegalArgumentException("1시간 차이 이상의 영화 시간표를 골라주세요.");
         }
     }
 

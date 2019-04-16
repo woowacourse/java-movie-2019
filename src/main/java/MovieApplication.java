@@ -16,8 +16,6 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        //TODO 상영시간이 지났는지 여부 확인
-
         List<Reservation> reservedMovies = new ArrayList<>();
         do {
             Movie selectedMovie = getPlaySchedulesOfSelectedMovie();
@@ -26,7 +24,7 @@ public class MovieApplication {
             try {
                 addReservationList(reservedMovies, new Reservation(selectedMovie, selectedPlaySchedule,
                         theNumberOfPerson));
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } while (checkAdditionalReservationOrNot() == 2);
@@ -36,7 +34,7 @@ public class MovieApplication {
         int point = InputView.inputPoint();
         int paymentMethod = InputView.inputPaymentMethod();
         Payment payment = new Payment(reservedMovies, paymentMethod, point);
-        int totalAmount = payment.calcDiscountedTotalAmoumt(payment.caclTotalAmount());
+        int totalAmount = payment.calcDiscountedTotalAmount(payment.calcTotalAmount());
         OutputView.printTotalAmount(totalAmount);
     }
 
@@ -53,7 +51,7 @@ public class MovieApplication {
     private static PlaySchedule getPlayScheduleByNumber(Movie selectedMovie) {
         try {
             int scheduleId = InputView.inputMovieScheduleNumber();
-            return selectedMovie.getPlaySchedules().get(scheduleId-1);
+            return selectedMovie.getPlaySchedules().get(scheduleId - 1);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return getPlayScheduleByNumber(selectedMovie);
