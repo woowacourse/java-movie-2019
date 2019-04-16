@@ -26,9 +26,10 @@ import java.util.List;
  * @version 0.0.0
  */
 public class MovieApplication {
+    private static ReservationList reservationList = new ReservationList();
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
-        ReservationList reservationList = new ReservationList();
 
         // TODO 구현 진행
         int process;
@@ -41,12 +42,13 @@ public class MovieApplication {
             int reserveCount = InputView.inputReserveCount(movieTime, aMovie);
 
             process = InputView.inputChooseProcess();
+//            if (reservationList.addMovieTimeValidator(aMovie,movieTime)) {
             reservationList.add(aMovie, reserveCount, movieTime);
             aMovie.modifyMovieSchedule(movieTime, reserveCount);
+//            }
         } while (process == 2);
 
         OutputView.printReserveList(reservationList);
-
         OutputView.printProcessMessage();
 
         PayInfo payInfo = getPayInfo();

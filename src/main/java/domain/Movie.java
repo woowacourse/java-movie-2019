@@ -61,10 +61,10 @@ public class Movie {
         if (playSchedules.size() < timeCode) {
             throw new IllegalArgumentException(TIME_NOT_EXIST);
         }
-        if (playSchedules.get(timeCode).isNotPassedTime()) {
+        if (playSchedules.get(timeCode - 1).isNotPassedTime()) {
             throw new IllegalArgumentException(TIME_PASSED);
         }
-        if (!playSchedules.get(timeCode).isCapacityPossible(MINIMUM_CAPACITY)) {
+        if (!playSchedules.get(timeCode - 1).isCapacityPossible(MINIMUM_CAPACITY)) {
             throw new IllegalArgumentException(CAPACITY_NOT_ANYMORE);
         }
         // TODO 다른 영화와 시간 차이를 검사하는 로직 필요함
@@ -72,7 +72,7 @@ public class Movie {
     }
 
     public LocalDateTime getMovieLocalTime(int timeCode) {
-        return playSchedules.get(timeCode).getStartDateTime();
+        return playSchedules.get(timeCode - 1).getStartDateTime();
     }
 
     public int isValidCapacity(int id, int reserveCount) {

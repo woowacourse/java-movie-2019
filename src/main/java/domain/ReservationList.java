@@ -12,6 +12,7 @@
 
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,15 +30,21 @@ public class ReservationList {
     private Map<Movie, Integer> reservationTimeList = new HashMap<>();
 
     public void add(Movie movie, Integer count, Integer timeCode) {
+//        if (addMovieTimeValidator(movie, timeCode)) {
         reservationCountList.put(movie, count);
         reservationTimeList.put(movie, timeCode);
+//        }
     }
 
-//    public boolean addMovieTimeValidator(Integer newTimeCode) {
+//    public boolean addMovieTimeValidator(Movie newMovie, Integer newTimeCode) {
 //        for (Movie movie : reservationTimeList.keySet()) {
 //            Integer timeCode = reservationTimeList.get(movie);
-//            if (DateTimeUtils.isOneHourWithinRange(movie.))
+//            if (!DateTimeUtils.isOneHourWithinRange(movie.getMovieLocalTime(timeCode), newMovie.getMovieLocalTime(newTimeCode))) {
+//                System.out.println("한 시간 이내의 영화를 선택해야 합니다.");
+//                return false;
+//            }
 //        }
+//        return true;
 //    }
 
     public Set<Movie> getMovieSet() {

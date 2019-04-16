@@ -52,6 +52,7 @@ public class InputView {
         try {
             int input = Integer.parseInt(scanner.nextLine());
             movie.isValidCapacity(input, 1);
+
             return movie.isValidTime(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
