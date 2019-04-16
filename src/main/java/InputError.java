@@ -10,6 +10,13 @@ public class InputError {
     private String TIME_RANGE_ERROR = "없는 시간표 입니다. 다시 입력해주세요.";
     private String DUPLICATE_ERROR = "번호가 중복되었습니다. 다시 입력해주세요.";
     private String LENGTH_ERROR = "길이가 잘 못 되었습니다. 다시 입력해주세요.";
+    private String ONE_TWO_ERROR = "1이나 2가 아닙니다. 다시 입력재후세요";
+
+    public boolean checkOneTwo(int input){
+        if(input == 1 || input == 2) return true;
+        System.out.println(ONE_TWO_ERROR);
+        return false;
+    }
 
     public boolean checkContainTimeIndex(List<Movie> movies, int movieId, int timeId){
         if(movies.size() <= timeId) return true;
@@ -26,7 +33,6 @@ public class InputError {
         System.out.println(MOVIE_RANGE_ERROR);
         return false;
     }
-
 
     public boolean CheckFormatError(String input){
         try{
