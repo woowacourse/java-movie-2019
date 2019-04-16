@@ -1,5 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Reservation;
+import domain.ReservationList;
 import view.InputView;
 import view.OutputView;
 
@@ -10,13 +12,23 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        int moviePlaySchedule = InputView.inputMoviePlaySchedule(MovieRepository.getMovie(movieId));
-        int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation(
-                MovieRepository.getMovie(movieId).getPlaySchedule(moviePlaySchedule));
+        ReservationList reservationList = new ReservationList();
 
-        
-        int endOrAddReservation = InputView.inputEndOrAddReservation();
+        int endOrAddReservation = 2;
+
+        // 예약
+        while(endOrAddReservation == 2){
+            int movieId = InputView.inputMovieId();
+            int moviePlaySchedule = InputView.inputMoviePlaySchedule(MovieRepository.getMovie(movieId));
+            int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation(
+                    MovieRepository.getMovie(movieId).getPlaySchedule(moviePlaySchedule));
+
+            reservationList.addReservation(new Reservation(movieId, moviePlaySchedule, peopleNumberOfResrvation));
+
+            endOrAddReservation = InputView.inputEndOrAddReservation();
+        }
+
+        // 결제
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();
 
