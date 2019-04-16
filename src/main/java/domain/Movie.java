@@ -1,3 +1,12 @@
+/*
+ *  @(#)Movie.java       1.00    2019/04/16
+ *
+ *  Copyright   (c) 2019 Myungki Sa.
+ *  Computer Science Engineering, Java, Daejeon, Korea
+ *  All rights reserved.
+ *  conatuseus@gmail.com
+ */
+
 package domain;
 
 import java.util.ArrayList;
@@ -34,6 +43,7 @@ public class Movie {
         return this.playSchedules.size();
     }
 
+    /* 시간표상에서 몇번째인지 받아서 해당 스케쥴 반환하는 메소드*/
     public PlaySchedule getPlaySchedule(int scheduleNumber) {
         return this.playSchedules.get(scheduleNumber);
     }

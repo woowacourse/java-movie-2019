@@ -1,3 +1,12 @@
+/*
+ *  @(#)PlaySchedule.java       1.00    2019/04/16
+ *
+ *  Copyright   (c) 2019 Myungki Sa.
+ *  Computer Science Engineering, Java, Daejeon, Korea
+ *  All rights reserved.
+ *  conatuseus@gmail.com
+ */
+
 package domain;
 
 import java.time.LocalDateTime;

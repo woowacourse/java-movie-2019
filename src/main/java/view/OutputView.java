@@ -1,3 +1,12 @@
+/*
+ *  @(#)OutputView.java       1.00    2019/04/16
+ *
+ *  Copyright   (c) 2019 Myungki Sa.
+ *  Computer Science Engineering, Java, Daejeon, Korea
+ *  All rights reserved.
+ *  conatuseus@gmail.com
+ */
+
 package view;
 
 import domain.Movie;
@@ -28,5 +37,4 @@ public class OutputView {
     public static void printPayment(User user) {
         System.out.println(user.toString());
     }
-
 }

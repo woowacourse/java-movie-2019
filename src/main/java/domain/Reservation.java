@@ -1,3 +1,12 @@
+/*
+ *  @(#)Reservation.java       1.00    2019/04/16
+ *
+ *  Copyright   (c) 2019 Myungki Sa.
+ *  Computer Science Engineering, Java, Daejeon, Korea
+ *  All rights reserved.
+ *  conatuseus@gmail.com
+ */
+
 package domain;
 
 import java.time.LocalDateTime;
@@ -20,10 +29,12 @@ public class Reservation {
         this.numberOfPeople = numberOfPeople;
     }
 
+    /* 영화표 가격 X 사람 수   => 가격 계산 */
     public int price() {
         return MovieRepository.getMovieById(movieId).getPrice() * this.numberOfPeople;
     }
 
+    /* 시작 시간 반환*/
     public LocalDateTime getStartTime() {
         return MovieRepository.getMovieById(movieId).getPlaySchedule(scheduleNumber).getStartDateTime();
     }
