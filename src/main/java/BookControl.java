@@ -31,6 +31,7 @@ public class BookControl {
         do {
             movieId = InputView.inputMovieId();
         } while (checkMovieId(movieId));
+        OutputView.printMoviesByID(movies, movieId);
         return movieId;
     }
 
@@ -120,7 +121,7 @@ public class BookControl {
 
     // #2 예약된 목록을 출력하는 함수
     public void printBookedMovies() {
-
+        OutputView.printBookedMovies(bookedMovies);
     }
 
     // #3 결제를 진행할 함수
