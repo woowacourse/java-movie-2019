@@ -5,6 +5,10 @@ import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
 
+/*
+ *  데이터를 조회하는 DB 역할
+ *  조회용 메소드 추가만 가능하다.
+ */
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 
