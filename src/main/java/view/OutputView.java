@@ -11,27 +11,24 @@ public class OutputView {
 		}
 	}
 
-	public static void printSelectError() {
-		System.out.println("해당 ID의 영화가 없습니다. 다시 선택해 주세요.");
+	public static Movie findMovie(List<Movie> movies, int movieId) {
+		Movie selectedMovie = movies.get(0);
+		for(Movie movie : movies){
+			if(movie.getId()==movieId)
+				selectedMovie = movie;
+		}
+		System.out.println(selectedMovie);
+		return selectedMovie;
+	}
+	
+	public static void printSelectTime(Movie movie, int movieTime){
+		System.out.println(movie.getSchedule().get(movieTime));
+	}
+	
+	public static void printState(){
+		
 	}
 
-	public static boolean printSelectMovie(Movie movie, int movieId) {
-		if (movie.getId() == movieId) {
-			System.out.println(movie);
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean findMovie(List<Movie> movies, int movieId) {
-		boolean isContain = false;
-		for (Movie movie : movies) {
-			isContain |= printSelectMovie(movie, movieId);
-		}
-		if (!isContain)
-			printSelectError();
-		return isContain;
-	}
 
 	public static void printResult() {
 		System.out.println("최종 결제한 금액은 " + "원 입니다.");

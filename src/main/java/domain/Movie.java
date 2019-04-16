@@ -21,6 +21,18 @@ public class Movie {
 	public int getId() {
 		return this.id;
 	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public int getPrice(){
+		return this.price;
+	}
+	
+	public List<PlaySchedule> getSchedule(){
+		return this.playSchedules;
+	}
 
 	void addPlaySchedule(PlaySchedule playSchedule) {
 		playSchedules.add(playSchedule);
