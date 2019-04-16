@@ -17,7 +17,8 @@ public class InputView {
     public static int inputMovieId() {
         try {
             System.out.println("## 예약할 영화를 선택하세요.");
-            return isContainMovieId(intException());
+            int id=intException();
+            return isContainMovieId(id);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputMovieId();
@@ -43,12 +44,12 @@ public class InputView {
     public static ChoiceMovie inputMovieTime(List<ChoiceMovie> choiceMovies,Movie choiceMovie){
         try {
             System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영시간이 1번)");
-            int time = isContainTime(choiceMovie,intException());
-            LocalDateTime movieStartTime=choiceMovie.getPlaySchedules().get(time).getStartDateTime();
+            int index=intException();
+            int time = isContainTime(choiceMovie,index);
+            LocalDateTime movieStartTime=choiceMovie.getPlaySchedules().get(time-1).getStartDateTime();
             movieStartTime = isBeforeTime(isOverOneHour(choiceMovies,movieStartTime));
             return new ChoiceMovie(choiceMovie,choiceMovie.getPlaySchedules().get(time).getStartDateTime());
-
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
             return inputMovieTime(choiceMovies,choiceMovie);
         }

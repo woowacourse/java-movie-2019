@@ -42,14 +42,5 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
-    public static void getChoiceMovie(int id){
-        for(Movie movie:movies){
-            isContainId(movie,id);
-        }
-    }
-    public static void isContainId(Movie movie,int id){
-        if(movie.getId() == id){
-            System.out.println(movie);
-        }
-    }
+
 }
