@@ -114,6 +114,28 @@ public class InputView {
     }
 
     /**
+     * 사용자가 사용할 포인트를 입력받는다.
+     */
+    public static int inputPoint() {
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        try {
+            return getValidPointInput();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputContinue();
+        }
+    }
+
+    private static int getValidPointInput() {
+        int userInput = getInteger();
+        if (userInput >= 0) {
+            return userInput;
+        }
+        throw new InputMismatchException("0 이상의 정수만 입력해 주세요.");
+    }
+
+
+    /**
      * 정수 하나를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getInteger() {

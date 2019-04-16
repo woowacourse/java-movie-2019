@@ -20,5 +20,6 @@ public class MovieApplication {
             isEnd = User.isEndReservation();
         }
         MovieReservationMachine.showReservatoinHistory();
+        User.selectPointUse();
     }
 }

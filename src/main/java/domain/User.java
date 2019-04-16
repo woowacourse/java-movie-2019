@@ -20,4 +20,6 @@ public class User {
     public static int selectPersonnels(int movieId, int scheduleId) { return InputView.inputPersonnels(movieId, scheduleId); }
 
     public static boolean isEndReservation() { return (InputView.inputContinue() == 1) ? true : false; }
+
+    public static int selectPointUse() { return InputView.inputPoint(); }
 }
