@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.SelectMovie;
 
 import java.util.List;
 
@@ -35,8 +36,10 @@ public class OutputView {
         System.out.println("0 혹은 1을 입력해 주세요.");
     }
 
-    public static void printTicketHistory(){
-
+    public static void printTicketHistory(List<SelectMovie> movies){
+        for (SelectMovie movie : movies) {
+            System.out.println(movie);
+        }
     }
 
 }

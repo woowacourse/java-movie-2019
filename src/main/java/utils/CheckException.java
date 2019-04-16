@@ -37,7 +37,7 @@ public class CheckException {
     }
 
     public static void checkZeroOne(int checkNum) {
-        if (checkNum == 1 || checkNum == 0) {
+        if (checkNum == Constant.CONTINUE_NUM|| checkNum == Constant.END_NUM) {
             return;
         }
         throw new IllegalArgumentException();

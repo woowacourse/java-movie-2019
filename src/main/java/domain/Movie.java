@@ -36,6 +36,21 @@ public class Movie {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+    public int getPrice() {
+        return price;
+    }
+
+    public List<PlaySchedule> getSchedules() {
+        return playSchedules;
+    }
+
+    public PlaySchedule getScheduleInfo(int num) {
+        return playSchedules.get(num - 1);
+    }
+
     public int getScheduleSize() {
         return playSchedules.size();
     }

@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import utils.Constant;
 import view.InputView;
 import view.OutputView;
 import utils.Input;
@@ -10,15 +11,16 @@ import java.util.List;
 
 public class MovieApplication {
 
-    static int restart = 0;
+    static int restart = Constant.CONTINUE_NUM;
     static List<SelectMovie> selectMovieList = new ArrayList<>();
 
     public static void main(String[] args) {
-        while(restart == 0){
+        while(restart == Constant.CONTINUE_NUM){
             stage();
             restart = Input.restartInput();
         }
-//        OutputView.printTicketHistory(selectMovieList);
+        OutputView.printTicketHistory(selectMovieList);
+
     }
 
     public static void stage(){
@@ -32,4 +34,5 @@ public class MovieApplication {
         SelectMovie completeMovie = new SelectMovie (selectedMovie, movieTime, peopleNum);
         selectMovieList.add(completeMovie);
     }
+
 }
