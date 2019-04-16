@@ -1,9 +1,27 @@
+/*
+ * @(#)ReservationList.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package domain;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 예약 내역, 수량과 시간을 담는 리스트 클래스
+ *
+ * @version 0.0.0
+ * @author kwonmc
+ */
 public class ReservationList {
     private Map<Movie, Integer> reservationCountList = new HashMap<>();
     private Map<Movie, Integer> reservationTimeList = new HashMap<>();

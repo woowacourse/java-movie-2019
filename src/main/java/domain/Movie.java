@@ -1,10 +1,35 @@
+/*
+ * @(#)Movie.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 영화 정보를 가지고 있는 클래스
+ *
+ * @version 0.0.0
+ * @author kwonmc, WoowahanTechCamp
+ */
 public class Movie {
     private static final char NEW_LINE = '\n';
+
+    private static final String TIME_NOT_EXIST = "존재하지 않는 시간을 선택하셨습니다.";
+    private static final String TIME_PASSED = "이미 지난 시간의 영화 입니다.";
+    private static final String CAPACITY_NOT_ANYMORE = "예약 가능 인원이 없습니다.";
+    private static final String CAPACITY_OVER = "예약 가능 인원 수를 초과하였습니다.";
+
+    public static final int MINIMUM_CAPACITY = 1;
 
     private final int id;
     private final String name;
@@ -26,16 +51,27 @@ public class Movie {
         return (this.id == id);
     }
 
+    public void modifyMovieSchedule(int time, int reserveCount) {
+        PlaySchedule playSchedule = playSchedules.get(time - 1);
+        playSchedule.modifyCapacity(reserveCount);
+    }
+
     public int isValidTime(int timeCode) {
         if (this.playSchedules.size() < timeCode) {
-            throw new IllegalArgumentException("유효하지 않은 시간을 선택하셨습니다.");
+            throw new IllegalArgumentException(TIME_NOT_EXIST);
+        }
+        if (this.playSchedules.get(timeCode).isNotPassedTime()) {
+            throw new IllegalArgumentException(TIME_PASSED);
+        }
+        if (!this.playSchedules.get(timeCode).isCapacityPossible(MINIMUM_CAPACITY)) {
+            throw new IllegalArgumentException(CAPACITY_NOT_ANYMORE);
         }
         return timeCode;
     }
 
     public int isValidCapacity(int id, int reserveCount) {
-        if (!this.playSchedules.get(id).isCapacityPossible(reserveCount)) {
-            throw new IllegalArgumentException("예약 가능 인원 수를 초과하였습니다.");
+        if (!this.playSchedules.get(id - 1).isCapacityPossible(reserveCount)) {
+            throw new IllegalArgumentException(CAPACITY_OVER);
         }
         return reserveCount;
     }

@@ -1,3 +1,15 @@
+/*
+ * @(#)MovieRepository.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package domain;
 
 import java.util.ArrayList;
@@ -5,6 +17,12 @@ import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
 
+/**
+ * MovieRepository 영화 저장소
+ *
+ * @version 0.0.0
+ * @author WoowahanTechCamp
+ */
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 

@@ -1,3 +1,15 @@
+/*
+ * @(#)MovieApplication.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PayInfo;
@@ -7,16 +19,21 @@ import view.OutputView;
 
 import java.util.List;
 
+/**
+ * Movie 미션을 진행하는 main 로직이 들어있는 클래스
+ *
+ * @author kwonmc
+ * @version 0.0.0
+ */
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         ReservationList reservationList = new ReservationList();
 
-        OutputView.printMovies(movies);
-
         // TODO 구현 진행
         int process;
         do {
+            OutputView.printMovies(movies);
             Movie aMovie = InputView.inputMovieId();
             OutputView.printAMovie(aMovie);
 
@@ -25,6 +42,7 @@ public class MovieApplication {
 
             process = InputView.inputChooseProcess();
             reservationList.add(aMovie, reserveCount, movieTime);
+            aMovie.modifyMovieSchedule(movieTime, reserveCount);
         } while (process == 2);
 
         OutputView.printReserveList(reservationList);

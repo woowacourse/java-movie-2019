@@ -1,8 +1,26 @@
+/*
+ * @(#)DateTimeUtils.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * DateTime 유틸 클래스
+ *
+ * @version 0.0.0
+ * @author WoowahanTechCamp
+ */
 public class DateTimeUtils {
     public static final String PLAYING_TIME_FORMAT = "yyyy-MM-dd HH:mm";
     public static final int ONE_HOURS = 1;

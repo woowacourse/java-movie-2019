@@ -1,5 +1,23 @@
+/*
+ * @(#)PayInfo.java
+ *
+ * v 0.0.0
+ *
+ * 2019.04.16
+ *
+ * Copyright (c) 2019 KwonMC.
+ * WoowahanTechCamp, Seoul, KOREA
+ * All right Reserved
+ */
+
 package domain;
 
+/**
+ * 결제 정보를 담는 클래스
+ *
+ * @version 0.0.0
+ * @author kwonmc
+ */
 public class PayInfo {
     private int pointAmount;
     private int payType;
