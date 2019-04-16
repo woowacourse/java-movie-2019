@@ -42,4 +42,14 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+    
+    public boolean isMovie(int movieId) {
+		for (Movie movie : movies) {
+			if (movie.isMovieId(movieId)) {
+				return true;
+			}
+		}
+		System.out.println("상영목록에 없는 영화입니다.");
+		return false;
+    }
 }

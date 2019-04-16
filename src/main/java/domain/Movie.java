@@ -17,7 +17,11 @@ public class Movie {
         this.name = name;
         this.price = price;
     }
-
+    
+    public int getMovieId() {
+		return id;
+    }
+    
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
@@ -30,5 +34,12 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+    
+    public boolean isMovieId(int movieId) {
+    	if (this.id == movieId) {
+			return true;
+		}
+    	return false;
     }
 }
