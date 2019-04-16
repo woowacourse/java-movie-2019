@@ -4,7 +4,6 @@ import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 import utils.DateTimeUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +90,6 @@ public class MovieApplication {
         if (!cheak[1]) System.out.println("예매 가능 인원을 초과하였습니다.");
         cheak[2] = pastMovie();
         if (!cheak[2]) System.out.println("상영 시작 시간이 이미 지난 영화가 있습니다.");
-
         if (cheak[0] && cheak[1] && cheak[2]) return true;
         return false;
     }
