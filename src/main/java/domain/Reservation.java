@@ -11,5 +11,7 @@ public class Reservation {
         this.movieTicket = movieTicket;
     }
 
-
+    public int getMovieId() { return movieId; }
+    public int getMovieTime() { return movieTime; }
+    public int getMovieTicket() { return movieTicket; }
 }
