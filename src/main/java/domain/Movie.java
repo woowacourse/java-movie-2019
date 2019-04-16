@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
