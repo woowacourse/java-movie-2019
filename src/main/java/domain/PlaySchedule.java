@@ -18,7 +18,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
-    public boolean isThisTimeAvailable() {
-        return capacity > 0;
+    /**
+     * 예약가능인원이 매개변수로 주어진 숫자 이상인지 확인한다.
+     */
+    public boolean isThisTimeAvailable(int numOfGuest) {
+        return capacity >= numOfGuest;
     }
 }

@@ -36,11 +36,22 @@ public class Movie {
         return this.id == movieId;
     }
 
+    /**
+     * 입력한 시간표 숫자가 적절한 숫자인지 확인한다.
+     */
     public boolean isValidMovieTime(int movieTime) {
         return playSchedules.size() >= movieTime;
     }
 
+    /**
+     * 선택한 시간에 예약가능인원이 존재하는지 확인한다.
+     */
     public boolean isThisTimeAvailable(int movieTime) {
-        return playSchedules.get(--movieTime).isThisTimeAvailable();
+        final int MIN_NUM_OF_GUEST = 1;
+        return playSchedules.get(--movieTime).isThisTimeAvailable(MIN_NUM_OF_GUEST);
+    }
+
+    public boolean isThisNumberAvailable(int movieTime, int numOfGuest) {
+        return playSchedules.get(--movieTime).isThisTimeAvailable(numOfGuest);
     }
 }

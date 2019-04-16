@@ -5,11 +5,8 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class MovieApplication {
-    private Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         MovieApplication app = new MovieApplication();
         List<Movie> movies = MovieRepository.getMovies();
@@ -18,6 +15,7 @@ public class MovieApplication {
         int movieId = app.getMovieId();
         OutputView.printSelectedMovie(MovieRepository.getMovie(movieId));
         int movieTime = app.getMovieTime(movieId);
+        int numOfGuest = app.getNumOfGuest(movieId, movieTime);
     }
 
     private int getMovieId() {
@@ -39,6 +37,17 @@ public class MovieApplication {
         } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             System.err.println("잘못 입력하셨습니다.");
             return getMovieTime(movieId);
+        }
+    }
+
+    private int getNumOfGuest(int movieId, int movieTime)  {
+        try {
+            int numOfGuest = InputView.inputNumOfGuest();
+            Validator.checkNumOfGuest(movieId, movieTime, numOfGuest);
+            return numOfGuest;
+        } catch (IllegalArgumentException e) {
+            System.err.println("잘못 입력하셨습니다.");
+            return getNumOfGuest(movieId, movieTime);
         }
     }
 }

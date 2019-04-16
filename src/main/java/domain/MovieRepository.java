@@ -43,11 +43,17 @@ public class MovieRepository {
         return movies;
     }
 
+    /**
+     * 영화의 아이디를 매개변수로 받아 해당 영화 객체를 리턴한다.
+     */
     public static Movie getMovie(int movieId) {
         int movieIndex = getMovieIndex(movieId);
         return movies.get(movieIndex);
     }
 
+    /**
+     * 영화의 아이디를 매개변수로 받아 영화 리스트의 인덱스를 리턴한다.
+     */
     public static int getMovieIndex(int movieId) { // 수정 필요, indent 2
         int movieIndex = 0;
         for (int i = 0; i < movies.size(); i++) {
