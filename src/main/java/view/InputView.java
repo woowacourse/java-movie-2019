@@ -39,4 +39,24 @@ public class InputView {
             return inputReservationPeople(schedule);
         }
     }
+
+    public static boolean InputContinueReservation() {
+        try {
+            System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+            return chekcContinue(Integer.parseInt(scanner.nextLine().trim()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바르지 않은 입력입니다.");
+            return InputContinueReservation();
+        }
+    }
+
+    private static boolean chekcContinue(int userInput){
+        if(userInput == 1){
+            return false;
+        }
+        if(userInput == 2){
+            return true;
+        }
+        throw new IllegalArgumentException();
+    }
 }
