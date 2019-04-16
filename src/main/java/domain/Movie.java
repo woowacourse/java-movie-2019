@@ -35,4 +35,8 @@ public class Movie {
     public int getId(){
         return id;
     }
+
+    public int getSchSize(){
+        return playSchedules.size();
+    }
 }
