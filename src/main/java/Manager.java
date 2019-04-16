@@ -23,25 +23,39 @@ public class Manager {
     public void startReserve(){
         // 유저무비 변수 초기화
         this.movies = MovieRepository.getMovies();
+        while(!reserveProcess());
+        //printResult
+    }
+
+    public boolean reserveProcess(){
         System.out.println("## 상영 영화 목록");
         OutputView.printMovies(movies);
-
         while(!firstQuery());
-
         OutputView.printIdMovie(movies, movieId);
-
         while(!secondQuery());
+        while(!thirdQuery());
+        while(!fourthQuery());
+    }
 
-        while(!thirdQuery())
+    public boolean fourthQuery(){
+        int ret = InputView.inputIsEndOrNot();
+        if(!inputError.checkOneTwo(ret)){
+            return false;
+        }
+        return true;
     }
 
     public boolean thirdQuery(){
         peopleCount = InputView.inputPeopleCount();
+        if(!inputError.CheckMinusError(movieId)){
+            return false;
+        }
+        return true;
     }
 
     public boolean firstQuery(){
         movieId = InputView.inputMovieId();
-        if(!inputError.checkContainId(movies, movieId)){
+        if(!inputError.CheckMinusError(movieId) || !inputError.checkContainId(movies, movieId)){
             return false;
         }
         return true;
@@ -49,7 +63,7 @@ public class Manager {
 
     public boolean secondQuery(){
         timeId = InputView.inputTimetable();
-        if(!inputError.checkContainTimeIndex(movies, movieId, timeId)){
+        if(!inputError.CheckMinusError(timeId) || !inputError.checkContainTimeIndex(movies, movieId, timeId)){
             return false;
         }
         return true;
