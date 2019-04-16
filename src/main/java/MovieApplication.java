@@ -28,6 +28,8 @@ public class MovieApplication {
             endOrAddReservation = InputView.inputEndOrAddReservation();
         }
 
+        reservationList.showResrvationList();
+
         // 결제
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();

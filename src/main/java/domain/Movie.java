@@ -34,6 +34,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String getMovieInfo(){
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
+
     public int getMovieId(){
         return id;
     }
@@ -43,6 +47,6 @@ public class Movie {
     }
 
     public boolean isNotStartedMovie(int playScheduleId){
-        return LocalDateTime.now().isBefore(getPlaySchedule(playScheduleId-1).getStartDateTime());
+        return LocalDateTime.now().isBefore(getPlaySchedule(playScheduleId).getStartDateTime());
     }
 }
