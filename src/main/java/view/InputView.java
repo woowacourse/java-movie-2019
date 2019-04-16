@@ -11,7 +11,9 @@ public class InputView {
         System.out.println("## 예약할 영화를 선택하세요.");
         try {
             OutputView.printMovies(MovieRepository.getMovies());
-            return MovieRepository.getWantMovie(InputUtil.getInt());
+            Movie movie = MovieRepository.getWantMovie(InputUtil.getInt());
+            movie.checkMovieValid();
+            return movie;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMovie();

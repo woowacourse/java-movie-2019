@@ -21,7 +21,7 @@ public class Player {
             Movie movie = InputView.inputMovie();
             BuyWithTimeschedule(movie);
             OutputView.printPlaySchedule(movie);    // 테스트할때만 쓰는거 나중에 지울것
-        } while (checkContinue());
+        } while (checkContinue() && MovieRepository.isAllMoviePossible());
     }
 
     private boolean checkContinue() {

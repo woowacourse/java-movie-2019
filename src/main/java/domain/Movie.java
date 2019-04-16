@@ -23,10 +23,6 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    public boolean isRightMovie(int movieId) {
-        return (id == movieId);
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -47,6 +43,16 @@ public class Movie {
 
     public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
+    }
+
+    public boolean isRightMovie(int movieId) {
+        return (id == movieId);
+    }
+
+    public void checkMovieValid() {
+        if (!isMoviePossible()) {
+            throw new IllegalArgumentException("영화를 예매할 수 없습니다.");
+        }
     }
 
     public void checkTimeScheduleValid(int timeScheduleIndex) {

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ForkJoinTask;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -47,9 +49,18 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie getMovie(int movieId) {
+        Movie movie = getWantMovie(movieId);
+        movie.checkMovieValid();
+        return movie;
+    }
+
     public static Movie getWantMovie(int movieId) {
         if (isContains(movieId)) {
-            return movies.get(movieId);
+            return movies.stream()
+                    .filter(movie -> movie.isRightMovie(movieId))
+                    .collect(Collectors.toList())
+                    .get(0);
         }
         throw new IllegalArgumentException("상영 목록에 없는 영화를 선택하셨습니다");
     }
@@ -60,11 +71,7 @@ public class MovieRepository {
     }
 
     public static List<PlaySchedule> getPlaySchedule(Movie inputMovie) {
-        HashSet<Movie> hashSet = new HashSet(movies);
-        if (hashSet.contains(inputMovie)) {
-            return getWantMovie(inputMovie.getId()).getPlaySchedules();
-        }
-        throw new IllegalArgumentException("스케줄이 없습니다");
+        return getWantMovie(inputMovie.getId()).getPlaySchedules();
     }
 
     public static void buyMovieTickets(Movie movie, int playScheduleIndex, int buyCount) {
