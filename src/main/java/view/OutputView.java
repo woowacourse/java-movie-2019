@@ -1,5 +1,6 @@
 package view;
 
+import domain.Money;
 import domain.Movie;
 import domain.Reservation;
 
@@ -27,8 +28,8 @@ public class OutputView {
         }
     }
 
-    public static void printTotalPayment(long TotalMoney){
-        System.out.println("최종 결제한 금액은 "+TotalMoney +"원입니다.\n"+
+    public static void printTotalPayment(Money money){
+        System.out.println(money.printTotalMoney()+ "\n"+
                 "예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 }

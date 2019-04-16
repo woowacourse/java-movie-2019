@@ -70,8 +70,8 @@ public class MovieApplication {
         long point = InputView.inputPoint(money);
         money.calculatePoint(point);
         int payment = InputView.inputCashOrCard();
-        long totalMoney = calculateTotalMoney(money.money, payment);
-        OutputView.printTotalPayment(totalMoney);
+        money.calculateTotalMoney(payment);
+        OutputView.printTotalPayment(money);
     }
 
     private static long beforeTotal(){
