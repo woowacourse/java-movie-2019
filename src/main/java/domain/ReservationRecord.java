@@ -2,12 +2,12 @@ package domain;
 
 import java.time.LocalDateTime;
 
-class ReservationRecord {
+public class ReservationRecord {
 
-    private Movie movie;
-    private int movieEntryNumber;
-    private int movieCapacity;
-    private LocalDateTime movieStartDateTime;
+    public Movie movie;
+    public int movieEntryNumber;
+    public int movieCapacity;
+    public LocalDateTime movieStartDateTime;
 
     ReservationRecord(int movieId, int movieCapacity, int movieEntryNumber) {
         Movie movie = MovieRepository.getMovies().get(movieId);
