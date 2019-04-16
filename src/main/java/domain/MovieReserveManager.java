@@ -33,4 +33,14 @@ public class MovieReserveManager {
 			return false;
 		return true;
 	}
+
+	private int inputValidatedPeopleNumber(Movie movie, int movieTime) {
+		int peopleNumber = new InputView().inputMoviePeepleNumber();
+		PlaySchedule playSchedule = movie.getPlaySchedule(movieTime);
+		if (playSchedule.getCapacity() < peopleNumber) {
+			System.out.println("예약 가능 인원을 초과했습니다.");
+			return inputValidatedPeopleNumber(movie, movieTime);
+		}
+		return peopleNumber;
+	}
 }
