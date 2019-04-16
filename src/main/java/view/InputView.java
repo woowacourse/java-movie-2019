@@ -3,10 +3,36 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
+	private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId() {
-        System.out.println("## ì˜ˆì•½í•  ì˜í™”ë¥¼ ì„ íƒí•˜ì„¸ìš”.");
-        return scanner.nextInt();
-    }
+	public static int inputMovieId() {
+		System.out.println("## ¿¹¾àÇÒ ¿µÈ­¸¦ ¼±ÅÃÇÏ¼¼¿ä.");
+		return scanner.nextInt();
+	}
+
+	public static int inputMovieTime() {
+		System.out.println("## ¿¹¾àÇÒ ½Ã°£Ç¥¸¦ ¼±ÅÃÇÏ¼¼¿ä.(Ã¹¹øÀç »ó¿µÀÌ 1¹ø)");
+		return scanner.nextInt();
+	}
+
+	public static int inputGroupSize() {
+		System.out.println("## ¿¹¾àÇÒ ÀÎ¿øÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+		return scanner.nextInt();
+	}
+	
+	public static int inputNextStep() {
+		System.out.println("##¿¹¾àÀ» Á¾·áÇÏ°í °áÁ¦¸¦ ÁøÇàÇÏ·Á¸é 1¹ø, Ãß°¡ ¿¹¾àÀ» ÁøÇàÇÏ·Á¸é 2¹ø");
+		return scanner.nextInt();
+	}
+
+	public static int inputPoint() {
+		System.out.println("## °áÁ¦¸¦ ÁøÇàÇÕ´Ï´Ù.");
+		System.out.println("## Æ÷ÀÎÆ® »ç¿ë ±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä. Æ÷ÀÎÆ®°¡ ¾øÀ¸¸é 0 ÀÔ·Â");
+		return scanner.nextInt();
+	}
+
+	public static int inputCashOrCredit() {
+		System.out.println("##½Å¿ëÄ«µå´Â 1¹ø, Çö±İÀº 2¹ø");
+		return scanner.nextInt();
+	}
 }
