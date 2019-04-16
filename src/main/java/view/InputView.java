@@ -90,4 +90,20 @@ public class InputView {
         }
         return (number == 1) ? true : false;
     }
+
+    public static int inputPoint(){
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        String userInput = scanner.nextLine().trim();
+        // 정수 체크
+        if (!Validator.isInteger(userInput)) {
+            return inputPoint();
+        }
+        // 0이상인지 체크
+        int point = Integer.parseInt(userInput);
+        if(point < 0){
+            System.out.println(PLEASE_INPUT_AGAIN);
+            return inputPoint();
+        }
+        return point;
+    }
 }
