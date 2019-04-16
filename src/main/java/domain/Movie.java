@@ -31,4 +31,16 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean hasID(int id) {
+        return this.id == id;
+    }
 }

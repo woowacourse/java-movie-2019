@@ -20,12 +20,24 @@ public class MovieReserver {
 
         List<MovieReservation> reservations = new ArrayList();
         while (true) {
-            reservations.add(factory.createFromUser());
+            MovieReservation reservation = factory.createFromUser(movies);
+            System.out.println(reservation.toString());
+
+            if (canAdd(reservations, reservation)) {
+                reservations.add(reservation);
+            }
 
             if (InputView.inputReservationCommand() == ReservationCommand.STOP) {
                 break;
             }
+
+            // update movies
+            // ex. capacity
         }
         return reservations;
+    }
+
+    private boolean canAdd(List<MovieReservation> reservations, MovieReservation reservation) {
+        return true;
     }
 }
