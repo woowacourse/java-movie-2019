@@ -14,7 +14,7 @@ public class MovieApplication {
         // TODO 구현 진행
         Movie SelectMovie = OutputView.printSelectMovie(movies, movieId);
         int movieTime = InputView.inputMovieTime();
-        OutputView.printSelectTime(SelectMovie, movieTime);
         int ViewNum = InputView.inputMovieViewNum();
+        OutputView.printMovieTicket(SelectMovie, movieTime , ViewNum); 
     }
 }
