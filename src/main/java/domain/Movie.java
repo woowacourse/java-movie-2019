@@ -45,4 +45,8 @@ public class Movie {
             return true;
         return false;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

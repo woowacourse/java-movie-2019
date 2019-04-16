@@ -17,4 +17,8 @@ public class Reservation {
     public String toString() {
         return movie.toString(tableId) + NEW_LINE + "예약 인원: " + numPeople + "명" + NEW_LINE;
     }
+
+    public int getPricePerReservation() {
+        return movie.getPrice() * numPeople;
+    }
 }

@@ -27,6 +27,8 @@ public class MovieApplication {
 
         int point = InputView.inputPoint();
         InputView.inputPayMethod();
+
+        OutputView.printReceipt(reservations, point);
     }
 
     public static Movie findMovieById(List<Movie> movieList, int movieId) {
