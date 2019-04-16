@@ -12,7 +12,7 @@ public class Reservation {
     private static boolean flag = true;
     private static int index = 0;
     private int totalPrice = 0;
-    private int point;
+    private int point = 0;
 
     public Reservation() {
 
@@ -43,7 +43,7 @@ public class Reservation {
 
     private void calculateTotalPrice() {
         for (SelectedMovie selectedMovie : selectedMovies) {
-            totalPrice += selectedMovie.showPrice()
+            totalPrice += selectedMovie.showPrice();
         }
     }
 
@@ -59,6 +59,11 @@ public class Reservation {
     }
 
     public void startStatistics() {
-        InputView.inputPoint();
+
+    }
+
+    public void calculationTotalPrice(){
+        point = InputView.inputPoint();
+        totalPrice -= point;
     }
 }
