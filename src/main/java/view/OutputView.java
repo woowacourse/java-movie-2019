@@ -12,11 +12,7 @@ public class OutputView {
         }
     }
 
-    public static void printInputMovieSchedule(List<Movie> movies, int movieId) {
-        for (Movie movie : movies) {
-            if (movie.getId() == movieId) {
-                System.out.println(movie);
-            }
-        }
+    public static void printInputMovieSchedule(List<Movie> movies, int index) {
+        System.out.println(movies.get(index));
     }
 }
