@@ -12,6 +12,8 @@ public class MovieApplication {
         Movie userMovie = InputView.inputMovieId();
         OutputView.printMovie(userMovie);
 
+        int reserveTime = InputView.inputReserveTime(userMovie);
+
 
 
         // TODO 구현 진행
