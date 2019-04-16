@@ -43,4 +43,8 @@ public class Movie {
     public void buyTickets(int scheduleNumber, int countOfTickets) {
         playSchedules.get(scheduleNumber).buyTickets(countOfTickets);
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

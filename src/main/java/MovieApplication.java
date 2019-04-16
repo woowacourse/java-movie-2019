@@ -21,6 +21,7 @@ public class MovieApplication {
 
         OutputView.printMovies(movies);
 
+        int totalMoney;
         int movieId;
         int countOfTickets;
         int scheduleNumber;
@@ -38,6 +39,7 @@ public class MovieApplication {
             PurchasedMovie purchasedMovie = new PurchasedMovie(movies.get(movieId), playSchedule, countOfTickets);
             purchasedMovies.add(purchasedMovie);
         }
+
 
 
     }

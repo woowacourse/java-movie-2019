@@ -37,12 +37,12 @@ public class InputView {
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
 
-        if(purchasedMovies.size() == 0) {
+        if (purchasedMovies.size() == 0) {
             return scheduleNumber;
         }
 
-        while(!(DateTimeUtils.isOneHourWithinRange(purchasedMovies.get(0).getLocalDateTime(),
-                movies.get(movieId).getSchedule(scheduleNumber).getStartDateTime()))) {
+        while (DateTimeUtils.isOneHourWithinRange(purchasedMovies.get(0).getLocalDateTime(),
+                movies.get(movieId).getSchedule(scheduleNumber).getStartDateTime())) {
             System.out.println("!! 1시간 이상 차이가 납니다.");
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
@@ -74,7 +74,7 @@ public class InputView {
             return inputContinueBooking();
         }
 
-        if(input == 1) {
+        if (input == 1) {
             return false;
         }
         return true;
