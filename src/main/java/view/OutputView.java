@@ -25,13 +25,13 @@ public class OutputView {
     public static int printMovieTicket(Movie movie, int inputTime , int inputNum) {
     	System.out.println("예약 내역");
     	System.out.println(movie.getId() + "-" + movie.getName() + "," + movie.getPrice());
-    	System.out.print(movie.getPlaySchedule().get(inputTime));
+    	System.out.print(movie.getPlaySchedule().get(inputTime - 1));
     	System.out.println("예약 인원:" + inputNum);
     	return movie.getPrice() * inputNum;
     }
     
-    public static int printResultPay(int payMethod , int MoviePay , int PointPay) {
-    	MoviePay -= PointPay;
+    public static void printResultPay(int payMethod , int MoviePay , int PointPay) {
+    	MoviePay = MoviePay - PointPay;
     	if (payMethod == 1) {  // 신용카드 결제 
     		MoviePay = (int) (MoviePay * 0.95);
     	}
@@ -39,6 +39,8 @@ public class OutputView {
     	if (payMethod == 2) { // 현금 결제
     		MoviePay = (int) (MoviePay * 0.98);
     	}
-    	return MoviePay;
+    	
+    	System.out.println("최종 결제한 금액은 " + MoviePay + "입니다.");
+    	System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 }

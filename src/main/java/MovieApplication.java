@@ -15,7 +15,10 @@ public class MovieApplication {
         Movie SelectMovie = OutputView.printSelectMovie(movies, movieId);
         int movieTime = InputView.inputMovieTime();
         int ViewNum = InputView.inputMovieViewNum();
-        int resultMoney = OutputView.printMovieTicket(SelectMovie, movieTime , ViewNum); 
-        int PointMoney = InputView.inputPoint();
+        int MoviePay = OutputView.printMovieTicket(SelectMovie, movieTime , ViewNum); 
+        int PointPay = InputView.inputPoint();
+        int payMethod = InputView.inputPayMethod();
+        OutputView.printResultPay(payMethod, MoviePay, PointPay);
+        
     }
 }
