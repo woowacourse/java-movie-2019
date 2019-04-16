@@ -12,16 +12,22 @@ import java.util.List;
 
 public class MovieReservation {
     public void run() {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+        while (isReplay()) ;
+    }
 
-        Reservation reservation = getReservationMovie(movies);
-        System.out.println(reservation.toString());
+    private boolean isReplay() {
+        while (true) {
+            List<Movie> movies = MovieRepository.getMovies();
+            OutputView.printMovies(movies);
+
+            Reservation reservation = getReservationMovie(movies);
+            System.out.println(reservation.toString());
+        }
     }
 
     private boolean checkCapacity(int people, int movieId, int movieSchedule) {
         if (people > MovieRepository.selectCapacity(movieId, movieSchedule)) {
-            System.out.println(MovieRepository.selectCapacity(movieId,movieSchedule));
+            System.out.println(MovieRepository.selectCapacity(movieId, movieSchedule));
             System.err.println("예약가능 인원이 초과 하였습니다.");
             return true;
         }
