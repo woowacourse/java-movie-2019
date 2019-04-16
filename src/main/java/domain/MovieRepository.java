@@ -44,6 +44,13 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie getPlaySchedule(int movieId) {
+        return movies.stream()
+                .filter(movie -> movie.contains(movieId))
+                .findFirst()
+                .get();
+    }
+
     public static boolean contain(int movieId) {
         return movies.stream()
                 .anyMatch(movie -> movie.contains(movieId));

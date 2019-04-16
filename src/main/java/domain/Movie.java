@@ -26,6 +26,14 @@ public class Movie {
         return this.id == movieId;
     }
 
+    public PlaySchedule checkVaildSchedule(int scheduleId) {
+        try{
+            return playSchedules.get(scheduleId-1);
+        }catch (IndexOutOfBoundsException e){
+            throw new IllegalArgumentException();
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -35,5 +43,4 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
-
 }
