@@ -11,6 +11,7 @@ public class Result {
     private List<Movie> movies;
     private List<Integer> movieId = new ArrayList<>();
     private List<Integer> movieTime = new ArrayList<>();
+    private List<Integer> moviePeople = new ArrayList<>();
 
     public Result(List<Movie> movies, int movieNumber) {
         this.movieId.add(movieNumber);
@@ -21,7 +22,7 @@ public class Result {
         int timeSize = movies.get(movieId.get(0)).getTimeSize();
         movieTime.add(InputView.inputMovieTime(timeSize));
         int people = InputView.inputMoviePeople();
-        movies.get(movieId.get(0)).setPeople(movieTime.get(0), people);
+        moviePeople.add(movies.get(movieId.get(0)).setPeople(movieTime.get(0), people));
         setMovieResult(InputView.inputMovieExit());
     }
 
@@ -37,7 +38,7 @@ public class Result {
     private void startMoviePay() {
         int sum = 0;
         for (int i = 0; i < movieId.size(); i++) {
-            int people = movies.get(movieId.get(i)).getPeople(movieTime.get(i));
+            int people = moviePeople.get(movieId.get(i));
             movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), people);
             sum += movies.get(movieId.get(i)).getTotalPrice(people);
         }
@@ -56,6 +57,7 @@ public class Result {
         movieTime.add(time);
         int people = InputView.inputMoviePeople();
         movies.get(movieNumber).setPeople(time, people);
+        moviePeople.add(people);
         setMovieResult(InputView.inputMovieExit());
     }
 }

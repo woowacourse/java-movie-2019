@@ -17,14 +17,17 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
-    public void setCapacity(int people) {
+    public int setCapacity(int people) {
+        int peoples = people;
         if (!PeopleException.setCapacity(capacity, people)) {
             OutputView.printPeopleException();
             setCapacity(InputView.inputMoviePeople());
         }
         if (PeopleException.setCapacity(capacity, people)) {
             this.capacity = capacity - people;
+            return people;
         }
+        return peoples;
     }
 
     public int getCapacity() {
