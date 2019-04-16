@@ -22,7 +22,8 @@ public class MovieApplication {
         } while (InputView.inputRestart());
 
         OutputView.printReservation(reservationList);
-
+        System.out.println("## 결제를 진행합니다.");
+        int point = InputView.inputPoint();
     }
 
 }
