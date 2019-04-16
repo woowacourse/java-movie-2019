@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String NOT_INTEGER_ERROR_MESSAGE = "정수를 입력해 주세요.";
+    private static final String NOT_AVAILABLE_MOVIE_ID_ERROR_MESSAGE = "현재 상영중인 영화의 번호들 중에서 선택하세요.";
 
 
     /**
@@ -35,7 +36,7 @@ public class InputView {
         if (isValidId(id, MovieRepository.getMovies())) {
             return id;
         } else {
-            throw new InputMismatchException("현재 상영중인 영화의 번호들 중에서 선택하세요.");
+            throw new InputMismatchException(NOT_AVAILABLE_MOVIE_ID_ERROR_MESSAGE);
         }
     }
 
