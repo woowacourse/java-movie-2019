@@ -6,6 +6,9 @@ public class Money {
     Money(int money){
         this.money=money;
     }
+    public String toString() {
+        return "최종 결제한 금액은"+money+"원 입니다.";
+    }
 
     public void addMoney(int money){
         this.money+=money;
@@ -14,4 +17,6 @@ public class Money {
     public void substractMoney(int point){
         money-=point;
     }
+
+
 }

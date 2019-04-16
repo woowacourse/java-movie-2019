@@ -19,11 +19,7 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
-        for (Movie movie : movies) {
-            isContainId(movie, movieId);
-        }
-        System.out.println(choiceMovie);
-        choiceMovies.add(InputView.inputMovieTime(choiceMovies, choiceMovie));
+
 
 
 
