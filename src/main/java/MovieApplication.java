@@ -45,17 +45,8 @@ public class MovieApplication {
             scheduledNumber = InputView.inputMovieSchedule();
         }
         while (scheduledNumber > movies.get(movieId).getScheduleSize()
-<<<<<<< HEAD
-                || MovieRepository.getMovieById(movieId).getPlaySchedule().get(scheduledNumber-1).getCapacity() <= 0);
-
-        int numberOfPeople=InputView.inputNumberOfPeople();
-
-        reservation=new Reservation(movieId,scheduledNumber,numberOfPeople);
-        user.addReservation(reservation);
-=======
                 || MovieRepository.getMovieById(movieId).getPlaySchedule(scheduledNumber-1).getCapacity() <= 0);
         return scheduledNumber;
->>>>>>> feature/CONATUSEUS-04
     }
 
 }
