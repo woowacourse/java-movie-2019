@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
@@ -41,5 +42,20 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+
+    /**
+     * 영화 id를 입력받아 이를 id로 갖는 영화를 찾아서 반환하는 메소드
+     */
+    public static Movie getMovieWithId(int id) {
+        Iterator<Movie> it = movies.iterator();
+        while (it.hasNext()) {
+            Movie thisMovie = it.next();
+            if (thisMovie.isId(id)) {
+                return thisMovie;
+            }
+        }
+        return null;
     }
 }
