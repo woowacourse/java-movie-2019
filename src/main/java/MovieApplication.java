@@ -1,6 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
 
+import input.Continue;
 import input.MemberNumberInput;
 import input.ScheduleInput;
 import view.InputView;
@@ -20,7 +21,8 @@ public class MovieApplication {
         int scheduleId = InputView.getScheduleId(movie);
         // TODO 구현 진행
         int memberNumber = InputView.getMemberNumber(movie, scheduleId);
-        System.out.println(memberNumber);
+        Continue choice = InputView.askContinuePurchaseOrNot();
+        System.out.println(choice);
 
     }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import input.Continue;
 import input.MemberNumberInput;
 import input.MovieInput;
 import input.ScheduleInput;
@@ -18,6 +19,9 @@ public class InputView {
     private static final String ASK_MEMBER_NUMBER = "## 예약할 인원을 입력하세요.";
     private static final String MEMBER_NUMBER_ERROR = "## 잔여좌석 이하, 0 이상인 정수로 입력하셔야" +
             " 합니다.";
+    private static final String ASK_CONTINUE_OR_NOT = "## 예약을 종료하고 결제를 진행하려면 1번, " +
+            "추가 예약을 진행하려면 2번";
+    private static final String CONTINUE_ERROR = "## 1 또는 2인 정수를 입력하셔야 됩니다.";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -54,4 +58,16 @@ public class InputView {
             return getMemberNumber(movie, scheduleId);
         }
     }
+
+    public static Continue askContinuePurchaseOrNot() {
+        System.out.println(ASK_CONTINUE_OR_NOT);
+        try {
+            Continue preference = Continue.valueOfInput(scanner.nextLine().trim());
+            return preference;
+        } catch (Exception e) {
+            System.out.println(CONTINUE_ERROR);
+            return askContinuePurchaseOrNot();
+        }
+    }
+
 }
