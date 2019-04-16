@@ -12,6 +12,8 @@
 ---
 ## 구성
 - MovieApplication.java
+    * public static void printSelectMovie(int movieId,int no)
+    *
 - Movie.java
     *
 - MovieRepository.java
@@ -27,6 +29,9 @@
 | MovieApplication.java | 프로그램을 실행시키기 위한 Class  |
 | ----------- | ------------ |
 | public static void main(String[] args) |   영화 예매를 실행시킨다.|
+| public static void printSelectMovie(int movieId,int no) | 영화를 선택하는 매서드 |
+|  public static void selecMovieTime(int no)| 선택한 영화의 사영 시간을 선택하는 매서드 |
+
 
 | Movie.java | 영화 정보를 가지고 있는 객체|
 | ----------- | ------------ |
@@ -36,6 +41,10 @@
 | MovieRepository.java | MovieRepository 객체 클래스로 Database의 역활을 한다.|
 | ----------- | ------------ |
 | | |
+
+|InputView|입력을 받는 클래스|
+|-----------|----------|
+|public static int inputTime()| 시간표를 선택하고 선택한 시간을 반환하는 매서드|
 
 ---
 ### 프로그래머
