@@ -28,5 +28,7 @@ public class MovieApplication {
          *   예약할 시간표를 입력받는다.*/
         int scheduleId = InputView.inputScheduleId();
         int reserveMenCount = InputView.inputreserveMenCount();
+        int reserveEndorContinue = InputView.inputreserveEndorContinue();
+        
     }
 }
