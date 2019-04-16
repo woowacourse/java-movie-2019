@@ -44,6 +44,9 @@ public class TicketingManager {
 		if (!MovieRepository.hasSchedule(movieId, scheduleNumber)) {
 			throw new IllegalArgumentException("해당 상영 시간은 존재하지 않습니다.");
 		}
+		if (MovieRepository.isEndSchedule(movieId, scheduleNumber)) {
+			throw new IllegalArgumentException("상영 시작 시간이 이미 지났습니다.");
+		}
 	}
 	
 	private void checkTicketCount(int movieId, int scheduleNumber, int ticketCount) {

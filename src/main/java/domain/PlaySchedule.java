@@ -21,4 +21,8 @@ public class PlaySchedule {
     public boolean hasEnoughCapacity(int ticketCount) {
     	return ticketCount <= capacity;
     }
+    
+    public boolean isEnd() {
+    	return LocalDateTime.now().isAfter(startDateTime);
+    }
 }

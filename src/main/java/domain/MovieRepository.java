@@ -60,6 +60,12 @@ public class MovieRepository {
 		return movie.hasSchedule(scheduleNumber);
 	}
 	
+	public static Boolean isEndSchedule(int movieId, int scheduleNumber) {
+		int movieIndex = findMovieIndex(movieId, 0);
+		Movie movie = movies.get(movieIndex);
+		return movie.isEnd(scheduleNumber);
+	}
+	
 	public static Boolean hasEnoughCapacity(int movieId, int scheduleNumber, int ticketCount) {
 		int movieIndex = findMovieIndex(movieId, 0);
 		Movie movie = movies.get(movieIndex);
