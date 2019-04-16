@@ -42,4 +42,12 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static int getMovieIndex(int movieId) { // 수정 필요, indent 2
+        int movieIndex = 0;
+        for (int i = 0; i < movies.size(); i++) {
+            if (movies.get(i).isEqual(movieId)) return i;
+        }
+        return movieIndex;
+    }
 }

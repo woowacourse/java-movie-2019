@@ -16,6 +16,7 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = app.getMovieId();
+        OutputView.prinitSelectedMovie(movies, movieId);
     }
 
     private int getMovieId() {
@@ -28,4 +29,6 @@ public class MovieApplication {
             return getMovieId();
         }
     }
+
+
 }
