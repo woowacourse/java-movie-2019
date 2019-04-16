@@ -11,7 +11,7 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-        int moviePlaySchedule = InputView.inputMoviePlaySchedule();
+        int moviePlaySchedule = InputView.inputMoviePlaySchedule(MovieRepository.getMovie(movieId));
         int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation();
 
 

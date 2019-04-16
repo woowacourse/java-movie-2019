@@ -43,6 +43,17 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie getMovie(int movieId){
+        Movie returnMovie = null;
+        for(Movie movie : movies){
+            if(movieId == movie.getMovieId()){
+                returnMovie = movie;
+                break;
+            }
+        }
+        return returnMovie;
+    }
+
     public static boolean isExistMovie(int movieId){
         boolean exist = false;
         for(Movie movie : movies){

@@ -3,6 +3,8 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDateTime;
+
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -34,5 +36,9 @@ public class Movie {
 
     public int getMovieId(){
         return id;
+    }
+
+    public boolean isNotStartedMovie(int playScheduleId){
+        return LocalDateTime.now().isBefore(playSchedules.get(playScheduleId-1).getStartDateTime());
     }
 }
