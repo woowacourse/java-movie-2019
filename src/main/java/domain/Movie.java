@@ -33,6 +33,7 @@ public class Movie {
     public int getprice(){
         return price;
     }
+    public List<PlaySchedule> getPlaySchedules() { return playSchedules; }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);

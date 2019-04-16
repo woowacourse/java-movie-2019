@@ -6,13 +6,15 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@Data
 public class BookMovie {
     List<Movie>  bookMovieList = new ArrayList<>();
 
     public BookMovie(){
 
+    }
+
+    public List<Movie> getBookMovieList(){
+        return bookMovieList;
     }
 
     public void addBookMovieList(Movie movie){

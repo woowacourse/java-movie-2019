@@ -14,8 +14,15 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-        BookingMovie bookingMovie = new BookingMovie(new BookMovie());
-        bookingMovie.booking(movieId);
-        System.out.println(bookingMovie.bookMovie);
+        BookingMovie bookSystem = new BookingMovie(new BookMovie());
+
+        BookMovie bookingMovie = bookSystem.booking(movieId);
+        List<Movie> bookingMovieList = bookingMovie.getBookMovieList();
+        OutputView.printMovies(bookingMovieList);
+
+        int ScheduleNumber = InputView.inputMovieSchedule();
+        bookSystem.selectSchedule(ScheduleNumber);
+
+
     }
 }
