@@ -11,6 +11,10 @@ public class OutputView {
         }
     }
 
+    public static void printMovie(Movie movie) {
+        System.out.println(movie);
+    }
+
     public static Movie selectMovie(List<Movie> movies, int movieId) {
         for (Movie movie : movies) {
             if (movie.isThisMovie(movieId)) {
