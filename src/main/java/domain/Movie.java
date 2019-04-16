@@ -12,7 +12,7 @@ public class Movie {
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
 
-    public Movie(int id, String name, int price) {
+    Movie(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,11 +35,11 @@ public class Movie {
         return movieInfo() + NEW_LINE + sb.toString();
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 

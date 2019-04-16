@@ -8,7 +8,7 @@ public class PlaySchedule {
     private final LocalDateTime startDateTime;
     private int capacity;
 
-    public PlaySchedule(LocalDateTime startDateTime, int capacity) {
+    PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
