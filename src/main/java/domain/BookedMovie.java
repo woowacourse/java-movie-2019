@@ -26,4 +26,8 @@ public class BookedMovie {
         selectedPlaySchedule.printScheduleStartTime();
         System.out.format("예약 인원 : %d명" + NEW_LINE, reservedPersonCount);
     }
+
+    public boolean checkMovieId(int movieId) {
+        return bookedMovie.hasSameId(movieId);
+    }
 }
