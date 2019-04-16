@@ -32,4 +32,8 @@ public class Movie {
                 + sb.toString();
     }
 
+    public Boolean isId(int id) {
+        return this.id == id;
+    }
+
 }
