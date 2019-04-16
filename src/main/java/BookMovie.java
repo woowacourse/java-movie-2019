@@ -10,54 +10,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookMovie {
-    List<Movie> movies;
-    List<Movie> bookedMovies;
+    private List<Movie> movies;
+    private List<Movie> bookedMovies;
 
-    public BookMovie(){
+    public BookMovie() {
         movies = MovieRepository.getMovies();
         bookedMovies = new ArrayList<>();
         showMovieList();
     }
 
-    public void run(){
-        try{
+    public void run() {
+        try {
 
             getMovieSchedule(getSelectedMovie());
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             run();
         }
     }
 
-    private void showMovieList(){
+    private void showMovieList() {
         OutputView.printMovies(movies);
     }
 
     private Movie getSelectedMovie() {
         int movieId = InputView.inputMovieId();
-        for (Movie m : movies){
-            if (m.getMovieId() == movieId){
+        for (Movie m : movies) {
+            if (m.getMovieId() == movieId) {
                 return m;
             }
         }
         throw new IllegalArgumentException("해당하는 영화가 없습니다.");
     }
 
-    private void getMovieSchedule(Movie movie){
-        PlaySchedule schedule = movie.getMovieSchedule(InputView.inputMovieTime()-1);
+    private void getMovieSchedule(Movie movie) {
+        PlaySchedule schedule = movie.getMovieSchedule(InputView.inputMovieTime() - 1);
         checkMovieTime(schedule.getStartDateTime());
         checkCustomerCount(schedule);
         bookedMovies.add(movie);
     }
 
-    private void checkMovieTime(LocalDateTime startTime){
-        if (DateTimeUtils.isEarlyerThanMovieTime(startTime)){
+    private void checkMovieTime(LocalDateTime startTime) {
+        if (DateTimeUtils.isEarlyerThanMovieTime(startTime)) {
             throw new IllegalArgumentException("상영시간이 이미 지났습니다.");
         }
     }
 
-    private void checkCustomerCount(PlaySchedule schedule){
-        if (InputView.inputMovieCustomer() > schedule.getCapacity()){
+    private void checkCustomerCount(PlaySchedule schedule) {
+        if (InputView.inputMovieCustomer() > schedule.getCapacity()) {
             throw new IllegalArgumentException("인원 초과입니다.");
         }
     }

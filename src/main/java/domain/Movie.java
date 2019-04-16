@@ -33,11 +33,15 @@ public class Movie {
                 + sb.toString();
     }
 
-    public int getMovieId(){
+    public int getMovieId() {
         return this.id;
     }
 
-    public PlaySchedule getMovieSchedule(int movieIndex){
+    public PlaySchedule getMovieSchedule(int movieIndex) {
         return playSchedules.get(movieIndex);
+    }
+
+    public int getPrice() {
+        return this.price;
     }
 }

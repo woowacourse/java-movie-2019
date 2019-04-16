@@ -27,12 +27,12 @@ public class DateTimeUtils {
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
 
-    public static LocalDateTime createCurrentTime(){
+    public static LocalDateTime createCurrentTime() {
         LocalDateTime now = LocalDateTime.now();
         return now;
     }
 
-    public static boolean isEarlyerThanMovieTime(LocalDateTime selectedTime){
+    public static boolean isEarlyerThanMovieTime(LocalDateTime selectedTime) {
         return selectedTime.isBefore(LocalDateTime.now());
     }
 }
