@@ -1,6 +1,5 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -9,6 +8,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class MovieApplication {
+
+    private static final int RESERVATION_FINISHED = 1;
+    private static final int ADDITIONAL_RESERVATION = 2;
 
     public void printSelectedMovieInfo(int movieId, List<Movie> movies) {
         for (Movie movie : movies) {
@@ -65,6 +67,24 @@ public class MovieApplication {
         }
     }
 
+    public int payOrAdditionalReservationInput(){
+        try {
+            int payOrReservation = InputView.inputPayOrAdditionalReservation();
+            checkIfPayOrReservationIsProper(payOrReservation);
+            return payOrReservation;
+
+        } catch(InputMismatchException | IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return payOrAdditionalReservationInput();
+        }
+    }
+
+    public void checkIfPayOrReservationIsProper(int payOrReservation){
+        if (payOrReservation < RESERVATION_FINISHED || payOrReservation > ADDITIONAL_RESERVATION){
+            throw new IllegalArgumentException("1 또는 2의 숫자를 입력해주세요.");
+        }
+    }
+
 
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -73,7 +93,7 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         MovieApplication m = new MovieApplication();
-        List<Movie> selectedMovie = new ArrayList<>();
+        List<Movie> reservedMovie = new ArrayList<>();
         //movie List 를 가져와서 파싱하면서 해결해야함.
         //ID를 받아서,
 
@@ -89,17 +109,27 @@ public class MovieApplication {
         //TODO : 바깥 루프 필요함
         m.printSelectedMovieInfo(movieId, movies);
         Movie reservingMovie = m.movieSelection(movieId, movies);
-        selectedMovie.add(m.movieSelection(movieId, movies));
+        reservedMovie.add(m.movieSelection(movieId, movies));
         int selectedTable = m.timeTableSelectionInput(reservingMovie);
         //reservingMovie 가 주요 객체다
         int reseravationNumber = m.reservingNumberInput(reservingMovie, selectedTable);
+        int payOrAdditionalReservation = m.payOrAdditionalReservationInput();
 
-        int payOrAdditionalReservation = InputView.inputPayOrAdditionalReservation();
+
+        if (payOrAdditionalReservation == ADDITIONAL_RESERVATION){
+            //TODO : 위로 돌아감
+        }
+        if (payOrAdditionalReservation == RESERVATION_FINISHED){
+            //printReservationList(reservedMovie);
+            InputView.printPaymentRunningMessage();
+            int amountOfPointToUse = InputView.inputAmountOfPointToUse();
+            int payByCreditOrCash = InputView.inputPayByCreditCardOrCash();
+        }
+
+
         //예약 내역 프린트. 이건 movie 정보를 받아야겟지
 
-        InputView.printPaymentRunningMessage();
-        int amountOfPointToUse = InputView.inputAmountOfPointToUse();
-        int payByCreditOrCash = InputView.inputPayByCreditCardOrCash();
+
 
 
     }
