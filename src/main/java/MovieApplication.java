@@ -7,15 +7,11 @@ import java.util.List;
 
 public class MovieApplication {
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        System.out.println("## 상영 영화 목록");
-        OutputView.printMovies(movies);
-
-        int movieId = InputView.inputMovieId();
+        //List<Movie> movies = MovieRepository.getMovies();
 
         // TODO 구현 진행
         Manager manager = new Manager();
-        manager.startReserve(movieId);
+        manager.startReserve();
     }
 
 }
