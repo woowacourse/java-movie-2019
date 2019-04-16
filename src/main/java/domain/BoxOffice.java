@@ -13,7 +13,7 @@ public class BoxOffice {
 
     public PlaySchedule selectSchedule(int selectMovieSchedule, int peopleCount, LocalDateTime currentTime) {
         PlaySchedule selectSchedule = selectMovie.select(selectMovieSchedule);
-        if (selectSchedule.isValidSchdule(currentTime)) {
+        if (selectSchedule.isValidSchedule(currentTime)) {
             selectSchedule.buy(peopleCount);
         }
         return selectSchedule;

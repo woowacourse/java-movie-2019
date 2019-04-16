@@ -14,11 +14,10 @@ public class MovieRepositoryTest {
     }
 
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void 선택한_Id로_영화_조회_없는영화_익셉션() {
         MovieRepository movieRepository = new MovieRepository();
         int selectMovieId = 2;
         Movie selectMovie = MovieRepository.getSelectMovie(selectMovieId);
-//        assertThat(selectSchedule.getName()).isEqualTo("생일");
     }
 }

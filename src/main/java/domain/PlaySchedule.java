@@ -1,7 +1,5 @@
 package domain;
 
-import utils.DateTimeUtils;
-
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -31,9 +29,9 @@ public class PlaySchedule {
         return capacity;
     }
 
-    public boolean isValidSchdule(LocalDateTime now) {
+    public boolean isValidSchedule(LocalDateTime now) {
         if (this.getStartDateTime().isBefore(now)) {
-            throw new IllegalStateException("시간이 지나 관람 불가");
+            throw new IllegalArgumentException("시간이 지나 관람 불가");
         }
         return true;
     }

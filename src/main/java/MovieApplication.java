@@ -1,7 +1,4 @@
-import domain.BoxOffice;
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -22,12 +19,10 @@ public class MovieApplication {
         int selectMovieSchedule = InputView.inputMovieSchedule();
         int peopleCount = InputView.inputPeopleCount();
         PlaySchedule selectSchedule = boxOffice.selectSchedule(selectMovieSchedule, peopleCount, LocalDateTime.now());
-        int selectNumber = InputView.InputPaymentOrBuyMessage();
 
-        OutputView.printBookingHistory(selectMovie,selectSchedule,peopleCount);
-
-
-
+        OutputView.printBookingHistory(selectMovie, selectSchedule, peopleCount);
+        int inputPoint = InputView.inputGetPoint();
+        int methodOfPayment = InputView.inputSelectCashOrCard();
 
 
         // TODO 구현 진행
