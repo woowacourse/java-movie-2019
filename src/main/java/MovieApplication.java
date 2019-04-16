@@ -18,7 +18,7 @@ public class MovieApplication {
         Movie movieToReserve = selectMovieToReserve();
         PlaySchedule playSchedule = selectPlayScheduleToReserve(movieToReserve);
         int peopleToReserve = selectPeopleToReserve(playSchedule);
-        System.out.println(peopleToReserve);
+        
     }
 
     private Movie selectMovieToReserve() {

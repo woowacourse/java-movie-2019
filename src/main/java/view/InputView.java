@@ -27,7 +27,7 @@ public class InputView {
         try {
             String playScheduleIdx = scanner.nextLine();
             Validator.checkAccuracyOfPlayScheduleIdx(playScheduleIdx, movie);
-            return movie.getPlayScheduleByIdx(Integer.parseInt(playScheduleIdx) - 1);
+            return movie.getPlayScheduleByIdx(Integer.parseInt(playScheduleIdx));
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
             return inputPlaySchedule(movie);
