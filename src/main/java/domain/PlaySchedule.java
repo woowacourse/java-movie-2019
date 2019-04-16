@@ -25,4 +25,8 @@ public class PlaySchedule {
 	public int getCapacity() {
 		return capacity;
 	}
+	
+	public String getScheduleInfo() {
+		return "시작시간: " + format(startDateTime);
+	}
 }

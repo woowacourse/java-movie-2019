@@ -31,6 +31,10 @@ public class Movie {
 		return id + " - " + name + ", " + price + "원" + NEW_LINE + sb.toString();
 	}
 
+	public String getMovieInfo() {
+		return id + " - " + name + ", " + price + "원";
+	}
+	
 	public int getId() {
 		return id;
 	}

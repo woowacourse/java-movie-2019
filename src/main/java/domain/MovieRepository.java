@@ -50,4 +50,10 @@ public class MovieRepository {
 		}
 		return movieIds;
 	}
+
+	public static Movie getMovieById(int movieId) {
+		if (!getMovieIds().contains(movieId))
+			throw new IllegalArgumentException("해당 영화 아이디가 존재하지 않습니다.");
+		return movies.get(getMovieIds().indexOf(movieId));
+	}
 }

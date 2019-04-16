@@ -20,6 +20,7 @@ public class MovieReserveManager {
 	
 	public void addReservedMovie(ReservedMovie reservedMoive) {
 		reservedMovies.add(reservedMoive);
+		System.out.print(reservedMoive);
 	}
 	
 	private int inputValidatedMovieId() {
