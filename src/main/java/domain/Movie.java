@@ -39,4 +39,8 @@ public class Movie {
 
         return false;
     }
+
+    public int getScheduleLength() {
+        return playSchedules.size();
+    }
 }

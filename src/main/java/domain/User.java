@@ -10,9 +10,13 @@ public class User {
     private List<UserSelection> userSelections = new ArrayList<>();
 
     public int getMovieId() {
-        int movieId = validateMovieId();
+        return validateMovieId();
+    }
 
-        return movieId;
+    public int getMovieTime(int movieId) {
+        MovieRepository.showTimeTable(movieId);
+
+        return validateMovieTime(movieId);
     }
 
     private int validateMovieId() {
@@ -25,5 +29,17 @@ public class User {
         }
 
         return movieId;
+    }
+
+    private int validateMovieTime(int movieId) {
+        int movieTime = InputView.getUserInput(StringLiterals.MOVIE_TIME_STATEMENT.toString(),
+                StringLiterals.MOVIE_TIME_ERROR.toString());
+
+        if (movieTime < 1 || movieTime > MovieRepository.getTimeTableLength(movieId)) {
+            System.out.println((StringLiterals.MOVIE_TIME_ERROR.toString()));
+            return validateMovieTime(movieId);
+        }
+
+        return movieTime;
     }
 }

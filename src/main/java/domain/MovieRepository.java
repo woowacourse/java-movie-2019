@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
@@ -51,5 +52,24 @@ public class MovieRepository {
         }
 
         return idFlag;
+    }
+
+    public static void showTimeTable(int movieId) {
+        System.out.println(movies.get(getMovieIndex(movieId)));
+    }
+
+    public static int getTimeTableLength(int movieId) {
+        return movies.get(getMovieIndex(movieId)).getScheduleLength();
+    }
+
+    private static int getMovieIndex(int movieId) {
+        Iterator<Movie> iterator = movies.iterator();
+        int index = 0;
+
+        while (iterator.hasNext() && !(iterator.next().isMovieId(movieId))) {
+            index++;
+        }
+
+        return index;
     }
 }
