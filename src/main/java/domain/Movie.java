@@ -1,7 +1,12 @@
 package domain;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -18,8 +23,11 @@ public class Movie {
         this.price = price;
     }
 
-    public int getMovieId() { return this.id; }
+    public LocalDateTime getMovieTime(int TimeNum){
+        return playSchedules.get(TimeNum).getStartDateTime();
+    }
 
+    public int getMovieId() { return this.id; }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);

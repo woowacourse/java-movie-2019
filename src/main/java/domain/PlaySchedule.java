@@ -12,6 +12,9 @@ public class PlaySchedule {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
+    public LocalDateTime getStartDateTime(){
+        return startDateTime;
+    }
 
     @Override
     public String toString() {
