@@ -1,8 +1,5 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.PlaySchedule;
-import domain.ReservationMovie;
-import jdk.internal.util.xml.impl.Input;
 import payment.PaymentMain;
 import reservation.MovieReservation;
 import reservation.ReservationMain;
