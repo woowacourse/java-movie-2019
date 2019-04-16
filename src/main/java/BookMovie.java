@@ -7,6 +7,7 @@ import view.OutputView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BookMovie {
@@ -54,11 +55,30 @@ public class BookMovie {
         if (DateTimeUtils.isEarlyerThanMovieTime(startTime)) {
             throw new IllegalArgumentException("상영시간이 이미 지났습니다.");
         }
+
+        if (bookedMovies.size() != 0){
+            checkMovieTimeInOneHour(startTime);
+        }
     }
 
     private void checkCustomerCount(PlaySchedule schedule) {
         if (InputView.inputMovieCustomer() > schedule.getCapacity()) {
             throw new IllegalArgumentException("인원 초과입니다.");
+        }
+    }
+
+    public List<Movie> getBookedMovies(){
+        return this.bookedMovies;
+    }
+
+    private void checkMovieTimeInOneHour(LocalDateTime startTime){
+        List<LocalDateTime> movieTimeList = new ArrayList<>();
+        for (Movie movie : bookedMovies){
+            movieTimeList.add(movie.getMovieSchedule(0).getStartDateTime());
+        }
+        LocalDateTime earlistMovieTime = Collections.min(movieTimeList);
+        if (!DateTimeUtils.isOneHourWithinRange(earlistMovieTime,startTime)){
+            throw new IllegalArgumentException("다른 예약이 있습니다. 상영시간은 1시간 이내여야 합니다.");
         }
     }
 

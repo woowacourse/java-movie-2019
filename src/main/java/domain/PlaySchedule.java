@@ -19,10 +19,10 @@ public class PlaySchedule {
     }
 
     public LocalDateTime getStartDateTime() {
-        return startDateTime;
+        return this.startDateTime;
     }
 
     public int getCapacity() {
-        return capacity;
+        return this.capacity;
     }
 }

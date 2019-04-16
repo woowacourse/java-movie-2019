@@ -5,10 +5,12 @@ public class MovieApplication {
         BookMovie bookMovie = new BookMovie();
         bookMovie.run();
 
-        if (InputView.inputPayMovieYesOrNo()) {
+        while (!InputView.inputPayMovieYesOrNo()) {
             bookMovie.run();
         }
 
+        PayMovie payMovie = new PayMovie(bookMovie.getBookedMovies());
+        payMovie.run();
     }
 
 }

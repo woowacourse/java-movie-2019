@@ -18,7 +18,7 @@ public class PayMovie {
         OutputView.printPayInfo(bookedMovies);
     }
 
-    private void run() {
+    public void run() {
         try {
             int totalPayMoney = activateDisCount(makePayAmount(getPointAmount()));
             OutputView.printPayResult(totalPayMoney);
@@ -29,7 +29,11 @@ public class PayMovie {
     }
 
     private int getPointAmount() {
-        return makePayAmount(InputView.inputPointAmount());
+        int payMoney = InputView.inputPointAmount();
+        if (payMoney < 0){
+            return 0;
+        }
+        return payMoney;
     }
 
     private int makePayAmount(int point) {

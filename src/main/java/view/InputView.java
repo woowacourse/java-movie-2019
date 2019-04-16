@@ -7,24 +7,24 @@ public class InputView {
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+        return getInputCastedToInt();
     }
 
     public static int inputMovieTime() {
         System.out.println("## 예약할 시간을 선택하세요.");
-        return scanner.nextInt();
+        return getInputCastedToInt();
     }
 
     public static int inputMovieCustomer() {
         System.out.println("## 예약할 인원을 선택하세요.");
-        return scanner.nextInt();
+        return getInputCastedToInt();
     }
 
     public static boolean inputPayMovieYesOrNo() {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하시려면 2");
         boolean yes = true;
         try {
-            yes = isOneOrTwo(scanner.nextInt());
+            yes = isOneOrTwo(getInputCastedToInt());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             inputPayMovieYesOrNo();
@@ -44,12 +44,28 @@ public class InputView {
 
     public static int inputPointAmount() {
         System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0을 입력하세요");
-        return scanner.nextInt();
+        return getInputCastedToInt();
     }
 
     public static boolean inputCardOrCash() {
         System.out.println("## 신용카드는 1번, 현금은 2번");
-        return isOneOrTwo(scanner.nextInt());
+        return isOneOrTwo(getInputCastedToInt());
+    }
+
+    private static int stringToInt(String inputString){
+        try{
+            return Integer.parseInt(inputString);
+        }catch (Exception ex){
+            throw new NumberFormatException("숫자를 입력해야 합니다.");
+        }
+    }
+
+    private static String removeBlank(String inputString){
+        return inputString.replace(" ", "");
+    }
+
+    private static int getInputCastedToInt(){
+       return  stringToInt(removeBlank(scanner.nextLine()));
     }
 
 }
