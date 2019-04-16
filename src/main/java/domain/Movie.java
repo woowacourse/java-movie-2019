@@ -37,4 +37,8 @@ public class Movie {
             System.out.println(playSchedule.toString());
         }
     }
+
+    public PlaySchedule getSchedule(int scheduleNumber) {
+        return playSchedules.get(scheduleNumber);
+    }
 }
