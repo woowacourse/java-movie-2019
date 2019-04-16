@@ -17,13 +17,15 @@ public class MovieApplication {
 
         int point = InputView.inputPoint();
         int paymentOption = InputView.inputPaymentOption();
+        int totalPrice = bookingList.getTotalPrice(point, paymentOption);
+        OutputView.printTotalPrice(totalPrice);
     }
 
     private static BookingList getBookingList() {
         do {
             Booking booking = bookMovie();
             addBasket(booking);
-        } while (isPaymentOrContinue());
+        } while (isStopOrContinue());
 
         return new BookingList(basket.getBookingList());
     }
@@ -67,15 +69,14 @@ public class MovieApplication {
         }
     }
 
-
-    private static boolean isPaymentOrContinue() {
+    private static boolean isStopOrContinue() {
         try {
             int choice = InputView.inputStopOfContinue();
 
             return isValidInput(choice);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
-            return isPaymentOrContinue();
+            return isStopOrContinue();
         }
     }
 

@@ -13,7 +13,6 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
-
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
@@ -25,7 +24,6 @@ public class PlaySchedule {
     public String getInfo() {
         return "시작시간: " + format(startDateTime);
     }
-
 
     @Override
     public String toString() {
