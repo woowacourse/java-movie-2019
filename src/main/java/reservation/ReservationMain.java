@@ -4,7 +4,6 @@ import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
 import view.InputView;
-import view.OutputView;
 
 public class ReservationMain {
     public static MovieReservation reservationRun(MovieReservation reservations) {
@@ -14,7 +13,7 @@ public class ReservationMain {
         Movie selectedMovie = ReservationCreater.inputMovie(movieId);
         PlaySchedule schedule = ReservationCreater.inputSchedule(reservations, selectedMovie);
         reservePeopleNum = ReservationCreater.inputReserveNum(schedule);
-        reservations.insertRervation(selectedMovie, schedule, reservePeopleNum);
+        reservations.insertReserrvation(selectedMovie, schedule, reservePeopleNum);
         MovieRepository.reduceCapacity(selectedMovie, schedule, reservePeopleNum);
         return reservations;
     }

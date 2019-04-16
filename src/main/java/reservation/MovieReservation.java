@@ -27,7 +27,7 @@ public class MovieReservation {
         return true;
     }
 
-    void insertRervation(Movie selectedMovie, PlaySchedule schedule, int reservePeopleNum) {
+    void insertReserrvation(Movie selectedMovie, PlaySchedule schedule, int reservePeopleNum) {
         reservations.add(new ReservationMovie(selectedMovie.getId(), selectedMovie.getName(), selectedMovie.getPrice(),
                 new ReservationSchedule(schedule.getStartDateTime(), reservePeopleNum)));
     }
