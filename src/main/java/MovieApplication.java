@@ -21,20 +21,30 @@ public class MovieApplication {
                 OutputView.printInputMovieSchedule(movies, movieIndex);
                 break;
             }
-            System.out.println("상영 목록에 없는 영화를 선택하셨습니다. 예매가 불가능합니다. 다시 선택해주세요.\n");
+            OutputView.printImpossibleReasonSelectedMovieNotOnTheList();
             movieId = InputView.inputMovieId();
         }
 
         int movieSchedule = InputView.inputMovieSchedule();
         while(true) {
-            if(ReserveMovie.assertMovieSchedule(movies.get(movieIndex), movieSchedule)) {
+            if(ReserveMovie.assertMovieSchedule(movies, movieIndex, movieSchedule)) {
+                System.out.println();
                 break;
             }
-            System.out.println("상영 시작 시간이 이미 지난 영화를 선택하셨습니다. 예매가 불가능합니다. 다시 선택해주세요.\n");
+            OutputView.printImpossibleReasonSelectedMovieAlreadyStartTime();
             movieSchedule = InputView.inputMovieSchedule();
         }
 
-        //int movieWatchPeople = InputView.inputMovieWatchPeople();
+        int movieWatchPeople = InputView.inputMovieWatchPeople();
+        while(true) {
+            if(ReserveMovie.assertMovieWatchPeople(movies, movieIndex, movieSchedule, movieWatchPeople)) {
+                System.out.println();
+                break;
+            }
+            OutputView.printImpossibleReasonWatchPeopleExceeding();
+            movieWatchPeople = InputView.inputMovieWatchPeople();
+        }
+
 
 
         // TODO 구현 진행

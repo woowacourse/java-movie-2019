@@ -32,8 +32,15 @@ public class ReserveMovie {
         return -1;
     }
 
-    public static boolean assertMovieSchedule(Movie movie, int movieSchedule) {
-        if (movie.getPlaySchedules().get(movieSchedule - 1).getStartDateTime().isAfter(LocalDateTime.now())) {
+    public static boolean assertMovieSchedule(List<Movie> movies, int movieIndex, int movieSchedule) {
+        if (movies.get(movieIndex).getPlaySchedules().get(movieSchedule - 1).getStartDateTime().isAfter(LocalDateTime.now())) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean assertMovieWatchPeople(List<Movie> movies, int movieIndex, int movieSchedule, int movieWatchPeople) {
+        if(movies.get(movieIndex).getPlaySchedules().get(movieSchedule-1).getCapacity() >= movieWatchPeople) {
             return true;
         }
         return false;
