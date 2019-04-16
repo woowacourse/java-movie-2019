@@ -31,4 +31,16 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public PlaySchedule getSchedule(int time) {
+        return playSchedules.get(time - 1);
+    }
+//예외 처리 할것
+
+    public boolean idCheak(int index) {
+        if (index == this.id) {
+            return true;
+        }
+        return false;
+    }
 }
