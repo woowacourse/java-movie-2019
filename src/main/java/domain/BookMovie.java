@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 예약 현황을 나타내는 클래스
+ */
 public class BookMovie {
     Map<List<Movie>, Integer> bookMap = new HashMap<>();
     List<Movie> bookMovieList = new ArrayList<>();

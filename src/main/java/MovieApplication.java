@@ -26,6 +26,12 @@ public class MovieApplication {
         OutputView.printMovies(bookingMovie.getBookMovieList());
         bookSystem.selectSchedule(order++,InputView.inputMovieSchedule());
         bookSystem.selectPeopleBooking(InputView.inputPeopleBooking());
+        Dopayment(bookingMovie);
+
+
+    }
+
+    private static void Dopayment(BookMovie bookingMovie){
         PaymentSystem paymentSystem = new PaymentSystem();
         paymentSystem.paymentStart(bookingMovie,InputView.inputPaymentType());
         OutputView.printTotalPrice(paymentSystem.getTotalPrice());

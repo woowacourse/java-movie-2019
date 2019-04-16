@@ -9,6 +9,9 @@ import view.InputView;
 
 import java.util.List;
 
+/**
+ * 예약 시스템
+ */
 public class BookSystem {
     private BookMovie bookMovie;
     private List<PlaySchedule> selectedScheduleList;
