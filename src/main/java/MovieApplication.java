@@ -14,9 +14,9 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         Movie movie = InputView.inputMovie(movies);
-        ScheduleInput scheduleInput = new ScheduleInput(movie,"");
+        int scheduleId = InputView.getScheduleId(movie);
         // TODO 구현 진행
-        System.out.println(scheduleInput.scheduleIdIs());
+        System.out.println(scheduleId);
 
     }
 }
