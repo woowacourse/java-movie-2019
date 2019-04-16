@@ -23,10 +23,9 @@ public class InputView {
 
     public static int InputTimeScheduleIndex(Movie movie) {
         System.out.println("# 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-        //여기서 스케쥴 1시간 이내 차이나면 처리할것.
         try {
             int timeScheduleIndex = InputUtil.getInt();
-            movie.checkIsValid(timeScheduleIndex);
+            movie.checkTimeScheduleValid(timeScheduleIndex);
             return timeScheduleIndex;
         } catch (Exception e) {
             System.out.println("제대로된 스케쥴 일정을 입력해주세요");

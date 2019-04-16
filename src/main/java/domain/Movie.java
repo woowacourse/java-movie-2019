@@ -45,7 +45,12 @@ public class Movie {
     }
 
 
-    public void checkIsValid(int timeScheduleIndex) {
+    public void checkTimeScheduleValid(int timeScheduleIndex) {
         playSchedules.get(timeScheduleIndex - 1);
+    }
+
+    public boolean isMoviePossible() {
+        return playSchedules.stream()
+                    .anyMatch(schedule -> schedule.isSchedulePossible());
     }
 }

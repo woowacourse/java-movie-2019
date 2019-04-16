@@ -22,8 +22,8 @@ public class PlaySchedule {
         this.capacity -= buyCount;
     }
 
-    public boolean isOneHour(PlaySchedule otherPlayerSchedule) {
-        return DateTimeUtils.isOneHourWithinRange(this.startDateTime, otherPlayerSchedule.startDateTime);
+    public boolean isSchedulePossible() {
+        return (capacity > 0);
     }
 
     @Override
