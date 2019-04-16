@@ -58,12 +58,12 @@ public class InputView {
 	}
 
 	public static int inputPaymentMethod() {
-		try {
-			System.out.println("## 신용카드는 1번, 현금은 2번");
+		System.out.println("## 신용카드는 1번, 현금은 2번");
+		String inputValue = SCANNER.nextLine();
+		if (Validator.isValidFlag(inputValue)) {
 			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputPaymentMethod();
 		}
+		return inputPaymentMethod();
 	}
 
 }
