@@ -30,6 +30,10 @@ public class Movie {
 		return price;
 	}
 
+	public List<PlaySchedule> getPlaySchedules() {
+		return playSchedules;
+	}
+
 	void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
