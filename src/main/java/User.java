@@ -1,5 +1,8 @@
+import domain.UserMovie;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
-    private int movieId;
-    private int timeTableId;
-    private int peopleCount;
+    private List<UserMovie> userMoviesList = new ArrayList<>();
 }
