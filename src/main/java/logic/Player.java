@@ -23,6 +23,8 @@ public class Player {
         do {
             Movie movie = InputView.inputMovie();
             BuyWithTimeschedule(movie);
+            System.out.println("확인");
+            OutputView.printPlaySchedule(movie);
         } while (checkContinue() && MovieRepository.isAllMoviePossible());
     }
 
