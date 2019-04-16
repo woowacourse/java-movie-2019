@@ -6,6 +6,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final char NEW_LINE = '\n';
     private static final int MIN_INPUT = 1;
+    private static final int MIN_POINT = 0;
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
@@ -29,7 +30,7 @@ public class InputView {
 
     public static int inputPoint() {
         System.out.println("포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-        return getValidInteger();
+        return getPosiviteIntegerForPoint();
     }
 
     public static int inputPaymentMethod() {
@@ -47,6 +48,20 @@ public class InputView {
         if (input < MIN_INPUT) {
             System.out.format("%d 이상의 수를 입력해주세요." + NEW_LINE, MIN_INPUT);
             return getValidInteger();
+        }
+        return input;
+    }
+
+    private static int getPosiviteIntegerForPoint() {
+        int input;
+        try {
+            input = Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            return getPosiviteIntegerForPoint();
+        }
+        if (input < MIN_POINT) {
+            System.out.format("%d 이상의 수를 입력해주세요." + NEW_LINE, MIN_POINT);
+            return getPosiviteIntegerForPoint();
         }
         return input;
     }
