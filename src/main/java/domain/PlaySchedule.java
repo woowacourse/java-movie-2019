@@ -25,6 +25,14 @@ public class PlaySchedule {
         this.capacity = this.capacity - personnel;
     }
 
+    public LocalDateTime getStartDateTime(){
+        return this.startDateTime;
+    }
+
+    public String printSchedule(){
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

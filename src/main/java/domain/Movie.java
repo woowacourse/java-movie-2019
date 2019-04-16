@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
-    private static final int START_NUMBER = 1;
+    private static final int START_NUMBER = -1;
 
     private final int id;
     private final String name;
@@ -31,11 +31,23 @@ public class Movie {
         System.out.println(playSchedules.get(scheduleNo + START_NUMBER));
     }
 
+    public PlaySchedule getSchedule(int scheduleNo){
+        return playSchedules.get(scheduleNo + START_NUMBER);
+    }
+
     public boolean modifyScheduleCapacity(int scheduleNo, int personnel){
-        if(playSchedules.get(scheduleNo).isValidCapacity(personnel)){
+        if(playSchedules.get(scheduleNo+START_NUMBER).isValidCapacity(personnel)){
             return true;
         }
         return false;
+    }
+
+    public int getPrice(){
+        return this.price;
+    }
+
+    public String printMovie(){
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 
     @Override

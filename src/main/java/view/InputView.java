@@ -46,4 +46,23 @@ public class InputView {
         }
         return true;
     }
+
+    public static long inputPoint(long beforeTotalPrice) throws IOException{
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int point;
+        System.out.println("## 결제를 진행합니다.");
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        point = Integer.parseInt(bf.readLine());
+        if(beforeTotalPrice - point < 0){
+            System.out.println("## 포인트가 결제 금액보다 많습니다. 다시 입력해주세요.");
+            return inputPoint(beforeTotalPrice);
+        }
+        return point;
+    }
+
+    public static int inputCashOrCard() throws IOException{
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        return Integer.parseInt(bf.readLine());
+    }
 }

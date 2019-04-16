@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.Reservation;
 
 import java.util.List;
 
@@ -16,7 +17,18 @@ public class OutputView {
     }
 
     public static void printSchedule(Movie chooseMovie, int scheduleNumber){
-
         chooseMovie.printSchedule(scheduleNumber);
+    }
+
+    public static void printReservation(List<Reservation> reservationList){
+        System.out.println("예약 내역");
+        for(Reservation reservation : reservationList){
+            System.out.println(reservation);
+        }
+    }
+
+    public static void printTotalPayment(long TotalMoney){
+        System.out.println("최종 결제한 금액은 "+TotalMoney +"원입니다.\n"+
+                "예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 }
