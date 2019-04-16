@@ -11,7 +11,8 @@ public class Validator {
     private static final String WARNING_WHEN_MOVIE_NOT_EXIST = "해당 영화는 존재하지 않습니다";
     private static final String WARNING_WHEN_MOVIE_DONT_HAVE_VACANCY = "해당 영화는 공석이 존재하지 않습니다.";
     private static final String WARNING_WHEN_SCHEDULE_NOT_EXIST = "해당 스캐줄은 존재하지 않습니다.";
-
+    private static final String WARNING_WHEN_SCHEDULE_DONT_HAVE_VACANCY = "해당 스캐줄은 공석이 존재하지 않습니다.";
+    
     // 정수인지
     public static boolean isInteger(String number) {
         try {
@@ -54,4 +55,18 @@ public class Validator {
         }
         return true;
     }
+
+    // 해당 스캐줄이 공석이 있는지
+    public static boolean isScheduleHaveVacancy(int movieNumber, int scheduleIndex) {
+        if (!isMovieExist(movieNumber)) {
+            return false;
+        }
+        boolean isScheduleHaveVacncy = MovieRepository.getMovie(movieNumber).getSchedule(scheduleIndex).isNotEmpty();
+        if (!isScheduleHaveVacncy) {
+            System.out.println(WARNING_WHEN_SCHEDULE_DONT_HAVE_VACANCY);
+            return false;
+        }
+        return true;
+    }
+
 }

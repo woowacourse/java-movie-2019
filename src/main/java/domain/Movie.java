@@ -45,4 +45,8 @@ public class Movie {
     public boolean isScheduleExist(int scheduleIndex){
         return (playSchedules.size()-1 >= scheduleIndex);
     }
+    // 스캐줄 가져오기
+    public PlaySchedule getSchedule(int indexIndex){
+        return playSchedules.get(indexIndex);
+    }
 }
