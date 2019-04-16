@@ -25,6 +25,9 @@ public class Movie {
     public int getId(){
         return id;
     }
+    public int getPlaySchedulesLength(){
+        return playSchedules.size();
+    }
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }

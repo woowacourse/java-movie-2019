@@ -35,4 +35,11 @@ public class InputView {
         }
         throw new IllegalArgumentException("상영하고 있는 영화의 id를 입력해주세요. ");
     }
+
+    public static int isContainTime(Movie movie,int inputTime){
+        if(movie.getPlaySchedulesLength()<inputTime || inputTime<0){
+            throw new IllegalArgumentException("올바른 상영시간표를 선택해 주세요.");
+        }
+        return inputTime;
+    }
 }
