@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 
 class ReservationRecord {
 
-    private int movieId;
-    private int movieCapacity;
+    private Movie movie;
     private int movieEntryNumber;
+    private int movieCapacity;
     private LocalDateTime movieStartDateTime;
 
-    ReservationRecord(int movieId, int movieCapacity, int movieEntryNumber,
-                      LocalDateTime movieStartDateTime) {
-        this.movieId = movieId;
+    ReservationRecord(int movieId, int movieCapacity, int movieEntryNumber) {
+        Movie movie = MovieRepository.getMovies().get(movieId);
+        this.movie = movie;
         this.movieCapacity = movieCapacity;
-        this.movieEntryNumber = movieEntryNumber;
-        this.movieStartDateTime = movieStartDateTime;
+        this.movieStartDateTime = movie.getPlaySchedules().get(movieEntryNumber - 1)
+            .getStartDateTime();
     }
 
     LocalDateTime getMovieStartDateTime() {

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
+
     private final LocalDateTime startDateTime;
     private int capacity;
 
@@ -25,5 +26,14 @@ public class PlaySchedule {
     void consume(Integer capacity) {
         assert (capacity > 0);
         this.capacity -= capacity;
+    }
+
+    LocalDateTime getStartDateTime() {
+        return this.startDateTime;
+    }
+
+    boolean checkAlreadyPassed() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        return currentTime.compareTo(this.startDateTime) > 0;
     }
 }

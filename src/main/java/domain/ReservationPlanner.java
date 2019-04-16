@@ -1,12 +1,13 @@
 package domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import utils.DateTimeUtils;
 
 public class ReservationPlanner {
 
-    List<ReservationRecord> reservationRecords;
+    private List<ReservationRecord> reservationRecords = new ArrayList<>();
 
     Integer displayMovieSchedule(Integer movieId) {
         if (MovieRepository.isMovieExists(movieId)) {
@@ -26,8 +27,11 @@ public class ReservationPlanner {
 
     void selectReservationCapacity(Integer movieId, Integer movieEntryNumber, Integer capacity) {
         System.out.println("## 예약할 인원을 입력하세요.");
-        if (MovieRepository.isConsumable(movieId, movieEntryNumber, capacity)) {
+        if (MovieRepository.isConsumable(movieId, movieEntryNumber, capacity)
+            && checkReservationRecordsAllInOneHour()
+            && checkMovieAlreadyStarted(movieId, movieEntryNumber)) {
             MovieRepository.consumeCapacity(movieId, movieEntryNumber, capacity);
+            reservationRecords.add(new ReservationRecord(movieId, movieEntryNumber, capacity));
         }
         throw new IllegalArgumentException("올바른 예약인원이 아닙니다.");
     }
@@ -42,5 +46,11 @@ public class ReservationPlanner {
         }
         return isWithinHour;
     }
+
+
+    boolean checkMovieAlreadyStarted(Integer movieId, Integer movieEntryNumber) {
+        return MovieRepository.hasStarted(movieId, movieEntryNumber);
+    }
+
 }
 

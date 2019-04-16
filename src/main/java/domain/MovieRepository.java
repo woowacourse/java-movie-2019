@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieRepository {
+
     private static List<Movie> movies = new ArrayList<>();
 
     static {
@@ -43,8 +44,8 @@ public class MovieRepository {
         return movies;
     }
 
-    static void displayMovie (Integer movieId) {
-       movies.stream().filter(movie -> movie.matchId(movieId)).forEach(System.out::println);
+    static void displayMovie(Integer movieId) {
+        movies.stream().filter(movie -> movie.matchId(movieId)).forEach(System.out::println);
     }
 
 
@@ -54,17 +55,21 @@ public class MovieRepository {
 
     static boolean isValidEntryNumber(Integer movieId, Integer movieEntryNumber) {
         return movies.stream().filter(movie -> movie.matchId(movieId))
-            .anyMatch( movie -> movie.isEntryExists(movieEntryNumber));
+            .anyMatch(movie -> movie.isEntryExists(movieEntryNumber));
     }
 
     static boolean isConsumable(Integer movieId, Integer movieEntryNumber, Integer capacity) {
-        return movies.stream().filter( movie -> movie.matchId(movieId))
-            .anyMatch( movie -> movie.isConsumable(movieEntryNumber, capacity));
+        return movies.stream().filter(movie -> movie.matchId(movieId))
+            .anyMatch(movie -> movie.isConsumable(movieEntryNumber, capacity));
     }
 
     static void consumeCapacity(Integer movieId, Integer movieEntryNumber, Integer capacity) {
-        movies.stream().filter( movie -> movie.matchId(movieId))
+        movies.stream().filter(movie -> movie.matchId(movieId))
             .forEach(movie -> movie.consumeCapacity(movieEntryNumber, capacity));
 
+    }
+
+    static boolean hasStarted(Integer movieId, Integer movieEntryNumber) {
+        return movies.get(movieId).isStarted(movieEntryNumber);
     }
 }

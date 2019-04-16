@@ -49,4 +49,12 @@ public class Movie {
     void consumeCapacity(Integer movieEntryNumber, Integer capacity) {
         playSchedules.get(movieEntryNumber).consume(capacity);
     }
+
+    List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
+    }
+
+    boolean isStarted(Integer movieEntryNumber) {
+        return playSchedules.get(movieEntryNumber - 1).checkAlreadyPassed();
+    }
 }
