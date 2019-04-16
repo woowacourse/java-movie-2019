@@ -48,7 +48,7 @@
         private final int id;
         private final String name;
         private final int price;
-        private final List<PlaySchedule> playSchedules = new ArrayList<>();
+        private final List<PlaySchedule> playSchedules = new. ArrayList<>();
  
         public Movie(int id, String name, int price) {
             this.id = id;
@@ -84,4 +84,17 @@
     + PlaySchedule 기본 생성자를 추가할 수 없다.
     + startDateTime, capacity 변수의 접근 제어자인 private을 변경할 수 없다.
     + PlaySchedule에 필드(인스턴스 변수)를 추가할 수 없다.
+
+
+### 기능 정리
+
++ 사용자에게 영화 목록을 출력한다.
++ 사용자에세 예매할 영화를 입력 받는다.
++ 사용자에게 예매할 영화의 시간을 입력 받는다.
++ 사용자에게 예매할 영화의 인원수를 입력 받는다.
++ 추가 예매 여부를 입력 받는다.
++ 사용자가 선택한 영화 모두를 결제한다.
++ 결제시 포인트를 사용 가능하다.
++ 결제 수단을 입력 받는다.
++ 최종 결제한 금액을 출력한다.
  
