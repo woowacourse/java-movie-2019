@@ -70,4 +70,14 @@ public class InputView {
             return InputPoint();
         }
     }
+
+    public static int selectPaymentMethod() {
+        try {
+            System.out.println("## 신용카드는 1번, 현금은 2번");
+            return ResultPay.checkPaymentMethod(Integer.parseInt(scanner.nextLine().trim()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바르지 않은 입력입니다.");
+            return InputPoint();
+        }
+    }
 }

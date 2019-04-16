@@ -1,13 +1,24 @@
 package domain;
 
 public class ResultPay {
+    private static final int CARD = 1;
+    private static final int MONEY = 2;
+    private static final double CARD_RATIO = 0.95;
+    private static final double MONEY_RATIO = 0.98;
     private static final int MIN_POINT = 0;
     int pay;
     int point;
+    int paymentMethod;
 
-    public ResultPay(int pay, int point) {
-        this.pay = pay;
+    public ResultPay(int pay, int point, int paymentMethod) {
+        this.paymentMethod = paymentMethod;
         this.point = point;
+        if (paymentMethod == CARD) {
+            this.pay = (int) (pay * CARD_RATIO) - point;
+        }
+        if (paymentMethod == MONEY) {
+            this.pay = (int) (pay * MONEY_RATIO) - point;
+        }
     }
 
     public static int checkPoint(int point) {
@@ -17,4 +28,15 @@ public class ResultPay {
         return point;
     }
 
+    public static int checkPaymentMethod(int paymentMethod) {
+        if (paymentMethod == CARD || paymentMethod == MONEY) {
+            return paymentMethod;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public void printResult() {
+        System.out.println("최종 결제 금액은 " + pay + "입니다.");
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
 }
