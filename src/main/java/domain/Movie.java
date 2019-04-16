@@ -30,7 +30,7 @@ public class Movie {
 		return (this.playSchedules.size() >= schedule);
 	}
 	
-	public boolean isBeforeBegging(int schedule) {
+	public boolean isBeforeBeginning(int schedule) {
 		return this.playSchedules.get(schedule - 1).isBeforeBeginning();
 	}
 	

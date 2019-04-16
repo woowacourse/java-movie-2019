@@ -1,7 +1,5 @@
 package view;
 
-import java.util.Scanner;
-
 import utils.IOUtil;
 
 public class InputView {
