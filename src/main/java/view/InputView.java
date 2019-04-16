@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.OneOrTwoToken;
 import utils.InputUtil;
 
 import java.util.Scanner;
@@ -38,12 +39,14 @@ public class InputView {
         return InputUtil.getInt();
     }
 
-    public static boolean checkExit() {
+    public static OneOrTwoToken inputContinue() {
         System.out.println("# 예약을 종료하고 결제를 완료하려면 1번, 추가 예약하실려면 2번을 눌러주세요");
-        if (InputUtil.getInt() == 1) {
-            return false;
+        try {
+            return new OneOrTwoToken(InputUtil.getInt());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputContinue();
         }
-        return true;
     }
 
     public static int inputPoint() {
@@ -52,8 +55,13 @@ public class InputView {
         return InputUtil.getInt();
     }
 
-    public static int getCreditOrCash() {
-        System.out.println("신용카드는 1번 현금은 2번");
-        return InputUtil.getInt();
+    public static OneOrTwoToken getCreditOrCash() {
+        try {
+            System.out.println("신용카드는 1번 현금은 2번");
+            return new OneOrTwoToken(InputUtil.getInt());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getCreditOrCash();
+        }
     }
 }

@@ -12,8 +12,8 @@ public class AllPay {
         this.movieCosts = movieCosts;
     }
 
-    public int getTotalCost(int point, int isCredit) {
-        if (isCredit == 1) {
+    public int getTotalCost(int point, OneOrTwoToken isCredit) {
+        if (isCredit.isOne()) {
             return (int) ((getTotalMovieCost() * CREDIT_DISCOUNT) - point);
         }
         return (int) ((getTotalMovieCost() * CASH_DISCOUNT) - point);

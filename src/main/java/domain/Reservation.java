@@ -4,11 +4,6 @@ public class Reservation {
 
     private final Movie movie;
     private final int scheduleNumber;
-
-    public int getBuyCount() {
-        return buyCount;
-    }
-
     private final int buyCount;
 
     public Reservation(Movie movie, int scheduleNumber, int buyCount) {
@@ -25,4 +20,9 @@ public class Reservation {
     public Movie getMovie() {
         return movie;
     }
+
+    public int getBuyCount() {
+        return buyCount;
+    }
+
 }
