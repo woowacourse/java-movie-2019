@@ -1,19 +1,21 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 
+import domain.Reservation;
 import utils.Validator;
 
 public class InputView {
 	private static final Scanner SCANNER = new Scanner(System.in);
 
-	public static int inputMovieId() {
-		try {
-			System.out.println("## 예약할 영화를 선택하세요.");
-			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputMovieId();
+	public static int inputMovieId(List<Reservation> reservations) {
+		System.out.println("## 예약할 영화를 선택하세요.");
+		String inputValue = SCANNER.nextLine();
+		if(Validator.isValidMovieId(inputValue, reservations)) {
+			return Integer.parseInt(inputValue);
 		}
+		return inputMovieId(reservations);
 	}
 
 	public static int inputStartDateTime() {
@@ -35,6 +37,7 @@ public class InputView {
 	}
 
 	public static int inputMoreBookingFlag() {
+		System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
 		String inputValue = SCANNER.nextLine();
 		if(Validator.isValidFlag(inputValue)) {
 			return Integer.parseInt(SCANNER.nextLine());
