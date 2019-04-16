@@ -41,8 +41,8 @@ public class InputView {
             return scheduleNumber;
         }
 
-        while(DateTimeUtils.isOneHourWithinRange(purchasedMovies.get(0).getLocalDateTime(),
-                movies.get(movieId).getSchedule(scheduleNumber).getStartDateTime())) {
+        while(!(DateTimeUtils.isOneHourWithinRange(purchasedMovies.get(0).getLocalDateTime(),
+                movies.get(movieId).getSchedule(scheduleNumber).getStartDateTime()))) {
             System.out.println("!! 1시간 이상 차이가 납니다.");
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
@@ -70,7 +70,7 @@ public class InputView {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2");
         int input = scanner.nextInt();
 
-        while (input != 1 && input != 0) {
+        while (input != 1 && input != 2) {
             return inputContinueBooking();
         }
 

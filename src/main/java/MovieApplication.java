@@ -6,12 +6,19 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         List<PurchasedMovie> purchasedMovies = new ArrayList<>();
+        HashMap<Integer, Integer> IdMap = new HashMap<>();
+        IdMap.put(1, 0);
+        IdMap.put(5, 1);
+        IdMap.put(7, 2);
+        IdMap.put(8, 3);
+
         OutputView.printMovies(movies);
 
         int movieId;
@@ -20,7 +27,8 @@ public class MovieApplication {
         boolean continueBooking = true; //추가 예약 여부
 
         while (continueBooking) {
-            movieId = InputView.inputMovieId();
+            movieId = IdMap.get(InputView.inputMovieId());
+            OutputView.printMovies(movies, movieId);
             scheduleNumber = InputView.inputMovieSchedule(movies, movieId, purchasedMovies);
             countOfTickets = InputView.inputCountOfTickets(movies, movieId, scheduleNumber);
             continueBooking = InputView.inputContinueBooking();

@@ -10,4 +10,8 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
+    public static void printMovies(List<Movie> movies, int movieId) {
+        System.out.println(movies.get(movieId));
+    }
 }
