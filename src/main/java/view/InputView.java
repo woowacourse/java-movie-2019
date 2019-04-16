@@ -16,14 +16,14 @@ public class InputView {
 			return inputMovieId();
 		}
 	}
-
+	
 	private static int isValidId(String inputId) {
-		return isValidScope(Integer.valueOf(inputId));
+			return isValidScope(Integer.valueOf(inputId));
 	}
-
+	
 	private static int isValidScope(int inputId) {
 		List<Integer> moviesId = MovieRepository.getMoviesId();
-		if (moviesId.contains(inputId)) {
+		if(moviesId.contains(inputId)) {
 			return inputId;
 		}
 		throw new IllegalArgumentException();

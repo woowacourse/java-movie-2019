@@ -53,4 +53,15 @@ public class MovieRepository {
 		}
 		return movieId;
 	}
+
+	public static Movie getMovieById(int id) {
+		Iterator<Movie> it = movies.iterator();
+		while (it.hasNext()) {
+			Movie movie = (Movie) it.next();
+			if (movie.hasId(id)) {
+				return movie;
+			}
+		}
+		return null;
+	}
 }
