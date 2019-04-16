@@ -66,4 +66,21 @@ public class OutputView {
 
         return answer;
     }
+
+    /*
+     * 예매 내역 출력
+     */
+    public static void printReservation(List<Movie> movies, List<LocalDateTime> localDateTimes, List<Integer> list) {
+        System.out.println("예매 내역");
+        for (int i = 0; i < movies.size()
+                && i < localDateTimes.size()
+                && i < list.size(); i++) {
+            System.out.println(movies.get(i).toStringTitile());
+            System.out.println(format(localDateTimes.get(i)));
+            System.out.println("예약 인원: " + list.get(i) + "명");
+            System.out.println();
+        }
+    }
+
+
 }
