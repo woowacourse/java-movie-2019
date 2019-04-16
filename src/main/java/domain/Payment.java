@@ -1,6 +1,9 @@
 package domain;
 
 public class Payment {
+	private static final int CARD = 1;
+//	private static final int CACHE = 2;
+	
 	private int price;
 	private int point;
 	private int paymentMethod;
@@ -16,7 +19,7 @@ public class Payment {
 
 	// TODO enum 사용하기
 	public int calculateFinalPrice() {
-		if (paymentMethod == 1) {
+		if (paymentMethod == CARD) {
 			return (int)Math.round((double)(price - point) * 0.95);
 		}
 		return (int)Math.round((double)(price - point) * 0.98);
