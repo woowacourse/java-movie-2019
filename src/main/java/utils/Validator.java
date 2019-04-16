@@ -59,6 +59,7 @@ public class Validator {
 	public static boolean isValidCapacity(String value, PlaySchedule playSchedule) {
 		if (!isNaturalNumber(value) ||
 			!playSchedule.isLessThanCapacity(Integer.parseInt(value))) {
+			System.out.println("예약 가능 인원보다 많습니다.");
 			return false;
 		}
 		return true;

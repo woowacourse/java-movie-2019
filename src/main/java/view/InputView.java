@@ -42,7 +42,7 @@ public class InputView {
 		System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
 		String inputValue = SCANNER.nextLine();
 		if (Validator.isValidFlag(inputValue)) {
-			return Integer.parseInt(SCANNER.nextLine());
+			return Integer.parseInt(inputValue);
 		}
 		return inputMoreBookingFlag();
 	}
