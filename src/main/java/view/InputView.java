@@ -51,5 +51,14 @@ public class InputView {
         }
         return inputTime;
     }
+    public static int inputMember(){
+        try {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            return intException();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputMember();
+        }
+    }
 
 }
