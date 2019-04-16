@@ -14,15 +14,11 @@ public class PlaySchedule {
     }
 
     public boolean isCapable(int peopleNumber) {
-        if (capacity < peopleNumber) return false;
-        return true;
+        return (1 <= peopleNumber && capacity >= peopleNumber);
     }
 
-    public boolean minusCapacity(int peopleNumber) {
-        if (capacity < peopleNumber) return false;
-
+    public void minusCapacity(int peopleNumber) {
         this.capacity -= peopleNumber;
-        return true;
     }
 
     @Override

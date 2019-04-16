@@ -15,17 +15,22 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
+        /**** 예약 영화 ****/
         int movieId = 0;
         do { movieId = InputView.inputMovieId(); }
         while (!selectMovie(movies, movieId));
 
-        int scheduleNumber = selectSchedule(movies.get(movieId-1));
+        /**** 예약 스케줄 ****/
+        int scheduleIndex = selectSchedule(movies.get(movieId-1));
 
-        int peopleNumber = 0;
-        do { peopleNumber = InputView.inputPeopleNumber(); }
-        while (movies.get(movieId).isCapable(scheduleNumber, peopleNumber));
+        /**** 예약 인원 ****/
+        int peopleNumber = putPeopleNum(movies.get(movieId-1), scheduleIndex);
 
-        reservations.add(new Reservation(movies.get(movieId), scheduleNumber, total));
+        // Reservation 객체 생성하고
+        // reservations 리스트랑 모두 1시간 이내인지 확인해봐
+
+
+        reservations.add(new Reservation(movies.get(movieId), scheduleIndex, total));
         OutputView.printReservation(reservations);
     }
 
@@ -41,13 +46,23 @@ public class MovieApplication {
     }
 
     public static int selectSchedule(Movie movie) {
-        int scheduleNumber = InputView.inputMovieSchedule();
+        int scheduleIndex = InputView.inputMovieSchedule();
 
-        if (!movie.isExistedSchedule(scheduleNumber)) {
+        if (!movie.isExistedSchedule(scheduleIndex)) {
             OutputView.printNotExistedSchedule();
-            scheduleNumber = selectSchedule(movie);
+            scheduleIndex = selectSchedule(movie);
         }
-        return scheduleNumber;
+        return scheduleIndex;
+    }
+
+    public static int putPeopleNum(Movie movie, int scheduleIndex) {
+        int peopleNumber = InputView.inputPeopleNumber();
+
+        if (!movie.isCapable(scheduleIndex, peopleNumber)) {
+            OutputView.printExceededCapacity();
+            peopleNumber = putPeopleNum(movie, scheduleIndex);
+        }
+        return peopleNumber;
     }
 
     /*public static Reservation makeReservation(Movie movie, int scheduleNumber, int peopleNumber) {
