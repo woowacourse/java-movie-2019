@@ -42,4 +42,13 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getSelectedMovieInformation(int movieId) {
+        int moviesSize = movies.size();
+        for (int i=0; i<moviesSize; i++) {
+            if ( movies.get(i).getId() == movieId ) return movies.get(i);
+        }
+        return null;
+    }
+
 }
