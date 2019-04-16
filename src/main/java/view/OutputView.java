@@ -1,8 +1,8 @@
 package view;
 
-import domain.Movie;
-
 import java.util.List;
+
+import domain.Movie;
 
 public class OutputView {
     public static void printMovies(List<Movie> movies) {

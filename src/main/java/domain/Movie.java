@@ -38,6 +38,10 @@ public class Movie {
     public PlaySchedule getSchedule(int index) {
     	return playSchedules.get(index-1);
     }
+    
+    public String getFirstLine() {
+    	return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
 
     @Override
     public String toString() {

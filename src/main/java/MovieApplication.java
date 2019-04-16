@@ -15,8 +15,15 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
         OutputView.printMovies(movies);
-
-        recurSelectMovieOrNot(movies);
+        selectedMovies = recurSelectMovieOrNot(movies);
+        printSelectedMovies(selectedMovies);
+        
+        
+    }
+    static void printSelectedMovies(List<SelectedMovie> selectedMovies) {
+        for (SelectedMovie movie : selectedMovies) {
+            System.out.println(movie);
+        }
     }
     
 	static void isExist(List<Movie> movies, int id) {
@@ -123,7 +130,7 @@ public class MovieApplication {
     	return input;
     }
     
-    static void recurSelectMovieOrNot(List<Movie> movies) {
+    static List<SelectedMovie> recurSelectMovieOrNot(List<Movie> movies) {
     	List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
     	int swc = 2;
     	do {
@@ -132,5 +139,7 @@ public class MovieApplication {
     		subtractCapacity(movies, selectedMovie);
     		swc = recurInputRechoiceOrNot();
     	} while(swc == 2);
+    	return selectedMovies;
     }
+   
 }

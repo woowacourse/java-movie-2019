@@ -21,5 +21,13 @@ public class SelectedMovie {
 	public int getNumOfPeople( ) {
 		return this.numOfPeople;
 	}
+	
+	@Override
+	public String toString() {
+        StringBuilder sb = new StringBuilder(selectedMovie.getFirstLine());
+        sb.append(selectedPlaySchedule);
+        sb.append("예약인원 : "+numOfPeople+"명 \n");
+        return  sb.toString();
+	}
 
 }
