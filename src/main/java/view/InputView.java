@@ -17,7 +17,7 @@ public class InputView {
             System.out.println("숫자만 입력해주세요");
             return inputMovieId(movies);
         } catch (InputMovException e){
-            System.out.println("상영 목록의 번호를 입력해주세요");
+            System.out.println(e.EXCEPTION_STR);
             return inputMovieId(movies);
         }
     }

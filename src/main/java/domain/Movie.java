@@ -44,4 +44,8 @@ public class Movie {
     public LocalDateTime getSchStartTime(int sch){
         return playSchedules.get(sch).getStartDateTime();
     }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return playSchedules;
+    }
 }

@@ -21,4 +21,11 @@ public class PlaySchedule {
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
+
+    public boolean isCapacityNotZero(){
+        if(capacity == 0){
+            return false;
+        }
+        return true;
+    }
 }

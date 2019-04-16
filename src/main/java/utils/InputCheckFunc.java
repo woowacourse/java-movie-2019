@@ -1,6 +1,7 @@
 package utils;
 
 import domain.Movie;
+import domain.PlaySchedule;
 import exception.InputMovException;
 
 import java.util.ArrayList;
@@ -13,8 +14,21 @@ public class InputCheckFunc {
             moviesIdList.add(movie.getId());
         }
         if(!moviesIdList.contains(inputId)){
-            throw new InputMovException();
+            throw new InputMovException("상영 목록의 번호를 입력해주세요.");
         }
+        // 지금 시간보다 이후면서 예약 가능 인원이 1 이상일 경우 통과
+        if(!checkMovieIdTimePeople(MovieFunc.getMovieSameId(inputId,movies))){
+            throw new InputMovException("예매 가능한 시간이 없습니다.(시간 및 인원수)");
+        }
+    }
+
+    private static boolean checkMovieIdTimePeople(Movie movie){
+        for(PlaySchedule playSchedule : movie.getPlaySchedules()){
+            if(DateTimeUtils.isNotPastMovieSch(playSchedule.getStartDateTime())){
+                return playSchedule.isCapacityNotZero();
+            }
+        }
+        return false;
     }
 
     /**
@@ -26,7 +40,7 @@ public class InputCheckFunc {
         if(inputSch < 1 || inputSch > movie.getSchSize()){
             throw new InputMovException("시간표의 숫자만 입력해주세요.");
         }
-        if(!DateTimeUtils.isPastMovieSch(movie.getSchStartTime(inputSch-1))){
+        if(!DateTimeUtils.isNotPastMovieSch(movie.getSchStartTime(inputSch-1))){
             throw new InputMovException("지난 시간의 영화는 예매할 수 없습니다.");
         }
     }

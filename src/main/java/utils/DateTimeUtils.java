@@ -29,10 +29,11 @@ public class DateTimeUtils {
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
 
-    public static boolean isPastMovieSch(LocalDateTime dateTime){
+    public static boolean isNotPastMovieSch(LocalDateTime dateTime){
         if(LocalDateTime.now().isBefore(dateTime)){
             return true;
         }
         return false;
     }
+
 }
