@@ -12,6 +12,7 @@ public class MovieTicket {
 	private int movieId;
 	private int schedule;
 	private int numOfAudience;
+	private PlaySchedule playSchedule;
 	private Movie movie;
 
 	public MovieTicket() {
@@ -19,10 +20,15 @@ public class MovieTicket {
 		schedule = getSchedule(movieId);
 		numOfAudience = getNumOfAudience(movieId, schedule);
 		movie = MovieRepository.getMovies().get(MovieRepository.getIndexByMovieId(movieId));
+		playSchedule = movie.getPlayScheduleBySchedule(schedule);
 	}
 
 	public int getPrice() {
 		return numOfAudience * movie.getPrice();
+	}
+	
+	public PlaySchedule getPlaySchedule() {
+		return playSchedule;
 	}
 	
 	private int getMovieId() {
@@ -56,6 +62,10 @@ public class MovieTicket {
 		}
 
 		return numOfAudience;
+	}
+	
+	public boolean isOneHourWithinRange(MovieTicket movieTicket) {
+		return playSchedule.isOneHourWithinRange(movieTicket.getPlaySchedule());
 	}
 	
 	@Override

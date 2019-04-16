@@ -42,6 +42,10 @@ public class Movie {
 		return id + " - " + name + ", " + price + "원" + NEW_LINE;
 	}
 	
+	public PlaySchedule getPlayScheduleBySchedule(int schedule) {
+		return playSchedules.get(schedule - 1);
+	}
+	
 	public String getPlayScheduleInformation(int schedule) {
 		return playSchedules.get(schedule - 1).getPlayScheduleInformation();
 	}

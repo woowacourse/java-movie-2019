@@ -16,6 +16,7 @@ public class MovieReservation {
 	private static final String INVALID_ADDITIONAL_RESERVATION_FLAG_MESSAGE = ADDITIONAL_RESERVATION + " 혹은 " + PAYMENT + "를 입력해주세요.";
 	private static final String INVALID_PAYMENT_FLAG_MESSAGE = CREDIT_CARD + " 혹은 " + CASH + "를 입력해주세요.";
 	private static final String INVALID_POINT_MESSAGE = CREDIT_CARD + "0 이상의 정수를 입력해주세요.";
+	private static final String INVALID_RESERVATION_SCHEDULE_MESSAGE = "각 영화의 시작 시간 차이가 1시간 이상입니다.";
 	
 	
 	private List<MovieTicket> movieTickets;
@@ -24,17 +25,37 @@ public class MovieReservation {
 	
 	public MovieReservation() {
 		movieTickets = new ArrayList<MovieTicket>();
+
+        OutputView.printMovies(MovieRepository.getMovies());
 	}
 	
 	public void reserve() {
-		MovieTicket movieTicket = new MovieTicket();
-		movieTickets.add(movieTicket);
-		if(getAdditionalReservationFlag() == ADDITIONAL_RESERVATION) {
+		if(!addMovieTicket() || getAdditionalReservationFlag() == ADDITIONAL_RESERVATION) {
 			reserve();
 			return;
 		}
 		OutputView.printMovieTickets(movieTickets);
 		pay();
+	}
+	
+	private boolean addMovieTicket() {
+		MovieTicket movieTicket = new MovieTicket();
+		
+		if(!validReservationScheduleOneHourRange(movieTicket)) {
+			System.out.println(INVALID_RESERVATION_SCHEDULE_MESSAGE);
+			return false;
+		}
+		
+		movieTickets.add(movieTicket);
+		return true;
+	}
+	
+	private boolean validReservationScheduleOneHourRange(MovieTicket movieTicket) {
+		int countOfTrue = 0;
+		for(MovieTicket ticket : movieTickets) {
+			countOfTrue += ticket.isOneHourWithinRange(movieTicket) ? 1 : 0;
+		}
+		return movieTickets.size() == countOfTrue;
 	}
 	
 	private void pay() {

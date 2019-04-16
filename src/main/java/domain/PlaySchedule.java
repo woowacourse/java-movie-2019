@@ -2,6 +2,8 @@ package domain;
 
 import java.time.LocalDateTime;
 
+import utils.DateTimeUtils;
+
 import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
@@ -14,6 +16,10 @@ public class PlaySchedule {
 		this.startDateTime = startDateTime;
 		this.capacity = capacity;
 	}
+	
+	public LocalDateTime getStartDateTime() {
+		return startDateTime;
+	}
 
 	public boolean capable(int numOfAudience) {
 		return capacity >= numOfAudience;
@@ -23,6 +29,9 @@ public class PlaySchedule {
 		return startDateTime.isAfter(LocalDateTime.now());
 	}
 	
+	public boolean isOneHourWithinRange(PlaySchedule playSchedule) {
+		return DateTimeUtils.isOneHourWithinRange(startDateTime, playSchedule.getStartDateTime());
+	}
 	public String getPlayScheduleInformation() {
 		return "시작시간: " + format(startDateTime) + NEW_LINE;
 	}

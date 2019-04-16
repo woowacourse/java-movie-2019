@@ -8,8 +8,6 @@ import java.util.List;
 
 public class MovieApplication {
     public static void main(String[] args) {
-        OutputView.printMovies(MovieRepository.getMovies());
-        
         MovieReservation movieReservation = new MovieReservation();
         
         movieReservation.reserve();
