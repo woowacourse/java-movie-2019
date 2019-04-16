@@ -16,12 +16,17 @@ public class User {
 
     private final List<Reservation> reservationList = new ArrayList<>();
     private int point;
+    private boolean isCard;
 
     public User() {
     }
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public void setCard(boolean card) {
+        isCard = card;
     }
 
     /* 예약 list에 추가하는 매소드 */
@@ -43,13 +48,20 @@ public class User {
     }
 
     /* 총 가격에서 포인트 뺀 실제 결제할 금액 */
-    public int getPayment() {
-        return this.sumOfPrice() - this.point;
+    public int getPayment(boolean isCard) {
+        int sum=this.sumOfPrice();
+        if(isCard){
+            sum*=0.95;
+        }
+        else{
+            sum*=0.98;
+        }
+        return sum - this.point;
     }
 
     @Override
     public String toString() {
-        return "최종 결제한 금액은 " + this.getPayment() + "원 입니다.\n"
+        return "최종 결제한 금액은 " + this.getPayment(isCard) + "원 입니다.\n"
                 + "예매를 완료했습니다. 즐거운 영화 관람되세요.";
     }
 

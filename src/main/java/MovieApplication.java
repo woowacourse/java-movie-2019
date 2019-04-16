@@ -45,6 +45,7 @@ public class MovieApplication {
         OutputView.printUserReservationList(user.getReservationList());             // 예약목록 출력
         int point = InputView.inputPoint();                                         // 사용자의 포인트 입력
         boolean isCard = InputView.inputCardOrNot();                                // 카드인지 현금인지 입력
+        user.setCard(isCard);
         user.setPoint(point);                                                       // 사용자 point setting
         OutputView.printPayment(user);                                              // 사용자 결제 금액 출력
     }
