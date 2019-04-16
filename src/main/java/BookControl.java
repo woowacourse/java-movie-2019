@@ -106,6 +106,7 @@ public class BookControl {
         do {
             input_num = InputView.inputMoreBook();
         } while(!(isCorrectInput(input_num)));
+        if (input_num == 1) return true;
         System.out.println("## 결제를 진행합니다.");
         return false;
     }
