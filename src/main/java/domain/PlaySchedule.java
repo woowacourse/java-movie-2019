@@ -20,6 +20,10 @@ public class PlaySchedule {
         return this.capacity;
     }
 
+    public void subCapacity(int numberOfPeople){
+        this.capacity-=numberOfPeople;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
