@@ -1,5 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PayInfo;
+import domain.ReservationList;
 import view.InputView;
 import view.OutputView;
 
@@ -17,19 +19,24 @@ public class MovieApplication {
         Movie aMovie = MovieRepository.getMovieById(movieId);
         OutputView.printAMovie(aMovie);
 
-        int movieTime = InputView.inputMovieTime();
-        int reserveCount = InputView.inputReserveCount();
+        ReservationList reservationList = new ReservationList();
 
-        int process = InputView.inputChooseProcess();
-        OutputView.printReserveList(aMovie, movieTime, reserveCount);
+        int process;
+        do {
+            int movieTime = InputView.inputMovieTime();
+            int reserveCount = InputView.inputReserveCount();
+
+            process = InputView.inputChooseProcess();
+            OutputView.printReserveList(aMovie, movieTime, reserveCount);
+            reservationList.add(aMovie, reserveCount);
+        } while (process == 2);
 
         OutputView.printProcessMessage();
         int pointAmount = InputView.inputPointAmount();
 
         int payType = InputView.inputPayType();
 
-
-
-
+        PayInfo payInfo = new PayInfo(pointAmount, payType);
+        OutputView.printPayResult(payInfo.getTotalPriceApplyPayInfo(reservationList));
     }
 }
