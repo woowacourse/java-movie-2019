@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.ReservedMovie;
 import view.InputView;
 import view.OutputView;
 
@@ -18,6 +19,9 @@ public class MovieApplication {
         int movieTime = InputView.inputMovieTime();
         int movieNumberOfPeople = InputView.inputMovieNumberOfPeople();
 
-        
+        ReservedMovie reservedMovie = new ReservedMovie(movies);
+        reservedMovie.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
+
+        reservedMovie.printReservationHistory();
     }
 }

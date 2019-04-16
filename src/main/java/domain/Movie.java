@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Movie {
@@ -34,5 +35,13 @@ public class Movie {
 
     public boolean isMatchMovie(int movieId) {
         return this.id == movieId;
+    }
+
+    public String printMovieInfo() {
+        return id + " - " + name + ", " + price + "원";
+    }
+
+    public String printMovieTime(int movieTime) {
+        return playSchedules.get(movieTime - 1).movieTime();
     }
 }
