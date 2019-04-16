@@ -17,6 +17,9 @@ public class MovieApplication {
         int movieViewer = InputView.inputMovieViewer();
         int payOrReserve = InputView.inputPayOrAdditionalReservation();
 
+        //payOrReserve 값이 1일 경우 (결제 진행)
+        OutputView.printReservationHistory(movieId, movieTime, movieViewer);
+
 
 
 

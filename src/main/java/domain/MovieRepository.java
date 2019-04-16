@@ -51,4 +51,8 @@ public class MovieRepository {
     public static List<Movie> getMovies(int id) {
         return movies.stream().filter(Movie->Movie.getId() == id).collect(Collectors.toList());
     }
+
+//    public static List<Movie> getMovies(int id, int time) {
+//       return getMovies(id).subList(time-1, time);
+//    }
 }

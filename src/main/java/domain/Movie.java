@@ -35,4 +35,8 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+    public String toString(int time) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + playSchedules.get(time-1).toString(time);
+    }
 }
