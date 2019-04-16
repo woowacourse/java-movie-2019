@@ -42,4 +42,6 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+    
+    // 조회용 메서드만 추가 가능
 }
