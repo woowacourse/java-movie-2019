@@ -22,6 +22,16 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    private PlaySchedule getPlayScheduleByTime(int time) {
+        return playSchedules.get(time - 1);
+    }
+
+    public String toStringFromIdAndTime(int movieTime, int reserveCount) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + getPlayScheduleByTime(movieTime).toStringExceptCapacity()
+                + "예약 인원: " + reserveCount + "명" + NEW_LINE;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
