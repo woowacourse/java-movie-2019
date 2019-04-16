@@ -13,8 +13,10 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         reserveMovies = new ArrayList<>();
+        int movieCount = 0;
 
         while(InputReserveMovie(movies) == false){ };
+        OutputView.printMovies(reserveMovies);
     }
 
     private static Boolean InputReserveMovie(List<Movie> movies){
