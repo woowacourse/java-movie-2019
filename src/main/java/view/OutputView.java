@@ -25,4 +25,17 @@ public class OutputView {
             b.printReservation();
         }
     }
+
+    public static void printPaymentGuide() {
+        System.out.println("## 결제를 진행합니다.");
+    }
+
+    public static void printPointExceededWarining(int totalCharge) {
+        System.out.format("포인트 사용은 결제 금액 %d를 넘을 수 없습니다." + NEW_LINE, totalCharge);
+    }
+
+    public static void printReservationSummary(int finalCharge) {
+        System.out.format("최종 결제한 금액은 %d 입니다." + NEW_LINE
+                + "예약을 완료했습니다. 즐거운 관람 되세요.", finalCharge);
+    }
 }
