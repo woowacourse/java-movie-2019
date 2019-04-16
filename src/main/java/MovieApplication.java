@@ -20,6 +20,7 @@ public class MovieApplication {
             isEnd = User.isEndReservation();
         }
         MovieReservationMachine.showReservatoinHistory();
-        User.selectPointUse();
+        int point = User.selectPointUse();
+        int howToPay = User.selectPaymentMethod();
     }
 }

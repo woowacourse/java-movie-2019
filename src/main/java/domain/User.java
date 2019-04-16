@@ -22,4 +22,6 @@ public class User {
     public static boolean isEndReservation() { return (InputView.inputContinue() == 1) ? true : false; }
 
     public static int selectPointUse() { return InputView.inputPoint(); }
+
+    public static int selectPaymentMethod() { return InputView.inputPayMethod(); }
 }

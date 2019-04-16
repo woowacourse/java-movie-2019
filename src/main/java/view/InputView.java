@@ -136,6 +136,27 @@ public class InputView {
 
 
     /**
+     * 사용자의 결제 수단을 입력받는다.
+     */
+    public static int inputPayMethod() {
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        try {
+            return getValidPayMethod();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputContinue();
+        }
+    }
+
+    private static int getValidPayMethod() {
+        int userInput = getInteger();
+        if (userInput == 1 || userInput == 2) {
+            return userInput;
+        }
+        throw new InputMismatchException("1 혹은 2의 숫자만 입력해 주세요.");
+    }
+
+    /**
      * 정수 하나를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getInteger() {
