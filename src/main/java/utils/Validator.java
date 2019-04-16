@@ -34,6 +34,7 @@ public class Validator {
 		return true;
 	}
 
+	// XXX 오작동 수정
 	private static boolean isOneHourWithinRangeAllReservation(List<Reservation> reservations) {
 		Collections.sort(reservations);
 		int reservationSize = reservations.size();
