@@ -13,6 +13,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
     public boolean isCapable(int peopleNumber) {
         return (1 <= peopleNumber && capacity >= peopleNumber);
     }

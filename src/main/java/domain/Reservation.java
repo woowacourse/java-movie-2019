@@ -1,14 +1,20 @@
 package domain;
 
+import java.time.LocalDateTime;
+
 public class Reservation {
     private Movie movie;
-    private int schedule;
+    private LocalDateTime scheduleTime;
     private int peopleNum;
 
     public Reservation(Movie movie, int schedule, int peopleNum) {
         this.movie = movie;
-        this.schedule = schedule;
+        this.scheduleTime = movie.getPlaySchedule(schedule).getStartDateTime();
         this.peopleNum = peopleNum;
+    }
+
+    public LocalDateTime getScheduleTime() {
+        return scheduleTime;
     }
 
     @Override

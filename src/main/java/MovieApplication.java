@@ -3,7 +3,9 @@ import domain.MovieRepository;
 import domain.Reservation;
 import view.InputView;
 import view.OutputView;
+import utils.DateTimeUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,10 @@ public class MovieApplication {
         int peopleNumber = putPeopleNum(movies.get(movieId-1), scheduleIndex);
 
         // Reservation 객체 생성하고
+        Reservation reservation = makeReservation(movies.get(movieId-1), scheduleIndex, peopleNumber);
+
         // reservations 리스트랑 모두 1시간 이내인지 확인해봐
-
-
-        reservations.add(new Reservation(movies.get(movieId), scheduleIndex, total));
-        OutputView.printReservation(reservations);
+        //addReservations(reservation);
     }
 
     public static boolean selectMovie(List<Movie> movies, int movieId) {
@@ -52,7 +53,21 @@ public class MovieApplication {
             OutputView.printNotExistedSchedule();
             scheduleIndex = selectSchedule(movie);
         }
+        if (!isOneHourWithinRange(movie, scheduleIndex)) {
+            OutputView.printIsNotOneHourWithinRange();
+            scheduleIndex = selectSchedule(movie);
+        }
         return scheduleIndex;
+    }
+
+    public static boolean isOneHourWithinRange(Movie movie, int index) {
+        LocalDateTime localDateTime = movie.getPlaySchedule(index).getStartDateTime();
+
+        for (Reservation reservation : reservations) {
+            if (!DateTimeUtils.isOneHourWithinRange(localDateTime, reservation.getScheduleTime()))
+                return false;
+        }
+        return true;
     }
 
     public static int putPeopleNum(Movie movie, int scheduleIndex) {
@@ -65,13 +80,12 @@ public class MovieApplication {
         return peopleNumber;
     }
 
-    /*public static Reservation makeReservation(Movie movie, int scheduleNumber, int peopleNumber) {
-        int scheduleNumber = InputView.inputMovieSchedule();
+    public static Reservation makeReservation(Movie movie, int scheduleIndex, int peopleNumber) {
+        return new Reservation(movie, scheduleIndex, peopleNumber);
+    }
 
-        if (!movie.isExistedSchedule(scheduleNumber)) {
-            OutputView.printNotExistedSchedule();
-            scheduleNumber = selectSchedule(movie);
-        }
-        return scheduleNumber;
+    /*public static boolean addReservations(Reservation reservation) {
+
+
     }*/
 }
