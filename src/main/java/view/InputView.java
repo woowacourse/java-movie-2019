@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final double CARD_DISCOUNT_RATE = 0.98;
-    private static final double CASH_DISCOUNT_RATE = 0.95;
+    private static final double CARD_DISCOUNT_RATE = 0.95;
+    private static final double CASH_DISCOUNT_RATE = 0.98;
 
     public static int inputMovieId() {
         try {
@@ -47,13 +47,17 @@ public class InputView {
         }
     }
 
-    public static long inputPoint() {
+    public static int inputPoint() {
         try {
             System.out.println("## 결제를 진행합니다.");
             System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-            return Long.parseLong(scanner.nextLine());
-        } catch (IllegalArgumentException e ){
-            System.out.println("## 잘못입력하셨습니다.");
+            int point = scanner.nextInt();
+            if (point < 0) {
+                throw new Exception("음수 입력");
+            }
+            return point;
+        } catch (Exception e) {
+            System.out.println("## 잘못 입력하셨습니다.");
             return inputPoint();
         }
     }
