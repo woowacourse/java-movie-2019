@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
@@ -31,5 +33,16 @@ public class PlaySchedule {
         if (watcher < 0) {
             throw new IllegalArgumentException("상영 인원은 1명 이상이어야 합니다.");
         }
+    }
+
+    public void decreaseCapacity(int watcher) {
+        capacity -= watcher;
+    }
+
+    public boolean canReserve(PlaySchedule playSchedule) {
+        if (DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime)) {
+            return true;
+        }
+        return false;
     }
 }

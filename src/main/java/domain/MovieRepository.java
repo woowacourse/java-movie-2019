@@ -42,5 +42,4 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
-
 }

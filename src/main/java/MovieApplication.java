@@ -1,43 +1,67 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.MovieReservation;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
+    private static List<MovieReservation> movieReservations = new ArrayList<>();
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        Movie movie = getMovie(movies);
-        OutputView.printMovie(movie);
-        int scheduleNumber = getScheduleNumber(movie);
-        int watcher = getWatcher(movie, scheduleNumber);
-        MovieReservation movieReservation = new MovieReservation(movie, scheduleNumber, watcher);
+        do {
+            movieReservations.add(getMovieReservation(movies));
+        } while (moreReservation());
 
     }
 
-    private static int getWatcher(Movie movie, int scheduleNumber) {
+    private static MovieReservation getMovieReservation(List<Movie> movies) {
+        Movie movie = getMovie(movies);
+        OutputView.printMovie(movie);
+        PlaySchedule playSchedule = getPlaySchedule(movie);
+        int watcher = getWatcher(movie, playSchedule);
+        return new MovieReservation(movie, playSchedule, watcher);
+    }
+
+    private static boolean moreReservation() {
+        int number = InputView.inputMoreReservation();
+        if (number == 1) {
+            return false;
+        }
+        return true;
+    }
+
+    private static int getWatcher(Movie movie, PlaySchedule playSchedule) {
         try {
             int watcher = InputView.inputMovieWatcher();
-            movie.validateWatcher(watcher, scheduleNumber);
+            movie.validateWatcher(watcher, playSchedule);
             return watcher;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWatcher(movie, scheduleNumber);
+            return getWatcher(movie, playSchedule);
         }
     }
 
-    private static int getScheduleNumber(Movie movie) {
+    private static PlaySchedule getPlaySchedule(Movie movie) {
         try {
-            int schedule = InputView.inputMovieSchedule();
-            movie.validateSchedule(schedule);
-            return schedule;
+            PlaySchedule playSchedule = movie.getPlaySchedule(InputView.inputMovieSchedule());
+            validateSchedule(playSchedule);
+            return playSchedule;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getScheduleNumber(movie);
+            return getPlaySchedule(movie);
+        }
+    }
+
+    private static void validateSchedule(PlaySchedule playSchedule) throws IllegalArgumentException {
+        for (MovieReservation movieReservation : movieReservations) {
+            movieReservation.validateSchedule(playSchedule);
         }
     }
 
