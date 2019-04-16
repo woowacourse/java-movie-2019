@@ -13,6 +13,7 @@ public class InputView {
     public static final String OVER_ONEHOUR = "해당 상영시간은 이미 예약된 상영시간들이랑 1시간 이내가 아닙니다. 다시 입력해주세요";
     public static final String OVER_POINT = "포인트가 최종 결제금액을 초과하였습니다. 다시 입력해주세요.";
     public static final String OneOrTwu = "1 또는 2만 입력해주세요.";
+    public static final String IMPOSSIBLE_MOVIE = "해당 영화는 예약 가능한 상영 시간이 없습니다. 다시 입력해주세요.";
 
     public static int inputMovieId() {
         try {

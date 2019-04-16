@@ -67,6 +67,38 @@ public class Movie {
         return result;
     }
 
+    public boolean isImpossibleMovie(List<Reserve> reserveList) {
+        boolean result = false;
+        if (reserveList.size() == 0)
+            return false;
+        for (Reserve reserve : reserveList) {
+            System.out.println(searchOneHourRangeSchedule(reserve));
+            result = result || searchOneHourRangeSchedule(reserve);
+        }
+        if (!result)
+            System.out.println(InputView.IMPOSSIBLE_MOVIE);
+        return !result;
+    }
+
+    public boolean searchPossibleAllSchedule() {
+        boolean result = false;
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        for (PlaySchedule playSchedules : playSchedules) {
+            result = result || currentDateTime.isBefore(playSchedules.getStartDateTime());
+        }
+        if (!result)
+            System.out.println(InputView.IMPOSSIBLE_MOVIE);
+        return result;
+    }
+
+    private boolean searchOneHourRangeSchedule(Reserve reserve) {
+        boolean result = false;
+        for (PlaySchedule playSchedule : playSchedules) {
+            result = result || isOneHourWithinRange(reserve.getSchedule().getStartDateTime(), playSchedule.getStartDateTime());
+        }
+        return result;
+    }
+
     public PlaySchedule getSchedule(int scheduleId) {
         return playSchedules.get(scheduleId - 1);
     }

@@ -31,18 +31,18 @@ public class MovieApplication {
     }
 
     private static void bookTicket(List<Reserve> reserveList) {
-        Movie userSelectMovie = selectMovie();
+        Movie userSelectMovie = selectMovie(reserveList);
         PlaySchedule userSelectSchedule = selectSchedule(reserveList, userSelectMovie);
         int personCount = selectPerson(userSelectSchedule);
         reserveList.add(new Reserve(userSelectMovie, userSelectSchedule, personCount));
     }
 
-    private static Movie selectMovie() {
-        int movieId = InputView.inputMovieId();
-        while (!MovieRepository.isContainMovieId(movieId)) {
-            System.out.println(InputView.NOT_MOVIE_ID);
-            movieId = InputView.inputMovieId();
-        }
+    private static Movie selectMovie(List<Reserve> reserveList) {
+        int movieId = intputMovieId();
+        while (!MovieRepository.getMovie(movieId).searchPossibleAllSchedule())
+            movieId = intputMovieId();
+        while (MovieRepository.getMovie(movieId).isImpossibleMovie(reserveList))
+            movieId = intputMovieId();
         Movie userSelectMovie = MovieRepository.getMovie(movieId);
         System.out.println(userSelectMovie);
         return userSelectMovie;
@@ -95,5 +95,14 @@ public class MovieApplication {
             cashOrCredit = InputView.intputCashOrCredit();
         }
         return cashOrCredit;
+    }
+
+    public static int intputMovieId() {
+        int movieId = InputView.inputMovieId();
+        while (!MovieRepository.isContainMovieId(movieId)) {
+            System.out.println(InputView.NOT_MOVIE_ID);
+            movieId = InputView.inputMovieId();
+        }
+        return movieId;
     }
 }
