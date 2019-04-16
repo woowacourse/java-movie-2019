@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,27 +37,35 @@ public class Movie {
         return id + " - " + name + ", " + price + "원";
     }
 
-    public String movieTimeInformation(int time) {
-        return playSchedules.get(time).playTimeInformation();
+    public String movieTimeInformation(int movieScheduleNumber) {
+        int index = getIndexForScheduleNumber(movieScheduleNumber);
+
+        return playSchedules.get(index).playTimeInformation();
     }
 
     public boolean matchMovieId(int movieId) {
         return id == movieId;
     }
 
-    public boolean matchMovieTime(int movieTime) {
-        if ( (movieTime < 1) || (movieTime > playSchedules.size())) {
+    public boolean matchMovieTime(int movieScheduleNumber) {
+        int index = getIndexForScheduleNumber(movieScheduleNumber);
+        if ( (index < 0) || (index > playSchedules.size()-1)
+                || playSchedules.get(index).matchCurrentTime()) {
             return false;
         }
         return true;
     }
 
-    public boolean matchMovieCapacity(int movieTime, int capacity) {
-        return playSchedules.get(movieTime).matchCapacity(capacity);
+    public boolean matchMovieCapacity(int movieScheduleNumber, int capacity) {
+        int index = getIndexForScheduleNumber(movieScheduleNumber);
+        return playSchedules.get(index).matchCapacity(capacity);
     }
 
     public int getPrice() {
         return price;
     }
 
+    private int getIndexForScheduleNumber(int scheduleNumber){
+        return scheduleNumber - 1;
+    }
 }

@@ -20,6 +20,11 @@ public class PlaySchedule {
         return true;
     }
 
+    public boolean matchCurrentTime() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        return startDateTime.isBefore(currentTime);
+    }
+
     public String playTimeInformation() {
         return "시작시간: " + format(startDateTime) + "\n";
     }
