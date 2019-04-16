@@ -43,14 +43,34 @@ public class MovieRepository {
         return movies;
     }
 
-    public static boolean isValidMovieId(int movieId){
-        if(movies.stream().filter(m -> m.getId() ==movieId).count() == 0){
+    public static boolean isValidMovieId(int movieId) {
+        if (movies.stream().filter(m -> m.getId() == movieId).count() == 0) {
             return false;
         }
         return true;
     }
 
-    public static Movie getMovie(int movieId){
+    public static boolean isValidMoviesId(List<Movie> reservateMove) {
+        int count = 0;
+
+        for (Movie movie : reservateMove) {
+            int movieId = movie.getId();
+            boolean isValidMovie = isValidMovieId(movieId);
+            count = countValidMovie(isValidMovie, count);
+        }
+        ;
+
+        return (count == 0) ? true : false;
+    }
+
+    public static int countValidMovie(boolean isValidMoive, int count) {
+        if (!isValidMoive) {
+            count += 1;
+        }
+        return count;
+    }
+
+    public static Movie getMovie(int movieId) {
 
     }
 }
