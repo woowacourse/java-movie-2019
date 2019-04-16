@@ -22,4 +22,8 @@ public class OutputView {
         System.out.println("예약 인원: " + numberOfPeople);
     }
 
+    public static void printresult(){
+        System.out.println("## 결제를 진행합니다.");
+    }
+
 }

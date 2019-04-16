@@ -19,7 +19,8 @@ public class MovieApplication {
             OutputView.printReservation(selectedMovie, movieTime, movieNumberOfPeople);
         }
         while (InputView.inputEndOrRestart() == 2);
-
+        OutputView.printresult();
+        InputView.inputPoint();
 
         // TODO 구현 진행
     }

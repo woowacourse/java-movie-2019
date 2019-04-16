@@ -40,6 +40,7 @@ public class InputView {
 
     private static int isValidScheduleNumber(int number, Movie movie) {
         if (number > movie.getScheduleSize() || number < 1) {
+            System.out.println("시간표에 있는 시간을 선택해 주세요");
             throw new IllegalArgumentException();
         }
         return number;
@@ -59,7 +60,8 @@ public class InputView {
     private static int isValidNumberOfPeople(int number, Movie movie, int time) {
         if (number > movie.getPlaySchedules().get(time).getCapacity()
                 || number < 1) {
-            throw new IllegalArgumentException("예매 가능한 인원을 초과했습니다");
+            System.out.println("예매 가능한 인원을 초과했습니다");
+            throw new IllegalArgumentException();
         }
         return number;
     }
@@ -77,6 +79,24 @@ public class InputView {
 
     private static int isValidEndOrRestart(int number) {
         if (number < 0 || number > 1) {
+            throw new IllegalArgumentException();
+        }
+        return number;
+    }
+
+    public static int inputPoint(){
+        try {
+            System.out.println("##포인트 사용금액을 입력하세요. 포인트가 없으면 0입력");
+            int point = Integer.parseInt(scanner.nextLine());
+            return isValidPoint(point);
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바른 숫자를 입력하세요");
+            return inputPoint();
+        }
+    }
+
+    private static int isValidPoint(int number) {
+        if (number < 0) {
             throw new IllegalArgumentException();
         }
         return number;
