@@ -32,7 +32,13 @@ public class Movie {
                 + sb.toString();
     }
     
+    public PlaySchedule getPlaySchedule(int index) {
+    	return this.playSchedules.get(index -1);
+    }
+    
     public boolean isMovieId(int movieId) {
     	return this.id == movieId;
     }
+    
+    
 }
