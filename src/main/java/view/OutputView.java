@@ -17,7 +17,6 @@ public class OutputView {
     }
 
     public static void printPayResult(AllPay allPay) {
-        System.out.print("최종 결제 금액은");
         int point = InputView.inputPoint();
         int isCredit = InputView.getCreditOrCash();
         System.out.println(allPay.getTotalCost(point, isCredit) + "입니다");

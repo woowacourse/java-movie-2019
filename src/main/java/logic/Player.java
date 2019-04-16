@@ -22,21 +22,26 @@ public class Player {
 
     public void play() {
         do {
-            List<Movie> movies = MovieRepository.getMovies();
-            OutputView.printMovies(movies);
+            OutputView.printMovies(MovieRepository.getMovies());
             Movie movie = InputView.inputMovie();
             OutputView.printPlaySchedule(movie);
-            int timeSchedule = InputView.InputTimeScheduleIndex();
-            int countOfBuy = InputView.inputCustomerBuyCount();
-            reservations.add(new Reservation(movie, timeSchedule, countOfBuy));
+            BuyWithTimeschedule(movie);
             OutputView.printPlaySchedule(movie);    // 테스트할때만 쓰는거 나중에 지울것
         } while (InputView.checkExit());
+        //calculateCost();
+    }
 
-        //reservatoins 순회하면서
+    public void calculateCost() {
         for (Reservation reservation : reservations) {
             movieCosts.add(new MovieCost(reservation));
         }
         AllPay allPay = new AllPay(movieCosts);
         OutputView.printPayResult(allPay);
+    }
+
+    private void BuyWithTimeschedule(Movie movie) {
+        int timeSchedule = InputView.InputTimeScheduleIndex();
+        int countOfBuy = InputView.inputCustomerBuyCount();
+        reservations.add(new Reservation(movie, timeSchedule, countOfBuy));
     }
 }
