@@ -27,4 +27,10 @@ public class MovieRepositoryTest {
 		assertThat(MovieRepository.hasSchedule(1,1)).isEqualTo(true);
 		assertThat(MovieRepository.hasSchedule(1,6)).isEqualTo(false);
 	}
+	
+	@Test
+	public void hasEnoughCapacity() {
+		assertThat(MovieRepository.hasEnoughCapacity(1, 1, 6)).isEqualTo(true);
+		assertThat(MovieRepository.hasEnoughCapacity(1, 1, 7)).isEqualTo(false);
+	}
 }
