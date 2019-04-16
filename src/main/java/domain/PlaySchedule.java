@@ -24,4 +24,7 @@ public class PlaySchedule {
     public boolean isOverPerson(int personCount){
         return personCount <= capacity;
     }
+    public void printSchedule(){
+        System.out.println("시작시간: " + format(startDateTime));
+    }
 }

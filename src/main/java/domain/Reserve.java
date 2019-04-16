@@ -9,4 +9,12 @@ public class Reserve {
         this.schedule = schedule;
         this.person = person;
     }
+    public void printReserverInformation(){
+        movie.printMovieInformation();
+        schedule.printSchedule();
+        System.out.println("예약 인원 " + person);
+    }
+    public PlaySchedule getSchedule(){
+        return this.schedule;
+    }
 }

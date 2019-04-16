@@ -1,13 +1,9 @@
 package domain;
-
 import view.InputView;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import static utils.DateTimeUtils.createDateTime;
-import static utils.DateTimeUtils.isOneHourWithinRange;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -40,14 +36,12 @@ public class Movie {
     public boolean isMatchMovieId(int movieId){
         return movieId == this.id;
     }
-    public boolean isCorrectSheduleId(int shceduleId){
-        try {
-            PlaySchedule userSelectSchedule = playSchedules.get(shceduleId - 1);
-            return true;
-        } catch (IndexOutOfBoundsException ex){
+    public boolean isCorrectScheduleId(int scheduleId){
+        boolean result = scheduleId <= playSchedules.size();
+        if(!result){
             System.out.println(InputView.OVER_RANGE_SCHEUDLE);
-            return false;
         }
+        return result;
     }
     public boolean isPossibleWatch(int scheduleId){
         PlaySchedule userSelectSchedule = playSchedules.get(scheduleId - 1);
@@ -55,9 +49,9 @@ public class Movie {
         return currentDateTime.isBefore(userSelectSchedule.getStartDateTime());
     }
     public PlaySchedule getSchedule(int scheduleId){
-        return playSchedules.get(scheduleId);
+        return playSchedules.get(scheduleId-1);
     }
     public void printMovieInformation(){
-        System.out.println( id + " - " + name + ", " + price + "원" + NEW_LINE);
+        System.out.println( id + " - " + name + ", " + price + "원");
     }
 }
