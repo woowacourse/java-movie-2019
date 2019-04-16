@@ -2,24 +2,31 @@ package view;
 
 import java.util.Scanner;
 
+import domain.Movie;
+import domain.MovieRepository;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId() {
+    public static Movie inputMovieId() {
+        System.out.println("## 예약할 영화를 선택하세요.");
         try {
-            System.out.println("## 예약할 영화를 선택하세요.");
-            return Integer.parseInt(scanner.nextLine());
+            int input = Integer.parseInt(scanner.nextLine());
+            return MovieRepository.getMovieById(input);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputMovieId();
         }
     }
 
-    public static int inputMovieTime() {
+    public static int inputMovieTime(Movie movie) {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
         try {
-            System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-            return Integer.parseInt(scanner.nextLine());
+            int input = Integer.parseInt(scanner.nextLine());
+            return movie.isValidTime(input);
         } catch (IllegalArgumentException e) {
-            return inputMovieTime();
+            System.out.println(e.getMessage());
+            return inputMovieTime(movie);
         }
     }
 
