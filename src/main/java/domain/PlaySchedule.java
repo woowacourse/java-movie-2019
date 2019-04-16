@@ -13,6 +13,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public String toStringExceptCapacity() {
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
