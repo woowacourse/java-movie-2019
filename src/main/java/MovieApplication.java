@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +20,10 @@ public class MovieApplication {
 
         //payOrReserve 값이 1일 경우 (결제 진행)
         OutputView.printReservationHistory(movieId, movieTime, movieViewer);
+        int ticketPrice = OutputView.getTicketPrice(movieId, movieViewer);
+        long point = InputView.inputPoint();
+        double discountRate = InputView.inputCardOrCash();
+        OutputView.printPayment(ticketPrice, point, discountRate);
 
 
 
