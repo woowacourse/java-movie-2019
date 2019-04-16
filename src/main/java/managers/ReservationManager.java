@@ -1,8 +1,6 @@
 package managers;
 
-import domain.Movie;
-import domain.MovieRepository;
-import domain.ReservationRepository;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -11,9 +9,21 @@ import java.util.List;
 public class ReservationManager {
     public static void makeReservation() {
         printMovieList();
-        InputView.inputMovieId();
-        InputView.inputScheduleNo();
-        InputView.inputNumToReserve();
+        try {
+            int movieId = InputView.inputMovieId();
+            Movie movie = MovieRepository.getMovieWithId(movieId);
+
+            int scheduleNo = InputView.inputScheduleNo();
+            PlaySchedule schedule = movie.getScheduleByNum(scheduleNo);
+
+            int numToReserve = InputView.inputNumToReserve();
+            schedule.reduceCapacity(numToReserve);
+
+            ReservationRepository.addReservation(movie,schedule,numToReserve);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage()+'\n');
+            makeReservation();
+        }
     }
 
     private static void printMovieList() {
@@ -23,8 +33,7 @@ public class ReservationManager {
     }
 
     public static void printReservationList() {
-        List<Movie> movies = ReservationRepository.getList();
-        OutputView.printMovies(movies);
+        // TO DO
     }
 
 
