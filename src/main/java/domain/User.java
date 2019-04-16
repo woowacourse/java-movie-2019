@@ -12,4 +12,8 @@ public class User {
     public static int selectMovie() {
         return InputView.inputMovieId();
     }
+
+    public static int selectSchedule(int movieId) {
+        return InputView.inputScheduleId(movieId);
+    }
 }
