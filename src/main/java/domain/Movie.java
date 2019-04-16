@@ -1,4 +1,5 @@
 package domain;
+
 import view.InputView;
 
 import java.time.LocalDateTime;
@@ -35,40 +36,46 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
-    public boolean isMatchMovieId(int movieId){
+
+    public boolean isMatchMovieId(int movieId) {
         return movieId == this.id;
     }
-    public boolean isCorrectScheduleId(int scheduleId){
+
+    public boolean isCorrectScheduleId(int scheduleId) {
         boolean result = scheduleId <= playSchedules.size();
-        if(!result){
+        if (!result) {
             System.out.println(InputView.OVER_RANGE_SCHEUDLE);
         }
         return result;
     }
-    public boolean isPossibleWatch(int scheduleId){
+
+    public boolean isPossibleWatch(int scheduleId) {
         PlaySchedule userSelectSchedule = playSchedules.get(scheduleId - 1);
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.isBefore(userSelectSchedule.getStartDateTime());
     }
 
-    public boolean isImpossibleSchedule(List<Reserve> reserveList, int scheduleId){
+    public boolean isImpossibleSchedule(List<Reserve> reserveList, int scheduleId) {
         boolean result = false;
         PlaySchedule userSelectSchedule = playSchedules.get(scheduleId - 1);
-        for(Reserve reserve : reserveList){
+        for (Reserve reserve : reserveList) {
             result = result || !isOneHourWithinRange(reserve.getSchedule().getStartDateTime(), userSelectSchedule.getStartDateTime());
         }
-        if(result){
+        if (result) {
             System.out.println(InputView.OVER_ONEHOUR);
         }
         return result;
     }
-    public PlaySchedule getSchedule(int scheduleId){
-        return playSchedules.get(scheduleId-1);
+
+    public PlaySchedule getSchedule(int scheduleId) {
+        return playSchedules.get(scheduleId - 1);
     }
-    public void printMovieInformation(){
-        System.out.println( id + " - " + name + ", " + price + "원");
+
+    void printMovieInformation() {
+        System.out.println(id + " - " + name + ", " + price + "원");
     }
-    public int getPrice(){
+
+    int getPrice() {
         return price;
     }
 }

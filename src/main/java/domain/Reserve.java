@@ -1,23 +1,27 @@
 package domain;
 
 public class Reserve {
-    private  Movie movie;
+    private Movie movie;
     private PlaySchedule schedule;
     private int person;
-    public Reserve(Movie movie, PlaySchedule schedule , int person){
+
+    public Reserve(Movie movie, PlaySchedule schedule, int person) {
         this.movie = movie;
         this.schedule = schedule;
         this.person = person;
     }
-    public void printReserverInformation(){
+
+    public void printReserverInformation() {
         movie.printMovieInformation();
         schedule.printSchedule();
         System.out.println("예약 인원 " + person);
     }
-    public PlaySchedule getSchedule(){
+
+    PlaySchedule getSchedule() {
         return this.schedule;
     }
-    public int getPrice(){
+
+    public int getPrice() {
         return movie.getPrice() * person;
     }
 }

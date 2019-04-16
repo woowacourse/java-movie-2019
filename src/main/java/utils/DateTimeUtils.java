@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateTimeUtils {
-    public static final String PLAYING_TIME_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final int ONE_HOURS = 1;
+    private static final String PLAYING_TIME_FORMAT = "yyyy-MM-dd HH:mm";
+    private static final int ONE_HOURS = 1;
 
     public static LocalDateTime createDateTime(String dateTime) {
         return createDateTime(dateTime, PLAYING_TIME_FORMAT);

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
-    public static final String NOT_INPUT_INTEGER = "숫자가 아닌 데이터를 입력했습니다. 다시 입력해주세요." ;
+    private static final String NOT_INPUT_INTEGER = "숫자가 아닌 데이터를 입력했습니다. 다시 입력해주세요.";
     public static final String NOT_MOVIE_ID = "상영목록에 없는 영화입니다. 다시 입력해주세요.";
     public static final String NOT_MOVIE_SCHEDULE = "이미 상영시간이 지난 영화입니다. 다시 입력해주세요";
     public static final String OVER_RANGE_SCHEUDLE = "해당 상영시간은 존재하지 않는 상영시간입니다. 다시 입력해주세요";
@@ -13,63 +13,69 @@ public class InputView {
     public static final String OVER_ONEHOUR = "해당 상영시간은 이미 예약된 상영시간들이랑 1시간 이내가 아닙니다. 다시 입력해주세요";
     public static final String OVER_POINT = "포인트가 최종 결제금액을 초과하였습니다. 다시 입력해주세요.";
     public static final String OneOrTwu = "1 또는 2만 입력해주세요.";
+
     public static int inputMovieId() {
         try {
             System.out.println("## 예약할 영화를 선택하세요.");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return inputMovieId();
         }
     }
+
     public static int inputScheduleId() {
         try {
             System.out.println("##예약할시간표를선택하세요. ( 첫번째 상영시간이 1번) ");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return inputScheduleId();
         }
     }
-    public static int inputPerson(){
+
+    public static int inputPerson() {
         try {
             System.out.println("## 예약할 인원을 입력하세요.");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return inputPerson();
         }
     }
+
     //##예약을종료하고결제를진행하려면1번,추가예약을진행하려면2번
-    public static int inputContinue(){
+    public static int inputContinue() {
         try {
             System.out.println("##예약을 종료하고 결제를 진행하려면 1번, 추가예약을 진행하려면 2번");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return inputContinue();
         }
     }
-    public static int inputPoint(){
+
+    public static int inputPoint() {
         try {
             System.out.println("## 결제를 진행합니다.");
             System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0입력");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return inputPoint();
         }
     }
-    public static int intputCashOrCredit(){
+
+    public static int intputCashOrCredit() {
         try {
             System.out.println("## 신용카드는 1번, 현금은 2번");
             return scanner.nextInt();
-        } catch(InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println(NOT_INPUT_INTEGER);
             scanner.nextLine();
             return intputCashOrCredit();
