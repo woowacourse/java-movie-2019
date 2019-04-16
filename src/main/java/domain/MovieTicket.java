@@ -8,13 +8,14 @@ public class MovieTicket {
 	private static final String INCAPABLE_AUDIENCE_MESSAGE = "예약 가능 인원을 초과했습니다.";
 	private static final String AFTER_SCREENING_MESSAGE = "상영 시작 시간이 지난 영화입니다.";
 
-	private Movie movie;
+	private int movieId;
+	private int schedule;
 	private int numOfAudience;
 
 	public MovieTicket() {
-		int movieId = getMovieId();
-		int schedule = getSchedule(movieId);
-		int numOfAudience = getNumOfAudience(movieId, schedule);
+		movieId = getMovieId();
+		schedule = getSchedule(movieId);
+		numOfAudience = getNumOfAudience(movieId, schedule);
 	}
 
 	private int getMovieId() {
@@ -48,6 +49,5 @@ public class MovieTicket {
 		}
 
 		return numOfAudience;
-
 	}
 }
