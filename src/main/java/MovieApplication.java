@@ -21,8 +21,9 @@ public class MovieApplication {
 
         while (continueBooking) {
             movieId = InputView.inputMovieId();
-            scheduleNumber = InputView.inputMovieSchedule(movies, movieId);
+            scheduleNumber = InputView.inputMovieSchedule(movies, movieId, purchasedMovies);
             countOfTickets = InputView.inputCountOfTickets(movies, movieId, scheduleNumber);
+            continueBooking = InputView.inputContinueBooking();
 
             PlaySchedule playSchedule = movies.get(movieId).getSchedule(scheduleNumber);
             PurchasedMovie purchasedMovie = new PurchasedMovie(movies.get(movieId), playSchedule, countOfTickets);

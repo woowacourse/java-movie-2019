@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.LocalDateTime;
+
 public class PurchasedMovie {
     private Movie movie;
     private PlaySchedule playSchedule;
@@ -9,5 +11,9 @@ public class PurchasedMovie {
         this.movie = movie;
         this.playSchedule = playSchedule;
         this.countOfTickets = countOfTickets;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return playSchedule.getStartDateTime();
     }
 }

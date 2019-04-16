@@ -19,9 +19,13 @@ public class PlaySchedule {
     }
 
     public boolean isCapable(int countOfTickets) {
-        if(countOfTickets < capacity) {
+        if(countOfTickets <= capacity) {
             return true;
         }
         return false;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 }
