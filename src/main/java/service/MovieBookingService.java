@@ -26,6 +26,15 @@ public class MovieBookingService {
         return MovieRepository.getMovies();
     }
 
+    /**
+     * 단일 예매가 가능한 상태인지 확인(인원 초과, 시작 시간 초과 여부만 확인)
+     * @param b 확인할 예매 정보
+     * @return 인자로 명시된 단일 예매 정보로 예매가 가능한 경우 true, 아니면 false
+     */
+    public boolean checkBookable(Booking b) {
+        return b.schedule.isBookableNow() && b.schedule.isCapable(b.numOfPeople);
+    }
+
     public boolean checkBookableTogether(List<Booking> bookings) {
         boolean bookable = true;
         Iterator<Booking> bit = bookings.iterator();
@@ -48,7 +57,7 @@ public class MovieBookingService {
     }
 
 
-    private int getTotalPrice(List<Booking> bookings) {
+    public int getTotalPrice(List<Booking> bookings) {
         int totalPrice = 0;
         for (Booking b : bookings) {
             totalPrice += b.movie.getTotalPrice(b.numOfPeople);
