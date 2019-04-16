@@ -6,12 +6,19 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-    public static void main(String[] args) {
+    public void showAllMovieInfo() {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
+    }
 
+    private void selectMovieToReserve() {
         int movieId = InputView.inputMovieId();
+        OutputView.printMovie(movieId);
+    }
 
-        // TODO 구현 진행
+    public static void main(String[] args) {
+        MovieApplication movieApplication = new MovieApplication();
+        movieApplication.showAllMovieInfo();
+        movieApplication.selectMovieToReserve();
     }
 }
