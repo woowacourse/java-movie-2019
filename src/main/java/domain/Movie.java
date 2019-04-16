@@ -72,7 +72,6 @@ public class Movie {
         if (reserveList.size() == 0)
             return false;
         for (Reserve reserve : reserveList) {
-            System.out.println(searchOneHourRangeSchedule(reserve));
             result = result || searchOneHourRangeSchedule(reserve);
         }
         if (!result)
