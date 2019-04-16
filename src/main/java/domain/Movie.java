@@ -35,4 +35,11 @@ public class Movie {
     public boolean matchMovieId(int movieId) {
         return id == movieId;
     }
+
+    public boolean matchMovieTime(int movieTime) {
+        if (movieTime < 1 || movieTime > playSchedules.size()) {
+            return false;
+        }
+        return true;
+    }
 }
