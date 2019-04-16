@@ -6,10 +6,10 @@ public class MyMovie {
 	private final int peopleNum;
 	private final PlaySchedule movieTime;
 	
-	public MyMovie(Movie movie, int peopleNum, PlaySchedule selectedMovieTime) {
+	public MyMovie(Movie movie, PlaySchedule selectedMovieTime, int peopleNum) {
 		this.myMovie = movie;
-		this.peopleNum = peopleNum;
 		this.movieTime = selectedMovieTime;
+		this.peopleNum = peopleNum;
 	}
 	
 	public Movie getMyMovie() {

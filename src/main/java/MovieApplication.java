@@ -25,9 +25,9 @@ public class MovieApplication {
             System.out.println("1 ~ 4 사이의 영화를 선택하세요.");
             movieId = InputView.inputMovieId();
         }
-    	System.out.println(movies.get(movieId - 1));
+    	System.out.println(movies.get(movieId));
     	
-        return movies.get(movieId - 1);
+        return movies.get(movieId);
 	}
 	
 	private PlaySchedule selectMovieTime(Movie movie) {
@@ -38,9 +38,9 @@ public class MovieApplication {
         	System.out.println("상영시간을 확인 후 다시 선택해주세요");
             movieTime = InputView.inputMovieTime();
         }
-        System.out.println(movie.getPlayMovieSchedule(movieTime - 1));
+        System.out.println(movie.getPlayMovieSchedule(movieTime));
         
-        return movie.getPlayMovieSchedule(movieTime - 1);
+        return movie.getPlayMovieSchedule(movieTime);
 	}
 	
 	private boolean checkMovieTime(PlaySchedule selectedMovieTime) {
@@ -81,17 +81,29 @@ public class MovieApplication {
 	    return movies;
 	}
 	
-	public MyMovie bookMovie(List<Movie> movies) {
-		PlaySchedule selectedMovieTime;
-		Movie selectedMovie;
-		int peopleNum;
+	public MyMovie bookMovie(List<Movie> movies, List<MyMovie> myMovies) {
+		MyMovie myMovie;
+		
 		do {
-			selectedMovie = selectMovie(movies); // 영화 선택  
-	        selectedMovieTime = selectMovieTime(selectedMovie); // 상영시간 선택
-	        peopleNum =  inputPeopleNumber();
-		} while(!(checkMovieTime(selectedMovieTime) && checkPeopleNumber(selectedMovieTime, peopleNum)));
-		MyMovie myMovie = new MyMovie(selectedMovie, peopleNum, selectedMovieTime);
+			Movie movie = selectMovie(movies);
+	        myMovie = new MyMovie(movie, selectMovieTime(movie), inputPeopleNumber());
+		} while(!checkMovieTime(myMovie.getMovieTime()) || !checkTwoMovieTime(myMovie.getMovieTime(), myMovies) 
+				|| !checkPeopleNumber(myMovie.getMovieTime(), myMovie.getPeopleNum()));
+
 		return myMovie;
+	}
+	
+	private boolean checkTwoMovieTime(PlaySchedule selectedMovieTime, List<MyMovie> myMovies) {
+		boolean isNotOverlaped = true;
+		for (int i = 0; i < myMovies.size(); i++) {
+			isNotOverlaped = (DateTimeUtils.isOneHourWithinRange(selectedMovieTime.getStartDateTime(), 
+					myMovies.get(i).getMovieTime().getStartDateTime()) == true && isNotOverlaped == true) ?  false : true;
+		}
+		
+		isNotOverlaped = myMovies.size() == 0 ? true : false;
+		InputView.chooseAnotherTime(isNotOverlaped);
+		
+		return isNotOverlaped;
 	}
 	
 	public boolean payOrContinue() {
@@ -117,13 +129,15 @@ public class MovieApplication {
 	    System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
 	}
 
+
     public static void main(String[] args) {
     	MovieApplication movieApp = new MovieApplication();
     	List<Movie> movies = movieApp.getAllMovie();
     	List<MyMovie> myMovies = new ArrayList<MyMovie>();
     	
     	do {
-        	myMovies.add(movieApp.bookMovie(movies));
+        	myMovies.add(movieApp.bookMovie(movies, myMovies));
+        	System.out.println("영화 예약 완료");
     	} while(movieApp.payOrContinue());
     	
     	movieApp.printMyMovieInfo(myMovies);

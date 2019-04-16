@@ -11,7 +11,7 @@ public class InputView {
     }
     
     public static int inputMovieTime() {
-    	System.out.println("## 예약할 시간표를 선택하세요. (첫 번째 상영 시간이 1번");
+    	System.out.println("## 예약할 시간표를 선택하세요. (첫 번째 상영 시간이 1번)");
     	return scanner.nextInt();
     }
     
@@ -37,5 +37,11 @@ public class InputView {
     public static int selectCreditCardOrCash() {
     	System.out.println("## 신용카드는 1번, 현금은 2번");
     	return scanner.nextInt();
+    }
+    
+    public static void chooseAnotherTime(boolean isNotOverlaped) {
+    	if (isNotOverlaped == false) {
+    		System.out.println("이전 영화 시간과 중복됩니다.");
+    	}
     }
 }
