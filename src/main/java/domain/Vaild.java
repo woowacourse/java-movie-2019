@@ -34,4 +34,13 @@ public class Vaild {
 		}
 		return result;
 	}
+	
+	public boolean movieTimeVaild(Movie selectMovie, int movieTime) {
+		boolean result = false;
+		if (movieTime > selectMovie.getPlaySchedule().size()) {
+			System.out.println("해당 시간에 상영하는 영화가 없습니다.");
+			result = true;
+		}
+		return result;
+	}
 }
