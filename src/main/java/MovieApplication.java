@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MyMovie;
 import domain.PlaySchedule;
 import utils.DateTimeUtils;
 import view.InputView;
@@ -77,23 +78,24 @@ public class MovieApplication {
 	    return movies;
 	}
 	
-	public Movie bookMovie(List<Movie> movies) {
+	public MyMovie bookMovie(List<Movie> movies) {
 		PlaySchedule selectedMovieTime;
 		Movie selectedMovie;
-		 
+		int peopleNum;
 		do {
 			selectedMovie = selectMovie(movies); // 영화 선택  
 	        selectedMovieTime = selectMovieTime(selectedMovie); // 상영시간 선택
-		} while(!(checkMovieTime(selectedMovieTime) && checkPeopleNumber(selectedMovieTime, inputPeopleNumber())));
-
-		return selectedMovie;
+	        peopleNum =  inputPeopleNumber();
+		} while(!(checkMovieTime(selectedMovieTime) && checkPeopleNumber(selectedMovieTime, peopleNum)));
+		MyMovie myMovie = new MyMovie(selectedMovie, peopleNum, selectedMovieTime);
+		return myMovie;
 	}
-	
+
     public static void main(String[] args) {
     	MovieApplication movieApp = new MovieApplication();
     	List<Movie> movies = movieApp.getAllMovie();
-    	Movie movie = movieApp.bookMovie(movies);
-    	System.out.println(movie);
     	
+    	MyMovie movie = movieApp.bookMovie(movies);
+
     }
 }
