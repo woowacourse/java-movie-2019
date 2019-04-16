@@ -40,6 +40,7 @@ public class MovieApplication {
                 addSelectMovie(selectMovies, movie);
                 addSelectSchedules(selectSchedules, playSchedule);
                 personnel = selectPersonnel(playSchedule);
+                OutputView.printReservation(movie, playSchedule, personnel);
             }
         } while (!isReservation || selectReservation());
 

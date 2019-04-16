@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.PlaySchedule;
 
 import java.util.List;
 
@@ -20,6 +21,14 @@ public class OutputView {
         }
 
         return null;
+    }
+
+    public static void printReservation(Movie movie, PlaySchedule playSchedule, int personnel) {
+        System.out.println("예약내역");
+        System.out.println(movie.getMovieId() + " - " + movie.getName() + ", " + movie.getPrice());
+        System.out.println(playSchedule.getStartDateTime());
+        System.out.println("예약 인원 :" + personnel);
+        System.out.println();
     }
 
     public static void printBillingProgress() {

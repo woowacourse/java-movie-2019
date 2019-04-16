@@ -25,6 +25,7 @@ public class Movie {
     public int getMovieId() {
         return id;
     }
+    public String getName() { return name; }
     public int getPrice() {return price; }
     public List<PlaySchedule> getPlaySchedules() { return playSchedules;}
 

@@ -15,6 +15,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public LocalDateTime getStartDateTime() {
+        return this.startDateTime;
+    }
+
     public boolean checkCapacity(int capacity) {
         if (this.capacity >= capacity) {
             return false;
