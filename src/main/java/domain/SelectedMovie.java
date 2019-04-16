@@ -11,6 +11,9 @@ public class SelectedMovie {
         this.movie = movie;
     }
 
+    public boolean updateAudienceCount(){
+        return movie.updateAudienceCount(selectedPlayScheduleId, audience);
+    }
     public void getData() {
         selectedPlayScheduleId = InputView.inputPlaySchedule() - 1;
         audience = InputView.inputAudienceNumber();

@@ -21,4 +21,13 @@ public class PlaySchedule {
     public boolean isValidCapacity(int audience) {
         return audience <= capacity;
     }
+
+    public boolean updateCapacity(int audience){
+        if(capacity >= audience){
+            capacity -= audience;
+            return true;
+        }
+        System.out.println("다시 입력해주세요");
+        return false;
+    }
 }

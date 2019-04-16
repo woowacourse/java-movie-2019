@@ -9,35 +9,48 @@ import java.util.List;
 public class Reservation {
     private static List<Movie> movies = MovieRepository.getMovies();
     private static List<SelectedMovie> selectedMovies = new ArrayList<>();
+    private static boolean flag = true;
     private static int index = 0;
-    private int totalPrice;
+    private int totalPrice = 0;
     private int point;
 
-    public Reservation(){
+    public Reservation() {
 
     }
 
-    public void startReservation(){
-        boolean flag = true;
-        do{
+    public void startReservation() {
+        do {
             int movieId = InputView.inputMovieId();
             OutputView.showSelectedMovie(movieId);
-            selectedMovies.get(index).getData();
-            selectedMovies.get(index).showSelectedMovieSchecule();
-            index += 1;
+            startSelectedMovies();
             flag = InputView.inputContinueReservation();
-        }while(flag);
+        } while (flag);
     }
 
+    public void startSelectedMovies() {
+        boolean updateFlag = false;
+        do {
+            selectedMovies.get(index).getData();
+            updateFlag = updateAudience();
+        } while (!updateFlag);
+        selectedMovies.get(index).showSelectedMovieSchecule();
+        index += 1;
+    }
 
-    private void calculateTotalPrice(){
+    public boolean updateAudience() {
+        return selectedMovies.get(index).updateAudienceCount();
+    }
 
+    private void calculateTotalPrice() {
+        for (SelectedMovie selectedMovie : selectedMovies) {
+            totalPrice += selectedMovie.showPrice()
+        }
     }
 
     public static Movie showMovie(int id) {
-        for(int i = 0; i < movies.size(); i++){
+        for (int i = 0; i < movies.size(); i++) {
             boolean tmp = movies.get(i).isMatchedId(id);
-            if(tmp == true){
+            if (tmp == true) {
                 selectedMovies.add(new SelectedMovie(movies.get(i)));
                 return movies.get(i);
             }
@@ -45,4 +58,7 @@ public class Reservation {
         return null;
     }
 
+    public void startStatistics() {
+        InputView.inputPoint();
+    }
 }
