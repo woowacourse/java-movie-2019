@@ -1,4 +1,5 @@
 import domain.ChoiceMovie;
+import domain.Money;
 import domain.Movie;
 import domain.MovieRepository;
 import view.InputView;
@@ -28,6 +29,10 @@ public class MovieApplication {
             select.setMember(member);
             choiceMovies.add(select);
             isContinue=InputView.inputAddReservation();
+        }
+        Money totalPrice = new Money(0);
+        for(ChoiceMovie movie:choiceMovies){
+            mo
         }
 
 

@@ -17,6 +17,14 @@ public class Money {
     public void substractMoney(int point){
         money-=point;
     }
+    public void salePrice(int payment){
+        if(payment==1){
+            money=(int)(money*0.95);
+        }
+        if(payment==2){
+            money=(int)(money*0.98);
+        }
+    }
 
 
 }
