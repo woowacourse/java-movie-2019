@@ -1,3 +1,4 @@
+import domain.Money;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
@@ -65,11 +66,11 @@ public class MovieApplication {
     }
 
     private static void payment() throws IOException{
-        long beforeTotalMoney = beforeTotal();
-        long point = InputView.inputPoint(beforeTotalMoney);
-        beforeTotalMoney = beforeTotalMoney - point;
+        Money money = new Money(beforeTotal());
+        long point = InputView.inputPoint(money);
+        money.calculatePoint(point);
         int payment = InputView.inputCashOrCard();
-        long totalMoney = calculateTotalMoney(beforeTotalMoney, payment);
+        long totalMoney = calculateTotalMoney(money.money, payment);
         OutputView.printTotalPayment(totalMoney);
     }
 

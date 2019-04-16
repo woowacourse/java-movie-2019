@@ -1,14 +1,13 @@
 package view;
 
+import domain.Money;
 import domain.MovieRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
     private static final int PAYMENT = 1;
     private static final int ADD_RESERVATION = 2;
 
@@ -46,11 +45,11 @@ public class InputView {
         return goPaymentOrAddReservation();
     }
 
-    public static long inputPoint(long beforeTotalPrice) throws IOException{
+    public static long inputPoint(Money money) throws IOException{
         int point = valid("## 결제를 진행합니다.\n"+"## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
-        if(beforeTotalPrice - point < 0){
+        if(!money.isValidMoney(point)){
             System.out.println("## 포인트가 결제 금액보다 많습니다. 다시 입력해주세요.");
-            return inputPoint(beforeTotalPrice);
+            return inputPoint(money);
         }
         return point;
     }
