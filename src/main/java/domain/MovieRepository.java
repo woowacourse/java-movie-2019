@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +77,12 @@ public class MovieRepository {
 		int movieIndex = findMovieIndex(movieId, 0);
 		Movie movie = movies.get(movieIndex);
 		movie.reduceCapacity(scheduleNumber, count);
+	}
+	
+	public static LocalDateTime getStartDateTime(int movieId, int scheduleNumber) {
+		int movieIndex = findMovieIndex(movieId, 0);
+		Movie movie = movies.get(movieIndex);
+		return movie.getStartDateTime(scheduleNumber);
 	}
 	
 	/**

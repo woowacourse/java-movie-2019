@@ -9,6 +9,7 @@
  */
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import view.InputView;
@@ -32,6 +33,7 @@ public class TicketingManager {
 			checkSchedule(movieId, scheduleNumber);
 			int ticketCount = InputView.inputTicketCount();
 			checkTicketCount(movieId, scheduleNumber, ticketCount);
+			checkTimeInterval(movieId, scheduleNumber);
 			tickets.add(new Ticket(movieId, scheduleNumber, ticketCount));
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
@@ -57,6 +59,13 @@ public class TicketingManager {
 	private void checkTicketCount(int movieId, int scheduleNumber, int ticketCount) {
 		if (!MovieRepository.hasEnoughCapacity(movieId, scheduleNumber, ticketCount)) {
 			throw new IllegalArgumentException("자리가 부족합니다.");
+		}
+	}
+	
+	private void checkTimeInterval(int movieId, int scheduleNumber) {
+		LocalDateTime dateTime = MovieRepository.getStartDateTime(movieId, scheduleNumber);
+		for	(Ticket ticket: tickets) {
+			ticket.checkOneHourWithinRange(dateTime);
 		}
 	}
 	
