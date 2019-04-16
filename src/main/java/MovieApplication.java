@@ -9,19 +9,21 @@ import java.util.List;
 
 public class MovieApplication {
     private static final int ARRAY_DEFAULT_VALUE = -1;
+    private static final int QUIT_SIGNAL = 1;
+    private static final int CONTINUE_SIGNAL = 2;
+
+    private static List<Reservation> reservations;
+    private static boolean isReserving;
 
     public static void main(String[] args) {
-        List<Reservation> reservations = new ArrayList<>();
+        isReserving = true;
+        reservations = new ArrayList<>();
         List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        OutputView.printMovie(findMovieById(movies, movieId));
-
-        int tableId = InputView.inputMovieTable() + ARRAY_DEFAULT_VALUE;
-        int numPeople = InputView.inputNumPeople();
-        makeReservation(findMovieById(movies, movieId), tableId, numPeople);
-        reservations.add(new Reservation(findMovieById(movies, movieId), tableId, numPeople));
+        while (isReserving) {
+            OutputView.printMovies(movies);
+            makeReservation(movies);
+        }
 
         OutputView.printReservations(reservations);
 
@@ -29,6 +31,27 @@ public class MovieApplication {
         InputView.inputPayMethod();
 
         OutputView.printReceipt(reservations, point);
+    }
+
+    public static void makeReservation(List<Movie> movies) {
+        int movieId = InputView.inputMovieId();
+        OutputView.printMovie(findMovieById(movies, movieId));
+        int tableId = InputView.inputMovieTable() + ARRAY_DEFAULT_VALUE;
+        int numPeople = InputView.inputNumPeople();
+        confirmReservation(findMovieById(movies, movieId), tableId, numPeople);
+        enterQuitOrContinue();
+    }
+
+    public static boolean enterQuitOrContinue() {
+        int quitSignal = InputView.inputQuitSignal();
+        if (quitSignal == QUIT_SIGNAL) {
+            isReserving = false;
+            return true;
+        } else if (quitSignal == CONTINUE_SIGNAL)
+            return false;
+
+        OutputView.printInputWrongValueMessage();
+        return enterQuitOrContinue();
     }
 
     public static Movie findMovieById(List<Movie> movieList, int movieId) {
@@ -39,7 +62,12 @@ public class MovieApplication {
         return null;
     }
 
-    public static boolean makeReservation(Movie movie, int movieTable, int numPeople) {
-        return movie.makeReserve(movieTable, numPeople);
+    public static boolean confirmReservation(Movie movie, int movieTable, int numPeople) {
+        if (movie.makeReserve(movieTable, numPeople)) {
+            reservations.add(new Reservation(movie, movieTable, numPeople));
+            return true;
+        }
+        return false;
     }
+
 }
