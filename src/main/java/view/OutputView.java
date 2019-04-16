@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.ReserveMovie;
 
 import java.util.List;
 
@@ -13,5 +14,11 @@ public class OutputView {
 
     public static void printMovie(Movie movie) {
         System.out.println(movie);
+    }
+
+    public static void printHistory(List<ReserveMovie> reserveMovies) {
+        for (ReserveMovie reserveMovie : reserveMovies) {
+            System.out.println(reserveMovie);
+        }
     }
 }
