@@ -56,6 +56,10 @@ public class MovieApplication {
 		return peopleNum;
 	}
 	
+	public boolean checkPeopleNumber(PlaySchedule selectedMovieTime, int peopleNum) {
+		return selectedMovieTime.getCapacity() > peopleNum ? true : false;
+	}
+	
     public static void main(String[] args) {
         MovieApplication movieApp = new MovieApplication();
     	
@@ -65,8 +69,8 @@ public class MovieApplication {
         
         Movie selectedMovie = movieApp.selectMovie(movies); // 영화 선택  
         PlaySchedule selectedMovieTime = movieApp.selectMovieTime(selectedMovie); // 상영시간 선택
+        
     	movieApp.checkMovieTime(selectedMovieTime); // 상영 시간과 현재 시간 비교
-    	
-    	movieApp.inputPeopleNumber());
+    	movieApp.checkPeopleNumber(selectedMovieTime, movieApp.inputPeopleNumber()); // 관람 가능 인원 비교
     }
 }
