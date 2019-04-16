@@ -16,8 +16,8 @@ public class OutputView {
 		System.out.println(movie);
 	}
 	
-	public static void printPlaySchedule(Movie movie, int startDateTime) {
-		System.out.println(movie.getPlaySchedules().get(startDateTime - 1));
+	public static void printPlaySchedule(PlaySchedule playSchedule) {
+		System.out.println(playSchedule);
 	}
 	
 	public static void printBookingResult(Movie movie, PlaySchedule playSchedule, int capacity) {
