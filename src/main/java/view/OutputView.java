@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.MovieRepository;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+
 }
