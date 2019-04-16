@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
 
@@ -40,6 +41,14 @@ public class Validator {
 		}
 		if (DateTimeUtils.isOneHourWithinRange(reservations.get(0).getPlaySchedule().getStartDateTime(),
 			reservations.get(reservationSize - 1).getPlaySchedule().getStartDateTime())) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean isValidPlaySchedule(String value, Movie movie) {
+		if(!isNaturalNumber(value) || 
+			movie.getPlaySchedules().size() >= Integer.parseInt(value)) {
 			return false;
 		}
 		return true;

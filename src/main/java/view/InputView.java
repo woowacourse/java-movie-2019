@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 
+import domain.Movie;
 import domain.Reservation;
 import utils.Validator;
 
@@ -12,19 +13,19 @@ public class InputView {
 	public static int inputMovieId(List<Reservation> reservations) {
 		System.out.println("## 예약할 영화를 선택하세요.");
 		String inputValue = SCANNER.nextLine();
-		if(Validator.isValidMovieId(inputValue, reservations)) {
+		if (Validator.isValidMovieId(inputValue, reservations)) {
 			return Integer.parseInt(inputValue);
 		}
 		return inputMovieId(reservations);
 	}
 
-	public static int inputStartDateTime() {
-		try {
-			System.out.println("## 예약할 시간표를  선택하세요.");
-			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputStartDateTime();
+	public static int inputStartDateTime(Movie movie) {
+		System.out.println("## 예약할 시간표를  선택하세요.");
+		String inputValue = SCANNER.nextLine();
+		if (Validator.isValidPlaySchedule(inputValue, movie)) {
+			return Integer.parseInt(inputValue);
 		}
+		return inputStartDateTime(movie);
 	}
 
 	public static int inputCapacity() {
@@ -39,7 +40,7 @@ public class InputView {
 	public static int inputMoreBookingFlag() {
 		System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
 		String inputValue = SCANNER.nextLine();
-		if(Validator.isValidFlag(inputValue)) {
+		if (Validator.isValidFlag(inputValue)) {
 			return Integer.parseInt(SCANNER.nextLine());
 		}
 		return inputMoreBookingFlag();
