@@ -42,4 +42,11 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovie(int movieId) {
+        return movies.stream()
+                .filter(movie -> movie.getId() == movieId)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
