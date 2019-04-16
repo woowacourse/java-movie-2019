@@ -1,24 +1,22 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class ChoiceMovie {
-    private int id;
-    private String name;
-    private int price;
+    public Movie movie;
     private int member;
-    private PlaySchedule playSchedules;
+    private LocalDateTime time;
 
-    public ChoiceMovie(int id, String name, int price,int member,PlaySchedule playSchedule) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.member=member;
-        this.playSchedules = playSchedule;
+    public ChoiceMovie(Movie movie,LocalDateTime time) {
+        this.movie = movie;
+        this.time = time;
     }
 
-   public PlaySchedule getPlaySchedules(){
-        return playSchedules;
+    public void setMember(int member) {
+        this.member = member;
+    }
+
+    public LocalDateTime getLocalDateTime(){
+        return time;
    }
 }
