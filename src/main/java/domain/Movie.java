@@ -22,13 +22,28 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public String movieInfo() {
+        return id + " - " + name + ", " + price + "원";
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (PlaySchedule playSchedule : playSchedules) {
             sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "원" + NEW_LINE
-                + sb.toString();
+        return movieInfo() + NEW_LINE + sb.toString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public PlaySchedule getPlaySchedules(int time) {
+        return playSchedules.get(time);
     }
 }
