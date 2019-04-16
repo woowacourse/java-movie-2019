@@ -12,13 +12,15 @@ public class OutputView {
         }
     }
 
-    public static void printMovie(List<Movie> movies, int movieNum) {
+    public static boolean printMovie(List<Movie> movies, int movieNum) {
         for (Movie movie : movies) {
             int mid = movie.getId();
             if (mid == movieNum) {
                 System.out.println(movie);
+                return true;
             }
         }
+        return false;
     }
     public static void reservationInformation(List<Movie> movies, int movieNum,int scheduleNum, int peopleNum) {
         System.out.println("예약 내역");

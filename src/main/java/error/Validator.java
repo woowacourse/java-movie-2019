@@ -42,8 +42,8 @@ public class Validator {
 //        }
 //    }
 //
-//    public static void checkisInRange(int number) throws Exception {
-//        if ((number < GameSettingData.LOTTO_MIN_NUMBER) || (number > GameSettingData.LOTTO_MAX_NUMBER)) {
+//    public static void checkisInRange(boolean flag) throws Exception {
+//        if (flag){
 //            throw new NotInRangeException();
 //        }
 //    }
