@@ -5,7 +5,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class MovieApplication {
@@ -34,7 +33,7 @@ public class MovieApplication {
         pay();
     }
 
-    public static boolean makeReservation(List<Movie> movies) {
+    private static boolean makeReservation(List<Movie> movies) {
         int movieId = InputView.inputMovieId();
         if (findMovieById(movies, movieId) == null) {
             OutputView.printInputWrongMovieId();
@@ -46,7 +45,7 @@ public class MovieApplication {
         return enterQuitOrContinue();
     }
 
-    public static boolean enterQuitOrContinue() {
+    private static boolean enterQuitOrContinue() {
         int quitSignal = InputView.inputQuitSignal();
         if (quitSignal == QUIT_SIGNAL) {
             isReserving = false;
@@ -58,7 +57,7 @@ public class MovieApplication {
         return enterQuitOrContinue();
     }
 
-    public static Movie findMovieById(List<Movie> movieList, int movieId) {
+    private static Movie findMovieById(List<Movie> movieList, int movieId) {
         for (Movie movie : movieList)
             if (movie.isSameMovieId(movieId))
                 return movie;
@@ -66,7 +65,7 @@ public class MovieApplication {
         return null;
     }
 
-    public static boolean confirmReservation(Movie movie, int tableId, int numPeople) {
+    private static boolean confirmReservation(Movie movie, int tableId, int numPeople) {
         Reservation newReservation;
         if (!movie.checkScheduleRange(tableId)) {
             OutputView.printInputWrongSchedule();
@@ -80,7 +79,7 @@ public class MovieApplication {
         return false;
     }
 
-    public static boolean checkAlreadyStarted(Reservation newReservation) {
+    private static boolean checkAlreadyStarted(Reservation newReservation) {
         if (newReservation.isAlreadyStarted()) {
             OutputView.printAlreadyStarted();
             return false;
@@ -88,7 +87,7 @@ public class MovieApplication {
         return checkOutOfOneHourRange(newReservation);
     }
 
-    public static boolean checkOutOfOneHourRange(Reservation newReservation) {
+    private static boolean checkOutOfOneHourRange(Reservation newReservation) {
         for (Reservation reservation : reservations)
             if (!newReservation.checkOneHourWithinRange(reservation)) {
                 OutputView.printOutOfOneHour();
@@ -98,20 +97,16 @@ public class MovieApplication {
         return true;
     }
 
-    public static void pay() {
+    private static boolean pay() {
         int point = 0;
         int payMethod = 0;
-        try {
-            point = InputView.inputPoint();
-            payMethod = InputView.inputPayMethod();
-        } catch (InputMismatchException e) {
-            OutputView.printErrorMessage();
-            pay();
-        }
+        point = InputView.inputPoint();
+        payMethod = InputView.inputPayMethod();
         OutputView.printReceipt(countTotalPrice(point, payMethod));
+        return true;
     }
 
-    public static int countTotalPrice(int point, int payMethod) {
+    private static int countTotalPrice(int point, int payMethod) {
         int totalPrice = 0;
         for (Reservation reservation : reservations)
             totalPrice += reservation.getPricePerReservation();

@@ -55,6 +55,14 @@ public class OutputView {
     }
 
     public static void printOverCapacity() {
-        System.out.println("예약 가능 인원을 초과했습니다." + NEW_LINE);
+        System.out.println("예약 가능 인원 범위에 맞지 않습니다." + NEW_LINE);
+    }
+
+    public static void printInputWrongPoint() {
+        System.out.println("포인트는 음수가 될 수 없습니다." + NEW_LINE);
+    }
+
+    public static void printInputWrongMethod() {
+        System.out.println("잘못된 결제 수단 값을 입력하셨습니다." + NEW_LINE);
     }
 }
