@@ -8,18 +8,14 @@ import java.util.*;
 
 public class MovieApplication {
 
-    static List<ReservationCategory> reservationCategory = new ArrayList<>();
-
     public static void main(String[] args) {
+        List<ReservationCategory> reservationCategory = new ArrayList<>();
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
         // TODO 구현 진행
         Movie choiceMovie =  OutputView.printChoiceMovies(movies);
-        int choiceTime = InputView.inputChoiceTime();
-        int reservedPerson = InputView.inputReservedPerson();
-
-        reservedTimeSchedule(choiceMovie, choiceTime, reservedPerson);
+        reservationCategory = reservedTimeSchedule(choiceMovie, reservationCategory);
 
         int isPayment = InputView.inputIsPayment();
         OutputView.printReservedCategory(reservationCategory, isPayment);
@@ -27,8 +23,20 @@ public class MovieApplication {
 
     }
 
-    private static void reservedTimeSchedule(Movie choiceMovie, int choiceTime, int reservedPerson){
-        reservationCategory.add(new ReservationCategory(choiceMovie, choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime(), reservedPerson));
+    private static List<ReservationCategory> reservedTimeSchedule(Movie choiceMovie, List<ReservationCategory> reservationCategories){
+        int choiceTime = InputView.inputChoiceTime();
+        if(choiceTime > choiceMovie.getPlaySchedules().size() || choiceTime < 0){
+            System.out.println("선택한 시간이 없습니다. 다시입력하세요.");
+            return reservedTimeSchedule(choiceMovie, reservationCategories);
+        }
+        int reservedPerson = InputView.inputReservedPerson();
+        if(reservedPerson < 0 || reservedPerson > choiceMovie.getPlaySchedules().get(choiceTime-1).getCapacity()){
+            System.out.println("예약 인원이 없거나 초과 하였습니다. 다시 입력해주세요.");
+            return reservedTimeSchedule(choiceMovie, reservationCategories);
+        }
+        reservationCategories.add(new ReservationCategory(choiceMovie, choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime(), reservedPerson));
+
+        return reservationCategories;
     }
 
 
