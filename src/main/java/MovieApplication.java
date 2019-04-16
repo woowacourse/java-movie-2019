@@ -1,17 +1,16 @@
-import domain.Movie;
-import domain.MovieRepository;
-import view.InputView;
-import view.OutputView;
+import domain.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MovieApplication {
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+        HashMap<MovieId, Reservation> reservations = new LinkedHashMap<>();
 
-        int movieId = InputView.inputMovieId();
+        do {
+            ReservationManager.addReservationTo(reservations);
+        } while(ReservationManager.continueReservation());
 
-        // TODO 구현 진행
+        ReservationManager.startPaymentOf(reservations);
     }
 }
