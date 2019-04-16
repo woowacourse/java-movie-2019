@@ -18,5 +18,6 @@ public class MovieApplication {
 		} while (InputView.inputStopOrGo());
 		int point = InputView.inputPoint();
 		int cardOrCash = InputView.inputCardOrCash();
+		OutputView.printResult();
 	}
 }
