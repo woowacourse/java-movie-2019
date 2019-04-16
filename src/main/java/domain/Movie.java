@@ -32,12 +32,12 @@ public class Movie {
                 + sb.toString();
     }
 
-    public void printMovieWithoutSchedule() {
+    void printMovieWithoutSchedule() {
         System.out.print(id + " - " + name + ", "
                 + price + "원" + NEW_LINE);
     }
 
-    public boolean hasSameId(int movieId) {
+    boolean hasSameId(int movieId) {
         return id == movieId;
     }
 
@@ -49,7 +49,7 @@ public class Movie {
         }
     }
 
-    public int getChargeForPeople(int reservedPersonCount) {
+    int getChargeForPeople(int reservedPersonCount) {
         return price * reservedPersonCount;
     }
 }

@@ -22,7 +22,7 @@ public class PlaySchedule {
                 + " 예약가능인원: " + capacity + "\n";
     }
 
-    public void printScheduleStartTime() {
+    void printScheduleStartTime() {
         System.out.println("시작시간: " + format(startDateTime));
     }
 
@@ -42,7 +42,7 @@ public class PlaySchedule {
         return isTimePassed(startDateTime);
     }
 
-    public boolean isWithinOneHour(PlaySchedule anotherSchedule) {
+    boolean isWithinOneHour(PlaySchedule anotherSchedule) {
         return anotherSchedule.isOneHourWithinRange(startDateTime);
     }
 

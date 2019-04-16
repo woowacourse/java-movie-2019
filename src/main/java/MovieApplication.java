@@ -67,10 +67,8 @@ public class MovieApplication {
 
         PlaySchedule selectedSchedule =
                 decideSchedule(selectedMovie, bookedMovie);
-        if (!checkMovieTime(selectedSchedule)) {
-            return bookOneMovie();
-        }
-        if (!decidePersonCount(bookedMovie, selectedSchedule)) {
+        if (!checkMovieTime(selectedSchedule) ||
+                !decidePersonCount(bookedMovie, selectedSchedule)) {
             return bookOneMovie();
         }
         return bookedMovie;

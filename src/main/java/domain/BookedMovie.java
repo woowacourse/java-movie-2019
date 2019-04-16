@@ -1,9 +1,5 @@
 package domain;
 
-import domain.Movie;
-import domain.PlaySchedule;
-import utils.DateTimeUtils;
-
 public class BookedMovie {
     private static final char NEW_LINE = '\n';
     private final Movie bookedMovie;
