@@ -5,6 +5,9 @@ import domain.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 사용자 콘솔 출력 클래스
+ */
 public class OutputView {
     public static void printMovies(List<Movie> movies) {
         for (Movie movie : movies) {

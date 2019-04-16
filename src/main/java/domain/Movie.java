@@ -39,4 +39,8 @@ public class Movie {
     public int getPlaySchedulesSize() {
         return this.playSchedules.size();
     }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return this.playSchedules;
+    }
 }

@@ -4,6 +4,9 @@ import utils.InputException;
 
 import java.util.Scanner;
 
+/**
+ * 사용자 콘솔 입력 클래스
+ */
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -25,6 +28,17 @@ public class InputView {
         if(!InputException.inputViewTimeException(userIn, movieId)) {
             System.out.println("다시 입력하세요.");
             return inputMovieTime(movieId);
+        }
+        return userIn;
+    }
+
+    public static int inputMovieHead(int movieId, int movieTime) {
+        int userIn;
+        System.out.println("## 예약할 인원을 입력하세요.");
+        userIn = scanner.nextInt();
+        if(!InputException.inputViewHeadException(userIn, movieId, movieTime)) {
+            System.out.println("다시 입력하세요.");
+            return inputMovieHead(movieId, movieTime);
         }
         return userIn;
     }

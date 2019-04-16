@@ -17,7 +17,9 @@ public class MovieApplication {
 
             OutputView.printMovieSchedule(movies, movieId);
             int movieTime = InputView.inputMovieTime(movieId);
-        }
+
+            int movieHeadCount = InputView.inputMovieHead(movieId, movieTime);
+       }
         // TODO 구현 진행
     }
 }
