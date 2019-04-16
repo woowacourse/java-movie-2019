@@ -25,7 +25,7 @@ public class OutputView {
             choice=3;
         System.out.println(movies.get(choice));
     }
-
+    /*
     public static void PrintReserveMovie(List<Movie> movies, int movie_id2, int reserve_time, int peoplenum)
     {
         int choice2=0;
@@ -40,5 +40,5 @@ public class OutputView {
         System.out.println(movies.get(choice2))
 
     }
-
+    */
 }

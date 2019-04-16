@@ -22,7 +22,9 @@ public class MovieApplication {
         int ChoicePeopleNum = ChoicePeopleNumber();
         Reservation reservemovie = new Reservation(movieId, ChoiceScheduleNum, ChoicePeopleNum);
         ReserveList.add(reservemovie);
-        String reserve_movie_name=
+
+        Movie tempmovie = movies.get(SwitchNum(movieId));
+        tempmovie.PrintMovieName();
         int ExitOrNumChoice = ExitOrMore();
 
         // TODO 구현 진행
@@ -53,7 +55,19 @@ public class MovieApplication {
         Choice = sc.nextInt();
         return Choice;
     }
-
+    public static int SwitchNum(int num)
+    {
+        int switch_num=0;
+        if(num==1)
+            switch_num=0;
+        if(num==5)
+            switch_num=1;
+        if(num==7)
+            switch_num=2;
+        if(num==8)
+            switch_num=3;
+        return switch_num;
+    }
 
 }
 

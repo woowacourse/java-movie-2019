@@ -14,6 +14,7 @@ MovieApplication 클래스
 
 -ExitOrMore 함수: 예약을 종료할건지 추가예약할 것인지 입력받는 함수
 
+-SwitchNum 함수 : id 숫자 변환 함수 
 
 Reservation 클래스
 - addReservation 함수 : 예약 추가

@@ -18,9 +18,9 @@ public class Movie {
         this.price = price;
     }
 
-    String getMovieName(Movie movie)
+    public void PrintMovieName()
     {
-        return movie.name;
+        System.out.println(id + "-"+ name +"," + price + "원" + NEW_LINE);
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
