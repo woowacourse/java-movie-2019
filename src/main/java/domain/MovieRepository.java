@@ -63,5 +63,11 @@ public class MovieRepository {
         return (count == 0) ? true : false;
     }
 
+    public static void UpdateMovieInfo(ReservateInformation reservateInformation){
+        int reservedMovieid = reservateInformation.getMovie().getId();
+
+
+    };
+
 
 }

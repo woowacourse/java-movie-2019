@@ -6,27 +6,43 @@ import java.util.List;
 
 public class MovieApplication {
 
-    public void ReservateMovie(){
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+    public ReservateInformation ExecuteAppBeforeGoback() {
         Movie userMovie = InputView.inputMovieId();
+
         OutputView.printMovie(userMovie);
+
         PlaySchedule reserveSchedule = InputView.inputReserveTime(userMovie);
         ReservePeople reservePeople = InputView.inputReservePeople(reserveSchedule);
+
         PaymentOrReservation paymentOrReservationObject = InputView.inputPaymentOrReservation();
         int paymentOrReservation = paymentOrReservationObject.getPaymentOrReservation();
+        ReservateInformation reservateInformation = new ReservateInformation(reserveSchedule, userMovie, reservePeople);
+        isGoback(paymentOrReservation);
+        return reservateInformation;
+    }
 
-        if(paymentOrReservation == 2){
-            ReservateMovie();
-            return;
-        }
+    private void ExecuteAppAfterGoback(ReservateInformation reservateInformation) {
 
-        ReservateInformation reservateInformation = new ReservateInformation(reserveSchedule,userMovie,reservePeople);
         OutputView.printReservateInfo(reservateInformation);
-        InputView.inputPoint();
+        Point point = InputView.inputPoint(reservateInformation);
 
 
     }
+
+    private void isGoback(int paymentOrReservation) {
+        if (paymentOrReservation == 2) {
+            ReservateMovie();
+            return;
+        }
+    }
+
+    public void ReservateMovie() {
+
+        OutputView.printMovies();
+        ReservateInformation reservateInformation = ExecuteAppBeforeGoback();
+        ExecuteAppAfterGoback(reservateInformation);
+    }
+
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.ReservateMovie();

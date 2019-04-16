@@ -5,7 +5,10 @@ import domain.*;
 import java.util.List;
 
 public class OutputView {
-    public static void printMovies(List<Movie> movies) {
+
+    public static void printMovies() {
+        List<Movie> movies = MovieRepository.getMovies();
+
         for (Movie movie : movies) {
             System.out.println(movie);
         }
