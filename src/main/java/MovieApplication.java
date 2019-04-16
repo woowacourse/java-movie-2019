@@ -79,10 +79,15 @@ public class MovieApplication {
     }
 
     private static PlaySchedule validateScheduleTime(Movie movie, PlaySchedule schedule) {
-        if (schedule.isNotStartedYet() && checkInterval(schedule)) {
+        boolean isInAnHour = checkInterval(schedule);
+        if (schedule.isNotStartedYet() && isInAnHour) {
             return schedule;
         }
-        OutputView.printAlreadyStartedMessage();
+        if (isInAnHour) {
+            OutputView.printAlreadyStartedMessage();
+            return validateSchedule(movie, InputView.inputSchedule());
+        }
+        OutputView.printIntervalTooLongMessage();
         return validateSchedule(movie, InputView.inputSchedule());
     }
 

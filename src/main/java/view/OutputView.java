@@ -28,6 +28,10 @@ public class OutputView {
         System.out.println("이미 상영이 시작된 영화입니다. 다시 입력해주시기 바랍니다.");
     }
 
+    public static void printIntervalTooLongMessage() {
+        System.out.println("여러 영화를 예매하려는 경우 1시간 이내의 간격이여야 합니다. 다시 입력해주시기 바랍니다.");
+    }
+
     public static void printInvalidCommandMessage() {
         System.out.println("1번(결제)과 2번(추가 예매) 중에 선택하여 주시기 바랍니다.");
     }
