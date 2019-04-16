@@ -30,4 +30,8 @@ public class Point {
         }
         return cost;
     }
+
+    public int numberIs() {
+        return pointNumber;
+    }
 }

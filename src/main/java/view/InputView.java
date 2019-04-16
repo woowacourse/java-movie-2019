@@ -1,10 +1,8 @@
 package view;
 
 import domain.Movie;
-import input.Continue;
-import input.MemberNumberInput;
-import input.MovieInput;
-import input.ScheduleInput;
+import domain.ReservedMovie;
+import input.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,6 +20,12 @@ public class InputView {
     private static final String ASK_CONTINUE_OR_NOT = "## 예약을 종료하고 결제를 진행하려면 1번, " +
             "추가 예약을 진행하려면 2번";
     private static final String CONTINUE_ERROR = "## 1 또는 2인 정수를 입력하셔야 됩니다.";
+    private static final String ASK_POINT = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
+    private static final String POINT_ERROR = "## 구매 금액 이하, 0 이상의 정수를 입력해야 합니다.";
+    private static final String ASK_PURCHASE_METHOD = "## 신용카드는 1번, 현금은 2번";
+    private static final String PURCHASE_METHOD_ERROR= "1 혹은 2인 정수를 입력해야 합니다.";
+
+
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -67,6 +71,17 @@ public class InputView {
         } catch (Exception e) {
             System.out.println(CONTINUE_ERROR);
             return askContinuePurchaseOrNot();
+        }
+    }
+
+    public static int getPoint(List<ReservedMovie> reservedMovies) {
+        System.out.println(ASK_POINT);
+        try {
+            Point point = new Point(scanner.nextLine().trim(),reservedMovies);
+            return point.numberIs();
+        } catch (Exception e) {
+            System.out.println(POINT_ERROR);
+            return getPoint(reservedMovies);
         }
     }
 
