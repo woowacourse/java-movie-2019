@@ -12,6 +12,8 @@ public class InputView {
     private static final int COUNT_OF_MOVIES = 8;
     private static final int COUNT_OF_SCHEDULES = 5;
     private static final int MIN_NUM = 1;
+    private static final int CARD = 1;
+    private static final int CASH = 2;
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
@@ -92,11 +94,11 @@ public class InputView {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2");
         int input = scanner.nextInt();
 
-        while (input != 1 && input != 2) {
+        while (input != CARD && input != CASH) {
             return inputContinueBooking();
         }
 
-        if (input == 1) {
+        if (input == CARD) {
             return false;
         }
         return true;
