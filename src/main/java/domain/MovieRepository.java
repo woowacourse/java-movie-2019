@@ -42,4 +42,11 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+    public static boolean isContainMovieId(int movieId){
+        boolean result = false;
+        for(Movie movie : movies){
+           result = result || movie.isMatchMovieId(movieId);
+        }
+        return result;
+    }
 }

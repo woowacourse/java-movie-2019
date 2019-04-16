@@ -12,6 +12,9 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
         // TODO 구현 진행
-        System.out.println(movieId);
+        while(!MovieRepository.isContainMovieId(movieId)){
+            System.out.println(InputView.NOT_MOVIE_ID);
+            movieId = InputView.inputMovieId();
+        }
     }
 }
