@@ -20,4 +20,8 @@ public class OutputView {
         System.out.println(movie.toString());
         return movie;
     }
+
+    public static void printPaymentStart() {
+        System.out.println("## 결제를 진행합니다.");
+    }
 }

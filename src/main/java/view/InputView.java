@@ -34,4 +34,14 @@ public class InputView {
             return inputMovieScheduleId();
         }
     }
+
+    public static int inputAdditionalReserveOrNot() {
+        try {
+            System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputMovieScheduleId();
+        }
+    }
 }

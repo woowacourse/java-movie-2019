@@ -18,11 +18,15 @@ public class Movie {
         this.price = price;
     }
 
-    boolean isEqualId(int movieId){
+    int getId() {
+        return this.id;
+    }
+
+    boolean isEqualId(int movieId) {
         return this.id == movieId;
     }
 
-    public List<PlaySchedule> getPlaySchedules(){
+    public List<PlaySchedule> getPlaySchedules() {
         return this.playSchedules;
     }
 
@@ -38,5 +42,9 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public String toStringOnlyMovieField(){
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 }
