@@ -43,4 +43,8 @@ public class Movie {
     public int getScheduleLength() {
         return playSchedules.size();
     }
+
+    public boolean hasCapacity(int movieTime, int noOfPerson) {
+        return this.playSchedules.get(movieTime - 1).hasCapacity(noOfPerson);
+    }
 }

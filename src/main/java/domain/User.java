@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private List<UserSelection> userSelections = new ArrayList<>();
+    public UserSelection issueMovieTicket() {
+        int movieId = getMovieId();
+        int movieTime = getMovieTime(movieId);
+        int noOfPerson = getNoOfPerson(movieId, movieTime);
+
+        return new UserSelection(movieId, movieTime, noOfPerson);
+    }
 
     public int getMovieId() {
         return validateMovieId();
@@ -17,6 +23,10 @@ public class User {
         MovieRepository.showTimeTable(movieId);
 
         return validateMovieTime(movieId);
+    }
+
+    public int getNoOfPerson(int movieId, int movieTime) {
+        return validateNoOfPerson(movieId, movieTime);
     }
 
     private int validateMovieId() {
@@ -41,5 +51,17 @@ public class User {
         }
 
         return movieTime;
+    }
+
+    private int validateNoOfPerson(int movieId, int movieTime) {
+        int noOfPerson = InputView.getUserInput(StringLiterals.NUMBER_OF_PERSON_STATEMENT.toString(),
+                StringLiterals.NUMBER_OF_PERSON_ERROR.toString());
+
+        if (noOfPerson < 1 || !MovieRepository.hasCapacity(movieId, movieTime, noOfPerson)) {
+            System.out.println(StringLiterals.NUMBER_OF_PERSON_ERROR.toString());
+            return validateNoOfPerson(movieId, movieTime);
+        }
+
+        return noOfPerson;
     }
 }

@@ -16,7 +16,6 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-//        int movieId = user.getMovieId();
-//        user.getMovieTime();
+        userSelections.add(user.issueMovieTicket());
     }
 }
