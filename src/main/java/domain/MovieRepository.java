@@ -42,4 +42,19 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovieSchedule(int movieID) {
+        int movieIndex = findMovieFromList(movieID);
+        if (movieIndex >= movies.size() || movieIndex < 0) {
+            throw new IllegalArgumentException("해당 영화를 찾을 수 없습니다.");
+        }
+        return movies.get(movieIndex);
+    }
+
+    private static int findMovieFromList(int movieID) {
+        int result;
+        for (result = 0; result < movies.size() && movies.get(result).notThisMovie(movieID); result++){
+        }
+        return result;
+    }
 }

@@ -13,6 +13,18 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    boolean notOkReservation(int numberOfPerson) {
+        return (capacity - numberOfPerson < 0);
+    }
+
+    void reduceCapacity(int numberOfPerson) {
+        capacity -= numberOfPerson;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
