@@ -7,6 +7,7 @@ import java.util.List;
 
 public class OutputView {
     static Movie userMovie;
+
     public static void printMovies(List<Movie> movies) {
         for (Movie movie : movies) {
             System.out.println(movie);
@@ -15,20 +16,27 @@ public class OutputView {
 
     public static void selectMovies(List<Movie> movies, int movie_id) {
         for (Movie movie : movies) {
-            selectMovie_Add(movie,movie_id);
+            selectMovie_Add(movie, movie_id);
         }
         System.out.println(userMovie);
     }
 
-    private static void selectMovie_Add(Movie movies, int movie_id){
-        if (movies.movie_Id_Get(movie_id)){
+    private static void selectMovie_Add(Movie movies, int movie_id) {
+        if (movies.movie_Id_Get(movie_id)) {
             userMovie = movies;
+        }
+        selectMovie_break();
+    }
+
+    private static void selectMovie_break(){
+        if (userMovie == null){
+            System.out.println("해당 영화가 없습니다.");
+            System.exit(0);
         }
     }
 
+        public static void userMovie_SelectDatatime ( int movie_datatime){
+            System.out.println(userMovie.getMovieDataTime(movie_datatime));
+        }
 
-    public static void userMovie_SelectDatatime(int movie_datatime){
-        System.out.println(userMovie.getMovieDataTime(movie_datatime));
     }
-
-}
