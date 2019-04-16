@@ -13,7 +13,8 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
         OutputView.PrintChoiceMovie(movies, movieId);
-        ChoicePlaySchedule();
+        int ChoiceScheduleNum = ChoicePlaySchedule();
+        int ChoicePeopleNum = ChoicePeopleNumber();
 
         // TODO 구현 진행
     }
@@ -25,6 +26,15 @@ public class MovieApplication {
         System.out.println("##예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)");
         Choice_PlaySchedule = sc.nextInt();
         return Choice_PlaySchedule;
+    }
+
+    public static int ChoicePeopleNumber()
+    {
+        int Choice_PeopleNum;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("## 예약할 인원을 입력하세요");
+        Choice_PeopleNum=sc.nextInt();
+        return Choice_PeopleNum;
     }
 
 }
