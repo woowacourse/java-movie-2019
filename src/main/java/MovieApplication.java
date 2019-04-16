@@ -11,6 +11,8 @@ import java.util.List;
 public class MovieApplication {
     private static final int PAY_WITH_CREDIT_CARD = 1;
     private static final int PAY_WITH_CASH = 2;
+    private static final int BOOKING_DONE = 1;
+    private static final int BOOK_ANOTHER_MOVIE = 2;
     private static List<BookedMovie> bookedMovies;
 
     public static void main(String[] args) {
@@ -21,11 +23,20 @@ public class MovieApplication {
             OutputView.printMovies(movies);
             BookedMovie bookedMovie = bookOneMovie();
             bookedMovies.add(bookedMovie);
-            isBooking = InputView.inputAdditionalReservation() == 2;
+            isBooking = isBookingGoingOn();
         }
         OutputView.printBookedMovies(bookedMovies);
         int finalCharge = handlePayment();
         OutputView.printReservationSummary(finalCharge);
+    }
+
+    private static boolean isBookingGoingOn() {
+        int isBooking = InputView.inputAdditionalReservation();
+        while ((isBooking != BOOKING_DONE)
+                && (isBooking != BOOK_ANOTHER_MOVIE)) {
+            isBooking = InputView.inputAdditionalReservation();
+        }
+        return isBooking == BOOK_ANOTHER_MOVIE;
     }
 
     private static int getValidMovieId() {
@@ -68,6 +79,7 @@ public class MovieApplication {
         int scheduleId = InputView.inputScheduleId();
         PlaySchedule selectedSchedule = selectedMovie.getScheduleById(scheduleId);
         while (selectedSchedule == null) {
+            OutputView.printInvalidScheduleIdWarning();
             scheduleId = InputView.inputScheduleId();
             selectedSchedule = selectedMovie.getScheduleById(scheduleId);
         }

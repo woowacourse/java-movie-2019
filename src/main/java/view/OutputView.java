@@ -27,6 +27,10 @@ public class OutputView {
         }
     }
 
+    public static void printInvalidScheduleIdWarning() {
+        System.out.println("존재하지 않는 시간표입니다.");
+    }
+
     public static void printBookedMovies(List<BookedMovie> bookedMovies) {
         System.out.println("예약 내역");
         for (BookedMovie b : bookedMovies) {
