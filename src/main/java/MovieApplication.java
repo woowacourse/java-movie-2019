@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import utils.PrintUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -12,6 +13,6 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
 
-        // TODO 구현 진행
+        PrintUtils.printSelectedMovie(movies,movieId);
     }
 }
