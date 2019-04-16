@@ -34,7 +34,27 @@ public class OutputView {
         System.out.println("잘못된 값을 입력하셨습니다." + NEW_LINE);
     }
 
+    public static void printInputWrongMovieId() {
+        System.out.println("없는 영화 아이디를 입력하셨습니다." + NEW_LINE);
+    }
+
     public static void printErrorMessage() {
         System.out.println("티켓을 구매 할 수 없습니다." + NEW_LINE);
+    }
+
+    public static void printInputWrongSchedule() {
+        System.out.println("잘못된 스케쥴을 입력하셨습니다." + NEW_LINE);
+    }
+
+    public static void printAlreadyStarted() {
+        System.out.println("이미 영화가 시작했습니다." + NEW_LINE);
+    }
+
+    public static void printOutOfOneHour() {
+        System.out.println("이미 예약하신 영화와 한 시간 밖의 범위에 있습니다." + NEW_LINE);
+    }
+
+    public static void printOverCapacity() {
+        System.out.println("예약 가능 인원을 초과했습니다." + NEW_LINE);
     }
 }

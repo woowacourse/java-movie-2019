@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    private static final int ARRAY_DEFAULT_VALUE = -1;
 
     private final int id;
     private final String name;
@@ -52,5 +53,9 @@ public class Movie {
 
     public PlaySchedule getSchedule(int tableId) {
         return playSchedules.get(tableId);
+    }
+
+    public boolean checkScheduleRange(int tableId) {
+        return ((playSchedules.size() + ARRAY_DEFAULT_VALUE) >= tableId) && (tableId >= 0);
     }
 }

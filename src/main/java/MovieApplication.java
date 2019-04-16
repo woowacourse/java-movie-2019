@@ -36,13 +36,13 @@ public class MovieApplication {
 
     public static boolean makeReservation(List<Movie> movies) {
         int movieId = InputView.inputMovieId();
-        OutputView.printMovie(findMovieById(movies, movieId));
-        int tableId = InputView.inputMovieTable() + ARRAY_DEFAULT_VALUE;
-        int numPeople = InputView.inputNumPeople();
-        if (!confirmReservation(findMovieById(movies, movieId), tableId, numPeople)) {
-            OutputView.printErrorMessage();
-            return false;
+        if (findMovieById(movies, movieId) == null) {
+            OutputView.printInputWrongMovieId();
+            return makeReservation(movies);
         }
+        OutputView.printMovie(findMovieById(movies, movieId));
+        if (!confirmReservation(findMovieById(movies, movieId), InputView.inputMovieTable() + ARRAY_DEFAULT_VALUE, InputView.inputNumPeople()))
+            return false;
         return enterQuitOrContinue();
     }
 
@@ -68,17 +68,21 @@ public class MovieApplication {
 
     public static boolean confirmReservation(Movie movie, int tableId, int numPeople) {
         Reservation newReservation;
-
+        if (!movie.checkScheduleRange(tableId)) {
+            OutputView.printInputWrongSchedule();
+            return false;
+        }
         if (movie.makeReserve(tableId, numPeople)) {
             newReservation = new Reservation(movie, tableId, numPeople);
             return checkAlreadyStarted(newReservation);
         }
-
+        OutputView.printOverCapacity();
         return false;
     }
 
     public static boolean checkAlreadyStarted(Reservation newReservation) {
         if (newReservation.isAlreadyStarted()) {
+            OutputView.printAlreadyStarted();
             return false;
         }
         return checkOutOfOneHourRange(newReservation);
@@ -86,8 +90,10 @@ public class MovieApplication {
 
     public static boolean checkOutOfOneHourRange(Reservation newReservation) {
         for (Reservation reservation : reservations)
-            if (!newReservation.checkOneHourWithinRange(reservation))
+            if (!newReservation.checkOneHourWithinRange(reservation)) {
+                OutputView.printOutOfOneHour();
                 return false;
+            }
         reservations.add(newReservation);
         return true;
     }

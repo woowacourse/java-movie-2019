@@ -25,7 +25,7 @@ public class PlaySchedule {
     }
 
     public boolean makeReserve(int numPeople) {
-        if (capacity > numPeople) {
+        if (capacity >= numPeople) {
             capacity -= numPeople;
             return true;
         }
