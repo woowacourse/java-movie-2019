@@ -1,12 +1,15 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ForkJoinTask;
 
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
+    private static final int ONE = 1;
     private static List<Movie> movies = new ArrayList<>();
 
     static {
@@ -45,19 +48,21 @@ public class MovieRepository {
     }
 
     public static Movie getWantMovie(int movieId) {
-        for (Movie movie : movies) {
-            if (movie.isRightMovie(movieId)) {
-                return movie;
-            }
+        if (isContains(movieId)) {
+            return movies.get(movieId);
         }
         throw new IllegalArgumentException("상영 목록에 없는 영화를 선택하셨습니다");
     }
 
+    private static boolean isContains(int movieId) {
+        return movies.stream()
+                .anyMatch(movie -> movie.isRightMovie(movieId));
+    }
+
     public static List<PlaySchedule> getPlaySchedule(Movie inputMovie) {
-        for (Movie movie : movies) {
-            if (movie.equals(inputMovie)) {
-                return movie.getPlaySchedules();
-            }
+        HashSet<Movie> hashSet = new HashSet(movies);
+        if (hashSet.contains(inputMovie)) {
+            return getWantMovie(inputMovie.getId()).getPlaySchedules();
         }
         throw new IllegalArgumentException("스케줄이 없습니다");
     }

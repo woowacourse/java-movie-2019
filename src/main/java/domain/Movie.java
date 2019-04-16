@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    private static final int ONE = 1;
 
     private final int id;
     private final String name;
@@ -36,6 +37,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -44,13 +49,19 @@ public class Movie {
         return playSchedules;
     }
 
-
     public void checkTimeScheduleValid(int timeScheduleIndex) {
-        playSchedules.get(timeScheduleIndex - 1);
+        playSchedules.get(timeScheduleIndex - ONE);
+        if (checkMovieSchedule(timeScheduleIndex - ONE)) {
+            throw new IllegalArgumentException("이미 지난 시간표입니다");
+        }
     }
 
     public boolean isMoviePossible() {
         return playSchedules.stream()
-                    .anyMatch(schedule -> schedule.isSchedulePossible());
+                .anyMatch(schedule -> schedule.isSchedulePossible());
+    }
+
+    public boolean checkMovieSchedule(int timeScheduleIndex) {
+        return playSchedules.get(timeScheduleIndex).isSchedulePossible();
     }
 }
