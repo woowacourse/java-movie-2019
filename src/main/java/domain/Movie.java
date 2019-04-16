@@ -18,8 +18,16 @@ public class Movie {
         this.price = price;
     }
 
-    void addPlaySchedule(PlaySchedule playSchedule) {
+    public void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
+    }
+
+    public List<PlaySchedule> getPlaySchedules() {
+        return new ArrayList<>(this.playSchedules);
+    }
+
+    public int getTotalPrice(int numOfPeople) {
+        return price * numOfPeople;
     }
 
     @Override
