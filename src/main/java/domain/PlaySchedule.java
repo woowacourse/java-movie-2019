@@ -18,6 +18,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
     public boolean isPassedSchedule(LocalDateTime now) {
         if (startDateTime.isBefore(now)) {
             return true;

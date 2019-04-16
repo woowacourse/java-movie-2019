@@ -37,8 +37,8 @@ public class Movie {
         return id + " - " + name + ", " + price + "원";
     }
 
-    public String getScheduleInfo(int scheduleId) {
-        return playSchedules.get(scheduleId).toString();
+    public PlaySchedule getSchedule(int scheduleId) {
+        return playSchedules.get(scheduleId);
     }
 
     public boolean isYourId(int movieId) {
@@ -71,16 +71,26 @@ public class Movie {
         return false;
     }
 
-    public boolean isValidScheduleId(int scheduleId) {
+    public boolean isValidTimeGap(List<MovieReservation> reservations,
+                                  int scheduleId) {
+        PlaySchedule schedule = playSchedules.get(scheduleId);
 
+        for (MovieReservation reservation : reservations) {
+            reservation.isValidTimeGap(schedule);
+        }
+    }
+
+    public boolean isValidScheduleId(List<MovieReservation> reservations,
+                                     int scheduleId) {
         if (!isValidScheduleIdRange(scheduleId)) {
             return false;
         }
-
         if (!isValidScheduleTime(scheduleId)) {
             return false;
         }
-
+        if (reservations.size() != 0 && !isValidTimeGap(reservations, scheduleId)) {
+            return false;
+        }
         return true;
     }
 

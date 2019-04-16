@@ -1,5 +1,9 @@
 package domain;
 
+import utils.DateTimeUtils;
+
+import java.time.LocalDateTime;
+
 public class MovieReservation {
     private static final char NEW_LINE = '\n';
 
@@ -17,7 +21,19 @@ public class MovieReservation {
     @Override
     public String toString() {
         return movie.getSimpleInfo() + NEW_LINE
-                + movie.getScheduleInfo(scheduleId) + NEW_LINE
+                + movie.getSchedule(scheduleId) + NEW_LINE
                 + "예약 인원 : " + reservationNumber + "명";
+    }
+
+    public boolean isValidTimeGap(PlaySchedule schedule) {
+        LocalDateTime reservationTime
+                = movie.getSchedule(scheduleId).getStartDateTime();
+        LocalDateTime scheduleTime
+                = schedule.getStartDateTime();
+
+        if (DateTimeUtils.isOneHourWithinRange(reservationTime, scheduleTime)) {
+            return true;
+        }
+        return false;
     }
 }

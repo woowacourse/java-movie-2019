@@ -23,13 +23,12 @@ public class MovieApplication {
             Movie movie = getMovieFromId(movieId);
             System.out.println(movie);
 
-            int scheduleId = InputView.inputScheduleId(movie);
+            int scheduleId = InputView.inputScheduleId(reservations, movie);
             int reservationNumber
                     = InputView.inputReservationNumber(movie, scheduleId);
 
             MovieReservation reservation
                     = new MovieReservation(movie, scheduleId, reservationNumber);
-
             reservations.add(reservation);
         }
     }
