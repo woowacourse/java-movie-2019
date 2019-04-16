@@ -24,9 +24,23 @@ public class InputView {
     int movieId;
     do {
       System.out.println("## 예약할 영화를 선택하세요.");
-      movieId = scanner.nextInt();
-    }while(!IsCorrectMovieId(movieId));
+      movieId = InputValidNumber();
+    } while (!IsCorrectMovieId(movieId));
     return movieId;
   }
 
+  public static int InputValidNumber() {
+    try {
+      return scanner.nextInt();
+    } catch (InputMismatchException e) {
+      System.out.println("유효하지 않은 값입니다");
+      System.exit(-1);
+    }
+    return -1;
+  }
+
+  public static int InputMovieSchedule() {
+    System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+    return 1;
+  }
 }
