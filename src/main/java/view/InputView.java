@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import utils.InputNumber;
 
 import java.util.Scanner;
@@ -17,8 +18,8 @@ public class InputView {
     private static final String SELECT_PAYMENT_METHOD_MESSAGE = "## 신용카드는 1번, 현금은 2번";
 
     private static final String STARTED_MOVIE_MESSAGE = "이미 상영이 시작된 영화 입니다.";
-
     private static final String NOT_EXIST_MOVIE_ID_ERROR_MESSAGE = "존재하지 않는 영화 입니다.";
+    private static final String NOT_ABLE_CAPACITY_MESSAGE = "예매 가능 인원을 초과 했습니다.";
 
     private static final int END_RESERVATION = 1;
     private static final int ADD_RESERVATION = 2;
@@ -53,9 +54,14 @@ public class InputView {
         return playScheduleId;
     }
 
-    public static int inputPeopleNumberOfReservation() {
+    public static int inputPeopleNumberOfReservation(PlaySchedule playSchedule) {
         System.out.println(ENTER_PEOPLE_NUMBER_OF_RESERVE_MESSAGE);
-        return InputNumber.getNaturalNumber();
+        int peopleNumber = InputNumber.getNaturalNumber();
+        if(peopleNumber > playSchedule.getCapacity()){
+            System.out.println(NOT_ABLE_CAPACITY_MESSAGE);
+            return inputPeopleNumberOfReservation(playSchedule);
+        }
+        return peopleNumber;
     }
 
     public static int inputEndOrAddReservation() {

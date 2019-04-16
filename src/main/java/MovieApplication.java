@@ -12,9 +12,10 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
         int moviePlaySchedule = InputView.inputMoviePlaySchedule(MovieRepository.getMovie(movieId));
-        int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation();
+        int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation(
+                MovieRepository.getMovie(movieId).getPlaySchedule(moviePlaySchedule));
 
-
+        
         int endOrAddReservation = InputView.inputEndOrAddReservation();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int paymentMethod = InputView.inputPaymentMethod();
