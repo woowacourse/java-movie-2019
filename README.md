@@ -11,6 +11,7 @@
 - class OutputView
 
     - printMovie() : 특정 영화의 정보를 출력하는 메서드
+    - printReservation() : 영화 예매 정보를 출력하는 메서드
 
 - class InputView
 

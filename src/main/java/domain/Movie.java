@@ -37,11 +37,15 @@ public class Movie {
     return id;
   }
 
-  public List<PlaySchedule> getPlaySchedule(){
+  public List<PlaySchedule> getPlaySchedule() {
     return playSchedules;
   }
 
-  public void setPlaySchedules(List<PlaySchedule> ps){
+  public void setPlaySchedules(List<PlaySchedule> ps) {
     this.playSchedules = ps;
+  }
+
+  public void printNameAndCost() {
+    System.out.println(id + " - " + name + ", " + price + "원");
   }
 }

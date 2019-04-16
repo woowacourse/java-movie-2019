@@ -6,10 +6,10 @@ import view.OutputView;
 
 public class PartialApplication {
 
-  int MOVIE_ID;
+  public int MOVIE_ID;
   Movie MOVIE_OF_ID;
-  int MOVIE_SCHEDULE_NUM;
-  private PlaySchedule PLAY_SCHEDULE;
+  public int MOVIE_SCHEDULE_NUM;
+  public PlaySchedule PLAY_SCHEDULE;
   public int PEOPLE_WATCHING_MOVIE;
 
   public void appOfOne() {
@@ -30,8 +30,6 @@ public class PartialApplication {
   }
 
   public boolean updateMovieForTooMuch() {
-    PEOPLE_WATCHING_MOVIE -= MovieRepository.getMovie(MOVIE_ID).getPlaySchedule()
-        .get(MOVIE_SCHEDULE_NUM - 1).getCapacity();
     MovieRepository.getMovie(MOVIE_ID).getPlaySchedule().get(MOVIE_SCHEDULE_NUM - 1).setCapacity(0);
     return true;
   }
