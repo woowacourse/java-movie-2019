@@ -61,7 +61,7 @@ public class MovieApplication {
     	int capacity = 0;
     	do {
 		    capacity = InputView.inputCapacity();
-	    } while (!selectedPlaySchedule.isCapacity(capacity));
+	    } while (capacity < 1 || !selectedPlaySchedule.isCapacity(capacity));
     	return capacity;
     }
 
