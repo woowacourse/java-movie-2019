@@ -37,9 +37,17 @@ public class CheckException {
     }
 
     public static void checkZeroOne(int checkNum) {
-        if (checkNum == Constant.CONTINUE_NUM|| checkNum == Constant.END_NUM) {
+        if (checkNum == Constant.CONTINUE_NUM || checkNum == Constant.END_NUM) {
             return;
         }
+        throw new IllegalArgumentException();
+    }
+
+    public static void checkPointInPrice(int point, int price) {
+        if (point <= price && point > Constant.MIN_POINT) {
+            return;
+        }
+        OutputView.pointOverPrice();
         throw new IllegalArgumentException();
     }
 }

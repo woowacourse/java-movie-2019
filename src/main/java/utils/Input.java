@@ -52,4 +52,15 @@ public class Input {
             return restartInput();
         }
     }
+
+    public static int pointInput(int price){
+        try{
+            int inputNum = InputView.inputPoint();
+            CheckException.checkPointInPrice(inputNum, price);
+            return inputNum;
+        } catch (InputMismatchException | IllegalArgumentException e) {
+            OutputView.printNotNumber();
+            return pointInput(price);
+        }
+    }
 }

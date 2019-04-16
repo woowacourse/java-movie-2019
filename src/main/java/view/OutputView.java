@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public static void printNotNumber (){
-        System.out.println("정수를 입력해 주세요.");
+        System.out.println("올바른 숫자를 입력해 주세요.");
     }
 
     public static void printNotInMovieNum(){
@@ -41,5 +41,13 @@ public class OutputView {
             System.out.println(movie);
         }
     }
+    public static void paymentRequest(){
+        String paymentString = "## 결제를 진행합니다.";
+        System.out.println(paymentString);
+    }
 
-}
+    public static void pointOverPrice(){
+        System.out.println("포인트가 구매 금액보다 높습니다");
+    }
+
+    }
