@@ -14,14 +14,11 @@ public class TotalPrice {
 	}
 	
 	public int getTotalPrice(int point, int purchaseMethod) {
-		int purchasePrice = 0;
+		int purchasePrice = totalPrice-point;
 		
 		if (purchaseMethod == CARD) {
-			purchasePrice = (int) (totalPrice*0.95);
+			return (int) (purchasePrice*0.95);
 		}
-		if (purchaseMethod == CASH) {
-			purchasePrice = (int) (totalPrice*0.98);
-		}
-		 return purchasePrice - point;
+		return (int) (purchasePrice*0.98);
 	}
 }
