@@ -8,4 +8,4 @@ OutputView 클래스
 
 MovieApplication 클래스
 
- 
+-ChoicePlaySchedule 함수: 예약할 시간표를 입력받는 함수
