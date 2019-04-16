@@ -26,6 +26,7 @@ public class MovieApplication {
         while (movies.get(movieId).isCapable(scheduleNumber, peopleNumber));
 
         reservations.add(new Reservation(movies.get(movieId), scheduleNumber, total));
+        OutputView.printReservation(reservations);
     }
 
     public static boolean selectMovie(List<Movie> movies, int movieId) {
