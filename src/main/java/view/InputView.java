@@ -65,6 +65,12 @@ public class InputView {
         }
         return movieTime;
     }
+    public static LocalDateTime isBeforeTime(LocalDateTime choiceTime){
+        if(choiceTime.isBefore(LocalDateTime.now())){
+            throw new IllegalArgumentException("상영시간이 지난 영화는 예매할 수 없습니다.");
+        }
+        return choiceTime;
+    }
     public static int inputMember(){
         try {
             System.out.println("## 예약할 인원을 입력하세요.");
