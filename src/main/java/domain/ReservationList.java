@@ -36,7 +36,7 @@ public class ReservationList {
     public boolean addMovieTimeValidator(Integer newTimeCode) {
         for (Movie movie : reservationTimeList.keySet()) {
             Integer timeCode = reservationTimeList.get(movie);
-            if (DateTimeUtils.isOneHourWithinRange(movie.))
+//            if (DateTimeUtils.isOneHourWithinRange(movie.))
         }
     }
 
