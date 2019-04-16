@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.MovieReservation;
 import view.InputView;
 import view.OutputView;
 
@@ -13,15 +14,28 @@ public class MovieApplication {
         Movie movie = getMovie(movies);
         OutputView.printMovie(movie);
         int scheduleNumber = getScheduleNumber(movie);
+        int watcher = getWatcher(movie, scheduleNumber);
+        MovieReservation movieReservation = new MovieReservation(movie, scheduleNumber, watcher);
 
     }
 
+    private static int getWatcher(Movie movie, int scheduleNumber) {
+        try {
+            int watcher = InputView.inputMovieWatcher();
+            movie.validateWatcher(watcher, scheduleNumber);
+            return watcher;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWatcher(movie, scheduleNumber);
+        }
+    }
+
     private static int getScheduleNumber(Movie movie) {
-        try{
+        try {
             int schedule = InputView.inputMovieSchedule();
             movie.validateSchedule(schedule);
             return schedule;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getScheduleNumber(movie);
         }

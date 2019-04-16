@@ -39,10 +39,14 @@ public class Movie {
         return false;
     }
 
-    public void validateSchedule(int schedule) {
-        if (playSchedules.size() < schedule) {
+    public void validateSchedule(int scheduleNumber) throws IllegalArgumentException {
+        if (playSchedules.size() < scheduleNumber) {
             throw new IllegalArgumentException("존재하지 않는 상영 시간입니다.");
         }
-        playSchedules.get(schedule - 1).validateSchedule();
+        playSchedules.get(scheduleNumber - 1).validateSchedule();
+    }
+
+    public void validateWatcher(int watcher, int scheduleNumber) throws IllegalArgumentException {
+        playSchedules.get(scheduleNumber - 1).validateWatcher(watcher);
     }
 }

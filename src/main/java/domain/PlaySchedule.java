@@ -23,4 +23,13 @@ public class PlaySchedule {
             throw new IllegalArgumentException("상영 시간이 지났습니다.");
         }
     }
+
+    public void validateWatcher(int watcher) throws IllegalArgumentException {
+        if (capacity < watcher) {
+            throw new IllegalArgumentException("좌석이 부족합니다.");
+        }
+        if (watcher < 0) {
+            throw new IllegalArgumentException("상영 인원은 1명 이상이어야 합니다.");
+        }
+    }
 }

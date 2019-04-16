@@ -24,4 +24,14 @@ public class InputView {
             return inputMovieSchedule();
         }
     }
+
+    public static int inputMovieWatcher() {
+        System.out.println("##예약할 인원을 입력하세요.");
+        try{
+            return Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("예약 인원은 숫자를 입력하세요");
+            return inputMovieWatcher();
+        }
+    }
 }
