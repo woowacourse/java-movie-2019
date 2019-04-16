@@ -21,6 +21,10 @@ public class Movie {
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
+    
+    public String getMovieInfo() {
+    	   return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
 
     @Override
     public String toString() {
@@ -28,7 +32,7 @@ public class Movie {
         for (PlaySchedule playSchedule : playSchedules) {
             sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "원" + NEW_LINE
+        return getMovieInfo()
                 + sb.toString();
     }
     
