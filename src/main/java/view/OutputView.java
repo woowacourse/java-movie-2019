@@ -44,5 +44,16 @@ public class OutputView {
 
     }
 
+    /*
+     * 상영 시작 시간이 현재 시각보다 나중인지 여부 판단
+     */
+    public static boolean judgeStartTime(Movie movie, LocalDateTime localDateTime) {
+        if (localDateTime.isBefore(LocalDateTime.now())) {
+            System.out.println("상영 시작 시간이 이미 지난 영화입니다.");
+            return false;
+        }
+        return true;
+    }
+
 
 }
