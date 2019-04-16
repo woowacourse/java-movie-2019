@@ -21,8 +21,8 @@ public class MovieReservation {
 
 
 	private void prework() {
-		people= new MoviePeoples();
 		movies = MovieRepository.getMovies();
+		people= new MoviePeoples(movies);
 		OutputView.printMovies(movies);
 	}
 	

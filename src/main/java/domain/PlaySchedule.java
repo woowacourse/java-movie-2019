@@ -25,4 +25,8 @@ public class PlaySchedule {
     public boolean isFull(PlaySchedule theater, int plus) {
     	return theater.capacity < capacity + plus;
     }
+
+	public void initCapacity() {
+		capacity = 0;
+	}
 }

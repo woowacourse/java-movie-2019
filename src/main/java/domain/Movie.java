@@ -40,8 +40,14 @@ public class Movie {
     	return id == movie.id;
     }
     
-    //플레이 스케쥴 출력 
     public List<PlaySchedule> getPlaySchedule() {
     	return playSchedules;
     }
+    
+    public void initCapacity() {
+    	for (PlaySchedule playSchedule : playSchedules) {
+			playSchedule.initCapacity();
+		}
+    }
+    
 }

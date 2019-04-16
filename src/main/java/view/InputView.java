@@ -21,7 +21,7 @@ public class InputView {
 			return inputMovieId();
 		} 
     }
-    //유효한 아이디면 참 반환
+
     public static void isValidId(int id, List<Movie> movieList) {
     	boolean result = false;
     	
@@ -34,22 +34,18 @@ public class InputView {
     	}
     }
     
-    
-    //유효한 아이디에 대해 목록 출력 한다. playsch
-    //public static 여기는 시간표 선택 하세요 어떻게 하지 
-    // 시간표가 무효하다면 ... 
     public static int inputMovieTimeNumber(Movie movie, MoviePeoples people) {
     	try {
     		System.out.println("## 예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번)");
     		 
     		int result = scanner.nextInt();
-    		//유효한 시간표인지, movie 번호 이내인지, 해당 번호자리 충분한지, 기존 시간이랑 한시간 차이 이내인지
+    		
     		validTimeTableTest(movie,result);
     		hasAvailbleCapacity(movie,result,people);
     		isVoundedOneHour(movie,result,people);
     		return scanner.nextInt();			
 		} catch (Exception e) {
-			//예약가능인원이 0인 경우 . 예외처리 
+
 			return inputMovieTimeNumber(movie,people);
 		} 
     }
