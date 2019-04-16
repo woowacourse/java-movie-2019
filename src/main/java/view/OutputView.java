@@ -27,4 +27,9 @@ public class OutputView {
         System.out.println("\n최종 결제한 금액은 " + result + "원 입니다.");
         System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
+
+    public static void printIdException(){
+        System.out.println("해당 영화가 없습니다.");
+        System.out.println("다시 입력해 주세요.");
+    }
 }
