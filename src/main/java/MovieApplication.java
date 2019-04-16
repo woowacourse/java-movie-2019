@@ -9,8 +9,9 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-        OutputView.printMovie(MovieReservation.getUserMovie());
-
+        Movie movie = MovieReservation.getUserMovie();
+        OutputView.printMovie(movie);
+        MovieReservation.getMoiveTime(movie);
         // TODO 구현 진행
     }
 }

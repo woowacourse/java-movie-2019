@@ -21,6 +21,11 @@ public class Movie {
     public int getId(){
         return id;
     }
+
+    public List<PlaySchedule> getPlaySchedules(){
+        return playSchedules;
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }

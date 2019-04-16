@@ -1,7 +1,11 @@
 package service;
 
+import java.util.List;
+
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
+import utils.Validator;
 import view.InputView;
 import view.OutputView;
 
@@ -18,4 +22,15 @@ public class MovieReservation {
 
 		return movie;
 	}
+
+	public static void getMoiveTime(Movie movie){
+		List<PlaySchedule> moviePlaySchedule = movie.getPlaySchedules();
+		boolean result = Validator.checkMovieTimeValid(moviePlaySchedule, InputView.inputMovieTime());
+
+		while(!result){
+			result = Validator.checkMovieTimeValid(moviePlaySchedule, InputView.inputMovieTime());
+		}
+
+	}
+
 }
