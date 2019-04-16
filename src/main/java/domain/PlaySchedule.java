@@ -15,6 +15,22 @@ public class PlaySchedule {
 
     @Override
     public String toString() {
-        return "ì‹œì‘ì‹œê°„: " + format(startDateTime) + " ì˜ˆì•½ê°€ëŠ¥ì¸ì›: " + capacity + "\n";
+        return "½ÃÀÛ½Ã°£: " + format(startDateTime) + " ¿¹¾à°¡´ÉÀÎ¿ø: " + capacity + "\n";
     }
+
+    public String getRst() {
+    	return  "½ÃÀÛ½Ã°£: " + format(startDateTime);
+    }
+    
+	public int getCapacity() {
+		return capacity;
+	}
+	
+	public LocalDateTime getStarDateTime() {
+		 return startDateTime;
+	}
+	
+	public void buyTickets(int ticketNum) {
+		capacity = capacity - ticketNum;
+	}
 }
