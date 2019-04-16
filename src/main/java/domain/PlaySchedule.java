@@ -13,6 +13,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public boolean isCapacityPossible(int count) {
+        return (this.capacity >= count);
+    }
+
     public String toStringExceptCapacity() {
         return "시작시간: " + format(startDateTime) + "\n";
     }
