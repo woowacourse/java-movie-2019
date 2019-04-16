@@ -15,7 +15,7 @@ public class MovieReservation {
 		Movie movie = MovieRepository.findMovie(movieId);
 
 		while (movie == null) {
-			OutputView.printUserInputAgain();
+			OutputView.printUserInputAgainNoSearchMovie();
 			movieId = InputView.inputMovieId();
 			movie = MovieRepository.findMovie(movieId);
 		}
