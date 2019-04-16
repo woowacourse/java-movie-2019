@@ -25,7 +25,5 @@ public class MovieApplication {
 		while (finishOrAddReservation == ADD_RESERVATION);
 
 		int userPoint = MovieReservation.getUserPoint(movie, reservationNumber);
-
-		System.out.println("테스트를 위한 출력" + userPoint);
 	}
 }
