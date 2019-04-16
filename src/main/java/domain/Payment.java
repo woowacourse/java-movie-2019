@@ -15,11 +15,12 @@ public class Payment {
         for (Reservation reserv : reservations) {
             totalMoney += reserv.getPaymentAmount();
         }
+        System.out.println(totalMoney);
         OutputView.printPaymentStart();
         usingPoints = InputView.inputPaymentPoint();
         totalMoney -= usingPoints;
         discountRate = getDiscountRate();
-        totalMoney *= discountRate; // 형변환 문제 있을 텐데, 시간이 촉박.
+        totalMoney = (int) ((double) totalMoney - ((double) totalMoney * discountRate));
         OutputView.printPaymentFinished(totalMoney);
     }
 

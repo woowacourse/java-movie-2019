@@ -1,6 +1,5 @@
 import domain.*;
 import view.InputView;
-import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
