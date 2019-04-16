@@ -10,8 +10,8 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-
+        int movieId = InputView.inputMovieId(); // 보고 싶은 영화의 숫자 입력 받음
         // TODO 구현 진행
+        OutputView.printSelectMovie(movies, movieId);
     }
 }
