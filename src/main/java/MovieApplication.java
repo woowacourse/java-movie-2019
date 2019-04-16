@@ -23,6 +23,8 @@ public class MovieApplication {
         for(Reserve reserve : reserveList){
             reserve.printReserverInformation();
         }
+        int point = InputView.inputPoint();
+        
     }
     public static void bookTicket( List<Reserve> reserveList){
         Movie userSelectMovie = selectMovie();

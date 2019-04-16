@@ -52,4 +52,14 @@ public class InputView {
             return inputContinue();
         }
     }
+    public static int inputPoint(){
+        try {
+            System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0입력");
+            return scanner.nextInt();
+        } catch(InputMismatchException ex){
+            System.out.println(NOT_INPUT_INTEGER);
+            scanner.nextLine();
+            return inputContinue();
+        }
+    }
 }
