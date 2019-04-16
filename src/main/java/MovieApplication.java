@@ -15,7 +15,9 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId(movies);
-        int movieSch = InputView.inputMovieSch(MovieFunc.getMovieSameId(movieId,movies), movReservation); //movieid인 movie 가져오기.
+        Movie selectedMovie = MovieFunc.getMovieSameId(movieId,movies);
+        int movieSch = InputView.inputMovieSch(selectedMovie, movReservation); //movieid인 movie 가져오기.
+        int capacity = InputView.inputMovieCapacity(selectedMovie, movieSch);
         // TODO 구현 진행
     }
 }

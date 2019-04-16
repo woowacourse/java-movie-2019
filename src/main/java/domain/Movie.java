@@ -52,4 +52,8 @@ public class Movie {
     public boolean isCapacityNotZero(int sch){
         return playSchedules.get(sch).isCapacityNotZero();
     }
+
+    public boolean isInnerCapacity(int sch, int capa){
+        return playSchedules.get(sch).isInnerCapacity(capa);
+    }
 }

@@ -28,4 +28,11 @@ public class PlaySchedule {
         }
         return true;
     }
+
+    public boolean isInnerCapacity(int capa){
+        if(capa > 0 && capa <= capacity){
+            return true;
+        }
+        return false;
+    }
 }

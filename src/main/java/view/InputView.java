@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.PlaySchedule;
 import exception.InputMovException;
 import utils.InputCheckFunc;
 
@@ -47,6 +48,25 @@ public class InputView {
         InputCheckFunc.checkMovieSch(inputSch,movie);
 
         return inputSch;
+    }
+
+    public static int inputMovieCapacity(Movie movie, int sch){
+        try{
+            return checkInputMovieCapa(movie, sch);
+        } catch (NumberFormatException e){
+            System.out.println("숫자만 입력해주세요");
+            return inputMovieCapacity(movie, sch);
+        } catch (InputMovException e){
+            System.out.println(e.EXCEPTION_STR);
+            return inputMovieCapacity(movie, sch);
+        }
+    }
+
+    private static int checkInputMovieCapa(Movie movie, int sch){
+        System.out.println("## 예약할 인원을 입력하세요");
+        int inputCapa = Integer.parseInt(scanner.nextLine());
+        InputCheckFunc.checkMovieCapa(inputCapa,movie,sch);
+        return inputCapa;
     }
 
 }
