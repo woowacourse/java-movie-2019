@@ -143,7 +143,7 @@ public class MovieApplication {
 			input = InputView.inputRechoiceOrNot();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			input = InputView.inputRechoiceOrNot();
+			input = recurInputRechoiceOrNot();
 		}
 		return input;
 	}
@@ -182,6 +182,17 @@ public class MovieApplication {
 			point = recurInputPoint();
 		}
 		return point;
+	}
+
+	static int recurInputCardOrCash() {
+		int input = 0;
+		try {
+			input = InputView.inputCardOrCash();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			input = recurInputCardOrCash();
+		}
+		return input;
 	}
 
 }
