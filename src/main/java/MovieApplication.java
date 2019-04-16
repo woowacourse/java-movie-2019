@@ -24,6 +24,9 @@ public class MovieApplication {
         reservations.add(new Reservation(findMovieById(movies, movieId), tableId, numPeople));
 
         OutputView.printReservations(reservations);
+
+        int point = InputView.inputPoint();
+        InputView.inputPayMethod();
     }
 
     public static Movie findMovieById(List<Movie> movieList, int movieId) {
