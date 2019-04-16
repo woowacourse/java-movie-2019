@@ -16,6 +16,10 @@ public class MovieApplication {
         String whatMovie = InputView.askUserWhatMovie();
         Movie selectedMovie = MovieRepository.findAndReturnMovie(movies, whatMovie);
         System.out.println(selectedMovie);
+        String whatTime = InputView.askUserWhatTime(selectedMovie);
+        String howManyPeople = InputView.askUserHowManyPeople();
+
+
 
     }
 }

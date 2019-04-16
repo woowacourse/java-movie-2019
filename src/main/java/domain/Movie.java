@@ -36,6 +36,15 @@ public class Movie {
         return id;
     }
 
+    public int getTimeLength() {
+        return this.playSchedules.size();
+    }
+
+    public int getAvailableSeat(String userInput) {
+        int intUserInput = Integer.parseInt(userInput);
+        return this.playSchedules.get(intUserInput).getCapacity();
+    }
+
 
 
 

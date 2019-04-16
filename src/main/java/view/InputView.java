@@ -1,5 +1,7 @@
 package view;
 
+import domain.Movie;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -61,4 +63,39 @@ public class InputView {
         return false;
     }
 
+    public static String askUserWhatTime(Movie selectedMovie) {
+        boolean isUserInputRight = false;
+        String userInput = "error:askUserWhatTime()";
+        while (!isUserInputRight) {
+            userInput = askAndReceiveInput("예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+            isUserInputRight = checkUserTime(userInput, selectedMovie);
+        }
+        return userInput;
+    }
+
+    public static boolean checkUserTime(String userInput, Movie selectedMovie) {
+        if (isNonNumeric(userInput) || isLengthNot1(userInput) || isNotMovieTime(userInput, selectedMovie) || isNotAvailable(userInput, selectedMovie)) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isNotMovieTime(String userInput, Movie selectedMovie) {
+        int intUserInput = Integer.parseInt(userInput);
+        if (intUserInput < 0 || intUserInput > selectedMovie.getTimeLength()) {
+            System.out.println("영화시간표에 있는 시간만 입력해주세요!");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isNotAvailable(String userInput, Movie selectedMovie) {
+        if (selectedMovie.getAvailableSeat(userInput) < 1) {
+            System.out.println("좌석이 없습니다");
+            return true;
+        }
+        return false;
+    }
+
+    public static String askUserHowManyPeople()
 }
