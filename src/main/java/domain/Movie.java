@@ -31,4 +31,12 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public boolean isValidPlaySchedule(int playScheduleId,int audience){
+        return playSchedules.get(playScheduleId - 1).isValidCapacity(audience);
+    }
+
+    public boolean isMatchedId(int id){
+        return this.id == id;
+    }
 }

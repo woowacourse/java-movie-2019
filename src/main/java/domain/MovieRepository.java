@@ -43,8 +43,18 @@ public class MovieRepository {
         return movies;
     }
 
-    public static Movie getMovie(int id) {
-        return movies.get(id);
+    public static int indexOf(int id){
+        for(int i = 0; i < movies.size(); i++){
+            boolean tmp = movies.get(i).isMatchedId(id);
+            if(tmp == true){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void showMovie(int id) {
+        System.out.println(movies.get(indexOf(id)));
     }
 
     public static int getMoivesSize() {
