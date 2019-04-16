@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import domain.Movie;
+import domain.PlaySchedule;
 import domain.Reservation;
 import utils.Validator;
 
@@ -28,13 +29,13 @@ public class InputView {
 		return inputStartDateTime(movie);
 	}
 
-	public static int inputCapacity() {
-		try {
-			System.out.println("## 예약할 인원을 입력하세요.");
-			return Integer.parseInt(SCANNER.nextLine());
-		} catch (IllegalArgumentException e) {
-			return inputCapacity();
+	public static int inputCapacity(PlaySchedule playSchedule) {
+		System.out.println("## 예약할 인원을 입력하세요.");
+		String inputValue = SCANNER.nextLine();
+		if(Validator.isValidCapacity(inputValue, playSchedule)) {
+			return Integer.parseInt(inputValue);
 		}
+		return inputCapacity(playSchedule);
 	}
 
 	public static int inputMoreBookingFlag() {

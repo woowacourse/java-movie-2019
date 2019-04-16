@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import domain.Reservation;
 
 public class Validator {
@@ -50,6 +51,14 @@ public class Validator {
 		if (!isNaturalNumber(value) ||
 			!movie.isLessThanPlayScheduleSize(Integer.parseInt(value))) {
 			printWrongInput();
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean isValidCapacity(String value, PlaySchedule playSchedule) {
+		if (!isNaturalNumber(value) ||
+			!playSchedule.isLessThanCapacity(Integer.parseInt(value))) {
 			return false;
 		}
 		return true;
