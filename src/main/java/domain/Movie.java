@@ -53,4 +53,12 @@ public class Movie {
     public boolean isNotStartedMovie(int playScheduleId){
         return LocalDateTime.now().isBefore(getPlaySchedule(playScheduleId).getStartDateTime());
     }
+
+    public boolean isValidPlayScheduleId(int playScheduleId){
+        int id = playScheduleId-1;
+        if(id >=0 && id < playSchedules.size()){
+            return true;
+        }
+        return false;
+    }
 }

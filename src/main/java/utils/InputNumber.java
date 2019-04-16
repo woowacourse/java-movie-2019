@@ -10,7 +10,7 @@ public class InputNumber {
 
     public static int getNaturalNumber(){
         try{
-            return scanner.nextInt();
+            return Integer.parseInt(scanner.nextLine());
         }catch (Exception e){
             System.out.println(NATURAL_NUMBER_ERROR_MESSAGE);
             return getNaturalNumber();

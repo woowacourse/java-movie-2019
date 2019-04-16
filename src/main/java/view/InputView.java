@@ -18,6 +18,7 @@ public class InputView {
     private static final String SELECT_PAYMENT_METHOD_MESSAGE = "## 신용카드는 1번, 현금은 2번";
 
     private static final String STARTED_MOVIE_MESSAGE = "이미 상영이 시작된 영화 입니다.";
+    private static final String NOT_EXIST_SCHEDULE_MESSAGE = "존재하지 않는 스케쥴 입니다.";
     private static final String NOT_EXIST_MOVIE_ID_ERROR_MESSAGE = "존재하지 않는 영화 입니다.";
     private static final String NOT_ABLE_CAPACITY_MESSAGE = "예매 가능 인원을 초과 했습니다.";
 
@@ -46,6 +47,12 @@ public class InputView {
     public static int inputMoviePlaySchedule(Movie movie) {
         System.out.println(SELECT_MOVIE_PLAY_SCHEDULE_MESSAGE);
         int playScheduleId = InputNumber.getNaturalNumber();
+
+        if(!movie.isValidPlayScheduleId(playScheduleId)){
+            System.out.println(NOT_EXIST_SCHEDULE_MESSAGE);
+            return inputMoviePlaySchedule(movie);
+        }
+
         if(!movie.isNotStartedMovie(playScheduleId)){
             System.out.println(STARTED_MOVIE_MESSAGE);
             return inputMoviePlaySchedule(movie);
