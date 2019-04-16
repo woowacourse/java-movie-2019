@@ -27,12 +27,51 @@ public class MovieApplication {
     private static Movie choiceMovie;
     private static List<Movie> movies = MovieRepository.getMovies();
     private static ArrayList<Movie> choiceMovies = new ArrayList<>();
-    private static boolean possible[] = new boolean[10];
+    private static int moviePoint = 0;
+    private static int moviePayMethod = 0;
+    private static int movieTotalPay = 0;
 
     public static void main(String[] args) {
         System.out.println(INFO_MOVIE);
         OutputView.printMovies(movies);
         continueBooking();
+        startPay();
+        printPay();
+    }
+
+    public static double discountPay(int totalMoney) {
+        double money = totalMoney;
+
+        if(moviePayMethod == 1) {
+            money = money * 0.05;
+        }
+        if(moviePayMethod == 2) {
+            money = money * 0.02;
+        }
+        return money;
+    }
+
+    public static void printPay() {
+        int pointMoney = 0;
+        double totalMoney = 0;
+
+        for(int i = 0 ; i < choiceMovies.size(); i++) {
+            movieTotalPay += (choiceMovies.get(i).getPrice() * movieNum.get(i));
+        }
+        pointMoney = movieTotalPay - moviePoint;
+        totalMoney = pointMoney - discountPay(movieTotalPay);
+
+        System.out.println("최종 결제 금액 :" + (int)totalMoney);
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요!");
+    }
+
+    public static void startPay() {
+        System.out.println(INFO_PAY);
+        System.out.println(INFO_POINT);
+        Scanner scan = new Scanner(System.in);
+        moviePoint = scan.nextInt();
+        System.out.println(INFO_CARD);
+        moviePayMethod = scan.nextInt();
     }
 
     public static void impossibleBooking() {
@@ -41,10 +80,7 @@ public class MovieApplication {
                System.out.println("예약 인원이 최대수용인원보다 많습니다.");
                continueBooking();
            }
-
         }
-        System.out.println("최대수용인원 : " +choiceMovie.getCapacity(movieTime));
-        System.out.println("예약 인원 : " + movieNum.get(0));
     }
 
     public static void continueBooking() {
