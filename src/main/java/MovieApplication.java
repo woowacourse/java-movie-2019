@@ -18,18 +18,22 @@ public class MovieApplication {
 
         boolean wantPay = false;
         while (!wantPay) {
-            int movieId = InputView.inputMovieId();
-            List<Movie> selectedMovie = MovieRepository.getMoviesById(movieId);
-            OutputView.printMovies(selectedMovie);
-
-            int movieTime = InputView.inputMovieTime() - 1;
-            int conutOfUser = InputView.inputCountOfUser();
-
-            paymentInfos.add(new PaymentInfo(selectedMovie.get(0), movieTime, conutOfUser));
+            paymentInfos.add(selectMovie());
 
             wantPay = InputView.wantPay();
         }
         int payMoney = new Payment().pay(paymentInfos);
         OutputView.printPayResult(payMoney);
+    }
+
+    private static PaymentInfo selectMovie() throws IOException {
+        int movieId = InputView.inputMovieId();
+
+        Movie selectedMovie = MovieRepository.getMoviesById(movieId);
+        OutputView.printMovie(selectedMovie);
+        int movieTime = InputView.inputMovieTime() - 1;
+        int countOfUser = InputView.inputCountOfUser();
+
+        return new PaymentInfo(selectedMovie , movieTime , countOfUser);
     }
 }
