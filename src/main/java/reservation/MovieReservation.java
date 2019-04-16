@@ -19,8 +19,12 @@ public class MovieReservation {
     }
 
     boolean checkVaildSchedule(PlaySchedule schedule) {
-        return reservations.stream()
-                .allMatch(reservation -> reservation.checkTime(schedule));
+        if (!reservations.stream()
+                .allMatch(reservation -> reservation.checkTime(schedule))) {
+            System.out.println("기존 예매 목록과 한시간 이상 차이가 납니다.");
+            return false;
+        }
+        return true;
     }
 
     void insertRervation(Movie selectedMovie, PlaySchedule schedule, int reservePeopleNum) {
@@ -28,8 +32,8 @@ public class MovieReservation {
                 new ReservationSchedule(schedule.getStartDateTime(), reservePeopleNum)));
     }
 
-    public void printResult(){
-        for(ReservationMovie reservationMovie : reservations){
+    public void printResult() {
+        for (ReservationMovie reservationMovie : reservations) {
             System.out.println(reservationMovie);
         }
     }
