@@ -25,6 +25,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public String toStringWithoutCapacity(){
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     public boolean isValidCapacity(int audience) {
         return audience <= capacity;
     }

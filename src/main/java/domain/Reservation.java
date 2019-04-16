@@ -33,7 +33,6 @@ public class Reservation {
         boolean updateFlag = false;
         do {
             selectedMovies.get(index).getData();
-            System.out.println(isValidPlayScehdule());
             if(!isValidPlayScehdule()) continue;
             updateFlag = updateAudience();
         } while (!updateFlag);

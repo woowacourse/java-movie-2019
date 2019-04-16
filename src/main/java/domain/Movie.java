@@ -55,7 +55,7 @@ public class Movie {
     }
 
     public String showSelectedPlaySchedule(int id){
-        return playSchedules.get(id).toString();
+        return playSchedules.get(id).toStringWithoutCapacity();
     }
 
     public boolean updateAudienceCount(int selectedPlayScheduleId, int audience){
