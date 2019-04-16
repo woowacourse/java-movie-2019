@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public PlaySchedule getPlaySchedule(int scheduleNo) {
+        return this.playSchedules.get(scheduleNo);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -30,5 +34,15 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public int isMatedMovie(int movieId) {
+        return  (movieId == this.id) ? 1 : 0;
+    }
+
+    public boolean isMatedPlaySchedule(int scheduleNo) {
+        int firstSchedule = 0;
+        int lastSchedule = playSchedules.size() - 1;
+        return (firstSchedule <= scheduleNo && scheduleNo <= lastSchedule);
     }
 }

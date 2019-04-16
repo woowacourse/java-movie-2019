@@ -1,0 +1,107 @@
+commit f731cf519b4a3cae0fa725bf6338afed2f8d0055
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 16:41:10 2019 +0900
+
+    빠진 기능 기능 목록에 추가
+
+commit 7adc192ecf23878b5b2f588910c40ca565561d1a
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 16:37:37 2019 +0900
+
+    사용자 예매 진행여부 선택 및 검증 기능
+
+commit 88f379b1b07fa6b1f5bed8e333c5c6080a0361c7
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 16:19:51 2019 +0900
+
+    사용자 예매인원 잔여좌석 검증 기능
+
+commit aeecc8e24d58ca17953b8543615f62db4a6f714a
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 15:51:41 2019 +0900
+
+    사용자 예매시간이 예매시간 중 있는지 검증
+
+commit fc99e853225c320e82978594c7e07131be8fdaaa
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 15:28:54 2019 +0900
+
+    사용자 선택 영화 상영여부 검증
+
+commit 78331fca8a838e60ff848bd00147dd64a70e2dbb
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 15:08:13 2019 +0900
+
+    사용자 예매인원 입력 기능
+
+commit 6f0a9e3d601697ee50c8bdc6d86d9de478049f6e
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 15:04:49 2019 +0900
+
+    사용자 상영 시간 입력 기능
+
+commit cdb47d723da620cc1649d1d092801eacc49414af
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 14:47:19 2019 +0900
+
+    사용자 예매 영화 입력 기능
+
+commit 29683d354f266f5d4cfdc17ea74aff55f608d167
+Author: chaehwan-oh <coghks56@gmail.com>
+Date:   Tue Apr 16 14:38:25 2019 +0900
+
+    기능 목록 작성
+
+commit 6b2b178ebd5ca3565c55a5cdeb2feda64be11710
+Author: 박재성 <pobi@woowahan.com>
+Date:   Mon Apr 15 18:48:12 2019 +0900
+
+    refactor: remove final keyword to capacity
+
+commit 017d25044c22f29a74088ac56eb153244d32aa5d
+Author: 포비 <pobi@woowahan.com>
+Date:   Fri Apr 12 15:16:12 2019 +0900
+
+    refactor: change movie id
+
+commit ec1f2c0f3a1ec752343110213b81baec86751c2f
+Author: 포비 <pobi@woowahan.com>
+Date:   Thu Apr 11 10:11:39 2019 +0900
+
+    refactor: movie data, move method to View class
+
+commit db74d7417face6b649ded631af9ab57ffaeb4922
+Author: 포비 <pobi@woowahan.com>
+Date:   Thu Apr 11 09:34:32 2019 +0900
+
+    feat: add isOneHourWithinRange util method
+
+commit 25d43d0ce891bb157a10099fa16895b3f3c47544
+Author: 포비 <pobi@woowahan.com>
+Date:   Thu Apr 4 14:29:48 2019 +0900
+
+    refactor Movie, MovieRepository
+
+commit 0131d27f402cce30b0ed94b956b2dcbe4d07e5aa
+Author: 포비 <pobi@woowahan.com>
+Date:   Wed Apr 3 13:28:44 2019 +0900
+
+    refactor domain object name, add movie data
+
+commit bde95a49717783402aa7c9ece88eae9d5e3623e5
+Author: 포비 <pobi@woowahan.com>
+Date:   Fri Mar 29 16:19:00 2019 +0900
+
+    add Movie domain
+
+commit 2dc720561b2950a129cfa8bef848a5b1201c3b47
+Author: 포비 <pobi@woowahan.com>
+Date:   Fri Mar 29 15:32:48 2019 +0900
+
+    initial commit
+
+commit e1ecd89ba03599b11194103b8a79fd6343bca2a8
+Author: 박재성 <pobi@woowahan.com>
+Date:   Fri Mar 29 15:31:37 2019 +0900
+
+    Initial commit
