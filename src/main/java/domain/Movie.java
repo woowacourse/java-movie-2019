@@ -22,7 +22,9 @@ public class Movie {
         this.name = name;
         this.price = price;
     }
-
+    public int getId(){
+        return id;
+    }
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
