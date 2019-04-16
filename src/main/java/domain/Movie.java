@@ -18,11 +18,11 @@ public class Movie {
         this.price = price;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -39,9 +39,9 @@ public class Movie {
     }
 
     public PlaySchedule checkVaildSchedule(int scheduleId) {
-        try{
-            return playSchedules.get(scheduleId-1);
-        }catch (IndexOutOfBoundsException e){
+        try {
+            return playSchedules.get(scheduleId - 1);
+        } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException();
         }
     }
@@ -54,5 +54,9 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    void reduceCapacity(PlaySchedule schedule, int reservePeopleNum) {
+        playSchedules.get(playSchedules.indexOf(schedule)).reduce(reservePeopleNum);
     }
 }

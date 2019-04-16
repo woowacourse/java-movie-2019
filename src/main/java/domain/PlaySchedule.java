@@ -26,6 +26,10 @@ public class PlaySchedule {
         throw new IllegalArgumentException();
     }
 
+    void reduce(int peopleNum){
+        capacity -= peopleNum;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

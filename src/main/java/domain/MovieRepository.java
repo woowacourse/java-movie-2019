@@ -55,4 +55,8 @@ public class MovieRepository {
         return movies.stream()
                 .anyMatch(movie -> movie.contains(movieId));
     }
+
+    public static void reduceCapacity(Movie selectedMovie, PlaySchedule schedule, int reservePeopleNum) {
+        selectedMovie.reduceCapacity(schedule,reservePeopleNum);
+    }
 }

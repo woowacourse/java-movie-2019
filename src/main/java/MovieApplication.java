@@ -19,6 +19,5 @@ public class MovieApplication {
             ReservationMain.reservationRun(reservations);
             reservations.printResult();
         } while(InputView.InputContinueReservation());
-
     }
 }

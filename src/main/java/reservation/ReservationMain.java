@@ -1,6 +1,7 @@
 package reservation;
 
 import domain.Movie;
+import domain.MovieRepository;
 import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
@@ -16,6 +17,7 @@ public class ReservationMain {
         } while (!reservations.checkVaildSchedule(schedule));
         reservePeopleNum = InputView.inputReservationPeople(schedule);
         reservations.insertRervation(selectedMovie, schedule, reservePeopleNum);
+        MovieRepository.reduceCapacity(selectedMovie,schedule,reservePeopleNum);
         return reservations;
     }
 }
