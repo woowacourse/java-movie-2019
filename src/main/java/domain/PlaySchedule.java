@@ -35,4 +35,8 @@ public class PlaySchedule {
         }
         return false;
     }
+
+    public void decCapacity(int capa){
+        capacity -= capa;
+    }
 }

@@ -53,4 +53,10 @@ public class InputCheckFunc {
             throw new InputMovException("예약 가능 인원을 초과했습니다.");
         }
     }
+
+    public static void checkLoopMovie(int inputLoop){
+        if(inputLoop != 1 && inputLoop != 2){
+            throw new InputMovException("1 혹은 2만 입력하세요");
+        }
+    }
 }

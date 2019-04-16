@@ -56,4 +56,8 @@ public class Movie {
     public boolean isInnerCapacity(int sch, int capa){
         return playSchedules.get(sch).isInnerCapacity(capa);
     }
+
+    public void DecCapacity(int sch, int capa){
+        playSchedules.get(sch).decCapacity(capa);
+    }
 }

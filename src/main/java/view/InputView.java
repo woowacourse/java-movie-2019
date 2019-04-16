@@ -69,4 +69,26 @@ public class InputView {
         return inputCapa;
     }
 
+    public static boolean isLoopMovie(){
+        try{
+            return checkLoopMovie();
+        } catch (NumberFormatException e){
+            System.out.println("숫자만 입력해주세요");
+            return isLoopMovie();
+        } catch (InputMovException e){
+            System.out.println(e.EXCEPTION_STR);
+            return isLoopMovie();
+        }
+    }
+
+    private static boolean checkLoopMovie(){
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        int inputLoop = Integer.parseInt(scanner.nextLine());
+        InputCheckFunc.checkLoopMovie(inputLoop);
+        if(inputLoop == 1){
+            return false;
+        }
+        return true;
+    }
+
 }

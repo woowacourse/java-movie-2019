@@ -13,4 +13,8 @@ public class MovieFunc {
         }
         throw new IllegalArgumentException(movieId + "는 유효하지 않은 값입니다.");
     }
+
+    public static void DecCapa(Movie movie, int sch, int capacity){
+        movie.DecCapacity(sch-1,capacity);
+    }
 }
