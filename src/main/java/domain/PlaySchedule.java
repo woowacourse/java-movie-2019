@@ -17,4 +17,9 @@ public class PlaySchedule {
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
+
+    // 공석이 있는지
+    public boolean isNotEmpty(){
+        return capacity > 0;
+    }
 }

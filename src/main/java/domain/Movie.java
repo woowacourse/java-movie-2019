@@ -37,4 +37,9 @@ public class Movie {
     public boolean isSameMovie(int movieNumber){
         return id == movieNumber;
     }
+
+    // 공석이 있는지
+    public boolean vacancyExist(){
+        return playSchedules.stream().anyMatch(schedule -> schedule.isNotEmpty());
+    }
 }
