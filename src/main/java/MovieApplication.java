@@ -47,9 +47,15 @@ public class MovieApplication {
         }
     }
 
+    private void progressPayment() {
+        InputView.guideForPayment();
+        InputView.inputMoviePoint();
+    }
+
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.showAllMovieInfo();
         movieApplication.reserveMovie();
+        movieApplication.progressPayment();
     }
 }

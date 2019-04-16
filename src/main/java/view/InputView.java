@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.MoviePoint;
 import domain.PlaySchedule;
 import error.Validator;
 import utils.PrintUtils;
@@ -57,6 +58,23 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             PrintUtils.printErrorMessageWithPause(e);
             return inputPaymentDecision();
+        }
+    }
+
+    public static void guideForPayment() {
+        System.out.print("## 결제를 진행합니다.");
+        PrintUtils.pause();
+    }
+
+    public static MoviePoint inputMoviePoint() {
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        try {
+            String moviePoint = scanner.nextLine();
+            Validator.checkAccuracyOfMoviePoint(moviePoint);
+            return new MoviePoint(Integer.parseInt(moviePoint));
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputMoviePoint();
         }
     }
 }

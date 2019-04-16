@@ -55,6 +55,10 @@ public class Validator {
         }
     }
 
+    public static void checkAccuracyOfMoviePoint(String moviePointInput) {
+        checkInteger(moviePointInput);
+    }
+
     private static boolean containsPlayScheduleIdx(int playScheduleIdx, Movie movieToReserve) {
         return movieToReserve.containsPlayScheduleIdx(playScheduleIdx);
     }
