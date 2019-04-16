@@ -1,6 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
-import view.InputView;
+import domain.MovieReservation;
 import view.OutputView;
 
 import java.util.List;
@@ -10,8 +10,15 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        // 예약 시도
+        MovieReserver reserver = new MovieReserver(new ReservationFactory());
+        List<MovieReservation> reservations =  reserver.reserveMovies(movies);
 
-        // TODO 구현 진행
+        // 결제
+        pay();
+    }
+
+    public static void pay() {
+        System.out.println("결제시도!");
     }
 }
