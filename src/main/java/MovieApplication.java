@@ -6,13 +6,15 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-    public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+	public static void main(String[] args) {
+		List<Movie> movies = MovieRepository.getMovies();
+		OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        OutputView.findMovie(movies, movieId);
-        int movieTime = InputView.inputMovieTime();
-        int ticketNum = InputView.ticketNum();
-    }
+		do {
+			int movieId = InputView.inputMovieId();
+			OutputView.findMovie(movies, movieId);
+			int movieTime = InputView.inputMovieTime();
+			int ticketNum = InputView.ticketNum();
+		} while (InputView.inputStopOrGo());
+	}
 }
