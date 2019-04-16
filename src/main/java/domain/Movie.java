@@ -31,4 +31,8 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public boolean doesPlaySchedulesHas(int scheduleNum) {
+        return playSchedules.size() >= scheduleNum;
+    }
 }
