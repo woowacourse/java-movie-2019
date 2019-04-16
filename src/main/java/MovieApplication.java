@@ -46,4 +46,20 @@ public class MovieApplication {
         return false;
     }
 
+    static void setReservationInformation() {
+        int reservationMoviewTime = InputView.inputMovieTime();
+        int reservationMovieCapacity = InputView.inputMovieNum();
+        int InputNextStep = InputView.inputNextStep();
+        if (InputNextStep == 1) {
+            reservationInforMation();
+        }
+        if (InputNextStep == 2) {
+            selectMovie();
+        }
+    }
+
+    static void reservationInforMation() {
+
+    }
+
 }
