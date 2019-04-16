@@ -12,7 +12,7 @@ public class MovieApplication {
 		OutputView.printMovies(movies);
 		int curPoint = 0;
 		while (true) {
-			
+
 			int movieId = InputView.inputMovieId();
 
 			// TODO 구현 진행
@@ -38,9 +38,12 @@ public class MovieApplication {
 				payMent.setScheduleId(scheduleId);
 				payMent.printPayment();
 				payMentList.add(payMent);
-				
+
 				int usePoint = InputView.inputuserPoint(curPoint);
-				
+				int cardORcash = InputView.inputCardOrCash();
+
+				/* 최종금액 계산 */
+				calcTotalpayment(cardORcash);
 			}
 
 			/* 2번을 선택할 경우 추가 예약이 진행 되도록 사이클 */
