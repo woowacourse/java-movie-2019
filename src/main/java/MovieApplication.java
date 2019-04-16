@@ -1,7 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
-import domain.Reservation;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -20,6 +17,6 @@ public class MovieApplication {
         for (Reservation reserv : reservations) {
             System.out.println(reserv);
         }
-        OutputView.printMovies(movies);
+        new Payment(reservations);
     }
 }
