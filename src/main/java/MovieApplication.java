@@ -13,6 +13,17 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
-        OutputView.printAMovie(MovieRepository.getMovieById(movieId));
+        // 영화 선택
+        Movie aMovie = MovieRepository.getMovieById(movieId);
+        OutputView.printAMovie(aMovie);
+
+        int movieTime = InputView.inputMovieTime();
+        int reserveCount = InputView.inputReserveCount();
+
+        int process = InputView.inputChooseProcess();
+        OutputView.printReserveList(aMovie, movieTime, reserveCount);
+
+        OutputView.printProcessMessage();
+
     }
 }
