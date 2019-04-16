@@ -45,7 +45,7 @@ public class Movie {
     }
 
     public boolean matchMovieTime(int movieTime) {
-        if (movieTime < 1 || movieTime > playSchedules.size()) {
+        if ( (movieTime < 1) || (movieTime > playSchedules.size())) {
             return false;
         }
         return true;
@@ -54,4 +54,9 @@ public class Movie {
     public boolean matchMovieCapacity(int movieTime, int capacity) {
         return playSchedules.get(movieTime).matchCapacity(capacity);
     }
+
+    public int getPrice() {
+        return price;
+    }
+
 }

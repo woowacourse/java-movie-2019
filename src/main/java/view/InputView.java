@@ -6,6 +6,12 @@ import domain.MovieRepository;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int CREDIT_CARD = 1;
+    private static final int CASH = 2;
+    private static final int PAYMENT = 1;
+    private static final int RESERVATION = 2;
+
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputMovieId() {
@@ -42,10 +48,10 @@ public class InputView {
     public static boolean inputRestart() {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
         int flag = scanner.nextInt();
-        if (flag == 1) {
+        if (flag == PAYMENT) {
             return false;
         }
-        if (flag == 2) {
+        if (flag == RESERVATION) {
             return true;
         }
         return inputRestart();
@@ -63,7 +69,7 @@ public class InputView {
     public static int inputSelectPayWith() {
         System.out.println("## 신용카드는 1번,현금은 2번");
         int payWith = scanner.nextInt();
-        if (payWith == 1 || payWith == 2) {
+        if (payWith == CREDIT_CARD || payWith == CASH) {
             return payWith;
         }
         return inputSelectPayWith();

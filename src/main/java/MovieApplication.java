@@ -25,6 +25,7 @@ public class MovieApplication {
         System.out.println("## 결제를 진행합니다.");
         int point = InputView.inputPoint();
         int payWith = InputView.inputSelectPayWith();
+        OutputView.printResultPay(point, payWith, reservationList);
 
     }
 

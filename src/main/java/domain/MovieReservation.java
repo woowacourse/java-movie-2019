@@ -13,6 +13,10 @@ public class MovieReservation {
         this.capacity = capacity;
     }
 
+    public int getPriceOfReservation() {
+        return MovieRepository.getMovieForMovieId(id).getPrice() * capacity;
+    }
+
     @Override
     public String toString() {
         Movie movie = MovieRepository.getMovieForMovieId(id);
