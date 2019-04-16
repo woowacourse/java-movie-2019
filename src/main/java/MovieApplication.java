@@ -3,15 +3,21 @@ import domain.MovieRepository;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
-    public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+	static List<Movie> reservedMovies = new ArrayList<>();
+	public static void main(String[] args) {
+		List<Movie> movies = MovieRepository.getMovies();
+		OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+		int movieId = InputView.inputMovieId();
 
-        // TODO 구현 진행
-    }
+		// 예약할 영화 선택 기능
+		System.out.println(MovieRepository.getSelectedMovies(movieId));
+		//예약할 시간표 선택 기능
+		
+		
+	}
 }
