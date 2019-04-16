@@ -45,4 +45,16 @@ public class InputView {
             return inputPeopleToReserve(playSchedule);
         }
     }
+
+    public static int inputPaymentDecision() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        try {
+            String paymentDecision = scanner.nextLine();
+            Validator.checkAccuracyOfPaymentDecision(paymentDecision);
+            return Integer.parseInt(paymentDecision);
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputPaymentDecision();
+        }
+    }
 }

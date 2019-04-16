@@ -1,6 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
+import domain.*;
 import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
@@ -9,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class MovieApplication {
+    ReservationStorage reservationStorage = new ReservationStorage();
+
     public void showAllMovieInfo() {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
@@ -18,7 +18,7 @@ public class MovieApplication {
         Movie movieToReserve = selectMovieToReserve();
         PlaySchedule playSchedule = selectPlayScheduleToReserve(movieToReserve);
         int peopleToReserve = selectPeopleToReserve(playSchedule);
-        
+        reservationStorage.addReservation(new ReservedMovie(movieToReserve, playSchedule, peopleToReserve));
     }
 
     private Movie selectMovieToReserve() {
@@ -36,9 +36,14 @@ public class MovieApplication {
         return InputView.inputPeopleToReserve(playSchedule);
     }
 
+    private void selectToGoToPaymentStep() {
+        InputView.inputPaymentDecision();
+    }
+
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.showAllMovieInfo();
         movieApplication.reserveMovie();
+        movieApplication.selectToGoToPaymentStep();
     }
 }

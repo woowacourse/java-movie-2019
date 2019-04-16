@@ -3,10 +3,13 @@ package error;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.PlaySchedule;
+import error.customExceptions.NonAccurateSelection;
 import error.customExceptions.NotIntegerException;
 
 public class Validator {
     private static final int EXISTENCE = 1;
+    private static final int FIRST_SELECTION = 1;
+    private static final int SECOND_SELECTION = 2;
 
     public static void checkAccuracyOfMovieId(String id) {
         checkInteger(id);
@@ -42,6 +45,14 @@ public class Validator {
         int peopleToReserve = Integer.parseInt(peopleToReserveInput);
         if (!isCapacious(peopleToReserve, playSchedule)) {
             throw new IllegalArgumentException("올바른 예약 가능 인원수가 아닙니다. 영화 정보를 다시 확인해 주세요.");
+        }
+    }
+
+    public static void checkAccuracyOfPaymentDecision(String paymentDecisionInput) {
+        checkInteger(paymentDecisionInput);
+        int paymentDecision = Integer.parseInt(paymentDecisionInput);
+        if ((paymentDecision != FIRST_SELECTION) && (paymentDecision != SECOND_SELECTION)) {
+            throw new NonAccurateSelection();
         }
     }
 

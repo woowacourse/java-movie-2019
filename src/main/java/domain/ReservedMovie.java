@@ -13,11 +13,11 @@ public class ReservedMovie {
     private final LocalDateTime startDateTime;
     private final int peopleToReserve;
 
-    public ReservedMovie(Movie movie, LocalDateTime startDateTime, int peopleToReserve) {
+    public ReservedMovie(Movie movie, PlaySchedule playSchedule, int peopleToReserve) {
         this.id = movie.getId();
         this.name = movie.getName();
         this.price = movie.getPrice();
-        this.startDateTime = startDateTime;
+        this.startDateTime = playSchedule.getStartDateTime();
         this.peopleToReserve = peopleToReserve;
     }
 
