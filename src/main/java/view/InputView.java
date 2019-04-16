@@ -34,7 +34,8 @@ public class InputView extends CheckValidity {
 
     private static boolean validityBookingTime(Movie movie, String bookingTime) {
         return checkValidityIntegerFormat(bookingTime)
-                && checkIsContainOfBookingTime(movie, Integer.parseInt(bookingTime));
+                && checkIsContainOfBookingTime(movie, Integer.parseInt(bookingTime))
+                && checkIsShowTimeBefore(movie, Integer.parseInt(bookingTime));
     }
 
     public static int inputBookingNumber(Movie movie, int bookingTime) {

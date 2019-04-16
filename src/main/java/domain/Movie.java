@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +42,12 @@ public class Movie {
         return (id == movieId);
     }
 
-    public boolean isContainSchedule(int reservationTime) {
-        return ((MIN_TIME <= reservationTime) && (reservationTime < playSchedules.size()));
+    public boolean isContainSchedule(int bookingTime) {
+        return ((MIN_TIME <= bookingTime) && (bookingTime < playSchedules.size()));
+    }
+
+    public LocalDateTime getshowTime(int bookingTime){
+        return playSchedules.get(bookingTime).getStartDateTime();
     }
 
     public boolean isValidityBookingNumber(int bookingTime, int bookingNumber){

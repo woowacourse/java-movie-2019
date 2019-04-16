@@ -10,7 +10,7 @@ public class PlaySchedule {
     private final LocalDateTime startDateTime;
     private int capacity;
 
-    public PlaySchedule(LocalDateTime startDateTime, int capacity) {
+    PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
     }
@@ -20,7 +20,11 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
-    public boolean isValidityCapacity(int bookingNumber){
+    boolean isValidityCapacity(int bookingNumber){
         return ((MIN_BOOKING_NUMBER <= bookingNumber) && (bookingNumber <= capacity));
+    }
+
+    LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 }

@@ -12,10 +12,8 @@ public class MovieApplication {
         OutputView.printMovies(movies);
         Booker booker = new Booker();
 
-        int movieId = InputView.inputMovieId();
-        OutputView.printMovie(movieId);
-
-        booker.selectMovie(movieId);
+        booker.selectMovie();
+        OutputView.printMovie(booker.currentBookingMovieId());
         booker.selectBookingTime();
         booker.selectBookingNumber();
     }

@@ -10,7 +10,7 @@ public class Booker {
     private List<Integer> bookingTime;
     private List<Integer> bookingNumber;
 
-    private int trybookingNumber = 0;
+    private int tryBookingNumber = 0;
 
     public Booker() {
         bookingMovies = new ArrayList<>();
@@ -18,15 +18,19 @@ public class Booker {
         bookingNumber = new ArrayList<>();
     }
 
-    public void selectMovie(int movieId) {
-        bookingMovies.add(MovieRepository.getMovie(movieId));
+    public void selectMovie() {
+        bookingMovies.add(MovieRepository.getMovie(InputView.inputMovieId()));
     }
 
     public void selectBookingTime() {
-        bookingTime.add(InputView.inputBookingTime(bookingMovies.get(trybookingNumber)));
+        bookingTime.add(InputView.inputBookingTime(bookingMovies.get(tryBookingNumber)));
     }
 
     public void selectBookingNumber(){
-        bookingNumber.add(InputView.inputBookingNumber(bookingMovies.get(trybookingNumber),bookingTime.get(0)));
+        bookingNumber.add(InputView.inputBookingNumber(bookingMovies.get(tryBookingNumber),bookingTime.get(0)));
+    }
+    
+    public int currentBookingMovieId(){
+        return bookingMovies.get(tryBookingNumber).getId();
     }
 }
