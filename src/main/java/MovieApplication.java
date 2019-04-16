@@ -4,10 +4,7 @@ import domain.ReservationCategory;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MovieApplication {
 
@@ -17,10 +14,8 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-
         // TODO 구현 진행
-        Movie choiceMovie =  OutputView.printChoiceMovies(movies, movieId);
+        Movie choiceMovie =  OutputView.printChoiceMovies(movies);
         int choiceTime = InputView.inputChoiceTime();
         int reservedPerson = InputView.inputReservedPerson();
 

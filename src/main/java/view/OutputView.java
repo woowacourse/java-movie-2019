@@ -4,6 +4,7 @@ import domain.Movie;
 import domain.MovieRepository;
 import domain.ReservationCategory;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class OutputView {
@@ -13,14 +14,21 @@ public class OutputView {
         }
     }
 
-    public static Movie printChoiceMovies(List<Movie> movies, int movieId) {
+    public static Movie printChoiceMovies(List<Movie> movies) {
+        int movieId = InputView.inputMovieId();
         for (Movie movie : movies) {
             if(movie.getId() == movieId){
                 System.out.println(movie);
                 return movie;
             }
         }
-        return null;
+
+        return hasNotMovie(movies);
+    }
+
+    private static Movie hasNotMovie(List<Movie> movies){
+        System.out.println("\n상영 목록 영화가 없습니다. 다시 입력해 주세요.");
+        return printChoiceMovies(movies);
     }
 
     public static void printReservedCategory(List<ReservationCategory> reservationCategories, int isPayment){
@@ -53,14 +61,4 @@ public class OutputView {
 
     }
 
-//    private static Movie checkMovieId(Movie movie, int movieId) {
-//        if (movie.getId() == movieId) {
-//            System.out.println(movie);
-//            return movie;
-//        } else {
-//            System.out.println("상영 목록에 영화가 없습니다. 다시 입력해 주세요.");
-//            movieId = InputView.inputMovieId();
-//            return checkMovieId(movie, movieId);
-//        }
-//    }
 }

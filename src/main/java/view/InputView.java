@@ -1,13 +1,20 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputMovieId() {
-        System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+        try{
+            System.out.println("## 예약할 영화를 선택하세요.");
+            return Integer.parseInt(scanner.nextLine());
+        }catch(InputMismatchException | IllegalArgumentException e){
+            System.out.println("잘못 입력하였습니다. 다시입력해 주세요.");
+            return inputMovieId();
+        }
+
     }
 
     public static int inputChoiceTime(){
