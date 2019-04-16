@@ -27,5 +27,13 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    /*
+     * 예약할 영화의 시간에 입장할 인원을 선택
+     */
+    public static int inputMovieReservePerson() {
+        System.out.println("## 예약할 인원을 입력하세요.");
+        return scanner.nextInt();
+    }
+
 
 }
