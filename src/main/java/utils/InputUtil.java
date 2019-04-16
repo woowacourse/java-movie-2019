@@ -13,6 +13,7 @@ public class InputUtil {
             return getInt();
         }
     }
+
     private static String getString() {
         return SCANNER.nextLine();
     }
