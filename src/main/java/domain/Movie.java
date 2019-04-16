@@ -35,6 +35,11 @@ public class Movie {
     public boolean haveId(int idNumber) {
     	return id == idNumber;
     }
+    
+    public boolean isSame(Movie movie) {
+    	return id == movie.id;
+    }
+    
     //플레이 스케쥴 출력 
     public List<PlaySchedule> getPlaySchedule() {
     	return playSchedules;

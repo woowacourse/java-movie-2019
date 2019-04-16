@@ -18,4 +18,11 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
     
+    public LocalDateTime getStartTime() {
+    	return startDateTime;
+    }
+    
+    public boolean isFull(PlaySchedule theater, int plus) {
+    	return theater.capacity < capacity + plus;
+    }
 }
