@@ -35,5 +35,11 @@ public class InputView {
         return scanner.nextInt();
     }
 
-
+    /*
+     * 예약을 계속 할 지, 결제를 할 지 선택
+     */
+    public static int inputReserveOrPurchase() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        return scanner.nextInt();
+    }
 }
