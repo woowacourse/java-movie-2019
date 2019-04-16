@@ -22,8 +22,20 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public boolean isExistedSchedule(int index) {
+        return (1 <= index && index <= playSchedules.size());
+    }
+
     public boolean isSameId(int movieId) {
         return movieId == this.id;
+    }
+
+    public boolean isCapable(int scheduleNum, int peopleNum) {
+        return playSchedules.get(scheduleNum).isCapable(peopleNum);
+    }
+
+    public String getInformation() {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 
     @Override
