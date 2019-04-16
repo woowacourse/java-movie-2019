@@ -68,6 +68,7 @@ public class Movie {
         return playSchedules.get(timeScheduleIndex).isSchedulePossible();
     }
 
+    // 영화가 예매가 가능한지 확인하는 메소드
     public boolean isMoviePossible() {
         return playSchedules.stream()
                 .anyMatch(schedule -> schedule.isSchedulePossible());
