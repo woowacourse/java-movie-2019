@@ -13,6 +13,8 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
+        
+        /*입력 받은 영화를 추가한다.*/
         for(int i = 0; i < movies.size(); i++) {
         	if( movieId == movies.get(i).getId()) {
         		for(int j = 0; j < movies.get(i).getPlaySchedules().size(); j++) {
@@ -21,6 +23,8 @@ public class MovieApplication {
         		break;
         	}
         }
+        
+        System.out.println("##예약할 시간표를 선택하세요.(첫번째 상영 시간이 1번");
         
     }
 }
