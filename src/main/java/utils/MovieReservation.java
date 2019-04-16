@@ -40,10 +40,11 @@ public class MovieReservation {
 
 	private PlaySchedule selectScheduleNum(Movie selectMovie) {
 		try {			
+			
 			int timeNumber = InputView.inputMovieTimeNumber(selectMovie, people);
-			InputView.isValidId(movieId, movies);
-			OutputView.printSchedule(movies,movieId);
-			return InputView.getMovieById(movies,movieId);
+			PlaySchedule playTime = new PlaySchedule(selectMovie.getPlaySchedule()
+					.get(timeNumber).getStartTime(), 0);
+			return playTime;
 		} catch (Exception e) {
 			return selectScheduleNum(selectMovie);
 		}
