@@ -15,6 +15,7 @@ public class MovieApplication {
         int peopleNumberOfResrvation = InputView.inputPeopleNumberOfReservation();
         int endOrAddReservation = InputView.inputEndOrAddReservation();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
+        int paymentMethod = InputView.inputPaymentMethod();
 
     }
 }
