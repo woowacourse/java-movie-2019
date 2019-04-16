@@ -23,16 +23,38 @@ public class MovieApplication {
         PlaySchedule playSchedule;
         int personnel;
         boolean isReservation;
+        int sum;
 
         do {
-            movie = selectMovie(movies, selectMovies);
-            playSchedule = selectSchedule(selectSchedules, movie);
+            movie = selectMovie(movies);
+            playSchedule = selectSchedule(movie);
             personnel = selectPersonnel(playSchedule);
             isReservation = checkStartTime(playSchedule, now);
-        } while (!isReservation);
+            if (isReservation) {
+                addSelectMovie(selectMovies, movie);
+                addSelectSchedules(selectSchedules, playSchedule);
+            }
+        } while (!isReservation || selectReservation());
 
-        printMovie(selectMovies);
-        printSchedule(selectSchedules);
+
+
+        /*printMovie(selectMovies);
+        printSchedule(selectSchedules);*/
+    }
+
+    public static boolean selectReservation() {
+        int selectNum = InputView.inputSelectStatus();
+
+        if (selectNum == 1) {
+            return false;
+        }
+
+        if (selectNum == 2) {
+            return true;
+        }
+
+        System.out.println("올바른 번호를 입력해주세요.");
+        return selectReservation();
     }
 
     public static boolean checkStartTime(PlaySchedule playSchedule, LocalDateTime now) {
@@ -50,31 +72,26 @@ public class MovieApplication {
         return personnel;
     }
 
-    public static PlaySchedule selectSchedule(List<PlaySchedule> playSchedules, Movie movie) {
-        playSchedules.clear();
+    public static PlaySchedule selectSchedule(Movie movie) {
         int movieSchedule = InputView.inputMovieSchedule();
 
         try {
             PlaySchedule playSchedule = movie.getPlaySchedules().get(movieSchedule - 1);
-            addSelectSchedules(playSchedules, playSchedule);
             return playSchedule;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("범위를 벗어났습니다.");
-            return selectSchedule(playSchedules, movie);
+            return selectSchedule(movie);
         }
 
     }
 
-    public static Movie selectMovie(List<Movie> movies, List<Movie> selectMovies) {
-        selectMovies.clear();
+    public static Movie selectMovie(List<Movie> movies) {
         int movieId = InputView.inputMovieId();
         Movie movie = OutputView.printMovieSchedule(movies, movieId);
 
         if (movie == null) {
-            return selectMovie(movies, selectMovies);
+            return selectMovie(movies);
         }
-
-        addSelectMovie(selectMovies, movie);
 
         return movie;
     }
