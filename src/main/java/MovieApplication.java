@@ -19,6 +19,10 @@ public class MovieApplication {
             int movieTime = InputView.inputMovieTime(movieId);
 
             int movieHeadCount = InputView.inputMovieHead(movieId, movieTime);
+            int moviePayCheck = InputView.inputPayment();
+            if (moviePayCheck == 1) {
+                break;
+            }
        }
         // TODO 구현 진행
     }

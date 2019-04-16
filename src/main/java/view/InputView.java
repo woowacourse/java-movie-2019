@@ -42,4 +42,11 @@ public class InputView {
         }
         return userIn;
     }
+
+    public static int inputPayment() {
+        int userIn;
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        userIn = scanner.nextInt();
+        return userIn;
+    }
 }
