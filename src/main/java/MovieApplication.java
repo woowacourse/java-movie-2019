@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Point;
 import domain.ReservingMovie;
 import jdk.internal.util.xml.impl.Input;
 import view.InputView;
@@ -30,5 +31,7 @@ public class MovieApplication {
         }
 
         OutputView.printDetailsOfReservingMovie(reservedMovies);
+        int inputPoint = InputView.inputPoint();
+        Point point = new Point(inputPoint);
     }
 }
