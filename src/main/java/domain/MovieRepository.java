@@ -8,6 +8,7 @@ import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
+    private static String MOVIE_LIST_ERROR_MENT = "올바른 예약 정보를 입력하세요.";
     public static final int ZERO = 0;
     public static final int ONE = 1;
 
@@ -50,7 +51,18 @@ public class MovieRepository {
         List<Movie> selectedMovies = movies.stream()
                 .filter(movie -> movie.isSelectedMovie(movieID))
                 .collect(Collectors.toList());
+        try{
+            checkSelectedMovieValidate(selectedMovies);
+        } catch (Exception e){
+            throw new IllegalArgumentException(MOVIE_LIST_ERROR_MENT);
+        }
         return selectedMovies.get(ZERO);
+    }
+
+    private static void checkSelectedMovieValidate(List<Movie> selectedMovies) {
+        if (selectedMovies.size() != 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static void reserveMovie(int movieId, int movieTime, int numberOfPeople) {

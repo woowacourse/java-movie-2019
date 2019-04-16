@@ -9,7 +9,7 @@ import static domain.MovieRepository.ONE;
 
 public class Movie {
     public static final char NEW_LINE = '\n';
-
+    private static final String INTPUT_TIME_ERROR_MENT = "정확한 예매 시간을 입력하세요";
     private final int id;
     private final String name;
     private final int price;
@@ -43,7 +43,19 @@ public class Movie {
     }
 
     public void reserveMovie(int movieTime, int numberOfPeople) {
-        playSchedules.get(movieTime - ONE).decreaseCapacity(numberOfPeople);
+        try {
+            checkValidateTime(movieTime);
+            playSchedules.get(movieTime - ONE).decreaseCapacity(numberOfPeople);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(INTPUT_TIME_ERROR_MENT);
+        }
+
+    }
+
+    private void checkValidateTime(int movieTime) {
+        if (movieTime < 1 || movieTime > playSchedules.size()){
+            throw new IllegalArgumentException();
+        }
     }
 
     public LocalDateTime getReserveMovieTime(int movieTime) {
