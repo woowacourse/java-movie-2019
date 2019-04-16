@@ -25,6 +25,6 @@ public class ReservedMovie {
     }
 
     public int costIs() {
-        return movie.getPrice();
+        return movie.getPrice() * memberNumber;
     }
 }

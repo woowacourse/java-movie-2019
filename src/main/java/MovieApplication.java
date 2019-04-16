@@ -2,9 +2,7 @@ import domain.Movie;
 import domain.MovieRepository;
 
 import domain.ReservedMovie;
-import input.Continue;
-import input.MemberNumberInput;
-import input.ScheduleInput;
+import input.*;
 import view.InputView;
 import view.OutputView;
 
@@ -17,8 +15,8 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<ReservedMovie> reservedMovies = new ArrayList<ReservedMovie>();
 
-        //start(reservedMovies);
-
+        start(reservedMovies);
+        doPurchase(reservedMovies);
     }
 
     private static void start(List<ReservedMovie> reservedMovies) {
@@ -41,7 +39,23 @@ public class MovieApplication {
         reservedMovies.add(new ReservedMovie(movie,scheduleId,memberNumber));
     }
 
+    private static int calculatePurchaseAmount(double discountRate,
+                                        int bonusPoint, int originalAmount) {
+        double purchaseAmount = originalAmount - bonusPoint;
+        int purchaseAmountToInteger = (int)(purchaseAmount - purchaseAmount * discountRate);
+        return purchaseAmountToInteger;
+    }
 
+    private static void doPurchase(List<ReservedMovie> reservedMovies) {
+        int bonusPoint = InputView.getPoint(reservedMovies);
+        double discountRate = InputView.getDiscountRate();
+        int originalAmount = Point.getCostFromReservedList(reservedMovies);
+        int purchaseAmount = calculatePurchaseAmount(discountRate, bonusPoint,
+                originalAmount);
+
+        OutputView.printPurchaseAmount(purchaseAmount);
+
+    }
 
 
 }

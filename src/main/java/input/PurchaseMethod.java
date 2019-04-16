@@ -10,7 +10,7 @@ public enum PurchaseMethod {
         this.discountRate = discountRate;
     }
 
-    public PurchaseMethod getValueOf(String input) {
+    public static PurchaseMethod getValueOf(String input) {
         if (checkValidity(input) == false) {
             throw new IllegalArgumentException();
         }
@@ -20,7 +20,7 @@ public enum PurchaseMethod {
         return CASH;
     }
 
-    private boolean checkValidity(String input) {
+    private static boolean checkValidity(String input) {
         if(input.equals("1") || input.equals(("2"))) {
             return true;
         }

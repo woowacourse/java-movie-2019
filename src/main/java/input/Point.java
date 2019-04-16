@@ -22,7 +22,7 @@ public class Point {
         return number >= 0 && number <= moviesCost;
     }
 
-    int getCostFromReservedList(List<ReservedMovie> reservedMovies) {
+    public static int getCostFromReservedList(List<ReservedMovie> reservedMovies) {
         int cost = 0;
         for (ReservedMovie reservedMovie : reservedMovies
              ) {

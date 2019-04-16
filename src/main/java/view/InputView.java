@@ -88,7 +88,7 @@ public class InputView {
     public static double getDiscountRate() {
         System.out.println(ASK_PURCHASE_METHOD);
         try {
-            PurchaseMethod purchaseMethod = new PurchaseMethod(scanner.nextLine().trim());
+            PurchaseMethod purchaseMethod = PurchaseMethod.getValueOf(scanner.nextLine().trim());
             return purchaseMethod.showDiscountRate();
         } catch (Exception e) {
             System.out.println(PURCHASE_METHOD_ERROR);
