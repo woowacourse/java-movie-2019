@@ -22,8 +22,12 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    public boolean isContainsMovieId(int id) {
-        return this.id == id;
+    public boolean isContainsMovieId(int movieId) {
+        return this.id == movieId;
+    }
+
+    public boolean isContainsScheduleNumber(int scheduleNumber) {
+        return scheduleNumber >= 1 && scheduleNumber <= playSchedules.size();
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
+import static utils.DateTimeUtils.format;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
@@ -51,5 +52,15 @@ public class MovieRepository {
         }
 
         return result;
+    }
+
+    public static boolean containsSchedule(int movieId, int scheduleNumber) {
+        for (Movie movie : movies) {
+            if (movie.isContainsMovieId(movieId)) {
+                return movie.isContainsScheduleNumber(scheduleNumber);
+            }
+        }
+
+        return false;
     }
 }
