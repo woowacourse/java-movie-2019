@@ -15,6 +15,10 @@ public class PlaySchedule {
 
     @Override
     public String toString() {
-        return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
+        return getStartDateTime() + " 예약가능인원: " + capacity + "\n";
+    }
+
+    public String getStartDateTime() {
+        return "시작시간: " + format(startDateTime);
     }
 }
