@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 public class MovieApplication {
     private static List<Movie> reserveMovies;
     private static int movieCount = 0;
+    private static final char NEW_LINE = '\n';
+    final private static int cardDiscount = 5;
+    final private static int cashDiscount = 2;
 
     private static Boolean inputReserveMovie(List<Movie> movies){
         int movieId = InputView.inputMovieId();
@@ -77,7 +80,30 @@ public class MovieApplication {
         System.out.println("예약내역");
         OutputView.printMovies(reserveMovies);
         System.out.println("예약 인원: " + reservePersonNum + "명");
+        System.out.println(NEW_LINE);
     }
+
+    private static void goPay(int reservePersonNum){
+        int payAmount = reservePersonNum * reserveMovies.get(movieCount).getPrice();
+        int point = InputView.inputPointNum();
+        payAmount -= point;
+        int payMethod = InputView.inputPayMethod();
+        payAmount = discountForMethod(payMethod, payAmount);
+
+        System.out.println("최종 결제한 금액은 " + payAmount + "원 입니다.");
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
+
+    private static int discountForMethod(int payMethod, int payAmount){
+        if(payMethod == 1){
+            payAmount = payAmount * (100 - cardDiscount) / 100;
+        }
+        if(payMethod == 2){
+            payAmount = payAmount * (100 - cashDiscount) / 100;
+        }
+        return payAmount;
+    }
+
 
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -92,8 +118,10 @@ public class MovieApplication {
             reservePerson = inputreserveNum();
         }
 
-        if(inputDecisionNum() == 1){
-            printReserveInfo(reservePerson);
+        int decisionNum = inputDecisionNum();
+        printReserveInfo(reservePerson);
+        if(decisionNum == 1){
+            goPay(reservePerson);
         }
 
     }

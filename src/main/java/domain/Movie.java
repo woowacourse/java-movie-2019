@@ -23,6 +23,7 @@ public class Movie {
         this.price = price;
     }
     public int getMovieId() { return this.id; }
+    public int getPrice() { return this.price; }
 
     public LocalDateTime getMovieTime(int TimeNum){
         return playSchedules.get(TimeNum).getStartDateTime();
