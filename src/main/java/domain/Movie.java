@@ -35,4 +35,10 @@ public class Movie {
     public boolean isSameMovieId(int id) {
         return this.id == id;
     }
+
+    public boolean makeReserve(int movieTable, int numPeople) {
+        if (playSchedules.get(movieTable).makeReserve(numPeople))
+            return true;
+        return false;
+    }
 }
