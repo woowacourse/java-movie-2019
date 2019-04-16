@@ -6,6 +6,7 @@ import java.util.List;
 public class Movie {
     private static final char NEW_LINE = '\n';
 
+
     private final int id;
     private final String name;
     private final int price;
@@ -20,6 +21,13 @@ public class Movie {
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
+    }
+
+    public boolean movie_Id_Get(int input) {
+        if (id != input){
+            return false;
+        }
+        return true;
     }
 
     @Override

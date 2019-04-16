@@ -13,5 +13,9 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
+//        System.out.println(MovieRepository.selectMoiveList(movieId));
+//        System.out.println(MovieRepository.MovideId(movieId));
+        MovieRepository.MoiveList(movieId);
+
     }
 }

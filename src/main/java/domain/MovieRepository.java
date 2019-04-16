@@ -1,12 +1,14 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
+
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -42,4 +44,17 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static void MoiveList(int input) {
+        for (Movie movie : movies){
+            isMovieId(movie,input);
+        }
+    }
+
+    private static void isMovieId(Movie movie ,int input){
+        if (movie.movie_Id_Get(input)){
+            System.out.println(movie);
+        }
+    }
+
 }
