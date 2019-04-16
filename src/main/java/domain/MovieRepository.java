@@ -43,10 +43,15 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie getMovie(int movieId) {
+        int movieIndex = getMovieIndex(movieId);
+        return movies.get(movieIndex);
+    }
+
     public static int getMovieIndex(int movieId) { // 수정 필요, indent 2
         int movieIndex = 0;
         for (int i = 0; i < movies.size(); i++) {
-            if (movies.get(i).isEqual(movieId)) return i;
+            if (movies.get(i).isEqualMovie(movieId)) return i;
         }
         return movieIndex;
     }

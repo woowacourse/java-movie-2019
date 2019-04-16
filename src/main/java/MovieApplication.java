@@ -16,7 +16,8 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = app.getMovieId();
-        OutputView.prinitSelectedMovie(movies, movieId);
+        OutputView.printSelectedMovie(MovieRepository.getMovie(movieId));
+        int movieTime = app.getMovieTime(movieId);
     }
 
     private int getMovieId() {
@@ -30,5 +31,14 @@ public class MovieApplication {
         }
     }
 
-
+    private int getMovieTime(int movieId) {
+        try {
+            int movieTime = InputView.inputMovieTime();
+            Validator.checkMovieTime(movieId, movieTime);
+            return movieTime;
+        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+            System.err.println("잘못 입력하셨습니다.");
+            return getMovieTime(movieId);
+        }
+    }
 }

@@ -32,7 +32,15 @@ public class Movie {
                 + sb.toString();
     }
 
-    public boolean isEqual(int movieId) {
+    public boolean isEqualMovie(int movieId) {
         return this.id == movieId;
+    }
+
+    public boolean isValidMovieTime(int movieTime) {
+        return playSchedules.size() >= movieTime;
+    }
+
+    public boolean isThisTimeAvailable(int movieTime) {
+        return playSchedules.get(--movieTime).isThisTimeAvailable();
     }
 }

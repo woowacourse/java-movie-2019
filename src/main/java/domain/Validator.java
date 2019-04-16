@@ -7,8 +7,28 @@ public class Validator {
 
     public static void checkMovieId(int movieId) {
         for (Movie movie : movies) {
-            if (movie.isEqual(movieId)) return; // indent 2
+            if (movie.isEqualMovie(movieId)) return; // indent 2
         }
-        throw new IllegalArgumentException("sorry");
+        throw new IllegalArgumentException();
+    }
+
+    public static void checkMovieTime(int movieId, int movieTime) {
+        Movie movie = MovieRepository.getMovie(movieId);
+        checkRightMovieTime(movie, movieTime);
+        checkAvailableSeats(movie, movieTime);
+    }
+
+    public static void checkRightMovieTime(Movie movie, int movieTime) {
+        if (movieTime >= 0 && movie.isValidMovieTime(movieTime)) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static void checkAvailableSeats(Movie movie, int movieTime) {
+        if (movie.isThisTimeAvailable(movieTime)) {
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 }
