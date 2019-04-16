@@ -22,8 +22,13 @@ public class PlaySchedule {
         System.out.println("시작시간: " + format(startDateTime));
     }
 
-    public boolean reserveTickets(int personCount) {
+    public boolean reserveTickets(int personCount, int minPersonCount) {
+        if (personCount < minPersonCount) {
+            System.out.println("한 명 이상의 예약이 필요합니다.");
+            return false;
+        }
         if (personCount > capacity) {
+            System.out.println("예매 가능 인원을 초과하였습니다.");
             return false;
         }
         capacity -= personCount;
