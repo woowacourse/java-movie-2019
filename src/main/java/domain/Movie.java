@@ -27,7 +27,7 @@ public class Movie {
     }
 
     public boolean isSmallerPlayScheduleSize(int size) {
-        return (size >= playSchedules.size());
+        return (size <= playSchedules.size());
     }
 
     public boolean isMatchMovieID(int movieID) {
