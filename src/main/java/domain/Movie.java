@@ -22,6 +22,10 @@ public class Movie {
     {
         System.out.println(id + "-"+ name +"," + price + "원" + NEW_LINE);
     }
+    public void PrintMovieTime(int num)
+    {
+        System.out.println(playSchedules.get(num-1));
+    }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);

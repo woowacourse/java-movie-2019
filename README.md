@@ -1,6 +1,10 @@
 
 java-movie 기능 구현
 
+Movie 클래스
+-PrintMovieName 함수 : 영화 이름 및 아이디 출력
+
+-PrintMovieTime : 선택한 영화 시간 출력
 
 OutputView 클래스
 

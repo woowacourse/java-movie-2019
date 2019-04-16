@@ -22,10 +22,11 @@ public class MovieApplication {
         int ChoicePeopleNum = ChoicePeopleNumber();
         Reservation reservemovie = new Reservation(movieId, ChoiceScheduleNum, ChoicePeopleNum);
         ReserveList.add(reservemovie);
-
+        int ExitOrNumChoice = ExitOrMore();
         Movie tempmovie = movies.get(SwitchNum(movieId));
         tempmovie.PrintMovieName();
-        int ExitOrNumChoice = ExitOrMore();
+        tempmovie.PrintMovieTime(ChoiceScheduleNum);
+
 
         // TODO 구현 진행
     }
