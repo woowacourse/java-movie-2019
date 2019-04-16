@@ -12,5 +12,7 @@ public class MovieApplication {
 
         int movieId = InputView.inputMovieId();
         OutputView.findMovie(movies, movieId);
+        int movieTime = InputView.inputMovieTime();
+        int ticketNum = InputView.ticketNum();
     }
 }
