@@ -48,7 +48,7 @@ public class InputView {
             int time = isContainTime(choiceMovie, index);
             LocalDateTime movieStartTime = choiceMovie.getPlaySchedules().get(time - 1).getStartDateTime();
             movieStartTime = isBeforeTime(isOverOneHour(choiceMovies, movieStartTime));
-            return new ChoiceMovie(choiceMovie, choiceMovie.getPlaySchedules().get(time-1).getStartDateTime());
+            return new ChoiceMovie(choiceMovie, choiceMovie.getPlaySchedules().get(time - 1).getStartDateTime());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return inputMovieTime(choiceMovies, choiceMovie);
@@ -115,7 +115,8 @@ public class InputView {
             return inputPoint(price);
         }
     }
-    public static int isOverPrice ( int point, int price){
+
+    public static int isOverPrice(int point, int price) {
         if (point > price || point < 0) {
             throw new IllegalArgumentException("포인트는 결제금액보다 적게 입력해 주세요.");
         }

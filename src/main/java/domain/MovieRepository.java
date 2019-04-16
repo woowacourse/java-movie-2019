@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static utils.DateTimeUtils.createDateTime;
-/* 수정불가, 조회용 메소드만 추가 가능 */
+
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
 

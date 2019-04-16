@@ -9,7 +9,7 @@ public class ChoiceMovie {
     private int member;
     private LocalDateTime time;
 
-    public ChoiceMovie(Movie movie,LocalDateTime time) {
+    public ChoiceMovie(Movie movie, LocalDateTime time) {
         this.movie = movie;
         this.time = time;
     }
@@ -18,12 +18,12 @@ public class ChoiceMovie {
         this.member = member;
     }
 
-    public LocalDateTime getLocalDateTime(){
+    public LocalDateTime getLocalDateTime() {
         return time;
-   }
+    }
 
     @Override
     public String toString() {
-        return movie.getMovieinForm()+"시작시간:"+ DateTimeUtils.format(time)+"\n"+"예약인원:"+member+"\n";
+        return movie.getMovieinForm() + "시작시간:" + DateTimeUtils.format(time) + "\n" + "예약인원:" + member + "\n";
     }
 }

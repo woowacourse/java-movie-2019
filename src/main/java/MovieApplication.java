@@ -12,32 +12,25 @@ public class MovieApplication {
     public static List<Movie> movies;
     public static List<ChoiceMovie> choiceMovies = new ArrayList<>();
     public static Movie choiceMovie;
-    public static int isContinue=1;
+    public static int isContinue = 1;
 
     public static void main(String[] args) {
         movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-        while (isContinue!=1){
+        while (isContinue != 1) {
             int movieId = InputView.inputMovieId();
             for (Movie movie : movies) {
-                isContainId(movie, movieId);        //영화 선택
+                isContainId(movie, movieId);
             }
-            System.out.println(choiceMovie);        //고른 영화 출력
-            ChoiceMovie select=InputView.inputMovieTime(choiceMovies, choiceMovie);  //고른 영화 일단 장바구니
+            System.out.println(choiceMovie);
+            ChoiceMovie select = InputView.inputMovieTime(choiceMovies, choiceMovie);
 
-            int member=InputView.inputMember();
+            int member = InputView.inputMember();
             select.setMember(member);
             choiceMovies.add(select);
-            isContinue=InputView.inputAddReservation();
+            isContinue = InputView.inputAddReservation();
         }
         Money totalPrice = new Money(0);
-        for(ChoiceMovie movie:choiceMovies){
-            mo
-        }
-
-
-
-
 
     }
 

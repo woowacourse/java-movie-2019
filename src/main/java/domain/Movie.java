@@ -3,11 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 기본생성자 추가 안됨
- * 필드 추가 안됨
- * 필드의 private 변경 안됨
- */
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -22,16 +17,19 @@ public class Movie {
         this.name = name;
         this.price = price;
     }
-    public int getId(){
+
+    public int getId() {
         return id;
     }
 
-    public List<PlaySchedule> getPlaySchedules(){
+    public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
     }
-    public int getPlaySchedulesLength(){
+
+    public int getPlaySchedulesLength() {
         return playSchedules.size();
     }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
@@ -45,7 +43,8 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
-    public String getMovieinForm(){
+
+    public String getMovieinForm() {
         return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 }

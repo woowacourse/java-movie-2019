@@ -3,7 +3,7 @@ package domain;
 public class Money {
     private int money;
 
-    Money(int money){
+    public Money(int money){
         this.money=money;
     }
     public String toString() {
