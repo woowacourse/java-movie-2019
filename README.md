@@ -27,12 +27,12 @@
   ### 1. Movie 객체 구현
   ### 2. PlaySchedule 객체 구현
   ### 3. 제약 사항
-    - java convention 지키면서 프로그래밍
-    - else 사용 X
-    - 접근 제어자 적합하게 사용
-    - 메서드 길이 10라인 이하 main() 제외
-    - indent depth 1까지 허용
-    - 메서드 인자 3개까지 허용
+  - java convention 지키면서 프로그래밍
+  - else 사용 X
+  - 접근 제어자 적합하게 사용
+  - 메서드 길이 10라인 이하 main() 제외
+  - indent depth 1까지 허용
+  - 메서드 인자 3개까지 허용
     
     
     <br/>
