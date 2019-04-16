@@ -3,6 +3,7 @@ package domain;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -25,6 +26,24 @@ public class MovieReservationMachine {
      */
     public static void showSchedulesOfMovieWithId(int id) {
         OutputView.printMovie(MovieRepository.getMovieWithId(id));
+    }
+
+    /**
+     * 사용자의 예매 건을 예매 내역에 추가한다.
+     */
+    public static void addReservation(int movieId, int scheduleId, int personnels) {
+        reservationHistory.add(new Reservation(MovieRepository.getMovieWithId(movieId), scheduleId, personnels));
+    }
+
+    /**
+     * 예매 내역을 보여준다.
+     */
+    public static void showReservatoinHistory() {
+        Iterator<Reservation> it = reservationHistory.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+            System.out.println();
+        }
     }
 
 }

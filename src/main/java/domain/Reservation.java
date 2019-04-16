@@ -16,6 +16,6 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return movie.toStringWithoutSchedules() + movie.getSchedule(scheduleId).toString() + "예약 인원: " + personnels + "명\n";
+        return movie.toStringWithoutSchedules() + movie.getSchedule(scheduleId).toStringWithoutCapacity() + "예약 인원: " + personnels + "명\n";
     }
 }

@@ -14,5 +14,7 @@ public class MovieApplication {
         MovieReservationMachine.showSchedulesOfMovieWithId(userMovieId);
         int userScheduleId = User.selectSchedule(userMovieId);
         int userPersonnels = User.selectPersonnels(userMovieId, userScheduleId);
+        MovieReservationMachine.addReservation(userMovieId, userScheduleId, userPersonnels);
+        MovieReservationMachine.showReservatoinHistory();
     }
 }
