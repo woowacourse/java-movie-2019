@@ -13,5 +13,14 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
+        for(int i = 0; i < movies.size(); i++) {
+        	if( movieId == movies.get(i).getId()) {
+        		for(int j = 0; j < movies.get(i).getPlaySchedules().size(); j++) {
+        			System.out.print(movies.get(i).getPlaySchedules().get(j));
+        		}
+        		break;
+        	}
+        }
+        
     }
 }
