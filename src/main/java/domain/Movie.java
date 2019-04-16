@@ -8,11 +8,6 @@ public class Movie {
 
     private final int id;
     private final String name;
-
-    public int getPrice() {
-        return price;
-    }
-
     private final int price;
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
@@ -41,7 +36,16 @@ public class Movie {
                 + sb.toString();
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
+    }
+
+
+    public void checkIsValid(int timeScheduleIndex) {
+        playSchedules.get(timeScheduleIndex - 1);
     }
 }

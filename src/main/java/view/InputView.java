@@ -26,10 +26,10 @@ public class InputView {
         //여기서 스케쥴 1시간 이내 차이나면 처리할것.
         try {
             int timeScheduleIndex = InputUtil.getInt();
-           // MovieRepository.checkIfOneHourWithRange(movie, timeScheduleIndex);
+            movie.checkIsValid(timeScheduleIndex);
             return timeScheduleIndex;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("제대로된 스케쥴 일정을 입력해주세요");
             return InputTimeScheduleIndex(movie);
         }
     }
