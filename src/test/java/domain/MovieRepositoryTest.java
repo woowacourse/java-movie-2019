@@ -33,4 +33,11 @@ public class MovieRepositoryTest {
 		assertThat(MovieRepository.hasEnoughCapacity(1, 1, 6)).isEqualTo(true);
 		assertThat(MovieRepository.hasEnoughCapacity(1, 1, 7)).isEqualTo(false);
 	}
+	
+	@Test
+	public void isEnd() {
+		//코딩 테스트 시간을 기준으로 테스트
+		assertThat(MovieRepository.isEndSchedule(1, 1)).isEqualTo(true);
+		assertThat(MovieRepository.isEndSchedule(1, 5)).isEqualTo(false);
+	}
 }
