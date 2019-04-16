@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
@@ -15,5 +16,7 @@ public class MovieApplication {
         // TODO 구현 진행
         Movie selectedMovie = MovieRepository.getMovieUsingMovieID(movieId);
         OutputView.printSelectedMovie(selectedMovie);
+
+        int moveStartTimeNumber = InputView.inputMovieStartTime();
     }
 }
