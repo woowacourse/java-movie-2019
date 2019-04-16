@@ -1,7 +1,7 @@
 /*
  * MovieRepository Class
  *
- * @version 1
+ * @version 1.1
  *
  * @date 2019-04-16
  *
@@ -18,6 +18,7 @@ import static utils.DateTimeUtils.createDateTime;
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
     private static final int NEXT_INDEX = 1;
+    private static final int START_INDEX = 0;
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -54,17 +55,24 @@ public class MovieRepository {
         return movies;
     }
 
-    public static boolean isContainMovieId(int selecteID){
-        return findMovieIDatAtMovieList(0, selecteID);
+    public static boolean isContainMovieId(int selecteID) {
+        if (findMovieByMovieIDAtMovieList(START_INDEX, selecteID) != movies.size())
+            return true;
+        return false;
     }
 
-    private static boolean findMovieIDatAtMovieList(int thMovie, int selecteID){
-        if(thMovie >= movies.size() )
-            return false;
+    private static int findMovieByMovieIDAtMovieList(int thMovie, int selecteID) {
+        if (thMovie >= movies.size())
+            return thMovie;
 
-        if(movies.get(thMovie).isMatchId(selecteID))
-            return true;
-        return findMovieIDatAtMovieList(thMovie+NEXT_INDEX, selecteID);
+        if (movies.get(thMovie).isMatchId(selecteID))
+            return thMovie;
+        return findMovieByMovieIDAtMovieList(thMovie + NEXT_INDEX, selecteID);
+    }
+
+    public static Movie getMovieByID(int movieId) {
+        int movieIndex = findMovieByMovieIDAtMovieList(START_INDEX, movieId);
+        return movies.get(movieIndex);
     }
 
 }

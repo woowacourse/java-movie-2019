@@ -42,7 +42,7 @@ public class Movie {
                 + sb.toString();
     }
 
-    public boolean isMatchId(int seletedID){
+    public boolean isMatchId(int seletedID) {
         return this.id == seletedID;
     }
 }

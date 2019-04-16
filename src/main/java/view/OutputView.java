@@ -1,7 +1,7 @@
 /*
  * OutputView Class
  *
- * @version 1
+ * @version 1.1
  *
  * @date 2019-04-16
  *
@@ -19,5 +19,9 @@ public class OutputView {
         for (Movie movie : movies) {
             System.out.println(movie);
         }
+    }
+
+    public static void printSelectedMovieInfo(Movie movie) {
+        System.out.println(movie);
     }
 }
