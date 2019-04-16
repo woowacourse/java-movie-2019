@@ -18,9 +18,10 @@ public class SelectMovie {
         StringBuilder sb = new StringBuilder();
         sb.append(movie.getScheduleInfo(time));
         return movie.getId() + " - " + movie.getName() + ", " + movie.getPrice() + "원" + NEW_LINE
-                + sb.toString() +"예약 인원: "+ peopleNum ;
+                + sb.toString() + "예약 인원: " + peopleNum;
     }
-    public int getOneMovieSumPrice(){
+
+    public int getOneMovieSumPrice() {
         int price = movie.getPrice() * peopleNum;
         return price;
     }

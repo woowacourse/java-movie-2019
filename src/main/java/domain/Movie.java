@@ -39,6 +39,7 @@ public class Movie {
     public String getName() {
         return name;
     }
+
     public int getPrice() {
         return price;
     }
@@ -63,7 +64,7 @@ public class Movie {
         return playSchedules.get(movieTime - 1).getCapacity();
     }
 
-    public void discountScheduleCapacity(int time, int num){
-        this.playSchedules.get(time-1).disCapacity(num);
+    public void discountScheduleCapacity(int time, int num) {
+        this.playSchedules.get(time - 1).disCapacity(num);
     }
 }

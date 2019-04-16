@@ -2,6 +2,7 @@ package utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import view.InputView;
 import view.OutputView;
 import domain.Movie;
@@ -9,8 +10,8 @@ import domain.Movie;
 public class Input {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int idInput(){
-        try{
+    public static int idInput() {
+        try {
             int inputNum = InputView.inputMovieId();
             CheckException.checkInMovieNum(inputNum);
             return inputNum;
@@ -20,8 +21,8 @@ public class Input {
         }
     }
 
-    public static int timeInput(Movie movie){
-        try{
+    public static int timeInput(Movie movie) {
+        try {
             int inputNum = InputView.inputMovieTime();
             CheckException.checkInMovieTime(movie, inputNum);
 //            CheckException.checkInAvailableTime(movie, InputNum); 상영시간이 현재 지났는지
@@ -32,8 +33,8 @@ public class Input {
         }
     }
 
-    public static int peopleInput(Movie movie, int movieTime){
-        try{
+    public static int peopleInput(Movie movie, int movieTime) {
+        try {
             int inputNum = InputView.inputPeopleNum();
             CheckException.checkcheckCapacity(movie, inputNum, movieTime);
             return inputNum;
@@ -42,8 +43,8 @@ public class Input {
         }
     }
 
-    public static int restartInput(){
-        try{
+    public static int restartInput() {
+        try {
             int inputNum = InputView.inputRestart();
             CheckException.checkZeroOne(inputNum);
             return inputNum;
@@ -53,8 +54,8 @@ public class Input {
         }
     }
 
-    public static int pointInput(int price){
-        try{
+    public static int pointInput(int price) {
+        try {
             int inputNum = InputView.inputPoint();
             CheckException.checkPointInPrice(inputNum, price);
             return inputNum;
@@ -64,8 +65,8 @@ public class Input {
         }
     }
 
-    public static int creditCashInput(){
-        try{
+    public static int creditCashInput() {
+        try {
             int inputNum = InputView.inputCredit();
             CheckException.checkZeroOne(inputNum);
             return inputNum;
