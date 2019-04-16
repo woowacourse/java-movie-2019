@@ -22,11 +22,11 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + "\n";
     }
 
-    public LocalDateTime getStartDateTime(){
+    public LocalDateTime getStartDateTime() {
         return this.startDateTime;
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return this.capacity;
     }
 }

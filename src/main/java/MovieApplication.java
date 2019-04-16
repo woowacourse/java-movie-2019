@@ -1,6 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
-import domain.PlaySchedule; ////////////////////추가 가능?
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 import utils.DateTimeUtils;
@@ -84,7 +84,7 @@ public class MovieApplication {
     }
 
     private static boolean payProbabilityCheck() {
-        boolean cheak[] = {true,true,true};
+        boolean cheak[] = {true, true, true};
         cheak[0] = timeGap();
         if (!cheak[0]) System.out.println("영화의 시간차이가 1시간 이내가 아닙니다.");
         cheak[1] = acceptablePplCheck();
@@ -92,7 +92,7 @@ public class MovieApplication {
         cheak[2] = pastMovie();
         if (!cheak[2]) System.out.println("상영 시작 시간이 이미 지난 영화가 있습니다.");
 
-        if(cheak[0] && cheak[1] && cheak[2]) return true;
+        if (cheak[0] && cheak[1] && cheak[2]) return true;
         return false;
     }
 
@@ -130,7 +130,7 @@ public class MovieApplication {
         }
     }
 
-    private static void listInit(){
+    private static void listInit() {
         curMovies.clear();
         curSchedule.clear();
         ppl.clear();
@@ -139,10 +139,9 @@ public class MovieApplication {
     private static void booking() {
         selectMoveis();
         printCurrentState();
-        if(payProbabilityCheck()){
+        if (payProbabilityCheck()) {
             payment();
-        }
-        else{
+        } else {
             System.out.println("--------------------------------");
             System.out.println("예매를 처음부터 다시 시작합니다.");
             listInit();
@@ -155,7 +154,6 @@ public class MovieApplication {
         System.out.println("##상영 영화 목록");
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-
         // TODO 구현 진행
         booking();
     }

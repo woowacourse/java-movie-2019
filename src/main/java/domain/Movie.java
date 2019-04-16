@@ -32,7 +32,7 @@ public class Movie {
                 + sb.toString();
     }
 
-    public String toString(boolean simple){
+    public String toString(boolean simple) {
         return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
 
@@ -48,7 +48,7 @@ public class Movie {
         return false;
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return this.price;
     }
 }

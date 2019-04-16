@@ -25,11 +25,9 @@ public class InputView {
         int temp = scanner.nextInt();
         if (temp == 1) {
             return false;
-        }
-        else if (temp == 2) {
+        } else if (temp == 2) {
             return true;
-        }
-        else {
+        } else {
             System.out.println("##1또는 2를 입력해주십시오");
             return inputContinueCheak();
         }
