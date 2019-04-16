@@ -13,7 +13,6 @@ public class MovieApplication {
 
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
-		
 
 		while (makeReservation() != TO_BE_CONTINUED) {
 

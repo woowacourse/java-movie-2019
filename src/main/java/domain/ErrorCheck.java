@@ -28,21 +28,16 @@ public class ErrorCheck {
 
 	/*
 	 * public static boolean isWithinOneHour(Movie movie, int movieTime) {
-	 
-		boolean result = false;
-		List<PlaySchedule> playSchedules = movie.getPlaySchedules();
-		List<Reservation> reservations = ReservationList.getReservations();
-		for (Reservation reservation : reservations) {
-			result &= DateTimeUtils.isOneHourWithinRange(((PlaySchedule) playSchedules).getStartDateTime(),reservation.getTime());
-		}
-		if (!result) {
-			System.out.println("Error! - 영화 간의 시간 차이가 한시간이 넘습니다! 다시 입력해주세요.");
-		}
-
-		return result;
-		}
-		*/
-	
+	 * 
+	 * boolean result = false; List<PlaySchedule> playSchedules =
+	 * movie.getPlaySchedules(); List<Reservation> reservations =
+	 * ReservationList.getReservations(); for (Reservation reservation :
+	 * reservations) { result &= DateTimeUtils.isOneHourWithinRange(((PlaySchedule)
+	 * playSchedules).getStartDateTime(),reservation.getTime()); } if (!result) {
+	 * System.out.println("Error! - 영화 간의 시간 차이가 한시간이 넘습니다! 다시 입력해주세요."); }
+	 * 
+	 * return result; }
+	 */
 
 	public static boolean isValidTime(Movie movie, int movieTime) {
 		boolean result = false;
