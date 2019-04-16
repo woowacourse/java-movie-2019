@@ -1,7 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.Point;
-import domain.ReservingMovie;
+import domain.*;
 import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
@@ -33,5 +30,15 @@ public class MovieApplication {
         OutputView.printDetailsOfReservingMovie(reservedMovies);
         int inputPoint = InputView.inputPoint();
         Point point = new Point(inputPoint);
+        int paymentMethod = InputView.inputPaymentMethod();
+
+        int totalMoviePrice = 0;
+        for(ReservingMovie reservedMovie : reservedMovies) {
+            totalMoviePrice += reservedMovie.getPrice();
+        }
+
+        Pay pay = new Pay(point, totalMoviePrice);
+        OutputView.printResultPrice(pay, paymentMethod);
+
     }
 }

@@ -11,6 +11,10 @@ public class ReservingMovie {
         this.numberOfPeople = numberOfPeople;
     }
 
+    public int getPrice() {
+        return movie.getPrice() * numberOfPeople;
+    }
+
     @Override
     public String toString() {
         return movie.selectedMovieInfo(startTime, numberOfPeople);

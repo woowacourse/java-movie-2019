@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public boolean isMatchMovieID(int movieID) {
         return (id == movieID);
     }

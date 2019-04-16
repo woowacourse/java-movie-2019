@@ -11,4 +11,9 @@ public class Point {
         }
         this.point = point;
     }
+
+    public int getMoviePriceWithoutPoint(int totalMoviePrice) {
+        int remainedPrice = totalMoviePrice - point;
+        return (remainedPrice < 0) ? 0 : remainedPrice;
+    }
 }
