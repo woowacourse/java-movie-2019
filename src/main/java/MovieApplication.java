@@ -11,13 +11,18 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        boolean reservingProcess = true;
+        while(reservingProcess) {
+            int movieId = InputView.inputMovieId();
 
-        // TODO 구현 진행
-        Movie selectedMovie = MovieRepository.getMovieUsingMovieID(movieId);
-        OutputView.printSelectedMovie(selectedMovie);
+            // TODO 구현 진행
+            Movie selectedMovie = MovieRepository.getMovieUsingMovieID(movieId);
+            OutputView.printSelectedMovie(selectedMovie);
 
-        int moveStartTimeNumber = InputView.inputMovieStartTime();
-        int numberOfPeople = InputView.inputNumberOfPeople();
+            int moveStartTimeNumber = InputView.inputMovieStartTime();
+            int numberOfPeople = InputView.inputNumberOfPeople();
+            reservingProcess = (InputView.inputPaymentOrAddingReserve() == 2)
+                    ? true : false;
+        }
     }
 }
