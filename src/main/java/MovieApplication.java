@@ -105,16 +105,22 @@ public class MovieApplication {
 
     public boolean checkIfOneHourWithinRange(List<Movie> reservedMovie, LocalDateTime dateTimetoCheck, int selectedTable) {
         boolean isOneHourWithinRange = false;
-        for (Movie movie : reservedMovie){
+        for (Movie movie : reservedMovie) {
             LocalDateTime movieTimeToCheck = movie.getPlayScehdules().get(selectedTable).getStartDateTime();
-            DateTimeUtils.isOneHourWithinRange(movieTimeToCheck, dateTimetoCheck);
+            isOneHourWithinRange = DateTimeUtils.isOneHourWithinRange(movieTimeToCheck, dateTimetoCheck);
         }
         return isOneHourWithinRange;
 
     }
 
+    public boolean checkIfMovieSame(List<Movie> reservedMovie, int movieIdReserving) {
+        boolean isSameMovie = false;
+        for (Movie movie : reservedMovie) {
+            isSameMovie = movie.checkMovieId(movieIdReserving)
+        }
+        return isSameMovie;
+    }
 
-    public void getStartingHours
 
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -125,7 +131,9 @@ public class MovieApplication {
 
         boolean isReservationEnd = false;
         boolean isOneHourWithinRange = false;
+        boolean isSameMovie = false;
         //TODO : 바깥 루프 필요함
+
         while (!isReservationEnd) {
             int movieId = InputView.inputMovieId();
             m.printSelectedMovieInfo(movieId, movies);
@@ -135,11 +143,20 @@ public class MovieApplication {
 
             LocalDateTime dateTimeToCheck = movieReservingNow.getPlayScehdules().get(selectedTable).getStartDateTime();
             isOneHourWithinRange = m.checkIfOneHourWithinRange(reservedMovie, dateTimeToCheck, selectedTable);
+
+            isSameMovie = m.checkIfMovieSame(reservedMovie, movieId);
             if (isOneHourWithinRange) {
-                System.out.println("상영 시간이 예매된 영화와 1시간 이내입니다. 다시 예약 해주세요.");
+                System.out.println("상영 시간이 예매된 영화와 1시간 이내입니다. 다시 예매 해주세요.");
                 continue;
             }
+            if (isSameMovie) {
+                System.out.println("기존 예매한 영화와 같은 영화입니다. 다른 영화로 예매 해주세요.");
+
+            }
             int reseravationNumber = m.reservingNumberInput(movieReservingNow, selectedTable);
+
+            //LocalDateTime과 예약 인원을 저장하는 객체 필요
+
 
 
             int payOrAdditionalReservation = m.payOrAdditionalReservationInput();
