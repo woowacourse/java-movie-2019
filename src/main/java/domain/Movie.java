@@ -8,6 +8,11 @@ public class Movie {
 
     private final int id;
     private final String name;
+
+    public int getPrice() {
+        return price;
+    }
+
     private final int price;
 
     private List<PlaySchedule> playSchedules = new ArrayList<>();
