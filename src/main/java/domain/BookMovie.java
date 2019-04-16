@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookMovie {
+    Map<List<Movie>, Integer> bookMap = new HashMap<>();
     List<Movie> bookMovieList = new ArrayList<>();
     int bookingPeople;
 
@@ -20,6 +23,11 @@ public class BookMovie {
 
     public int getBookingPeople() {
         return bookingPeople;
+    }
+
+    public Map<List<Movie>, Integer> getBookMap(){
+
+        return bookMap;
     }
 
     public void addBookMovieList(Movie movie) {

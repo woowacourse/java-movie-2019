@@ -15,28 +15,17 @@ import java.util.List;
  *
  */
 public class MovieApplication {
+
     public static void main(String[] args) {
+        int  time = 0;
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-
-        int movieId = InputView.inputMovieId();
         BookSystem bookSystem = new BookSystem(new BookMovie());
-
-        BookMovie bookingMovie = bookSystem.booking(movieId);
-        List<Movie> bookingMovieList = bookingMovie.getBookMovieList();
-        OutputView.printMovies(bookingMovieList);
-
-        int ScheduleNumber = InputView.inputMovieSchedule();
-        bookSystem.selectSchedule(0,ScheduleNumber);
-
-        int inputPeopleBooking = InputView.inputPeopleBooking();
-        bookSystem.selectPeopleBooking(inputPeopleBooking);
-
+        BookMovie bookingMovie = bookSystem.booking(InputView.inputMovieId());
+        OutputView.printMovies(bookingMovie.getBookMovieList());
+        bookSystem.selectSchedule(bookingMovie.getBookMovieList().get(time++).getId(),InputView.inputMovieSchedule());
+        bookSystem.selectPeopleBooking(InputView.inputPeopleBooking());
         PaymentSystem paymentSystem = new PaymentSystem();
-
-        int inputPaymentType = InputView.inputPaymentType();
-        paymentSystem.paymentStart(bookingMovie,inputPaymentType);
-        OutputView.printTotalPrice(paymentSystem.getTotalPrice());
-
+        paymentSystem.paymentStart(bookingMovie,InputView.inputPaymentType());
     }
 }

@@ -2,7 +2,6 @@ package Program;
 
 import Program.Config.Validation;
 import domain.BookMovie;
-import domain.Movie;
 import domain.User;
 import view.InputView;
 import view.OutputView;
@@ -25,11 +24,10 @@ public class PaymentSystem {
         try {
             Validation.checkPaymentType(type);
             OutputView.printPaymentStart();
-            double price = countInitTotalPrice(bookMovie);
-            double point = InputView.inputPoint();
-            addPrice(price);
+            addPrice(countInitTotalPrice(bookMovie));
             salePrice(type);
-            usePoint(point);
+            usePoint(InputView.inputPoint());
+            OutputView.printTotalPrice(getTotalPrice());
         }catch(Exception e){
             System.out.println("없는 결제 수단입니다.");
             paymentStart(bookMovie, InputView.inputPaymentType());
