@@ -19,8 +19,9 @@ public class ReserveMovie {
         this.selectPeople = selectPeople;
     }
 
-    public void possibleReserveMovie(Movie selectMovie, int selectMovieId, int selectSchedule, int selectPeople) {
-
+    public static void addReserveMovie(Movie selectMovie, int selectSchedule, int selectPeople) {
+        selectedMovies.add(new SelectedMovie(selectMovie.getId(), selectMovie.getName(), selectMovie.getPrice(),
+                selectMovie.getPlaySchedules().get(selectSchedule - 1).getStartDateTime(), selectPeople));
     }
 
     public static int assertMovieId(List<Movie> movies, int movieId) {
@@ -44,5 +45,9 @@ public class ReserveMovie {
             return true;
         }
         return false;
+    }
+
+    public static List<SelectedMovie> getSelectedMovies() {
+        return selectedMovies;
     }
 } 

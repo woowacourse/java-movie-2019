@@ -46,6 +46,10 @@ public class MovieApplication {
         }
 
 
+        ReserveMovie.addReserveMovie(movies.get(movieIndex), movieSchedule, movieWatchPeople);
+
+
+
 
         // TODO 구현 진행
     }
