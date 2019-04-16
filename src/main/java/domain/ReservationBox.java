@@ -158,4 +158,57 @@ public class ReservationBox {
         }
         return false;
     }
+
+    public void finalizePayment() {
+        System.out.println("##결제를 진행합니다.");
+        String pointAmount = this.askPointAmount();
+        String cashOrCredit = this.askCashOrCredit();
+        int intPointAmount = Integer.parseInt(pointAmount);
+        this.listOfPoints.add(intPointAmount);
+        int intCashOrCredit = Integer.parseInt(cashOrCredit);
+        this.listOfCashOrCredit.add(intCashOrCredit);
+    }
+
+    public String askCashOrCredit() {
+        boolean isUserInputRight = false;
+        String userCashOrCredit = "error:askUserWhatMovie()";
+        while (!isUserInputRight) {
+            userCashOrCredit = askAndReceiveInput("##신용카드는 1번, 현금은 2번");
+            isUserInputRight = checkCashOrCredit(userCashOrCredit);
+        }
+        return userCashOrCredit;
+    }
+
+    public static boolean checkCashOrCredit(String userInput) {
+        if (isNonNumeric(userInput) || isNot1Or2(userInput)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String askPointAmount() {
+        boolean isUserInputRight = false;
+        String userPointAmount = "error:askUserWhatMovie()";
+        while (!isUserInputRight) {
+            userPointAmount = askAndReceiveInput("##포인트 사용 금액을 입력하세요! 포인트가 없으면 0을 입력하세요");
+            isUserInputRight = checkUserPointAmount(userPointAmount);
+        }
+        return userPointAmount;
+    }
+
+    public static boolean checkUserPointAmount(String userInput) {
+        if (isNonNumeric(userInput) || isBiggerThanMovieTicket(userInput)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isBiggerThanMovieTicket(String userInput) {
+        int intUserInput = Integer.parseInt(userInput);
+        if (intUserInput > 8000) {
+            System.out.println("포인트는 영화가격을 초과할 수 없습니다!");
+            return true;
+        }
+        return false;
+    }
 }

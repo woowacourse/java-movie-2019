@@ -27,9 +27,10 @@ public class MovieApplication {
         String howManyPeople = servant.askHowManyPeople(whatTime, selectedMovie);
         servant.saveInformation(selectedMovie, whatTime, howManyPeople);
         int userInputContinue = servant.askUserContinue();
-        if (userInputContinue == 1) {
+        if (userInputContinue == 2) {
             doGame(movies, servant);
         }
+        servant.finalizePayment();
 
 
 
