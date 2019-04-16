@@ -1,7 +1,6 @@
 package domain;
 
 import java.time.LocalDateTime;
-
 import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
@@ -23,6 +22,10 @@ public class PlaySchedule {
     }
 
     public void scheduleReservation(int count) throws Exception {
+        LocalDateTime now = LocalDateTime.now();
+        if (now.isAfter(this.startDateTime)) {
+            throw new Exception("상영 시작 시간이 이미 지났습니다.");
+        }
         if (this.capacity - count < 0) {
             throw new Exception("예매 가능 인원을 초과합니다.");
         }
