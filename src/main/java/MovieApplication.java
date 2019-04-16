@@ -22,10 +22,11 @@ public class MovieApplication {
 
         ReservedMovie reservedMovie = new ReservedMovie(movies);
         reservedMovie.addReservationHistory(movieId, movieTime, movieNumberOfPeople);
-
         reservedMovie.printReservationHistory();
 
         Purchase purchase = new Purchase(reservedMovie.calculateTotalPrice());
-        purchase.printTotalPrice();
+        int point = InputView.inputPoint();
+        int methodOfPayment = InputView.inputCarOrCash();
+        purchase.printTotalPayment(point, methodOfPayment);
     }
 }
