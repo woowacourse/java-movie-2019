@@ -9,9 +9,12 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-
+        
         int movieId = InputView.inputMovieId(); // 보고 싶은 영화의 숫자 입력 받음
         // TODO 구현 진행
-        OutputView.printSelectMovie(movies, movieId);
+        Movie SelectMovie = OutputView.printSelectMovie(movies, movieId);
+        int movieTime = InputView.inputMovieTime();
+        OutputView.printSelectTime(SelectMovie, movieTime);
+        int ViewNum = InputView.inputMovieViewNum();
     }
 }
