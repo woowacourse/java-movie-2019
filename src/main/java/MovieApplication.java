@@ -21,6 +21,7 @@ public class MovieApplication {
         OutputView.printMovie(movies,movienum);
         int scheduleNum = scheduleNumReceiver.getScheduleNumFromUser(sc);
         int peopleNum = numberOfPeopleReceiver.getPeopleNumFromUser(sc);
-
+        OutputView.reservationInformation(movies,movienum,scheduleNum,peopleNum);
+        
     }
 }

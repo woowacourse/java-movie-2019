@@ -34,8 +34,8 @@ public class Movie {
     public int getId() {
         return id;
     }
-    public Movie getMovie() {
-        return this;
+    public List<PlaySchedule> getPlaySchedules() {
+        return this.playSchedules;
     }
 
 //    public Movie isContains (int movieNum) {
