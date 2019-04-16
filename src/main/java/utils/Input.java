@@ -11,9 +11,9 @@ public class Input {
 
     public static int idInput(){
         try{
-            int InputNum = InputView.inputMovieId();
-            CheckException.checkInMovieNum(InputNum);
-            return InputNum;
+            int inputNum = InputView.inputMovieId();
+            CheckException.checkInMovieNum(inputNum);
+            return inputNum;
         } catch (InputMismatchException | IllegalArgumentException e) {
             OutputView.printNotInMovieNum();
             return idInput();
@@ -22,13 +22,23 @@ public class Input {
 
     public static int timeInput(Movie movie){
         try{
-            int InputNum = InputView.inputMovieTime();
-            CheckException.checkInMovieTime(movie, InputNum);
+            int inputNum = InputView.inputMovieTime();
+            CheckException.checkInMovieTime(movie, inputNum);
 //            CheckException.checkInAvailableTime(movie, InputNum); 상영시간이 현재 지났는지
-            return InputNum;
+            return inputNum;
         } catch (InputMismatchException | IllegalArgumentException e) {
             OutputView.printNotInMovieTime();
             return timeInput(movie);
+        }
+    }
+
+    public static int peopleInput(Movie movie, int movieTime){
+        try{
+            int inputNum = InputView.inputPeopleNum();
+            CheckException.checkcheckCapacity(movie, inputNum, movieTime);
+            return inputNum;
+        } catch (InputMismatchException | IllegalArgumentException e) {
+            return peopleInput(movie, movieTime);
         }
     }
 }

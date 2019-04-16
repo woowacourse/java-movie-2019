@@ -32,11 +32,11 @@ public class Movie {
                 + sb.toString();
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public int getScheduleSize(){
+    public int getScheduleSize() {
         return playSchedules.size();
     }
 
@@ -44,4 +44,7 @@ public class Movie {
 //        playSchedules.get(num-1);
 //    }
 
+    public int getCapacity(int movieTime) {
+        return playSchedules.get(movieTime - 1).getCapacity();
+    }
 }

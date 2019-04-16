@@ -42,21 +42,21 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
-    public static List<Integer> getMovieIdList(){
+
+    public static List<Integer> getMovieIdList() {
         List<Integer> idList = new ArrayList<>();
-        for (int i = 0; i < movies.size(); i++){
+        for (int i = 0; i < movies.size(); i++) {
             idList.add(movies.get(i).getId());
         }
         return idList;
     }
 
-    public static Movie getSelectedMovie(int movieNum){
-        for (Movie movie : movies){
-            if(movie.getId() == movieNum)return movie;
+    public static Movie getSelectedMovie(int movieNum) {
+        for (Movie movie : movies) {
+            if (movie.getId() == movieNum) return movie;
         }
         throw new IllegalArgumentException();
     }
-
 
 
 }

@@ -26,4 +26,13 @@ public class CheckException {
 //        System.out.print("상영 시간이 이미 지났습니다.");
 //        throw new IllegalArgumentException();
 //    }
+
+    public static void checkcheckCapacity(Movie movie, int checkNum, int movieTime){
+        if(movie.getCapacity(movieTime)>=checkNum && checkNum>Constant.MIN_PEOPLE_SIZE){
+            return;
+        }
+        OutputView.printNotInPeopleNum();
+
+        throw new IllegalArgumentException();
+    }
 }

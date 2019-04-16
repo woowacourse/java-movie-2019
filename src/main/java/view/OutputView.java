@@ -27,4 +27,8 @@ public class OutputView {
         System.out.println("예약 가능한 시간대의 영화번호를 선택해 주세요");
     }
 
+    public static void printNotInPeopleNum(){
+        System.out.println("0에서 가능한 예약 가능 인원 이내의 숫자를 입력해 주세요");
+    }
+
 }
