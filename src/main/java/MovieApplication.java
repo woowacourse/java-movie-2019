@@ -1,21 +1,36 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Reservation;
 import domain.Validator;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
+    List<Movie> movies = MovieRepository.getMovies();
+    List<Reservation> reservations = new ArrayList<>();
+
     public static void main(String[] args) {
         MovieApplication app = new MovieApplication();
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+        app.play();
+    }
 
-        int movieId = app.getMovieId();
+    private void play() {
+        do {
+            Reservation reservation = doReservation();
+            reservations.add(reservation);
+        } while (doAgain());
+    }
+
+    private Reservation doReservation() {
+        OutputView.printMovies(movies);
+        int movieId = getMovieId();
         OutputView.printSelectedMovie(MovieRepository.getMovie(movieId));
-        int movieTime = app.getMovieTime(movieId);
-        int numOfGuest = app.getNumOfGuest(movieId, movieTime);
+        int movieTime = getMovieTime(movieId);
+        int numOfGuest = getNumOfGuest(movieId, movieTime);
+        return new Reservation(movieId, movieTime, numOfGuest);
     }
 
     private int getMovieId() {
@@ -48,6 +63,22 @@ public class MovieApplication {
         } catch (IllegalArgumentException e) {
             System.err.println("잘못 입력하셨습니다.");
             return getNumOfGuest(movieId, movieTime);
+        }
+    }
+
+    private boolean doAgain() {
+        int quitOrDoAgain = getQuitOrDoAgain();
+        return quitOrDoAgain == 2 ? true : false;
+    }
+
+    private int getQuitOrDoAgain() {
+        try {
+            int quitOrDoAgain = InputView.inputQuitOrDoAgain();
+            Validator.checkQuitOrDoAgain(quitOrDoAgain);
+            return quitOrDoAgain;
+        } catch (IllegalArgumentException e) {
+            System.err.println("잘못 입력하셨습니다.");
+            return getQuitOrDoAgain();
         }
     }
 }

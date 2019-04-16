@@ -39,4 +39,11 @@ public class Validator {
         }
         throw new IllegalArgumentException("예약가능인원을 확인해 주세요.");
     }
+
+    public static void checkQuitOrDoAgain(int quitOrDoAgain) {
+        if (quitOrDoAgain == 1 || quitOrDoAgain == 2) {
+            return;
+        }
+        throw new IllegalArgumentException("1이나 2만 입력해 주세요.");
+    }
 }
