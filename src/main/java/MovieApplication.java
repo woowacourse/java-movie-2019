@@ -17,6 +17,7 @@ public class MovieApplication {
         OutputView.printMovies(movies);
         Movie selectedMovie;
         boolean validateCheck;
+        boolean addReserve;
 
         int movieId;
         while (true){
@@ -53,25 +54,27 @@ public class MovieApplication {
             inputPayment = InputView.inputPayment();
             System.out.println();
             validateCheck = Validator.lastInputChecker(inputPayment);
-            OutputView.printPayOrReserve(inputPayment, reserveMovie);
+            addReserve = OutputView.printPayOrReserve(inputPayment, reserveMovie);
             if (validateCheck) break;
             System.out.println("1 또는 2만 입력해주세요!");
         }
 
-        int inputPoint = InputView.startPayment();
-        System.out.println();
-
-        int paymentType;
-        while (true) {
-            paymentType = InputView.inputPaymentType();
+        if (!addReserve){
+            int inputPoint = InputView.startPayment();
             System.out.println();
-            validateCheck = Validator.lastInputChecker(paymentType);
-            if (validateCheck) break;
-            System.out.println("1 또는 2만 입력해주세요!");
+            int paymentType;
+            while (true) {
+                paymentType = InputView.inputPaymentType();
+                System.out.println();
+                validateCheck = Validator.lastInputChecker(paymentType);
+                if (validateCheck) break;
+                System.out.println("1 또는 2만 입력해주세요!");
+            }
+
+            Payment payment = new Payment(reserveMovie, paymentType, inputPoint);
+            OutputView.printFinishReserveI(payment);
         }
 
-        Payment payment = new Payment(reserveMovie, paymentType, inputPoint);
-        OutputView.printFinishReserveI(payment);
         // TODO 구현 진행
     }
 }
