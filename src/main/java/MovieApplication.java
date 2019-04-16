@@ -49,7 +49,13 @@ public class MovieApplication {
 
     private void progressPayment() {
         InputView.guideForPayment();
-        InputView.inputMoviePoint();
+        MoviePoint moviePoint = InputView.inputMoviePoint();
+        int selection = selectPaymentMethod();
+
+    }
+
+    private int selectPaymentMethod() {
+        return InputView.inputPaymentMethodDecision();
     }
 
     public static void main(String[] args) {

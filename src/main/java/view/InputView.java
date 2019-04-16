@@ -77,4 +77,16 @@ public class InputView {
             return inputMoviePoint();
         }
     }
+
+    public static int inputPaymentMethodDecision() {
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        try {
+            String paymentMethodDecision = scanner.nextLine();
+            Validator.checkAccuracyOfPaymentMethodDecision(paymentMethodDecision);
+            return Integer.parseInt(paymentMethodDecision);
+        } catch (IllegalArgumentException e) {
+            PrintUtils.printErrorMessageWithPause(e);
+            return inputPaymentMethodDecision();
+        }
+    }
 }

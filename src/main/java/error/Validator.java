@@ -50,13 +50,23 @@ public class Validator {
     public static void checkAccuracyOfPaymentDecision(String paymentDecisionInput) {
         checkInteger(paymentDecisionInput);
         int paymentDecision = Integer.parseInt(paymentDecisionInput);
-        if ((paymentDecision != InputView.FIRST_SELECTION) && (paymentDecision != InputView.SECOND_SELECTION)) {
-            throw new NonAccurateSelection();
-        }
+        checkAccurateSelection(paymentDecision);
     }
 
     public static void checkAccuracyOfMoviePoint(String moviePointInput) {
         checkInteger(moviePointInput);
+    }
+
+    public static void checkAccuracyOfPaymentMethodDecision(String paymentMethodDecisionInput) {
+        checkInteger(paymentMethodDecisionInput);
+        int paymentMethodDecision = Integer.parseInt(paymentMethodDecisionInput);
+        checkAccurateSelection(paymentMethodDecision);
+    }
+
+    private static void checkAccurateSelection(int input) {
+        if ((input != InputView.FIRST_SELECTION) && (input != InputView.SECOND_SELECTION)) {
+            throw new NonAccurateSelection();
+        }
     }
 
     private static boolean containsPlayScheduleIdx(int playScheduleIdx, Movie movieToReserve) {
