@@ -14,7 +14,8 @@ public class MovieApplication {
 
         // TODO 구현 진행
         String whatMovie = InputView.askUserWhatMovie();
-
+        Movie selectedMovie = MovieRepository.findAndReturnMovie(movies, whatMovie);
+        System.out.println(selectedMovie);
 
     }
 }

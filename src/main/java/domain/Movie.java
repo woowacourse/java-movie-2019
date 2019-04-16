@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -31,6 +30,10 @@ public class Movie {
         }
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
+    }
+
+    public int getId() {
+        return id;
     }
 
 

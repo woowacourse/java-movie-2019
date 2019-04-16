@@ -42,4 +42,26 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie findAndReturnMovie(List<Movie> movies, String id) {
+        int intId = Integer.parseInt(id);
+        Movie foundMovie = compareId(movies, intId);
+        return foundMovie;
+    }
+
+    private static Movie compareId(List<Movie> movies, int intId) {
+        Movie rightMovie = new Movie(100, "kimjungmin", 100000);
+        for (int i=0, n=movies.size(); i<n; i++) {
+            rightMovie = findMovie(intId, movies.get(i), rightMovie);
+        }
+        return rightMovie;
+    }
+
+    private static Movie findMovie(int intId, Movie currentMovie, Movie rightMovie) {
+        Movie tempMovie = rightMovie;
+        if (intId == currentMovie.getId()) {
+            return currentMovie;
+        }
+        return tempMovie;
+    }
 }
