@@ -2,6 +2,7 @@ package domain;
 
 import domain.Movie;
 import domain.PlaySchedule;
+import utils.DateTimeUtils;
 
 public class BookedMovie {
     private static final char NEW_LINE = '\n';
@@ -33,5 +34,9 @@ public class BookedMovie {
 
     public int getChargePerMovie() {
         return bookedMovie.getChargeForPeople(reservedPersonCount);
+    }
+
+    public boolean isWithinOneHour(PlaySchedule anotherSchedule) {
+        return selectedPlaySchedule.isWithinOneHour(anotherSchedule);
     }
 }
