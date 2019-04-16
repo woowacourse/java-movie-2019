@@ -11,12 +11,28 @@ public class ReservationInputValidator {
     public ReservationInputValidator() {
     }
 
-    List<Integer> getReservations(String line) {
+    List<Integer> getReservationMovieNumbers(String line) {
         List<Integer> idCandidates = parseIntegers(line);
         if (idAllExists(idCandidates) && idIsNotDuplicated(idCandidates, line)) {
             return idCandidates;
         }
         throw new IllegalArgumentException("올바른 영화 번호가 아닙니다.");
+    }
+
+    Integer getReservationEntryNumber(String line) {
+        try {
+            return Integer.parseInt(line);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("올바른 영화 예약 엔트리 번호가 아닙니다.");
+        }
+    }
+
+    Integer getReservationCapacityNumber(String line) {
+        try {
+            return Integer.parseInt(line);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("올바른 영화 예약 인원수가 아닙니다.");
+        }
     }
 
     private List<Integer> parseIntegers(String line) {

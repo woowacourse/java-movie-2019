@@ -1,9 +1,9 @@
 package domain;
 
+import static utils.DateTimeUtils.createDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
@@ -41,5 +41,30 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    static void displayMovie (Integer movieId) {
+       movies.stream().filter(movie -> movie.matchId(movieId)).forEach(System.out::println);
+    }
+
+
+    static boolean isMovieExists(Integer movieId) {
+        return movies.stream().anyMatch(movie -> movie.matchId(movieId));
+    }
+
+    static boolean isValidEntryNumber(Integer movieId, Integer movieEntryNumber) {
+        return movies.stream().filter(movie -> movie.matchId(movieId))
+            .anyMatch( movie -> movie.isEntryExists(movieEntryNumber));
+    }
+
+    static boolean isConsumable(Integer movieId, Integer movieEntryNumber, Integer capacity) {
+        return movies.stream().filter( movie -> movie.matchId(movieId))
+            .anyMatch( movie -> movie.isConsumable(movieEntryNumber, capacity));
+    }
+
+    static void consumeCapacity(Integer movieId, Integer movieEntryNumber, Integer capacity) {
+        movies.stream().filter( movie -> movie.matchId(movieId))
+            .forEach(movie -> movie.consumeCapacity(movieEntryNumber, capacity));
+
     }
 }
