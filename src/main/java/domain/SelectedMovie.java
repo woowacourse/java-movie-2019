@@ -18,6 +18,9 @@ public class SelectedMovie {
 	public int getIndexOfSelectedSchedule () {
 		return this.indexOfSelectedSchedule;
 	}
+	public PlaySchedule getPlaySchedule() {
+		return this.selectedPlaySchedule;
+	}
 	public int getNumOfPeople( ) {
 		return this.numOfPeople;
 	}

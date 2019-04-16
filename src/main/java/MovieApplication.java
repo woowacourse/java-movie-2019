@@ -15,7 +15,7 @@ public class MovieApplication {
 		List<Movie> movies = MovieRepository.getMovies();
 		List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
 		OutputView.printMovies(movies);
-		selectedMovies = recurSelectMovieOrNot(movies);
+		recurSelectMovieOrNot(movies, selectedMovies);
 		OutputView.printSelectedMovies(selectedMovies);
 	}
 
@@ -56,21 +56,31 @@ public class MovieApplication {
 		return id;
 	}
 
-	static int inputScheduleOnce(Movie movie) {
+	static int inputScheduleOnce(List<SelectedMovie> selectedMovies, Movie movie) {
 		int input = InputView.inputSchedule();
 		movie.isValidSchedule(input);
+		if (!isValidStartTime(selectedMovies, movie.getSchedule(input)))
+			throw new IllegalArgumentException("이미 선택한 영화와 시작시간이 한시간 이상 차이납니다. \n다시 입력해주세요.");
 		return input;
 	}
 
-	static int recurInputSchedule(Movie movie) {
+	static int recurInputSchedule(List<SelectedMovie> selectedMovies, Movie movie) {
 		int input = 0;
 		try {
-			input = inputScheduleOnce(movie);
+			input = inputScheduleOnce(selectedMovies, movie);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			input = recurInputSchedule(movie);
+			input = recurInputSchedule(selectedMovies, movie);
 		}
 		return input;
+	}
+
+	static boolean isValidStartTime(List<SelectedMovie> selectedMovies, PlaySchedule newSchedule) {
+		int isValid = 1;
+		for (SelectedMovie selectedMovie : selectedMovies) {
+			isValid *= selectedMovie.getPlaySchedule().isWithInOneHour(newSchedule) ? 1 : 0;
+		}
+		return (isValid == 1);
 	}
 
 	static int inputPeopleOnce(PlaySchedule schedule) {
@@ -93,11 +103,11 @@ public class MovieApplication {
 		return input;
 	}
 
-	static SelectedMovie inputSelectedMovieOnce(List<Movie> movies) {
+	static SelectedMovie inputSelectedMovieOnce(List<Movie> movies, List<SelectedMovie> selectedMovies) {
 		int movieId = recurInputMovieId(movies);
 		Movie selectedMovie = getMovie(movies, movieId);
 		System.out.println(selectedMovie);
-		int indexOfSelectedSchedule = recurInputSchedule(selectedMovie);
+		int indexOfSelectedSchedule = recurInputSchedule(selectedMovies, selectedMovie);
 		PlaySchedule selectedSchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
 		int numOfPeople = recurInputPeople(selectedSchedule);
 		return new SelectedMovie(selectedMovie, indexOfSelectedSchedule, numOfPeople);
@@ -123,20 +133,18 @@ public class MovieApplication {
 	}
 
 	static void selectMovie(List<Movie> movies, List<SelectedMovie> selectedMovies) {
-		SelectedMovie selectedMovie = inputSelectedMovieOnce(movies);
+		SelectedMovie selectedMovie = inputSelectedMovieOnce(movies, selectedMovies);
 		if (selectedMovie.getNumOfPeople() != 0) {
 			selectedMovies.add(selectedMovie);
 			subtractCapacity(movies, selectedMovie);
 		}
 	}
 
-	static List<SelectedMovie> recurSelectMovieOrNot(List<Movie> movies) {
-		List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
+	static void recurSelectMovieOrNot(List<Movie> movies, List<SelectedMovie> selectedMovies) {
 		int swc = 2;
 		do {
 			selectMovie(movies, selectedMovies);
 			swc = recurInputRechoiceOrNot();
 		} while (swc == 2);
-		return selectedMovies;
 	}
 }

@@ -28,7 +28,7 @@ public class Movie {
     
     public void isValidSchedule(int select) {
     	int sizeOfSchedule = playSchedules.size();
-    	if(select > sizeOfSchedule && select <= 0)
+    	if(select > sizeOfSchedule || select <= 0)
     		throw new IllegalArgumentException("선택한 영화 상영 스케쥴이 없습니다. \n다시 입력해주세요.");
     	if(playSchedules.get(select-1).getCapacity() == 0)
     		throw new IllegalArgumentException("선택한 영화 상영 스케쥴은 매진되었습니다. \n다시 입력해주세요.");
