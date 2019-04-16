@@ -42,4 +42,41 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovie(Integer movieId) {
+        for (int i = 0; i < movies.size(); i++) {
+            if (movies.get(i).equalMovieId(movieId)) {
+                return movies.get(i);
+            }
+        }
+        throw new IllegalArgumentException("잘못된 movie Id 입니다.");
+    }
+
+    public static void printMovie(Integer movieId) {
+        System.out.println(getMovie(movieId));
+    }
+
+    public static boolean checkCapacity(Reservation reservation) {
+        Movie movie = getMovie(reservation.getMovieId());
+        return movie.checkCapacity(reservation.getMovieTime(), reservation.getMovieTicket());
+    }
+
+    /** 예약1과 예약2의 영화 상영시간이 겹치는 지 확인*/
+    public static boolean checkOverlapping(Reservation reservation1,
+                                           Reservation reservation2) {
+        Movie movie1 = getMovie(reservation1.getMovieId());
+        Movie movie2 = getMovie(reservation2.getMovieId());
+        return PlaySchedule.compareTime(
+                movie1.getPlaySchedule(reservation1.getMovieTime()),
+                movie2.getPlaySchedule(reservation2.getMovieTime())
+        );
+    }
+
+    /** true : movieId 포함*/
+    public static boolean containMovieId(Integer movieId) {
+        for (Movie movie: movies) {
+            if (movie.equalMovieId(movieId)) { return true; }
+        }
+        return false;
+    }
 }
