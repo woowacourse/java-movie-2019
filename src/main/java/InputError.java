@@ -6,9 +6,16 @@ public class InputError {
     private String NUMBER_FORMAT_ERROR = "숫자가 아닌 값이 입력되었습니다. 다시 입력해주세요.";
     private String MINUS_ERROR = "양이 아닌 정수가 입력되었습니다.  다시 입력해주세요.";
     private String REST_ERROR = "나머지가 생겼습니다. 다시 입력해주세요.";
-    private String NUMBER_RANGE_ERROR = "없는 영화입니다. 다시 입력해주세요.";
+    private String MOVIE_RANGE_ERROR = "없는 영화입니다. 다시 입력해주세요.";
+    private String TIME_RANGE_ERROR = "없는 시간표 입니다. 다시 입력해주세요.";
     private String DUPLICATE_ERROR = "번호가 중복되었습니다. 다시 입력해주세요.";
     private String LENGTH_ERROR = "길이가 잘 못 되었습니다. 다시 입력해주세요.";
+
+    public boolean checkContainTimeIndex(List<Movie> movies, int movieId, int timeId){
+        if(movies.size() <= timeId) return true;
+        System.out.println(TIME_RANGE_ERROR);
+        return false;
+    }
 
     public boolean checkContainId(List<Movie> movies, int movieId){
         for(int i=0; i<movies.size(); i++){
@@ -16,7 +23,7 @@ public class InputError {
                 return true;
             }
         }
-        System.out.println(NUMBER_RANGE_ERROR);
+        System.out.println(MOVIE_RANGE_ERROR);
         return false;
     }
 
@@ -34,14 +41,6 @@ public class InputError {
     public boolean CheckMinusError(int input){
         if(input < 0) {
             System.out.println(MINUS_ERROR);
-            return false;
-        }
-        return true;
-    }
-
-    public boolean checkRangeNumber(int number){
-        if(number<1 || number>45){
-            System.out.println(NUMBER_RANGE_ERROR);
             return false;
         }
         return true;
