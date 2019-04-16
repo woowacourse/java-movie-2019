@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.Payment;
 import domain.ReservedMovie;
 
 import java.util.List;
@@ -49,4 +50,18 @@ public class OutputView {
     public static void printStartPayment(){
         System.out.println("## 결제를 진행합니다.");
     }
+
+    public static void printNegativePoint(){
+        System.out.println("포인트에 음수값은 허용하지 않습니다.");
+    }
+
+    public static void printPaymentTypeError(){
+        System.out.println("신용카드는 1번, 현금은 2번을 입력하셔야합니다.");
+    }
+
+    public static void printClosing(Payment payment){
+        System.out.println(payment);
+        System.out.println("예매를 완료했습니다. 즐거운 영화관람되세요");
+    }
 }
+

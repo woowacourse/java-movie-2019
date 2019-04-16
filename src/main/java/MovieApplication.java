@@ -22,6 +22,8 @@ public class MovieApplication {
         OutputView.printStartPayment();
         Payment payment = calculatePrice(reservedMovies);
         payment.applyPoint(getUsagePoint());
+        payment.calculatePaymentTypeDiscount(getPaymentType());
+        reserveEnd(payment);
     }
 
     private static void movieReserve(List<Movie> movies, List<ReservedMovie> reservedMovies){
@@ -100,7 +102,20 @@ public class MovieApplication {
         int point = NOT_EXIST_NUMBER;
         do {
             point = InputView.inputPoint();
-        } while (!MovieValidator.pointValidation(point));
+        } while (!MovieValidator.pointValidate(point));
         return point;
+    }
+
+    private static int getPaymentType(){
+        int paymentType = NOT_EXIST_NUMBER;
+        do {
+            paymentType = InputView.selectPaymentType();
+        } while (!MovieValidator.paymentTypeValidate(paymentType));
+        return paymentType;
+    }
+
+    private static void reserveEnd(Payment payment){
+        InputView.closeScanner();
+        OutputView.printClosing(payment);
     }
 }

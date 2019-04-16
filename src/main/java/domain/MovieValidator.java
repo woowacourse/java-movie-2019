@@ -38,8 +38,17 @@ public class MovieValidator {
         return true;
     }
 
-    public static boolean pointValidation(int point){
+    public static boolean pointValidate(int point){
         if (point < 0){
+            OutputView.printNegativePoint();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean paymentTypeValidate(int paymentType){
+        if (paymentType > 2 || paymentType < 1){
+            OutputView.printPaymentTypeError();
             return false;
         }
         return true;
