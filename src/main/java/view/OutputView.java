@@ -6,13 +6,17 @@ import domain.BookedMovie;
 import java.util.List;
 
 public class OutputView {
-    private static final String ALL_MOVIES_GUIDE = "## 상영 영화 목록";
+    private static final char NEW_LINE = '\n';
 
     public static void printMovies(List<Movie> movies) {
-        System.out.println(ALL_MOVIES_GUIDE);
+        System.out.println(NEW_LINE + "## 상영 영화 목록");
         for (Movie movie : movies) {
             System.out.println(movie);
         }
+    }
+
+    public static void printSelectedMovie(Movie selectedMovie) {
+        System.out.println(selectedMovie);
     }
 
     public static void printBookedMovies(List<BookedMovie> bookedMovies) {
