@@ -33,7 +33,10 @@ public class InputView {
         while (scheduleNumberCheck(scheduleNumber)) {
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
-        while (purchasedMovies.size() == 0 || scheduleGapCheck(purchasedMovies.get(0), movies.get(movieId), scheduleNumber)) {
+        if(purchasedMovies.size() == 0) {
+            return scheduleNumber;
+        }
+        while (scheduleGapCheck(purchasedMovies.get(0), movies.get(movieId), scheduleNumber)) {
             return inputMovieSchedule(movies, movieId, purchasedMovies);
         }
         return scheduleNumber;
@@ -60,16 +63,29 @@ public class InputView {
         System.out.println("## 예약할 인원을 입력하세요.");
         int countOfTickets = scanner.nextInt();
 
-        while (countOfTickets < MIN_NUM) {
-            System.out.println("!! 1명 이상을 입력하세요.");
+        while (checkCountOfTickets(countOfTickets)) {
             return inputCountOfTickets(movies, movieId, scheduleNumber);
         }
-
-        while (!(movies.get(movieId).checkPossibleTickets(scheduleNumber, countOfTickets))) {
-            System.out.println("!! 인원이 너무 많습니다.");
+        while (checkCountOfCapacity(movies.get(movieId), scheduleNumber, countOfTickets)) {
             return inputCountOfTickets(movies, movieId, scheduleNumber);
         }
         return countOfTickets;
+    }
+
+    private static boolean checkCountOfTickets(int countOfTickets) {
+        if (countOfTickets < MIN_NUM) {
+            System.out.println("!! 1명 이상을 입력하세요.");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkCountOfCapacity(Movie movie, int scheduleNumber, int countOfTickets) {
+        if(!(movie.checkPossibleTickets(scheduleNumber, countOfTickets))) {
+            System.out.println("!! 인원이 너무 많습니다");
+            return true;
+        }
+        return false;
     }
 
     public static boolean inputContinueBooking() {
