@@ -23,4 +23,5 @@ public class MovieReservationMachine {
     public static void showSchedulesOfMovieWithId(int id) {
         OutputView.printMovie(MovieRepository.getMovieWithId(id));
     }
+
 }

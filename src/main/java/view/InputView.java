@@ -52,6 +52,13 @@ public class InputView {
     }
 
     /**
+     * 인원을 입력받는 메소드. 성공할 때까지 반복함.
+     */
+    public static int inputPersonnels() {
+        return 0;
+    }
+
+    /**
      * 예매할 시간대 번호를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getValidScheduleId(int movieId) {
