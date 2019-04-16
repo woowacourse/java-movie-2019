@@ -6,6 +6,8 @@ import java.util.List;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
+    private static final int INDEX_NUM = 1;
+
     private static List<Movie> movies = new ArrayList<>();
 
     static {
@@ -44,6 +46,15 @@ public class MovieRepository {
     }
 
     public static PlaySchedule selectSchedule(int movieId, int movieSchedule) {
-        return movies.get(movieId).getPlaySchedules().get(movieSchedule);
+        int idIndex = movieId - INDEX_NUM;
+        int scheduleIndex = movieSchedule - INDEX_NUM;
+        return movies.get(idIndex).getPlaySchedules().get(scheduleIndex);
+    }
+
+    public static int selectCapacity(int movieId, int movieSchedule) {
+        int index = movieId - INDEX_NUM;
+        int scheduleIndex = movieSchedule - INDEX_NUM;
+
+        return movies.get(index).getPlaySchedules().get(movieSchedule).getCapacity();
     }
 }

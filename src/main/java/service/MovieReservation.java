@@ -19,30 +19,46 @@ public class MovieReservation {
         System.out.println(reservation.toString());
     }
 
+    private boolean checkCapacity(int people, int movieId, int movieSchedule) {
+        if (people > MovieRepository.selectCapacity(movieId, movieSchedule)) {
+            System.out.println(MovieRepository.selectCapacity(movieId,movieSchedule));
+            System.err.println("예약가능 인원이 초과 하였습니다.");
+            return true;
+        }
+
+        return false;
+    }
+
     private Reservation getReservationMovie(List<Movie> movies) {
         int movieId = selectMovieId(movies);
         Movie movie = getMovie(movies, movieId);
-        int personNumber = selectPeopleNumber();
-        PlaySchedule playSchedule = selectMovieSchedule(movieId);
+        int movieSchedule = InputView.inputMovieTime();
+        int personNumber = selectPeopleNumber(movieId, movieSchedule);
+        PlaySchedule playSchedule = selectMovieSchedule(movieId, movieSchedule);
 
         Reservation reservation = new Reservation(movie, personNumber, playSchedule);
         return reservation;
     }
 
-    private PlaySchedule selectMovieSchedule(int movieId) {
-        int movieSchedule = InputView.inputMovieTime();
+    private PlaySchedule selectMovieSchedule(int movieId, int movieSchedule) {
         PlaySchedule schedule = MovieRepository.selectSchedule(movieId, movieSchedule);
 
         return schedule;
     }
 
     private Movie getMovie(List<Movie> movies, int movieId) {
-        Movie movie = new Movie(movieId, movies.get(movieId).getName(), movies.get(movieId).getPrice());
+        Movie selectMovie = movies.get(movieId);
+
+        Movie movie = new Movie(movieId, selectMovie.getName(), selectMovie.getPrice());
         return movie;
     }
 
-    private int selectPeopleNumber() {
+    private int selectPeopleNumber(int movieId, int movieSchedule) {
         int peopleNumber = InputView.inputPeopleNumber();
+
+        if (checkCapacity(peopleNumber, movieId, movieSchedule)) {
+            return selectPeopleNumber(movieId, movieSchedule);
+        }
 
         return peopleNumber;
     }
