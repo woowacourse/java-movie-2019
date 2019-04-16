@@ -11,6 +11,7 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
+        OutputView.printInputMovieSchedule(movies, movieId);
 
         // TODO 구현 진행
     }
