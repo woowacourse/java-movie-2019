@@ -4,11 +4,13 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.time.LocalDateTime;
 
 public class MovieApplication {
-    private static List<Movie> reserveMovies;
+    private static List<Movie> reserveMovies = new ArrayList<>();
+    private static List<Integer> reservePerson = new ArrayList<>();
     private static int movieCount = 0;
     private static final char NEW_LINE = '\n';
     final private static int cardDiscount = 5;
@@ -46,21 +48,23 @@ public class MovieApplication {
     }
 
     private static Boolean checkMovieTime(int TimeNum){
+
         LocalDateTime currentTime = LocalDateTime.now();
         LocalDateTime movieTime = reserveMovies.get(movieCount).getMovieTime(TimeNum - 1);
 
         return currentTime.isBefore(movieTime);
     }
 
-    private static int inputreserveNum(){
-        int reserveNum = InputView.inputNum();
+    private static Boolean inputreserveNum(){
+        int reserveNum = InputView.inputReserveNum();
         InputView.fflush();
 
         if(checkMoviePerson(reserveNum) == false){
             System.out.println("예매 가능 인원을 초과하였습니다. 다시 선택해주세요.");
-            return -1;
+            return false;
         }
-        return reserveNum;
+        reservePerson.set(movieCount, reserveNum);
+        return true;
     }
 
     private static Boolean checkMoviePerson(int reserveNum){
@@ -70,21 +74,19 @@ public class MovieApplication {
         return true;
     }
 
-    private static int inputDecisionNum(){
-        int DecisionNum = InputView.inputDecisionNum();
-        InputView.fflush();
-        return DecisionNum;
-    }
-
     private static void printReserveInfo(int reservePersonNum){
         System.out.println("예약내역");
-        OutputView.printMovies(reserveMovies);
-        System.out.println("예약 인원: " + reservePersonNum + "명");
-        System.out.println(NEW_LINE);
+        for(int i = 0;  i <= movieCount; i++){
+            OutputView.printMovie(reserveMovies.get(i));
+            System.out.println("예약 인원: " + reservePerson.get(i) + "명");
+        }
     }
 
     private static void goPay(int reservePersonNum){
-        int payAmount = reservePersonNum * reserveMovies.get(movieCount).getPrice();
+        int payAmount = 0;
+        for(int i = 0; i <= movieCount; i++){
+            payAmount += reservePersonNum * reserveMovies.get(movieCount).getPrice();
+        }
         int point = InputView.inputPointNum();
         payAmount -= point;
         int payMethod = InputView.inputPayMethod();
@@ -104,26 +106,36 @@ public class MovieApplication {
         return payAmount;
     }
 
-
-    public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-        reserveMovies = new ArrayList<>();
-        int reservePerson = -1;
-
+    private static void reservation(List<Movie> movies){
+        boolean reserveNumFlag = false;
+        reservePerson.add(-1);
         while(inputReserveMovie(movies) == false){ };
         OutputView.printMovies(reserveMovies);
         while(inputMovieTime() == false) { }
-        while(reservePerson == -1) {
-            reservePerson = inputreserveNum();
+        while(reserveNumFlag == false) {
+            reserveNumFlag = inputreserveNum();
         }
+    }
 
-        int decisionNum = inputDecisionNum();
-        printReserveInfo(reservePerson);
-        if(decisionNum == 1){
-            goPay(reservePerson);
-        }
 
+   public static void main(String[] args) {
+        List<Movie> movies = MovieRepository.getMovies();
+        OutputView.printMovies(movies);
+
+        reservation(movies);
+
+        int decisionNum = InputView.inputDecisionNum();
+       InputView.fflush();
+       while(decisionNum != 1 && decisionNum == 2){
+           movieCount++;
+           reservePerson.add(-1);
+           reservation(movies);
+           decisionNum = InputView.inputDecisionNum();
+           InputView.fflush();
+       }
+
+       printReserveInfo(reservePerson.get(movieCount));
+       goPay(reservePerson.get(movieCount));
     }
 
 }
