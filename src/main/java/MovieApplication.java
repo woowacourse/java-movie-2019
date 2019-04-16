@@ -16,6 +16,7 @@ public class MovieApplication {
         int ChoiceScheduleNum = ChoicePlaySchedule();
         int ChoicePeopleNum = ChoicePeopleNumber();
 
+        ExitOrMore();;
         // TODO 구현 진행
     }
 
@@ -35,6 +36,17 @@ public class MovieApplication {
         System.out.println("## 예약할 인원을 입력하세요");
         Choice_PeopleNum=sc.nextInt();
         return Choice_PeopleNum;
+    }
+    public static void ExitOrMore()
+    {
+        int Choice;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("##예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        Choice = sc.nextInt();
+        if(Choice==1)
+            PrintReservation();
+        if(Choice==2)
+            MoreReservation();
     }
 
 }

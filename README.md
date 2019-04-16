@@ -11,3 +11,5 @@ MovieApplication 클래스
 -ChoicePlaySchedule 함수: 예약할 시간표를 입력받는 함수
 
 -ChoicePeopleNumber 함수: 예약할 인원 입력받는 함수
+
+-ExitOrMore 함수: 예약을 종료할건지 추가예약할 것인지 입력받는 함수
