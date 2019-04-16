@@ -44,7 +44,12 @@ public class MovieRepository {
     }
     
    public static Movie getMovie(int movieId) {
-	  
+	   for(Movie movie : movies) {
+		   if(movie.getMovieId()==movieId) {
+			   return movie;
+		   }
+	   }
+	   return null;
    }
     
   

@@ -24,9 +24,9 @@ public class InputView {
     	if(!ErrorCheck.isValidTime(movie, movieTime)) {
     		return inputMovieTime(movie);
     	}
-    	if(!ErrorCheck.isWithinOneHour(movie, movieTime)) {
+    	/*if(!ErrorCheck.isWithinOneHour(movie, movieTime)) {
     		return inputMovieTime(movie);
-    	}
+    	}*/
     	
     	return movieTime;
     }

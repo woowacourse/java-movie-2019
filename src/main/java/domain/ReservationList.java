@@ -10,7 +10,7 @@ public class ReservationList {
 		reservations.add(input);
 	}
 	
-	public static List<Movie> getReservations() {
+	public static List<Reservation> getReservations() {
 		return reservations;
 	}
 

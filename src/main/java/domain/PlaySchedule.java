@@ -22,10 +22,7 @@ public class PlaySchedule {
     	return startDateTime;
     }
     
-    public boolean canReserve(int num) {
-    	if(num<=capacity) {
-    		return true;
-    	}
-    	return false;
+   public int getCapacity() {
+	   return capacity;
     }
 }
