@@ -44,4 +44,24 @@ public class InputView {
             return inputAdditionalReserveOrNot();
         }
     }
+
+    public static int inputPoint() {
+        try {
+            System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputPoint();
+        }
+    }
+
+    public static int inputPaymentMethod() {
+        try {
+            System.out.println("## 신용카드는 1번, 현금은 2번");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputPoint();
+        }
+    }
 }

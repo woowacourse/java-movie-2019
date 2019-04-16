@@ -1,7 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
-import domain.Reservation;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -35,6 +32,12 @@ public class MovieApplication {
         } while (checkAdditionalReservationOrNot() == 2);
 
         OutputView.printReservation(reservedMovies);
+        OutputView.printPaymentStart();
+        int point = InputView.inputPoint();
+        int paymentMethod = InputView.inputPaymentMethod();
+        Payment payment = new Payment(reservedMovies, paymentMethod, point);
+        int totalAmount = payment.calcDiscountedTotalAmoumt(payment.caclTotalAmount());
+        OutputView.printTotalAmount(totalAmount);
     }
 
     private static Movie getPlaySchedulesOfSelectedMovie() {

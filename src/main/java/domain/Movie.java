@@ -22,6 +22,10 @@ public class Movie {
         return this.id;
     }
 
+    int getPrice(){
+        return this.price;
+    }
+
     boolean isEqualId(int movieId) {
         return this.id == movieId;
     }

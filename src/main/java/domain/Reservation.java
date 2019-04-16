@@ -21,6 +21,10 @@ public class Reservation {
         return playSchedule.checkOneHourGapWithOthers(playSchedule);
     }
 
+    public int calcMoviePrice(){
+        return movie.getPrice() * theNumberOfPerson;
+    }
+
     @Override
     public String toString() {
         return "예약 내역" + "\n" +
