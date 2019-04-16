@@ -26,6 +26,13 @@ public class Movie {
         return (this.id == id);
     }
 
+    public int isValidTime(int timeCode) {
+        if (this.playSchedules.size() < timeCode) {
+            throw new IllegalArgumentException("유효하지 않은 시간을 선택하셨습니다.");
+        }
+        return timeCode;
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
