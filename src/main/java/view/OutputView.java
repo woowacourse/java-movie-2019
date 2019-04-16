@@ -14,4 +14,9 @@ public class OutputView {
     public static void printMovie(Movie movie){
         System.out.println(movie);
     }
+
+    public static void printSchedule(Movie chooseMovie, int scheduleNumber){
+
+        chooseMovie.printSchedule(scheduleNumber);
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
+    private static final int START_NUMBER = 1;
 
     private final int id;
     private final String name;
@@ -24,6 +25,10 @@ public class Movie {
 
     public boolean matchId(int movieId){
         return (this.id == movieId) ? true : false;
+    }
+
+    public void printSchedule(int scheduleNo){
+        System.out.println(playSchedules.get(scheduleNo + START_NUMBER));
     }
 
     @Override
