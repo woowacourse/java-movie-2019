@@ -24,9 +24,16 @@ public class MovieApplication {
 
         reservation=new Reservation(movieId,scheduledNumber,numberOfPeople);
         user.addReservation(reservation);
-
-        OutputView.printUserReservationList(user.getReservationList());
         MovieRepository.getMovieById(movieId).getPlaySchedule(scheduledNumber).subCapacity(numberOfPeople);
+
+        int isContinue=InputView.inputContinue();
+        if(isContinue==1) {
+            OutputView.printUserReservationList(user.getReservationList());
+
+        }
+        else{
+
+        }
 
     }
 
