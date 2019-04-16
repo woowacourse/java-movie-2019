@@ -9,7 +9,7 @@ public class Payment {
     private static final double PAYMENT_DISCOUNT_RATE_CREDIT_CARD= 0.05;
     private static final double PAYMENT_DISCOUNT_RATE_CASH= 0.02;
     private static List<SelectedMovie> selectedMovies;
-    private double money;
+    private int money;
     private int paymentOption;
 
     public Payment(List<SelectedMovie> selectedMovies, int usingPoints, int paymentOption) {
@@ -32,7 +32,7 @@ public class Payment {
         return PAYMENT_DISCOUNT_RATE_CASH;
     }
 
-    public double getMoney() {
-        return money * (1 - discount(paymentOption)) ;
+    public int getMoney() {
+        return (int) (money * (1 - discount(paymentOption))) ;
     }
 }

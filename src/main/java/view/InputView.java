@@ -31,7 +31,7 @@ public class InputView {
     }
 
     public static int inputCardOrCash() {
-        System.out.println("## 신용카드는 1번, 현금은 2번");
+        System.out.println("\n## 신용카드는 1번, 현금은 2번");
         return scanner.nextInt();
     }
 }

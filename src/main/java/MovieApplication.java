@@ -78,6 +78,6 @@ public class MovieApplication {
         int usingPoints = InputView.inputUsingPoints();
 
         int inputCardOrCash = InputView.inputCardOrCash();
-        //OutputView.printnew Payment(ReserveMovie.getSelectedMovies(), usingPoints, inputCardOrCash).getMoney();
+        OutputView.printTotalMoney(new Payment(ReserveMovie.getSelectedMovies(), usingPoints, inputCardOrCash));
     }
 }
