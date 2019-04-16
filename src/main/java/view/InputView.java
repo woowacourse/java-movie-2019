@@ -1,5 +1,7 @@
 package view;
 
+import utils.InputNumber;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -14,31 +16,31 @@ public class InputView {
 
     public static int inputMovieId() {
         System.out.println(SELECT_MOVIE_TO_RESERVE_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 
     public static int inputMoviePlaySchedule() {
         System.out.println(SELECT_MOVIE_PLAY_SCHEDULE_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 
     public static int inputPeopleNumberOfReservation() {
         System.out.println(ENTER_PEOPLE_NUMBER_OF_RESERVE_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 
     public static int inputEndOrAddReservation() {
         System.out.println(SELECT_END_OR_ADD_RESERVE_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 
     public static int inputAmountOfPointToUse() {
         System.out.println(ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 
     public static int inputPaymentMethod() {
         System.out.println(SELECT_PAYMENT_METHOD_MESSAGE);
-        return scanner.nextInt();
+        return InputNumber.getNaturalNumber();
     }
 }
