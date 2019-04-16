@@ -17,6 +17,10 @@ public class PlaySchedule {
         return startDateTime;
     }
 
+    public boolean isCrowded(int number) {
+        return capacity < number;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

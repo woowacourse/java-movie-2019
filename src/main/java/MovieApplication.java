@@ -1,9 +1,11 @@
 import domain.Movie;
 import domain.MovieRepository;
 
+import input.MemberNumberInput;
 import input.ScheduleInput;
 import view.InputView;
 import view.OutputView;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,9 +16,11 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         Movie movie = InputView.inputMovie(movies);
+        OutputView.printMovies(movie);
         int scheduleId = InputView.getScheduleId(movie);
         // TODO 구현 진행
-        System.out.println(scheduleId);
+        MemberNumberInput memberNumberInput = new MemberNumberInput(movie,
+                scheduleId, "22");
 
     }
 }
