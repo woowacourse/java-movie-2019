@@ -18,12 +18,12 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
-    public String showResult(){
-        return "시작시간: " + format(startDateTime)+ "\n";
+    public String showResult() {
+        return "시작시간: " + format(startDateTime) + "\n";
     }
 
-    public boolean checkCapacity(int people){
-        if((capacity - people) < 0){
+    public boolean checkCapacity(int people) {
+        if ((capacity - people) < 0) {
             return true;
         }
         capacity = capacity - people;
