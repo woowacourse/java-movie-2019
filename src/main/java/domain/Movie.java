@@ -3,6 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 기본생성자 추가 안됨
+ * 필드 추가 안됨
+ * 필드의 private 변경 안됨
+ */
 public class Movie {
     private static final char NEW_LINE = '\n';
 
