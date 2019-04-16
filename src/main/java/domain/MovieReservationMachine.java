@@ -16,4 +16,11 @@ public class MovieReservationMachine {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
     }
+
+    /**
+     * 특정 영화의 스케쥴을 출력하는 메소드
+     */
+    public static void showSchedulesOfMovieWithId(int id) {
+        OutputView.printMovie(MovieRepository.getMovieWithId(id));
+    }
 }

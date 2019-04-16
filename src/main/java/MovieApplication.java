@@ -11,5 +11,6 @@ public class MovieApplication {
     public static void main(String[] args) {
         MovieReservationMachine.showAvailableMovies();
         int userMovieId = User.selectMovie();
+        MovieReservationMachine.showSchedulesOfMovieWithId(userMovieId);
     }
 }
