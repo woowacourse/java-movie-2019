@@ -4,9 +4,7 @@ import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static domain.MovieRepository.getMovies;
 import static view.InputView.inputMovieId;
@@ -19,26 +17,55 @@ public class MovieApplication {
     private final int FOURTH_MOVIE = 8;
     private final int SET_MOVIE_NUMVER = 4;
 
+    private List<Integer> getInMovieIdList(String[] movieIdString){
 
-    private void printMovieList(int movieId){
+        List<Integer> movieIdList = new ArrayList<Integer>();
+        for(int i=0;i<movieIdString.length;i++){
 
-        if(movieId == FIRST_MOVIE){
-
-            System.out.println(getMovies().get(movieId - FIRST_MOVIE));
+            movieIdList.add(Integer.parseInt(movieIdString[i]));
         }
-        if(movieId == SECOND_MOVIE || movieId == THIRD_MOVIE ||
-                movieId == FOURTH_MOVIE ){
+        return movieIdList;
+    }
 
-            System.out.println(getMovies().get(movieId - SET_MOVIE_NUMVER));
+    private void printMovieList(String movieIdString){
+
+        String[] movieIdStringArrays = movieIdString.split("");
+        List<Integer> movieIdArrayList = new ArrayList<Integer>();
+        movieIdArrayList = getInMovieIdList(movieIdStringArrays);
+
+        for(int i=0; i<movieIdArrayList.size();i++) {
+
+            getFirstMovie(movieIdArrayList, i);
+            getSecondToFourthMovie(movieIdArrayList, i);
+            getException(movieIdArrayList, i);
         }
-        if(movieId != FIRST_MOVIE && movieId != SECOND_MOVIE &&
-                movieId != THIRD_MOVIE &&
-                movieId != FOURTH_MOVIE ){
+    }
 
+    private void getException(List<Integer> movieIdArrayList, int i) {
+        if (movieIdArrayList.get(i) != FIRST_MOVIE && movieIdArrayList.get(i) != SECOND_MOVIE &&
+                movieIdArrayList.get(i) != THIRD_MOVIE &&
+                movieIdArrayList.get(i) != FOURTH_MOVIE) {
+
+            System.out.println("문자열 혹은 맞는 영화 번호를 입력하셨는지 확인하세요");
             throw new IllegalArgumentException();
         }
-
     }
+
+    private void getSecondToFourthMovie(List<Integer> movieIdArrayList, int i) {
+        if (movieIdArrayList.get(i) == SECOND_MOVIE || movieIdArrayList.get(i) == THIRD_MOVIE ||
+                movieIdArrayList.get(i) == FOURTH_MOVIE) {
+
+            System.out.println(getMovies().get(movieIdArrayList.get(i) - SET_MOVIE_NUMVER));
+        }
+    }
+
+    private void getFirstMovie(List<Integer> movieIdArrayList, int i) {
+        if (movieIdArrayList.get(i) == FIRST_MOVIE) {
+
+            System.out.println(getMovies().get(movieIdArrayList.get(i) - FIRST_MOVIE));
+        }
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = getMovies();
         OutputView.printMovies(movies);
@@ -50,17 +77,19 @@ public class MovieApplication {
     }
 
     private void checkMovieId(){
-        
+
         while(true){
             try{
-                int movieIdValue = inputMovieId();
+                String movieIdValue = inputMovieId();
                 printMovieList(movieIdValue);
                 break;
             } catch(Exception e){
 
-                System.out.println("잘못된 값을 입력하셨습니다 다시 입력해주십시오");
+                System.out.println("다시 입력해주십시오.");
             }
         }
     }
+
+    
 
 }
