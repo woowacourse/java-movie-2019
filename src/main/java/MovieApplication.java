@@ -14,6 +14,7 @@ public class MovieApplication {
 
         OutputView.printMovies(MovieRepository.getMovies(movieId));
 
+        int movietime = InputView.inputMovieTime();
         // TODO 구현 진행
     }
 }
