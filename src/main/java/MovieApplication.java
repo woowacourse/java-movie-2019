@@ -8,6 +8,7 @@ import java.util.List;
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
+        OutputView.printList();
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
