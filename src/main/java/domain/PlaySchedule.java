@@ -23,7 +23,12 @@ public class PlaySchedule {
     }
 
     public boolean isSchedulePossible() {
-        return (capacity > 0);
+        return (capacity > 0 && isScheduleValidTime());
+    }
+
+    private boolean isScheduleValidTime() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        return currentTime.isBefore(this.startDateTime);
     }
 
     @Override
