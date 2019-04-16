@@ -23,4 +23,8 @@ public class PlaySchedule {
         return format(startDateTime);
     }
 
+    public int selectCapacity(){
+        return capacity;
+    }
+
 }

@@ -21,6 +21,8 @@ public class MovieApplication {
 
         int moviePerson = InputView.inputMoviePerson();
 
+        OutputView.userMovie_SelectCapacity(moviePerson);
+
 
     }
 }

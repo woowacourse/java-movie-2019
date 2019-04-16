@@ -31,7 +31,14 @@ public class Movie {
     }
 
     public String getMovieDataTime(int datatime){
+        if (playSchedules.size() < datatime){
+            throw new IllegalArgumentException("해당 영화 시간은 없습니다");
+        }
         return playSchedules.get(datatime).selctDatatime();
+    }
+
+    public int getMoviecapacity(int person){
+        return playSchedules.get(person).selectCapacity();
     }
 
 

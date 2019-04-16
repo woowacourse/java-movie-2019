@@ -8,7 +8,6 @@ import java.util.List;
 
 public class OutputView {
     static Movie userMovie;
-    static String[] userMovieTime;
 
     public static void printMovies(List<Movie> movies) {
         for (Movie movie : movies) {
@@ -42,4 +41,7 @@ public class OutputView {
         return userMovie.getMovieDataTime(movie_datatime);
     }
 
+    public static int userMovie_SelectCapacity(int movie_person){
+        return userMovie.getMoviecapacity(movie_person);
+    }
 }
