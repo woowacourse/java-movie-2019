@@ -26,6 +26,7 @@ public class MovieApplication {
         reservationedList  = new ArrayList<>();
         totalPrice = 0;
     }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printList();
@@ -82,7 +83,7 @@ public class MovieApplication {
         int reservationMoviewTime = 0;
         do {
             reservationMoviewTime = InputView.inputMovieTime();
-        } while(checkTime(reservationMoviewTime)) ;
+        } while (checkTime(reservationMoviewTime));
         return (reservationMoviewTime);
     }
 
@@ -143,7 +144,7 @@ public class MovieApplication {
         int point = 0;
         do {
             point = InputView.inputMoviePoint();
-        } while(checkPoint(point));
+        } while (checkPoint(point));
         return point ;
     }
 
@@ -158,7 +159,7 @@ public class MovieApplication {
         int select = 0;
         do {
             select =  InputView.inputCardorCash();
-        } while(checkCardOrCash(select));
+        } while (checkCardOrCash(select));
         return select;
     }
 
