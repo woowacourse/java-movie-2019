@@ -2,14 +2,14 @@ import domain.Movie;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
+import java.util.Map;
 
 public class PayMovie {
     private static final double CASH_DISCOUNT = 0.98;
     private static final double CARD_DISCOUNT = 0.95;
-    private final List<Movie> bookedMovies;
+    private final Map<Movie, Integer> bookedMovies;
 
-    PayMovie(List<Movie> bookedMovies) {
+    PayMovie(Map<Movie, Integer> bookedMovies) {
         this.bookedMovies = bookedMovies;
         showBookedMovies();
     }
@@ -30,7 +30,7 @@ public class PayMovie {
 
     private int getPointAmount() {
         int payMoney = InputView.inputPointAmount();
-        if (payMoney < 0){
+        if (payMoney < 0) {
             return 0;
         }
         return payMoney;
@@ -38,8 +38,8 @@ public class PayMovie {
 
     private int makePayAmount(int point) {
         int payMoney = 0;
-        for (Movie m : bookedMovies) {
-            payMoney += m.getPrice();
+        for (Movie movie : bookedMovies.keySet()) {
+            payMoney += bookedMovies.get(movie) * movie.getPrice();
         }
         return payMoney - point;
     }

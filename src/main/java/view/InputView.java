@@ -52,20 +52,20 @@ public class InputView {
         return isOneOrTwo(getInputCastedToInt());
     }
 
-    private static int stringToInt(String inputString){
-        try{
+    private static int stringToInt(String inputString) {
+        try {
             return Integer.parseInt(inputString);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new NumberFormatException("숫자를 입력해야 합니다.");
         }
     }
 
-    private static String removeBlank(String inputString){
+    private static String removeBlank(String inputString) {
         return inputString.replace(" ", "");
     }
 
-    private static int getInputCastedToInt(){
-       return  stringToInt(removeBlank(scanner.nextLine()));
+    private static int getInputCastedToInt() {
+        return stringToInt(removeBlank(scanner.nextLine()));
     }
 
 }

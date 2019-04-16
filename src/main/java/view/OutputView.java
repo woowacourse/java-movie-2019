@@ -3,6 +3,7 @@ package view;
 import domain.Movie;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void printMovies(List<Movie> movies) {
@@ -11,9 +12,12 @@ public class OutputView {
         }
     }
 
-    public static void printPayInfo(List<Movie> movies) {
+    public static void printPayInfo(Map<Movie, Integer> movies) {
         System.out.println("예약 내역");
-        printMovies(movies);
+        for (Movie movie : movies.keySet()) {
+            System.out.println(movie.toString());
+            System.out.println("예약 인원 : " + movies.get(movie) + "명");
+        }
         System.out.println("## 결제를 진행합니다.");
     }
 

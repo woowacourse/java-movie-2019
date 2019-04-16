@@ -1,6 +1,5 @@
 package domain;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Movie {
         this.price = price;
     }
 
-    void addPlaySchedule(PlaySchedule playSchedule) {
+    public void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
 
@@ -43,5 +42,9 @@ public class Movie {
 
     public int getPrice() {
         return this.price;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
