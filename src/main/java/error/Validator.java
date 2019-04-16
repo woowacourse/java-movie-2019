@@ -10,6 +10,7 @@ public class Validator {
     private static final String WARNING_WHEN_NOT_INTEGER = "정수가 아닙니다";
     private static final String WARNING_WHEN_MOVIE_NOT_EXIST = "해당 영화는 존재하지 않습니다";
     private static final String WARNING_WHEN_MOVIE_DONT_HAVE_VACANCY = "해당 영화는 공석이 존재하지 않습니다.";
+    private static final String WARNING_WHEN_SCHEDULE_NOT_EXIST = "해당 스캐줄은 존재하지 않습니다.";
 
     // 정수인지
     public static boolean isInteger(String number) {
@@ -39,5 +40,18 @@ public class Validator {
         }
         System.out.println(WARNING_WHEN_MOVIE_DONT_HAVE_VACANCY);
         return false;
+    }
+
+    // 해당 스캐줄이 존재 하는지
+    public static boolean isScheduleExist(int movieNumber, int scheduleIndex) {
+        if (!isMovieExist(movieNumber)) {
+            return false;
+        }
+        boolean isScheduleExist = MovieRepository.getMovie(movieNumber).isScheduleExist(scheduleIndex);
+        if (!isScheduleExist) {
+            System.out.println(WARNING_WHEN_SCHEDULE_NOT_EXIST);
+            return false;
+        }
+        return true;
     }
 }

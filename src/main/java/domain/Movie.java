@@ -41,4 +41,8 @@ public class Movie {
     public boolean vacancyExist(){
         return playSchedules.stream().anyMatch(schedule -> schedule.isNotEmpty());
     }
+    // 해당 스캐줄이 존재하는지
+    public boolean isScheduleExist(int scheduleIndex){
+        return (playSchedules.size()-1 >= scheduleIndex);
+    }
 }

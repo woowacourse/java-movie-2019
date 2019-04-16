@@ -23,4 +23,5 @@ public class InputView {
         return movieNumber;
     }
 
+
 }
