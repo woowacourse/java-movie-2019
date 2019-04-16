@@ -24,7 +24,7 @@ public class InputView {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
         int input = scanner.nextInt();
         if (input != 1 && input != 2) throw new IllegalArgumentException();
-        return input == 1;
+        return input == 2;
     }
 
     public static int inputPoint() {

@@ -17,23 +17,26 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        /**** 예약 영화 ****/
-        int movieId = 0;
-        do { movieId = InputView.inputMovieId(); }
-        while (!selectMovie(movies, movieId));
+        do {
+            /**** 예약 영화 ****/
+            int movieId = 0;
+            do { movieId = InputView.inputMovieId(); }
+            while (!selectMovie(movies, movieId));
 
-        /**** 예약 스케줄 ****/
-        int scheduleIndex = selectSchedule(movies.get(movieId-1));
+            /**** 예약 스케줄 ****/
+            int scheduleIndex = selectSchedule(movies.get(movieId-1));
 
-        /**** 예약 인원 ****/
-        int peopleNumber = putPeopleNum(movies.get(movieId-1), scheduleIndex);
+            /**** 예약 인원 ****/
+            int peopleNumber = putPeopleNum(movies.get(movieId-1), scheduleIndex);
 
-        // Reservation 객체 생성하고
-        Reservation reservation = makeReservation(movies.get(movieId-1), scheduleIndex, peopleNumber);
-        reservations.add(reservation);
+            Reservation reservation = makeReservation(movies.get(movieId-1), scheduleIndex, peopleNumber);
+            reservations.add(reservation);
+        } while (InputView.isContinued());
 
         OutputView.printReservation(reservations);
 
+        int point = InputView.inputPoint();
+        boolean payment = InputView.inputPayment();
     }
 
     public static boolean selectMovie(List<Movie> movies, int movieId) {
