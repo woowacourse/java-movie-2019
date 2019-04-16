@@ -22,6 +22,13 @@ public class PlaySchedule {
     public boolean checkOneHourRange(PlaySchedule playSchedule) {
     	return DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
     }
+    
+    public boolean checkExcessCapacity(int personnel) {
+    	if (this.capacity < personnel) {
+    		return false;
+    	}
+    	return true;
+    }
 
     @Override
     public String toString() {
