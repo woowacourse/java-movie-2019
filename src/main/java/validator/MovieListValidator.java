@@ -22,7 +22,7 @@ public class MovieListValidator implements Validator {
     private boolean doesEachMovieInputIsValid() {
         return !movieIdSet.stream()
                 .map(MovieInputValidator::new)
-                .noneMatch((inputValidator) -> inputValidator.doesValid());
+                .anyMatch((inputValidator) -> !inputValidator.doesValid());
     }
 
     private boolean doesEachMovieIdExist() {

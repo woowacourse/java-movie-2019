@@ -26,7 +26,8 @@ public class ScheduleValidator implements Validator {
     @Override
     public boolean doesValid() {
         return doesMovieAndScheduleInputIsValid()
-                && doesMovieAndPlaySchedulesExist();
+                && doesMovieAndPlaySchedulesExist()
+                && doesEachScheduleAreOneHourWithinRange();
     }
 
     private boolean doesMovieAndScheduleInputIsValid() {
@@ -44,14 +45,14 @@ public class ScheduleValidator implements Validator {
 
     private boolean doesMovieAndPlaySchedulesExist() {
         return !schedules.entrySet().stream()
-                .noneMatch((movieAndSchedule) -> {
+                .anyMatch((movieAndSchedule) -> {
                     int movieId = Integer.parseInt(movieAndSchedule.getKey());
                     int schedule = Integer.parseInt(movieAndSchedule.getValue());
                     Movie movie = MovieRepository.getMovieById(movieId);
                     if (movie == null) {
                         return false;
                     }
-                    return movie.doesPlaySchedulesHas(schedule);
+                    return !movie.doesPlaySchedulesHas(schedule);
                 });
     }
 
@@ -61,23 +62,23 @@ public class ScheduleValidator implements Validator {
 
     private boolean doesEachScheduleAreOneHourWithinRange() {
         return !schedules.entrySet().stream()
-                .noneMatch((movieAndSchedule) -> {
+                .anyMatch((movieAndSchedule) -> {
                     int movieId = Integer.parseInt(movieAndSchedule.getKey());
                     int schedule = Integer.parseInt(movieAndSchedule.getValue());
                     Movie movie = MovieRepository.getMovieById(movieId);
                     PlaySchedule playSchedule = movie.getScheduleByIndex(schedule);
-                    return doesScheduleAreOneHourWithinRange(playSchedule);         // 하나의 스케쥴을 가지고 전체 스케쥴과 비교
+                    return !doesScheduleAreOneHourWithinRange(playSchedule);         // 하나의 스케쥴을 가지고 전체 스케쥴과 비교
                 });
     }
 
     private boolean doesScheduleAreOneHourWithinRange(PlaySchedule playSchedule1) {
         return !schedules.entrySet().stream()
-                .noneMatch((movieAndSchedule) -> {
+                .anyMatch((movieAndSchedule) -> {
                     int movieId = Integer.parseInt(movieAndSchedule.getKey());
                     int schedule = Integer.parseInt(movieAndSchedule.getValue());
                     Movie movie = MovieRepository.getMovieById(movieId);
                     PlaySchedule playSchedule2 = movie.getScheduleByIndex(schedule);
-                    return playSchedule1.isOneHourWithinRange(playSchedule2);
+                    return !playSchedule1.isOneHourWithinRange(playSchedule2);
                 });
     }
 
