@@ -1,5 +1,7 @@
 package domain;
 
+import utils.NaturalNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +43,15 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie selectMovie(NaturalNumber selectNumber) {
+        for (Movie movie : movies) {
+	        if (movie.isId(selectNumber.getNumber())) {
+	        	return movie;
+	        }
+        }
+
+        throw new IllegalArgumentException("선택된 영화는 존재 하지 않습니다.");
     }
 }

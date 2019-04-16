@@ -6,11 +6,9 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-	public static final int CONTINUE_FLAG = 2;
+	private static final int CONTINUE_FLAG = 2;
 
     public static void main(String[] args) {
-        showMovies();
-
 	    ReservationRepository reservationRepository = new ReservationRepository();
 	    do {
 		    askReservation(reservationRepository);
@@ -24,15 +22,20 @@ public class MovieApplication {
     }
 
     private static void askReservation(ReservationRepository reservationRepository) {
-	    Movie selectedMovie = askSelectMovie();
-	    PlaySchedule selectedPlaySchedule = askContinue(selectedMovie);
-	    int capacity = askCapacity(selectedPlaySchedule);
-
-	    reservationRepository.addReservation(new Reservation(selectedMovie, selectedPlaySchedule, capacity));
+    	try {
+		    Movie selectedMovie = askSelectMovie();
+		    PlaySchedule selectedPlaySchedule = askPlaySchedule(selectedMovie);
+		    int capacity = askCapacity(selectedPlaySchedule);
+		    reservationRepository.addReservation(new Reservation(selectedMovie, selectedPlaySchedule, capacity));
+	    } catch (IllegalArgumentException e) {
+    		System.out.println(e.getMessage());
+    		askReservation(reservationRepository);
+	    }
     }
 
     private static Movie askSelectMovie() {
     	try {
+		    showMovies();
 		    Movie selectedMovie = MovieRepository.selectMovie(new NaturalNumber(InputView.inputMovieId()));
 		    OutputView.printPlaySchedule(selectedMovie);
 		    return selectedMovie;
@@ -42,13 +45,22 @@ public class MovieApplication {
 	    }
     }
 
-    private static PlaySchedule askContinue(Movie selectedMovie) {
-	    int playScheduleNo = InputView.inputPlaySchedule();
-	    return selectedMovie.getPlaySchedule(new NaturalNumber(playScheduleNo));
+    private static PlaySchedule askPlaySchedule(Movie selectedMovie) {
+    	try {
+		    int playScheduleNo = InputView.inputPlaySchedule();
+		    return selectedMovie.getPlaySchedule(new NaturalNumber(playScheduleNo));
+	    } catch (IllegalArgumentException e) {
+    		System.out.println(e.getMessage());
+    		return askPlaySchedule(selectedMovie);
+	    }
     }
 
     private static int askCapacity(PlaySchedule selectedPlaySchedule) {
-	    return InputView.inputCapacity();
+    	int capacity = 0;
+    	do {
+		    capacity = InputView.inputCapacity();
+	    } while (!selectedPlaySchedule.isCapacity(capacity));
+    	return capacity;
     }
 
     private static boolean askContinue() {

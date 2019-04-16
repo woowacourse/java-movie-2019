@@ -14,4 +14,8 @@ public class NaturalNumber {
 	public int getNumber() {
 		return this.number;
 	}
+
+	public int toArrayIndex() {
+		return this.number - 1;
+	}
 }
