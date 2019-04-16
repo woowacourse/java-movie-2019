@@ -58,7 +58,7 @@ public class InputView extends CheckValidity {
             System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
             payProcessing = scanner.next();
         } while (!validityPayProcessing(payProcessing));
-        return Integer.parseInt(payProcessing) == MIN_PAY_PROCESSING;
+        return Integer.parseInt(payProcessing) == ONE;
     }
 
     private static boolean validityPayProcessing(String payProcessing) {
@@ -71,7 +71,7 @@ public class InputView extends CheckValidity {
         do {
             System.out.println("포인트 사용 금액을 입력하세요. 포인트가 없으면 0입력");
             point = scanner.next();
-        } while (validityPoint(point));
+        } while (!validityPoint(point));
         return Integer.parseInt(point);
     }
 
@@ -85,7 +85,7 @@ public class InputView extends CheckValidity {
         do{
             System.out.println("신용카드는 1번, 현금은 2번");
             paymentType = scanner.next();
-        }while(validityPaymentType(paymentType));
+        }while(!validityPaymentType(paymentType));
         return Integer.parseInt(paymentType);
     }
 
