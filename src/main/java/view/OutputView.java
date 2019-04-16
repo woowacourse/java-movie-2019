@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.Reservation;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class OutputView {
     }
 
     public static void showSelectedMovie(int id) {
-        MovieRepository.showMovie(id);
+        Reservation.showMovie(id);
     }
 
 }

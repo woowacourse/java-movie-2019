@@ -7,7 +7,7 @@ public class SelectedMovie {
     private int selectedPlayScheduleId;
     private int audience;
 
-    public void initMovie(Movie movie) {
+    public SelectedMovie(Movie movie) {
         this.movie = movie;
     }
 
