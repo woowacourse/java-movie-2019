@@ -45,6 +45,6 @@ public class Movie {
         for (PlaySchedule playSchedule : playSchedules) {
             sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "원" + NEW_LINE;
+        return id + " - " + name + ", " + price + "원";
     }
 }
