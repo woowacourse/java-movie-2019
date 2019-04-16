@@ -2,11 +2,13 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
+    private static final int ZERO = 0;
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -41,5 +43,12 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie getSelectedMovie(int movieID) {
+        List<Movie> selectedMovies = movies.stream()
+                .filter(movie -> movie.isSelectedMovie(movieID))
+                .collect(Collectors.toList());
+        return selectedMovies.get(ZERO);
     }
 }

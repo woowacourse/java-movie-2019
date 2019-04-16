@@ -18,6 +18,13 @@ public class Movie {
         this.price = price;
     }
 
+    public boolean isSelectedMovie(int movieId) {
+        if (this.id == movieId) {
+            return true;
+        }
+        return false;
+    }
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
