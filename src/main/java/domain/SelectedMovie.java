@@ -28,6 +28,10 @@ public class SelectedMovie {
 	public int getNumOfPeople() {
 		return this.numOfPeople;
 	}
+	
+	public int getTotalPrice() {
+		return selectedMovie.getPrice() * numOfPeople;
+	}
 
 	public boolean isWithInOneHour(Movie movie, int scheduleIndex) {
 		return selectedPlaySchedule.isWithInOneHour(movie.getSchedule(scheduleIndex));

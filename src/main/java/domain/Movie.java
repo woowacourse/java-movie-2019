@@ -49,6 +49,10 @@ public class Movie {
 	public int getId() {
 		return id;
 	}
+	
+	public int getPrice() {
+		return price;
+	}
 
 	public PlaySchedule getSchedule(int index) {
 		return playSchedules.get(index - 1);

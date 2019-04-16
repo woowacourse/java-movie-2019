@@ -10,12 +10,17 @@ import view.OutputView;
 
 public class MovieApplication {
 
+	static final int DISCOUNT_FOR_CARD = 5;
+	static final int DISCOUNT_FOR_CASH = 2;
+
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
 		List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
 		OutputView.printMovies(movies);
 		recurSelectMovieOrNot(movies, selectedMovies);
 		OutputView.printSelectedMovies(selectedMovies);
+		int totalPrice = calculateFinalPrice(selectedMovies);
+		OutputView.printTotalPrice(totalPrice);
 	}
 
 	static void isExist(List<Movie> movies, int id) {
@@ -169,7 +174,7 @@ public class MovieApplication {
 	static int inputPointOnce() {
 		int point = InputView.inputPoint();
 		if (point < 0)
-			throw new IllegalAccessError("사용할 포인트는 0 점 이상이어야 합니다. \n다시 입력해주세요.");
+			throw new IllegalArgumentException("사용할 포인트는 0 점 이상이어야 합니다. \n다시 입력해주세요.");
 		return 0;
 	}
 
@@ -192,7 +197,17 @@ public class MovieApplication {
 			System.out.println(e.getMessage());
 			input = recurInputCardOrCash();
 		}
-		return input;
+		return (input == 1) ? DISCOUNT_FOR_CARD : (input == 2) ? DISCOUNT_FOR_CASH : 0;
+	}
+
+	static int calculateFinalPrice(List<SelectedMovie> selectedMovies) {
+		int price = 0;
+		for (SelectedMovie selecteMovie : selectedMovies) {
+			price += selecteMovie.getTotalPrice();
+		}
+		int point = recurInputPoint();
+		int discountPercent = recurInputCardOrCash();
+		return ((price - point) * (100 - discountPercent) / 1000) * 10;
 	}
 
 }
