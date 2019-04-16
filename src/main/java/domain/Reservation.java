@@ -30,11 +30,13 @@ public class Reservation {
     }
 
     public void startSelectedMovies() {
+        boolean updateFlag = false;
         do {
             selectedMovies.get(index).getData();
             System.out.println(isValidPlayScehdule());
             if(!isValidPlayScehdule()) continue;
-        } while (!updateAudience());
+            updateFlag = updateAudience();
+        } while (!updateFlag);
         selectedMovies.get(index).showSelectedMovieSchecule();
         index += 1;
     }
