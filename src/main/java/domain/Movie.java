@@ -40,4 +40,8 @@ public class Movie {
   public List<PlaySchedule> getPlaySchedule(){
     return playSchedules;
   }
+
+  public void setPlaySchedules(List<PlaySchedule> ps){
+    this.playSchedules = ps;
+  }
 }

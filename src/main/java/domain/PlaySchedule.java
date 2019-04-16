@@ -22,4 +22,7 @@ public class PlaySchedule {
   public int getCapacity() {
     return capacity;
   }
+  public void setCapacity(int num){
+    this.capacity = num;
+  }
 }

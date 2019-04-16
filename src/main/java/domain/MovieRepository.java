@@ -52,9 +52,11 @@ public class MovieRepository {
     }
     return null;
   }
-  public static PlaySchedule playScheduleOfMovieOfNum(Movie movieOfId, int movieScheduleNum){
+
+  public static PlaySchedule playScheduleOfMovieOfNum(Movie movieOfId, int movieScheduleNum) {
     List<PlaySchedule> playSchedules = movieOfId.getPlaySchedule();
-    return playSchedules.get(movieScheduleNum-1);
+    return playSchedules.get(movieScheduleNum - 1);
   }
+
 }
 

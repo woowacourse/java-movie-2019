@@ -6,20 +6,38 @@ import view.OutputView;
 
 public class PartialApplication {
 
+  Movie movieOfId;
+  int movieScheduleNum;
   private PlaySchedule playSchedule;
+  int peopleWatchingMovie;
 
   public void appOfOne() {
     OutputView.printMovies(MovieRepository.getMovies());
     int movieId = InputView.inputMovieId();
-    Movie movieOfId = MovieRepository.getMovie(movieId);
+    movieOfId = MovieRepository.getMovie(movieId);
     OutputView.printMovie(movieOfId);
-    int movieScheduleNum = InputView.inputMovieScheduleNum();
+    movieScheduleNum = InputView.inputMovieScheduleNum();
     playSchedule = MovieRepository.playScheduleOfMovieOfNum(movieOfId, movieScheduleNum);
   }
 
   public boolean checkIfTooMuchPeople() {
-    int peopleWatchingMovie = InputView.inputPeopleWatchingMovie();
-    if(playSchedule.getCapacity()<peopleWatchingMovie) return true;
+    peopleWatchingMovie = InputView.inputPeopleWatchingMovie();
+    if (playSchedule.getCapacity() < peopleWatchingMovie) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean updateMovieSchedule() {
+    if (checkIfTooMuchPeople()) {
+      peopleWatchingMovie = peopleWatchingMovie - movieOfId.getPlaySchedule().get(movieScheduleNum-1).getCapacity();
+      movieOfId.getPlaySchedule().remove(movieScheduleNum - 1);
+      movieOfId.setPlaySchedules(movieOfId.getPlaySchedule());
+      return true;
+    }
+    if(!checkIfTooMuchPeople()){
+      movieOfId.getPlaySchedule().get(movieScheduleNum - 1).setCapacity(movieOfId.getPlaySchedule().get(movieScheduleNum - 1).getCapacity() - peopleWatchingMovie);
+    }
     return false;
   }
 }
