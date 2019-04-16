@@ -19,7 +19,7 @@ public class Payment {
     private int totalMoney(List<PaymentInfo> paymentInfos) {
         int total = 0;
         for (PaymentInfo paymentInfo : paymentInfos) {
-            total += paymentInfo.getMovie().getPrice() * paymentInfo.countOfUser;
+            total += paymentInfo.getMovie().getPrice() * paymentInfo.getCountOfUser();
         }
         return total;
     }
