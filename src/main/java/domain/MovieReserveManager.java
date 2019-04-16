@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.LocalDateTime;
+
 import view.InputView;
 
 public class MovieReserveManager {
@@ -16,6 +18,19 @@ public class MovieReserveManager {
 			System.out.println("존재하지 않는 시간입니다.");
 			return inputValidatedMovieTime(movie);
 		}
+		if (!validateMovieTimePassed(movie, inputMovieTime)) {
+			System.out.println("상영 시간이 지난 영화입니다.");
+			return inputValidatedMovieTime(movie);
+		}
 		return inputMovieTime;
+	}
+
+	private boolean validateMovieTimePassed(Movie movie, int movieTime) {
+		LocalDateTime nowDateTime = LocalDateTime.now();
+		PlaySchedule playSchedule = movie.getPlaySchedule(movieTime);
+		LocalDateTime startDateTime = playSchedule.getStartDateTime();
+		if (nowDateTime.isAfter(startDateTime))
+			return false;
+		return true;
 	}
 }

@@ -44,4 +44,10 @@ public class Movie {
 	public int getMovieCounts() {
 		return playSchedules.size();
 	}
+
+	public PlaySchedule getPlaySchedule(int movieTimeNumber) {
+		if (playSchedules.size() < movieTimeNumber)
+			throw new IllegalArgumentException("해당 번호가 존재하지 않습니다.");
+		return playSchedules.get(movieTimeNumber - 1);
+	}
 }
