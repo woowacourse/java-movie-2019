@@ -43,4 +43,8 @@ public class Movie {
     public int getTotalPrice(int people) {
         return this.price * people;
     }
+
+    public int getTimeSize(){
+        return playSchedules.size();
+    }
 }

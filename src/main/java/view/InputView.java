@@ -1,6 +1,7 @@
 package view;
 
 import Exceptions.IdException;
+import Exceptions.TimeException;
 
 import java.util.Scanner;
 
@@ -12,9 +13,9 @@ public class InputView {
         return IdException.inputMovieId(scanner.nextInt());
     }
 
-    public static int inputMovieTime() {
+    public static int inputMovieTime(int size) {
         System.out.println("## 예약할 시간표를 선택 하세요.(첫번째상영시간이1번)");
-        return scanner.nextInt();
+        return TimeException.inputMovieTime(scanner.nextInt(), size);
     }
 
     public static int inputMoviePeople() {

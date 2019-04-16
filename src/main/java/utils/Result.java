@@ -20,7 +20,8 @@ public class Result {
     }
 
     public void startMovieResult() {
-        movieTime.add(InputView.inputMovieTime());
+        int timeSize = movies.get(movieId.get(0)).getTimeSize();
+        movieTime.add(InputView.inputMovieTime(timeSize));
         moviePeople.add(InputView.inputMoviePeople());
         setMovieResult(InputView.inputMovieExit());
     }
@@ -47,9 +48,12 @@ public class Result {
 
     private void startMovieSellect() {
         int movieNumber = Data.getMovieId(InputView.inputMovieId());
+        int timeSize = movies.get(movieNumber).getTimeSize();
+
         movieId.add(movieNumber);
         OutputView.printMovieInfo(movies.get(movieNumber).toString());
-        movieTime.add(InputView.inputMovieTime());
+
+        movieTime.add(InputView.inputMovieTime(timeSize));
         moviePeople.add(InputView.inputMoviePeople());
         setMovieResult(InputView.inputMovieExit());
     }

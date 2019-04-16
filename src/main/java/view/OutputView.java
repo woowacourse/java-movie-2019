@@ -32,4 +32,9 @@ public class OutputView {
         System.out.println("해당 영화가 없습니다.");
         System.out.println("다시 입력해 주세요.");
     }
+
+    public static void printTImeException(){
+        System.out.println("상영 시간이 아닙니다.");
+        System.out.println("다시 입력해 주세요.");
+    }
 }

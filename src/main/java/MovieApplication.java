@@ -16,7 +16,6 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = Data.getMovieId(InputView.inputMovieId());
-
         OutputView.printMovieInfo(movies.get(movieId).toString());
 
         Result result = new Result(movies, movieId);
