@@ -42,4 +42,8 @@ public class Movie {
         }
         return true;
     }
+
+    public boolean matchMovieCapacity(int movieTime, int capacity) {
+        return playSchedules.get(movieTime).matchCapacity(capacity);
+    }
 }

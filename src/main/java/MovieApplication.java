@@ -13,6 +13,7 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
         OutputView.printSelectMovie(movieId);
         int movieTime = InputView.inputMovieTime(movieId);
+        int capacity = InputView.inputMovieCapacity(movieId, movieTime);
     }
 
 }

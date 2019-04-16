@@ -13,6 +13,13 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public boolean matchCapacity(int capacity) {
+        if ((capacity < 1) || (capacity > this.capacity)) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

@@ -29,4 +29,14 @@ public class InputView {
         return movieTime;
     }
 
+    public static int inputMovieCapacity(int movieId, int movieTime) {
+        Movie movie = MovieRepository.getMovieForMovieId(movieId);
+        System.out.println("## 예약할 인원을 입력하세요.");
+        int capacity = scanner.nextInt();
+        if(!movie.matchMovieCapacity(movieTime, capacity)) {
+            return inputMovieCapacity(movieId, movieTime);
+        }
+        return capacity;
+    }
+
 }
