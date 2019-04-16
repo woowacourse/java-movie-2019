@@ -1,10 +1,14 @@
 package domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import view.InputView;
 
 public class MovieReserveManager {
+	private List<ReservedMovie> reservedMovies = new ArrayList<>();
+
 	public ReservedMovie getReservedMovie() {
 		int movieId = inputValidatedMovieId();
 		Movie movie = MovieRepository.getMovieById(movieId);
@@ -12,6 +16,10 @@ public class MovieReserveManager {
 		int movieTime = inputValidatedMovieTime(movie);
 		int peopleNumber = inputValidatedPeopleNumber(movie, movieTime);
 		return new ReservedMovie(movie, movie.getPlaySchedule(movieTime), peopleNumber);
+	}
+	
+	public void addReservedMovie(ReservedMovie reservedMoive) {
+		reservedMovies.add(reservedMoive);
 	}
 	
 	private int inputValidatedMovieId() {
