@@ -43,6 +43,8 @@ public class MovieRepository {
         return movies;
     }
 
+
+
     public static void printMovieInfo(int movieId){
         for (Movie movie : movies) {
             if (movie.checkMovieId(movieId)){
