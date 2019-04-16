@@ -103,10 +103,6 @@ public class MovieApplication {
         int numOfPeople = recurInputPeople(selectedSchedule);
         return new SelectedMovie(selectedMovie, indexOfSelectedSchedule, numOfPeople);
     }
-    
-	static void subtractCapacity(int movieId, int indexOfSchedule, int numOfPeople) {
-    	
-    }
 	
 	static void subtractCapacity(List<Movie> movies, SelectedMovie selectedMovie) {
 		int movieId = selectedMovie.getMovie().getId();
@@ -131,9 +127,10 @@ public class MovieApplication {
     	List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
     	int swc = 2;
     	do {
-    		selectedMovies.add(inputSelectedMovieOnce(movies));
+    		SelectedMovie selectedMovie = inputSelectedMovieOnce(movies);
+    		selectedMovies.add(selectedMovie);
+    		subtractCapacity(movies, selectedMovie);
     		swc = recurInputRechoiceOrNot();
     	} while(swc == 2);
-    	
     }
 }
