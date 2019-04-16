@@ -24,6 +24,12 @@ public class MovieApplication {
         OutputView.printReserveList(aMovie, movieTime, reserveCount);
 
         OutputView.printProcessMessage();
+        int pointAmount = InputView.inputPointAmount();
+
+        int payType = InputView.inputPayType();
+
+
+
 
     }
 }
