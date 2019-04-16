@@ -11,6 +11,7 @@ public class InputView {
     private static final String INPUT_ERROR_MENT = "입력 형식이 올바르지 않습니다.";
     private static final String INPUT_START_PAYMENT = "## 결제를 진행합니다.";
     private static final String INPUT_POINT_AMOUNT = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
+    private static final String INPUT_PAYMENT_METHOD = "## 신용카드는 1번,현금은 2번";
 
     public static int inputMovieId() {
         System.out.println("## 예약할 영화를 선택하세요.");
@@ -44,12 +45,21 @@ public class InputView {
         }
     }
 
-    public static int inputPoint(){
-        try{
+    public static int inputPoint() {
+        try {
             System.out.println(INPUT_START_PAYMENT);
             System.out.println(INPUT_POINT_AMOUNT);
             return scanner.nextInt();
-        } catch (Exception e){
+        } catch (Exception e) {
+            throw new RuntimeException(INPUT_ERROR_MENT);
+        }
+    }
+
+    public static int inputPaymentMethod() {
+        try{
+            System.out.println(INPUT_PAYMENT_METHOD);
+            return scanner.nextInt();
+        } catch (Exception e) {
             throw new RuntimeException(INPUT_ERROR_MENT);
         }
     }

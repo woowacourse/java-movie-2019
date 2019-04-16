@@ -37,5 +37,6 @@ public class ReservationManager {
 
     private void payReservation() {
         int userPoint = InputView.inputPoint();
+        int paymentMethod = InputView.inputPaymentMethod();
     }
 }
