@@ -22,4 +22,8 @@ public class PlaySchedule {
     public boolean isNotEmpty(){
         return capacity > 0;
     }
+    // 예매 가능한지
+    public boolean isReservePossible(int count){
+        return capacity >= count;
+    }
 }
