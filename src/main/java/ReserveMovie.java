@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.DateTimeUtils.format;
+import static utils.DateTimeUtils.isOneHourWithinRange;
+
 public class ReserveMovie {
     private static List<SelectedMovie> selectedMovies = new ArrayList<>();
     private Movie selectMovie;
@@ -31,11 +34,25 @@ public class ReserveMovie {
         return -1;
     }
 
+
     public static boolean assertMovieSchedule(List<Movie> movies, int movieIndex, int movieSchedule) {
-        if (movies.get(movieIndex).getPlaySchedules().get(movieSchedule - 1).getStartDateTime().isAfter(LocalDateTime.now())) {
+        LocalDateTime selectScheduleTime = movies.get(movieIndex).getPlaySchedules().get(movieSchedule - 1).getStartDateTime();
+        if (selectScheduleTime.isAfter(LocalDateTime.now())) {
             return true;
         }
         return false;
+    }
+
+    public static boolean assertMovieScheduleWithinRange(List<Movie> movies, int movieIndex, int movieSchedule) {
+        LocalDateTime selectScheduleTime = movies.get(movieIndex).getPlaySchedules().get(movieSchedule - 1).getStartDateTime();
+        if(selectedMovies.size() > 0) {
+            for (SelectedMovie selectedMovie : selectedMovies) {
+                if(!isOneHourWithinRange(selectedMovie.getStartDateTime(), selectScheduleTime)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static boolean assertMovieWatchPeople(List<Movie> movies, int movieIndex, int movieSchedule, int movieWatchPeople) {

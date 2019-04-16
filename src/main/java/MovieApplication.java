@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.SelectedMovie;
 import view.InputView;
 import view.OutputView;
 
@@ -29,11 +30,24 @@ public class MovieApplication {
             }
 
             int movieSchedule = InputView.inputMovieSchedule();
+
+            /*
+            while(true) {
+                if(ReserveMovie.assertMovieScheduleWithinRange(movies, movieIndex, movieSchedule)) {
+                    System.out.println();
+                    break;
+                }
+                // 다시
+                OutputView.printImpossibleReasonSelectedMovieAlreadyStartTime();
+                movieSchedule = InputView.inputMovieSchedule();
+            }
+            */
             while(true) {
                 if(ReserveMovie.assertMovieSchedule(movies, movieIndex, movieSchedule)) {
                     System.out.println();
                     break;
                 }
+
                 OutputView.printImpossibleReasonSelectedMovieAlreadyStartTime();
                 movieSchedule = InputView.inputMovieSchedule();
             }
@@ -50,10 +64,11 @@ public class MovieApplication {
             }
 
             int exitOrAddReserve = InputView.inputExitOrAddReservation();
-            if(exitOrAddReserve == EXIT_RESERVATION) {
+            if (exitOrAddReserve == EXIT_RESERVATION) {
                 OutputView.printSelectedMovies(ReserveMovie.getSelectedMovies());
                 break;
             }
+
             System.out.println();
         }
 
