@@ -14,19 +14,28 @@ public class MovieApplication {
         List<MovieReservation> reservationList = new ArrayList<>();
 
         do {
-            int movieId = InputView.inputMovieId();
-            OutputView.printSelectMovie(movieId);
-            int movieTime = InputView.inputMovieTime(movieId);
-            int capacity = InputView.inputMovieCapacity(movieId, movieTime);
-            reservationList.add(new MovieReservation(movieId, movieTime, capacity));
+            MovieReservation reservation = reservationMovie();
+
+            reservationList.add(reservation);
         } while (InputView.inputRestart());
 
+        paymentMovie(reservationList);
+    }
+
+    public static MovieReservation reservationMovie() {
+        int movieId = InputView.inputMovieId();
+        OutputView.printSelectMovie(movieId);
+        int movieTime = InputView.inputMovieTime(movieId);
+        int capacity = InputView.inputMovieCapacity(movieId, movieTime);
+        return new MovieReservation(movieId, movieTime, capacity);
+    }
+
+    public static void paymentMovie(List<MovieReservation> reservationList) {
         OutputView.printReservation(reservationList);
         System.out.println("## 결제를 진행합니다.");
         int point = InputView.inputPoint();
         int payWith = InputView.inputSelectPayWith();
         OutputView.printResultPay(point, payWith, reservationList);
-
     }
 
 }

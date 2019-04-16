@@ -56,6 +56,12 @@ public class Movie {
         return true;
     }
 
+    public boolean mathPlaySchedule(PlaySchedule playSchedule, int movieScheduleNumber) {
+        int index = getIndexForScheduleNumber(movieScheduleNumber);
+
+        return playSchedules.get(index).matchSchedule(playSchedule.getStartDateTime());
+    }
+
     public boolean matchMovieCapacity(int movieScheduleNumber, int capacity) {
         int index = getIndexForScheduleNumber(movieScheduleNumber);
         return playSchedules.get(index).matchCapacity(capacity);
@@ -67,5 +73,10 @@ public class Movie {
 
     private int getIndexForScheduleNumber(int scheduleNumber){
         return scheduleNumber - 1;
+    }
+
+    public PlaySchedule getPlayScheduleOfIndex(int movieScheduleNumber) {
+        int index = getIndexForScheduleNumber(movieScheduleNumber);
+        return playSchedules.get(index);
     }
 }

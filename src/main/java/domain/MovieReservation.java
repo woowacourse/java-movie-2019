@@ -26,4 +26,21 @@ public class MovieReservation {
         sb.append("예약인원: ").append(capacity);
         return sb.toString();
     }
+
+    public boolean isReservation(MovieReservation reservation) {
+        Movie movie = MovieRepository.getMovieForMovieId(id);
+        PlaySchedule reservationSchedule =
+                MovieRepository.getMovieForMovieId(reservation.getId())
+                        .getPlayScheduleOfIndex(reservation.getMovieTime());
+        return movie.mathPlaySchedule(reservationSchedule, movieTime);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getMovieTime() {
+        return movieTime;
+    }
+
 }
