@@ -62,4 +62,15 @@ public class InputView {
 
         return pointCount;
     }
+
+    public static int inputPaymentMethod() {
+        int method;
+
+        do {
+            System.out.println("## 신용카드는 1번, 현금은 2번");
+            method = scanner.nextInt();
+        } while (method != 1 && method != 2);
+
+        return method;
+    }
 }

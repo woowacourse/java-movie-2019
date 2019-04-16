@@ -17,6 +17,7 @@ public class MovieApplication {
         int reservationCount;
         int quitOrAdditionalReservation;
         int pointCount;
+        int paymentMethod;
 
         do {
             OutputView.printMovies(movies);
@@ -34,6 +35,6 @@ public class MovieApplication {
         OutputView.printReservationResult(reservationRepository);
 
         pointCount = InputView.inputPointCount();
-
+        paymentMethod = InputView.inputPaymentMethod();
     }
 }
