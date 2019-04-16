@@ -14,29 +14,29 @@ public class Result {
     private List<Integer> movieTime = new ArrayList<>();
     private List<Integer> moviePeople = new ArrayList<>();
 
-    public Result(List<Movie> movies, int movieNumber){
+    public Result(List<Movie> movies, int movieNumber) {
         this.movieId.add(movieNumber);
         this.movies = movies;
     }
 
-    public void startMovieResult(){
+    public void startMovieResult() {
         movieTime.add(InputView.inputMovieTime());
         moviePeople.add(InputView.inputMoviePeople());
         setMovieResult(InputView.inputMovieExit());
     }
 
-    private void setMovieResult(int num){
-        if(num == 2){
+    private void setMovieResult(int num) {
+        if (num == 2) {
             startMovieSellect();
         }
-        if(num == 1){
+        if (num == 1) {
             startMoviePay(); // TODO 결제 진행하기
         }
     }
 
-    private void startMoviePay(){ //TODO 결제 진행
+    private void startMoviePay() { //TODO 결제 진행
         int sum = 0;
-        for(int i=0; i<movieId.size(); i++){
+        for (int i = 0; i < movieId.size(); i++) {
             movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), moviePeople.get(i));
             sum += movies.get(movieId.get(i)).getTotalPrice(moviePeople.get(i));
         }
@@ -45,7 +45,7 @@ public class Result {
         OutputView.printResult(sum, point, pay);
     }
 
-    private void startMovieSellect(){
+    private void startMovieSellect() {
         int movieNumber = Data.getMovieId(InputView.inputMovieId());
         movieId.add(movieNumber);
         OutputView.printMovieInfo(movies.get(movieNumber).toString());

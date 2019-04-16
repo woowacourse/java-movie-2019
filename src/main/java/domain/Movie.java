@@ -36,11 +36,11 @@ public class Movie {
 
     public void toStringInfo(int time, int people) {
         String movieData = (id + " - " + name + ", " + price + "원");
-        String movieTime = playSchedules.get(time-1).toStringData();
+        String movieTime = playSchedules.get(time - 1).toStringData();
         OutputView.printMoviePayState(movieData, movieTime, people);
     }
 
-    public int getTotalPrice(int people){
+    public int getTotalPrice(int people) {
         return this.price * people;
     }
 }
