@@ -26,10 +26,9 @@ public class MovieListValidator implements Validator {
     }
 
     private boolean doesEachMovieIdExist() {
-        List<Movie> movieList = MovieRepository.getMovies();
         return !movieIdSet.stream()
-                .noneMatch((movieId) -> {
-                    return MovieRepository.contains(Integer.parseInt(movieId));
+                .anyMatch((movieId) -> {
+                    return !MovieRepository.contains(Integer.parseInt(movieId));
                 });
     }
 }
