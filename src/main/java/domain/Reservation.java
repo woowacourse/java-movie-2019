@@ -27,4 +27,8 @@ public class Reservation {
         		 + "예약 인원: " + num + "명";
 	}
 	
+	public LocalDateTime getTime() {
+		return time;
+	}
+	
 }

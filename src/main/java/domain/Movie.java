@@ -22,6 +22,9 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
     
+    public List<PlaySchedule> getPlaySchedules() {
+    	return playSchedules;
+    }
     public String getMovieInfo() {
     	   return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
@@ -36,5 +39,8 @@ public class Movie {
                 + sb.toString();
     }
     
+    public int getMovieId() {
+    	return id;
+    }
     
 }

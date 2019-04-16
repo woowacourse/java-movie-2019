@@ -6,9 +6,17 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
+	public static final int TO_BE_EXITED = 2;
+	public static final int TO_BE_CONTINUED = 1;
+	
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
 		OutputView.printMovies(movies);
+		
+		while(makeReservation() != TO_BE_EXITED) {
+			
+		}
+		
 	}
 		
 	
