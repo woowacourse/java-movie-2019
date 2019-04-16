@@ -42,4 +42,8 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static PlaySchedule selectSchedule(int movieId, int movieSchedule) {
+        return movies.get(movieId).getPlaySchedules().get(movieSchedule);
+    }
 }
