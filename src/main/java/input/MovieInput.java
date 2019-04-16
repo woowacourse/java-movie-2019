@@ -13,7 +13,18 @@ public class MovieInput {
             throw new IllegalArgumentException();
         }
 
-        //movie = getMovieFromMovieListById(movies, Integer.parseInt(input));
+        movie = getMovieFromMovieListById(movies, Integer.parseInt(input));
+    }
+
+
+    private Movie getMovieFromMovieListById(List<Movie> movies, int id) {
+        for (Movie movie : movies
+             ) {
+            if (movie.IDis() == id) {
+                return movie;
+            }
+        }
+        throw new IllegalStateException();
     }
 
     private boolean checkValidity(List<Movie> movies, String input) {
