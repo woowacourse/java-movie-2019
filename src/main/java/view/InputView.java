@@ -24,4 +24,13 @@ public class InputView {
     	System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가예약을  진행하려면 2번");
     	return scanner.nextInt();
     }
+    
+    public static void continuePayMessage() {
+    	System.out.println("## 결제를 진행합니다.");
+    }
+    
+    public static int inputPoint() {
+    	System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+    	return scanner.nextInt();
+    }
 }

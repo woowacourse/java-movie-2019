@@ -98,8 +98,10 @@ public class MovieApplication {
     	MyMovie movie = movieApp.bookMovie(movies);
     	
         int payOrMoreBook = InputView.payOrMoreBook();
+        
         if(payOrMoreBook == 1) {
         	System.out.println(movie.toString());
+        	int point = InputView.inputPoint();
         }
  
     }
