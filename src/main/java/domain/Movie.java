@@ -22,6 +22,10 @@ public class Movie {
 		return id;
 	}
 
+	public int getTotalPrice(int capacity) {
+		return price * capacity;
+	}
+
 	public List<PlaySchedule> getPlaySchedules() {
 		return playSchedules;
 	}
