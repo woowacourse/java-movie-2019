@@ -14,6 +14,9 @@ public class MovieApplication {
     public static void main(String[] args) {
         BookingList bookingList = getBookingList();
         OutputView.printBookingList(bookingList);
+
+        int point = InputView.inputPoint();
+        int paymentOption = InputView.inputPaymentOption();
     }
 
     private static BookingList getBookingList() {
