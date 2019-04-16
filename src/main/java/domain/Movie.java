@@ -18,6 +18,10 @@ public class Movie {
         this.price = price;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public PlaySchedule getPlaySchedule(int index) {
         return playSchedules.get(index);
     }

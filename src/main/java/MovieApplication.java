@@ -35,6 +35,8 @@ public class MovieApplication {
 
         OutputView.printReservation(reservations);
 
+        total = getTotal();
+
         int point = InputView.inputPoint();
         boolean payment = InputView.inputPayment();
     }
@@ -86,6 +88,14 @@ public class MovieApplication {
 
     public static Reservation makeReservation(Movie movie, int scheduleIndex, int peopleNumber) {
         return new Reservation(movie, scheduleIndex, peopleNumber);
+    }
+
+    public static int getTotal() {
+        int total = 0;
+        for (Reservation reservation : reservations) {
+            total += reservation.getTotal();
+        }
+        return total;
     }
 
 }

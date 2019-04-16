@@ -17,6 +17,10 @@ public class Reservation {
         return scheduleTime;
     }
 
+    public int getTotal() {
+        return movie.getPrice() * peopleNum;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
