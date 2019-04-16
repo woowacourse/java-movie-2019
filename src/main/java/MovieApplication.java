@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
-    private static final int MIN_RESERVED_PERSON_COUNT = 1;
     private static final int PAY_WITH_CREDIT_CARD = 1;
     private static final int PAY_WITH_CASH = 2;
     private static List<BookedMovie> bookedMovies;
@@ -20,8 +19,7 @@ public class MovieApplication {
         boolean isBooking = true;
         while (isBooking) {
             OutputView.printMovies(movies);
-            int movieId = getValidMovieId();
-            BookedMovie bookedMovie = bookOneMovie(movieId);
+            BookedMovie bookedMovie = bookOneMovie();
             bookedMovies.add(bookedMovie);
             isBooking = InputView.inputAdditionalReservation() == 2;
         }
@@ -33,13 +31,13 @@ public class MovieApplication {
     private static int getValidMovieId() {
         int movieId = InputView.inputMovieId();
         if (MovieRepository.isValidMovieId(movieId)
-                && !checkMovieBooked(movieId)) {
+                && !checkMovieAlreadyBooked(movieId)) {
             return movieId;
         }
         return getValidMovieId();
     }
 
-    private static boolean checkMovieBooked(int movieId) {
+    private static boolean checkMovieAlreadyBooked(int movieId) {
         for (BookedMovie b : bookedMovies) {
             if (b.checkMovieId(movieId)) {
                 return true;
@@ -48,7 +46,8 @@ public class MovieApplication {
         return false;
     }
 
-    private static BookedMovie bookOneMovie(int movieId) {
+    private static BookedMovie bookOneMovie() {
+        int movieId = getValidMovieId();
         Movie selectedMovie = MovieRepository.getMovieById(movieId);
         assert selectedMovie != null;
 
@@ -56,7 +55,12 @@ public class MovieApplication {
         OutputView.printSelectedMovie(selectedMovie);
 
         PlaySchedule selectedSchedule = decideSchedule(selectedMovie, bookedMovie);
-        decidePersonCount(bookedMovie, selectedSchedule);
+        if (!checkMovieTime(selectedSchedule)) {
+            return bookOneMovie();
+        }
+        if (!decidePersonCount(bookedMovie, selectedSchedule)) {
+            return bookOneMovie();
+        }
         return bookedMovie;
     }
 
@@ -71,12 +75,28 @@ public class MovieApplication {
         return selectedSchedule;
     }
 
-    private static void decidePersonCount(BookedMovie bookedMovie, PlaySchedule selectedSchedule) {
-        int personCount = InputView.inputPersonCount();
-        while (!selectedSchedule.reserveTickets(personCount, MIN_RESERVED_PERSON_COUNT)) {
-            personCount = InputView.inputPersonCount();
+    private static boolean checkMovieTime(PlaySchedule selectedSchedule) {
+        boolean isTimePassed = selectedSchedule.isStartTimePassed();
+        boolean canBookTogether = isBookingTogetherValid(selectedSchedule);
+        OutputView.printTimeWarning(isTimePassed, canBookTogether);
+        return !isTimePassed && canBookTogether;
+    }
+
+    private static boolean isBookingTogetherValid(PlaySchedule selectedSchedule) {
+        boolean isValid = true;
+        for (BookedMovie b : bookedMovies) {
+            isValid = b.isWithinOneHour(selectedSchedule);
         }
-        bookedMovie.updateReservedPersonCount(personCount);
+        return isValid;
+    }
+
+    private static boolean decidePersonCount(BookedMovie bookedMovie, PlaySchedule selectedSchedule) {
+        int personCount = InputView.inputPersonCount();
+        boolean isBooked = selectedSchedule.reserveTickets(personCount);
+        if (isBooked) {
+            bookedMovie.updateReservedPersonCount(personCount);
+        }
+        return isBooked;
     }
 
     private static int handlePayment() {

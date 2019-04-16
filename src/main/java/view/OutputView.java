@@ -19,6 +19,14 @@ public class OutputView {
         System.out.println(selectedMovie);
     }
 
+    public static void printTimeWarning(boolean isTimePassed, boolean canBookTogether) {
+        if (isTimePassed) {
+            System.out.println("영화 상영 시간이 지났습니다.");
+        } else if (!canBookTogether) {
+            System.out.println("다른 영화와 1시간 이상 차이가 납니다.");
+        }
+    }
+
     public static void printBookedMovies(List<BookedMovie> bookedMovies) {
         System.out.println("예약 내역");
         for (BookedMovie b : bookedMovies) {
