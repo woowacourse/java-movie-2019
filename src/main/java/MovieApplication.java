@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -83,6 +84,11 @@ public class MovieApplication {
         }
     }
 
+
+    public static void isOnehourTime() {
+
+    }
+
     public static void continueBooking() {
         int movieId = InputView.inputMovieId();
         choiceMovie = choiceMovie(movies, movieId);
@@ -151,7 +157,7 @@ public class MovieApplication {
         }
         else
         System.out.println("입력한 값이 영화목록에 없습니다. 다시 입력해주세요.") ;
-        System.exit(1);
+        continueBooking();
         return movies.get(movieId);
     }
 }
