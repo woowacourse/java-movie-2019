@@ -35,24 +35,24 @@ public class InputView {
         }
     }
 
-    public static int inputReservePeople(PlaySchedule reserveSchedule) {
+    public static ReservePeople inputReservePeople(PlaySchedule reserveSchedule) {
         try {
             System.out.println("##예약할인원을입력하세요. ");
-            int reservePerple = scanner.nextInt();
-            ReservePeople reservePeople = new ReservePeople(reserveSchedule, reservePerple);
-            return reservePerple;
+            int reservePeople = scanner.nextInt();
+            ReservePeople reservePeople1 = new ReservePeople(reserveSchedule, reservePeople);
+            return reservePeople1;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputReservePeople(reserveSchedule);
         }
     }
 
-    public static int inputPaymentOrReservation() {
+    public static PaymentOrReservation inputPaymentOrReservation() {
         try {
             System.out.println("##예약을종료하고결제를진행하려면1번, 추가예약을진행하려면2번 ");
             int paymentOrReservation = scanner.nextInt();
             PaymentOrReservation paymentOrReservation1 = new PaymentOrReservation(paymentOrReservation);
-            return paymentOrReservation;
+            return paymentOrReservation1;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputPaymentOrReservation();

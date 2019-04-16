@@ -32,6 +32,12 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String getMovieNameAndPrize(){
+        StringBuilder sb = new StringBuilder();
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + sb.toString();
+    }
+
     public int getId() {
         return id;
     }

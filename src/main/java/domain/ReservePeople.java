@@ -13,4 +13,8 @@ public class ReservePeople {
         this.reservePeople = reservePeople;
 
     }
+
+    public int getReservePeople() {
+        return reservePeople;
+    }
 }

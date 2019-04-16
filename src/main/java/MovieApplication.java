@@ -1,6 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -14,11 +12,18 @@ public class MovieApplication {
         Movie userMovie = InputView.inputMovieId();
         OutputView.printMovie(userMovie);
         PlaySchedule reserveSchedule = InputView.inputReserveTime(userMovie);
-        InputView.inputReservePeople(reserveSchedule);
-        int paymentOrReservation = InputView.inputPaymentOrReservation();
+        ReservePeople reservePeople = InputView.inputReservePeople(reserveSchedule);
+        PaymentOrReservation paymentOrReservationObject = InputView.inputPaymentOrReservation();
+        int paymentOrReservation = paymentOrReservationObject.getPaymentOrReservation();
+
         if(paymentOrReservation == 2){
             ReservateMovie();
+            return;
         }
+
+        ReservateInformation reservateInformation = new ReservateInformation(reserveSchedule,userMovie,reservePeople);
+        OutputView.printReservateInfo(reservateInformation);
+
     }
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
