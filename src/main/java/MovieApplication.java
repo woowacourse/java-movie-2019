@@ -1,5 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
@@ -12,10 +13,8 @@ public class MovieApplication {
         Movie userMovie = InputView.inputMovieId();
         OutputView.printMovie(userMovie);
 
-        int reserveTime = InputView.inputReserveTime(userMovie);
-
-
-
+        PlaySchedule reserveSchedule = InputView.inputReserveTime(userMovie);
+        InputView.intputReservePeople(reserveSchedule);
         // TODO 구현 진행
     }
 }
