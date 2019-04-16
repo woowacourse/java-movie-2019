@@ -44,23 +44,27 @@ public class MovieBookingService {
         Iterator<Booking> bit = bookings.iterator();
         while (bookable && bit.hasNext()) {
             Booking b = bit.next();
-            bookable = isBookableWithOthers(bookings, b)
+            bookable = isBookableWithOthers(bookings)
                 && b.schedule.isBookableNow()
                 && b.schedule.isCapable(b.numOfPeople);
         }
         return bookable;
     }
 
-    private boolean isBookableWithOthers(List<Booking> bookings, Booking b) {
+    private boolean isBookableWithOthers(List<Booking> bookings) {
+        if (bookings.isEmpty()) {
+            return false;
+        }
         List<PlaySchedule> schedules = new ArrayList<>();
+        Booking first = bookings.get(0);
 
         for (Booking booking : bookings) {
-            if (booking.equals(b)) {
+            if (booking.equals(first)) {
                 continue;
             }
             schedules.add(booking.schedule);
         }
-        return isBookableWithOthers(schedules, b.schedule);
+        return isBookableWithOthers(schedules, first.schedule);
     }
 
 

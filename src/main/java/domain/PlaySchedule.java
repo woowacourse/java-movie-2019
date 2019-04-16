@@ -2,7 +2,6 @@ package domain;
 
 import utils.DateTimeUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
