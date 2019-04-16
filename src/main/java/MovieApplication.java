@@ -1,6 +1,6 @@
 import domain.Movie;
 import domain.MovieRepository;
-import view.InputView;
+import domain.ReservationBox;
 import view.OutputView;
 
 import java.util.List;
@@ -13,13 +13,13 @@ public class MovieApplication {
         //int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
-        String whatMovie = InputView.askUserWhatMovie();
+        ReservationBox servant = new ReservationBox();
+
+        String whatMovie = servant.askUserWhatMovie();
         Movie selectedMovie = MovieRepository.findAndReturnMovie(movies, whatMovie);
         System.out.println(selectedMovie);
-        String whatTime = InputView.askUserWhatTime(selectedMovie);
-        String howManyPeople = InputView.askUserHowManyPeople();
-
-
+        String whatTime = servant.askUserWhatTime(selectedMovie);
+        String howManyPeople = servant.askHowManyPeople(whatTime, selectedMovie);
 
     }
 }

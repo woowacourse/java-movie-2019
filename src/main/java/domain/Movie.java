@@ -42,6 +42,7 @@ public class Movie {
 
     public int getAvailableSeat(String userInput) {
         int intUserInput = Integer.parseInt(userInput);
+        intUserInput--;
         return this.playSchedules.get(intUserInput).getCapacity();
     }
 
