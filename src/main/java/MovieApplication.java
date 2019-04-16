@@ -12,10 +12,15 @@ public class MovieApplication {
 
 		do {
 			int movieId = InputView.inputMovieId();
-			OutputView.findMovie(movies, movieId);
+			if (!OutputView.findMovie(movies, movieId))
+				continue;
 			int movieTime = InputView.inputMovieTime();
 			int ticketNum = InputView.ticketNum();
-		} while (InputView.inputStopOrGo());
+			if (!InputView.inputStopOrGo())
+				;
+			break;
+		} while (true);
+
 		int point = InputView.inputPoint();
 		int cardOrCash = InputView.inputCardOrCash();
 		OutputView.printResult();
