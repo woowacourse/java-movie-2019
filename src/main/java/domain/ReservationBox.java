@@ -2,6 +2,7 @@ package domain;
 
 import java.util.*;
 
+
 public class ReservationBox {
     private List<Movie> listOfBoughtMovies = new ArrayList<>();
     private List<Integer>listOfMovieTimes = new ArrayList<>();
@@ -113,6 +114,46 @@ public class ReservationBox {
         int intUserInput = Integer.parseInt(userInput);
         if (intUserInput > selectedMovie.getAvailableSeat(whatTime)) {
             System.out.println("신청인원이 빈좌석을 초과했습니다!");
+            return true;
+        }
+        return false;
+    }
+
+    public void saveInformation(Movie selectedMovie, String whatTime, String howManyPeople) {
+        listOfBoughtMovies.add(selectedMovie);
+        int intWhatTime = Integer.parseInt(whatTime);
+        listOfMovieTimes.add(intWhatTime);
+        int intHowManyPeople = Integer.parseInt(howManyPeople);
+        listOfPeopleCount.add(intHowManyPeople);
+    }
+
+    public int askUserContinue() {
+        String userInput = this.askContinue();
+        int intUserInput = Integer.parseInt(userInput);
+        return intUserInput;
+    }
+
+    public String askContinue() {
+        boolean isUserInputRight = false;
+        String userInput = "error:askUserWhatMovie()";
+        while (!isUserInputRight) {
+            userInput = askAndReceiveInput("예약을 종료하고 결제를 진행하려면 1, 추가예약하려면 2번을 눌러주세요");
+            isUserInputRight = checkUserContinue(userInput);
+        }
+        return userInput;
+    }
+
+    public static boolean checkUserContinue(String userInput) {
+        if (isNonNumeric(userInput) || isNot1Or2(userInput)) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isNot1Or2(String userInput) {
+        int intUserInput = Integer.parseInt(userInput);
+        if (intUserInput != 1 && intUserInput != 2) {
+            System.out.println("1이나 2만 입력해주세요");
             return true;
         }
         return false;
