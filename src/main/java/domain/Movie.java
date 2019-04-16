@@ -22,6 +22,25 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public boolean equalMovieId(Integer movieId) { return id == movieId; }
+
+    public boolean checkCapacity(Integer movieTime, Integer movieTicket) {
+        return playSchedules.get(movieTime-1).overCapacity(movieTicket); // 0부터 인덱스 시작
+    }
+
+    public PlaySchedule getPlaySchedule(Integer movieTime) {
+        return playSchedules.get(movieTime-1); // 0부터 인덱스 시작
+    }
+
+    public void printMovieInfo(Reservation reservation) {
+        System.out.printf("%d - %s, %d원\n", id, name, price);
+        playSchedules.get(reservation.getMovieTime()-1).printTime();
+    }
+
+    public int getTicketPrice(Integer movieTicket) {
+        return price * movieTicket;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
