@@ -19,6 +19,16 @@ public class MovieApplication {
         return false;
     }
 
+    public static int getTotalPrice(List<MovieReservation> reservations) {
+        int totalPrice = 0;
+
+        for (MovieReservation reservation : reservations) {
+            totalPrice += reservation.getTotalPrice();
+        }
+
+        return totalPrice;
+    }
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservations = new ArrayList<>();
@@ -42,6 +52,8 @@ public class MovieApplication {
             isContinue = changeValueOfContinue(InputView.inputIsContinue());
         }
 
-
+        System.out.println("\n## 결재를 진행합니다.");
+        int totalPrice = getTotalPrice(reservations);
+        int usedPoint = InputView.inputPoint(totalPrice);
     }
 }

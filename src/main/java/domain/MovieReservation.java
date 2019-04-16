@@ -36,4 +36,8 @@ public class MovieReservation {
         }
         return false;
     }
+
+    public int getTotalPrice() {
+        return movie.getPrice() * reservationNumber;
+    }
 }

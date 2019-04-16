@@ -53,4 +53,17 @@ public class InputView {
 
         return inputIsContinue();
     }
+
+    public static int inputPoint(int totalPrice) {
+        System.out.println("\n## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        int point = scanner.nextInt();
+
+        if (point <= totalPrice) {
+            return point;
+        }
+
+        System.out.println(String.format(
+                "## 총 금액보다 포인트 사용 금액이 큽니다. 총 금액은 %d 입니다.", totalPrice));
+        return inputPoint(totalPrice);
+    }
 }
