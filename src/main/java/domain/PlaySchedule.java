@@ -24,7 +24,7 @@ public class PlaySchedule {
 	}
 	
 	public String getPlayScheduleInformation() {
-		return "시작시간: " + format(startDateTime);
+		return "시작시간: " + format(startDateTime) + NEW_LINE;
 	}
 
 	@Override

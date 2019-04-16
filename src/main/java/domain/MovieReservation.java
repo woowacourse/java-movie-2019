@@ -7,8 +7,8 @@ import view.InputView;
 import view.OutputView;
 
 public class MovieReservation {
-	private static final int ADDITIONAL_RESERVATION = 1;
-	private static final int PAYMENT = 2;
+	private static final int PAYMENT = 1;
+	private static final int ADDITIONAL_RESERVATION = 2;
 	private static final int CREDIT_CARD = 1;
 	private static final int CASH = 2;
 	private static final double CASH_DISCOUNT = 0.02;
@@ -29,7 +29,7 @@ public class MovieReservation {
 	public void reserve() {
 		MovieTicket movieTicket = new MovieTicket();
 		movieTickets.add(movieTicket);
-		if(getAdditionalReservationFlag() == 1) {
+		if(getAdditionalReservationFlag() == ADDITIONAL_RESERVATION) {
 			reserve();
 			return;
 		}
@@ -69,7 +69,7 @@ public class MovieReservation {
 	}
 	
 	private int getPoint() {
-		int point = InputView.inputPaymentFlag();
+		int point = InputView.inputPoint();
 		if (point < 0) {
 			System.out.println(INVALID_POINT_MESSAGE);
 			return getPoint();

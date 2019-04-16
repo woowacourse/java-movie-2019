@@ -12,7 +12,6 @@ public class MovieTicket {
 	private int movieId;
 	private int schedule;
 	private int numOfAudience;
-	private int price;
 	private Movie movie;
 
 	public MovieTicket() {
@@ -38,12 +37,12 @@ public class MovieTicket {
 
 	private int getSchedule(int movieId) {
 		int schedule = InputView.inputSchedule();
-		if (!MovieRepository.bookableSchedule(movieId, schedule)) {
-			System.out.println(UNKNOWN_SCHEDULE_MESSAGE);
-			return getSchedule(movieId);
-		}
 		if (!MovieRepository.isBeforeBegging(movieId, schedule)) {
 			System.out.println(AFTER_SCREENING_MESSAGE);
+			return getSchedule(movieId);
+		}
+		if (!MovieRepository.bookableSchedule(movieId, schedule)) {
+			System.out.println(UNKNOWN_SCHEDULE_MESSAGE);
 			return getSchedule(movieId);
 		}
 		return schedule;
