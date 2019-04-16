@@ -28,4 +28,8 @@ public class PlaySchedule {
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
+
+    public void buyTickets(int countOfTickets) {
+        capacity -= countOfTickets;
+    }
 }

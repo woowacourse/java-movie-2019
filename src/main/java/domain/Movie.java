@@ -39,4 +39,8 @@ public class Movie {
     public boolean checkPossibleTickets(int scheduleNumber, int countOfTickets) {
         return playSchedules.get(scheduleNumber).isCapable(countOfTickets);
     }
+
+    public void buyTickets(int scheduleNumber, int countOfTickets) {
+        playSchedules.get(scheduleNumber).buyTickets(countOfTickets);
+    }
 }

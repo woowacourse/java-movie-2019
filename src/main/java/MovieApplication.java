@@ -29,8 +29,9 @@ public class MovieApplication {
         while (continueBooking) {
             movieId = IdMap.get(InputView.inputMovieId());
             OutputView.printMovies(movies, movieId);
-            scheduleNumber = InputView.inputMovieSchedule(movies, movieId, purchasedMovies);
+            scheduleNumber = InputView.inputMovieSchedule(movies, movieId, purchasedMovies) - 1;
             countOfTickets = InputView.inputCountOfTickets(movies, movieId, scheduleNumber);
+            movies.get(movieId).buyTickets(scheduleNumber, countOfTickets);
             continueBooking = InputView.inputContinueBooking();
 
             PlaySchedule playSchedule = movies.get(movieId).getSchedule(scheduleNumber);
