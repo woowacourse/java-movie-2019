@@ -17,6 +17,17 @@ public class InputView {
         return Integer.parseInt(movieId);
     }
 
+    public static int inputMovieTime() {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+        String selectSchedule = scanner.nextLine();
+
+        if (checkValid(selectSchedule)) {
+            return inputMovieTime();
+        }
+
+        return Integer.parseInt(selectSchedule);
+    }
+
     private static boolean checkValid(String input) {
         return isEmpty(input) || checkContainsChar(input);
     }
