@@ -40,8 +40,13 @@ public class MovieApplication {
 	}
 	
 	private boolean checkMovieTime(PlaySchedule selectedMovieTime) {
-		System.out.println(DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime()));
-		return DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime());
+		boolean nowIsBeforeMovie = DateTimeUtils.createNowDateTime().isBefore(selectedMovieTime.getStartDateTime());
+		
+		if (nowIsBeforeMovie == false) {
+			System.out.println("현재 시간 이후에 상영되는 영화를 선택해주세요.");
+		}
+		
+		return nowIsBeforeMovie;
 	}
 	
 	private int inputPeopleNumber() {
@@ -57,20 +62,38 @@ public class MovieApplication {
 	}
 	
 	public boolean checkPeopleNumber(PlaySchedule selectedMovieTime, int peopleNum) {
-		return selectedMovieTime.getCapacity() > peopleNum ? true : false;
+		boolean isPossible = selectedMovieTime.getCapacity() > peopleNum ? true : false;
+		if (isPossible == false) {
+			System.out.println("예약 가능 인원을 초과하였습니다.");
+		}
+		
+		return isPossible;
+	}
+	
+	public List<Movie> getAllMovie() {
+		List<Movie> movies = MovieRepository.getMovies();
+	    OutputView.printMovies(movies);
+	    
+	    return movies;
+	}
+	
+	public Movie bookMovie(List<Movie> movies) {
+		PlaySchedule selectedMovieTime;
+		Movie selectedMovie;
+		 
+		do {
+			selectedMovie = selectMovie(movies); // 영화 선택  
+	        selectedMovieTime = selectMovieTime(selectedMovie); // 상영시간 선택
+		} while(!(checkMovieTime(selectedMovieTime) && checkPeopleNumber(selectedMovieTime, inputPeopleNumber())));
+
+		return selectedMovie;
 	}
 	
     public static void main(String[] args) {
-        MovieApplication movieApp = new MovieApplication();
+    	MovieApplication movieApp = new MovieApplication();
+    	List<Movie> movies = movieApp.getAllMovie();
+    	Movie movie = movieApp.bookMovie(movies);
+    	System.out.println(movie);
     	
-    	List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-        
-        
-        Movie selectedMovie = movieApp.selectMovie(movies); // 영화 선택  
-        PlaySchedule selectedMovieTime = movieApp.selectMovieTime(selectedMovie); // 상영시간 선택
-        
-    	movieApp.checkMovieTime(selectedMovieTime); // 상영 시간과 현재 시간 비교
-    	movieApp.checkPeopleNumber(selectedMovieTime, movieApp.inputPeopleNumber()); // 관람 가능 인원 비교
     }
 }
