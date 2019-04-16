@@ -20,6 +20,10 @@ public class PlaySchedule {
     public boolean isValidPeople(int people) {
     	return people <= capacity;
     }
+    
+    public void subtractCapacity(int ticket) {
+    	capacity -= ticket;
+    }
 
     @Override
     public String toString() {

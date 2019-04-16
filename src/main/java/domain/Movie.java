@@ -22,13 +22,17 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
     
-    boolean isTheMovie(int id) {
+    public boolean isTheMovie(int id) {
     	return this.id == id;
     }
     
     public boolean isValidSchedule(int select) {
     	int sizeOfSchedule = playSchedules.size();
     	return select <= sizeOfSchedule && select > 0;
+    }
+    
+    public int getId() {
+    	return id;
     }
     
     public PlaySchedule getSchedule(int index) {

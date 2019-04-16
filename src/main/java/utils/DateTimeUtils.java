@@ -26,4 +26,8 @@ public class DateTimeUtils {
         LocalDateTime endDateTime = dateTime1.plusHours(ONE_HOURS);
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
+    
+    public static boolean isWithinRange(LocalDateTime dateTime1, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return dateTime1.isAfter(startDateTime) && dateTime1.isBefore(endDateTime);
+    }
 }

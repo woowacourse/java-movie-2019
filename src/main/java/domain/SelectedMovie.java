@@ -1,14 +1,25 @@
 package domain;
 
 public class SelectedMovie {
-	private Movie movie;
+	private Movie selectedMovie;
+	private int indexOfSelectedSchedule;
 	private PlaySchedule selectedPlaySchedule;
 	private int numOfPeople;
-	
-	public SelectedMovie(Movie movie, PlaySchedule selectedPlaySchedule, int numOfpeople) {
-		this.movie = movie; 
-		this.selectedPlaySchedule = selectedPlaySchedule;
+
+	public SelectedMovie(Movie selectedMovie, int indexOfSelectedSchedule, int numOfpeople) {
+		this.selectedMovie = selectedMovie;
+		this.indexOfSelectedSchedule = indexOfSelectedSchedule;
+		this.selectedPlaySchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
 		this.numOfPeople = numOfpeople;
+	}
+	public Movie getMovie() {
+		return this.selectedMovie;
+	}
+	public int getIndexOfSelectedSchedule () {
+		return this.indexOfSelectedSchedule;
+	}
+	public int getNumOfPeople( ) {
+		return this.numOfPeople;
 	}
 
 }

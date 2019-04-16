@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import domain.Movie;
@@ -15,28 +16,42 @@ public class MovieApplication {
         List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
         OutputView.printMovies(movies);
 
-        int movieId = recurInputMovieId();
-        Movie selectedMovie = MovieRepository.getMovie(movieId);
-        System.out.println(selectedMovie);
-        int indexOfSelectedSchedule = recurInputSchedule(selectedMovie);
-        PlaySchedule selectedSchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
-        int numOfPeople = recurInputPeople(selectedSchedule);
-        selectedMovies.add(new SelectedMovie(selectedMovie, selectedSchedule, numOfPeople));
+        recurSelectMovieOrNot(movies);
     }
     
-    static int inputMovieIdOnce(){
+	static void isExist(List<Movie> movies, int id) {
+		int isNot = 1;
+		for (Movie movie : movies) {
+			isNot *= (movie.isTheMovie(id)) ? 0 : 1;
+		}
+		if (isNot == 1) {
+			throw new IllegalArgumentException("해당 아이디의 영화가 없습니다. \n다시 입력해주세요.");
+		}
+	}
+	
+	static Movie getMovie(List<Movie> movies, int id) {
+		Movie ret = null;
+		Iterator<Movie> it = movies.iterator();
+		while (it.hasNext() && ret == null) {
+			Movie tmp = it.next();
+			ret = (tmp.isTheMovie(id)) ? tmp : null;
+		}
+		return ret;
+	}
+    
+    static int inputMovieIdOnce(List<Movie> movies){
     	int id = InputView.inputMovieId();
-    	MovieRepository.isExist(id);
+    	isExist(movies, id);
     	return id;
     }
     
-    static int recurInputMovieId() {
+    static int recurInputMovieId(List<Movie> movies) {
     	int id = 0;
     	try {
-    		id = inputMovieIdOnce();
+    		id = inputMovieIdOnce(movies);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			id = recurInputMovieId();
+			id = recurInputMovieId(movies);
 		}
     	return id;
     }
@@ -77,5 +92,48 @@ public class MovieApplication {
 			input = recurInputPeople(schedule);
 		}
     	return input;
+    }
+    
+    static SelectedMovie inputSelectedMovieOnce(List<Movie> movies) {
+    	int movieId = recurInputMovieId(movies);
+        Movie selectedMovie = getMovie(movies, movieId);
+        System.out.println(selectedMovie);
+        int indexOfSelectedSchedule = recurInputSchedule(selectedMovie);
+        PlaySchedule selectedSchedule = selectedMovie.getSchedule(indexOfSelectedSchedule);
+        int numOfPeople = recurInputPeople(selectedSchedule);
+        return new SelectedMovie(selectedMovie, indexOfSelectedSchedule, numOfPeople);
+    }
+    
+	static void subtractCapacity(int movieId, int indexOfSchedule, int numOfPeople) {
+    	
+    }
+	
+	static void subtractCapacity(List<Movie> movies, SelectedMovie selectedMovie) {
+		int movieId = selectedMovie.getMovie().getId();
+		int indexOfSchedule = selectedMovie.getIndexOfSelectedSchedule();
+		int numOfPeople = selectedMovie.getNumOfPeople();
+		Movie movie = getMovie(movies, movieId);
+    	movie.getSchedule(indexOfSchedule).subtractCapacity(numOfPeople);
+	}
+    
+    static int recurInputRechoiceOrNot() {
+    	int input = 0;
+    	try {
+    		input = InputView.inputRechoiceOrNot();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			input = InputView.inputRechoiceOrNot();
+		}
+    	return input;
+    }
+    
+    static void recurSelectMovieOrNot(List<Movie> movies) {
+    	List<SelectedMovie> selectedMovies = new ArrayList<SelectedMovie>();
+    	int swc = 2;
+    	do {
+    		selectedMovies.add(inputSelectedMovieOnce(movies));
+    		swc = recurInputRechoiceOrNot();
+    	} while(swc == 2);
+    	
     }
 }

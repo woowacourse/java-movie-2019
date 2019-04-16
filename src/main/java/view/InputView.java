@@ -20,13 +20,17 @@ public class InputView {
         return scanner.nextInt();
     }
     
-    public static int inputCase() {
-        System.out.println("## 예약을 종료하고 결재를 진행하려면 1번, 추가 예약을 진행하려면 2번을 입력하세요.");
+    public static int inputCase(String massage) {
+        System.out.println(massage);
         int ret = scanner.nextInt();
         if(ret != 1 && ret != 2) {
         	throw new IllegalArgumentException("잘못된 입력입니다. \n다시입력해주세요.");
         }
 		return ret;
+    }
+    
+    public static int inputRechoiceOrNot() {
+    	return inputCase("## 예약을 종료하고 결재를 진행하려면 1번, 추가 예약을 진행하려면 2번을 입력하세요.");
     }
     
     public static int inputPoint() {
