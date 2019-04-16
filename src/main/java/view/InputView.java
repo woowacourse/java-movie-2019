@@ -15,13 +15,13 @@ public class InputView {
         }
     }
 
-    public static int inputMovieScheduleId() {
+    public static int inputMovieScheduleNumber() {
         try {
             System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
             return Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputMovieScheduleId();
+            return inputMovieScheduleNumber();
         }
     }
 
@@ -31,7 +31,7 @@ public class InputView {
             return Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputMovieScheduleId();
+            return inputTheNumberOfPerson();
         }
     }
 
@@ -41,7 +41,7 @@ public class InputView {
             return Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return inputMovieScheduleId();
+            return inputAdditionalReserveOrNot();
         }
     }
 }

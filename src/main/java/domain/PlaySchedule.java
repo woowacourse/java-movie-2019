@@ -20,6 +20,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public String toStringOnlyStartDateTime() {
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     public void checkPersonOverCapacity(int theNumberOfPerson){
          if(theNumberOfPerson > capacity){
              throw new IllegalArgumentException("예약가능 인원을 초과했습니다.");

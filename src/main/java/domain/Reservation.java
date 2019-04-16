@@ -15,7 +15,7 @@ public class Reservation {
     public String toString() {
         return "예약 내역" + "\n" +
                 movie.toStringOnlyMovieField() +
-                playSchedule.toString() +
+                playSchedule.toStringOnlyStartDateTime() +
                 "예약인원 : " + theNumberOfPerson + "명" + "\n";
     }
 }

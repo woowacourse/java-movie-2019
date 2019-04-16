@@ -26,7 +26,7 @@ public class MovieApplication {
             Movie selectedMovie = getPlaySchedulesOfSelectedMovie();
             selectMovieSchedule(reservedMovies, selectedMovie);
         }while(checkAdditionalReserveOrNot() == 2);
-        System.out.println(reservedMovies.toString());
+        OutputView.printReservation(reservedMovies);
     }
 
     private static Movie getPlaySchedulesOfSelectedMovie() {
@@ -39,15 +39,9 @@ public class MovieApplication {
         }
     }
 
-    private static List<Reservation> setReservedAllMovieToList(List<Reservation> reservedMovies,
-                                                               Reservation reservation) {
-        reservedMovies.add(reservation);
-        return reservedMovies;
-    }
-
     private static PlaySchedule getPlayScheduleByNumber(Movie selectedMovie) {
         try {
-            int scheduleId = InputView.inputMovieScheduleId();             // 시간표 선택
+            int scheduleId = InputView.inputMovieScheduleNumber();             // 시간표 선택
             return selectedMovie.getPlaySchedules().get(scheduleId);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -61,8 +55,8 @@ public class MovieApplication {
             PlaySchedule selectedPlaySchedule = getPlayScheduleByNumber(movie);
             int theNumberOfPerson = InputView.inputTheNumberOfPerson();
             selectedPlaySchedule.checkPersonOverCapacity(theNumberOfPerson);
-            return setReservedAllMovieToList(reservedMovies,
-                    new Reservation(movie, selectedPlaySchedule, theNumberOfPerson));
+            reservedMovies.add(new Reservation(movie, selectedPlaySchedule, theNumberOfPerson));
+            return reservedMovies;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return selectMovieSchedule(reservedMovies, movie);
