@@ -1,8 +1,6 @@
 package view;
 
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
+import domain.*;
 
 import java.util.List;
 
@@ -16,5 +14,13 @@ public class OutputView {
 
     public static void printPlaySchedule(int movieId) {
         System.out.println(MovieRepository.getWantMovie(movieId));
+    }
+
+    public static void printPayResult(AllPay allPay) {
+        System.out.print("최종 결제 금액은");
+        int point = InputView.inputPoint();
+        int isCredit = InputView.getCreditOrCash();
+        System.out.println(allPay.getTotalCost(point, isCredit) + "입니다");
+        System.out.println("예매 완료했습니다 ");
     }
 }
