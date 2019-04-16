@@ -19,4 +19,9 @@ public class InputView {
         System.out.println("## 예약할 인원을 입력하세요.");
         return scanner.nextInt();
     }
+
+    public static int inputExitOrAddReservation() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하려면 2번");
+        return scanner.nextInt();
+    }
 }

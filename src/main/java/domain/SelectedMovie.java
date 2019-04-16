@@ -21,6 +21,10 @@ public class SelectedMovie {
         this.people = people;
     }
 
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
     @Override
     public String toString() {
         return id + " - " + name + ", " + price + "원" + NEW_LINE

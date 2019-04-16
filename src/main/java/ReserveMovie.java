@@ -8,13 +8,11 @@ import java.util.List;
 public class ReserveMovie {
     private static List<SelectedMovie> selectedMovies = new ArrayList<>();
     private Movie selectMovie;
-    private int selectMovieId;
     private int selectSchedule;
     private int selectPeople;
 
-    public ReserveMovie(Movie selectMovie, int selectMovieId, int selectSchedule, int selectPeople){
+    public ReserveMovie(Movie selectMovie, int selectSchedule, int selectPeople){
         this.selectMovie = selectMovie;
-        this.selectMovieId = selectMovieId;
         this.selectSchedule = selectSchedule;
         this.selectPeople = selectPeople;
     }
@@ -46,6 +44,7 @@ public class ReserveMovie {
         }
         return false;
     }
+
 
     public static List<SelectedMovie> getSelectedMovies() {
         return selectedMovies;

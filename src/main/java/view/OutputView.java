@@ -1,6 +1,7 @@
 package view;
 
 import domain.Movie;
+import domain.SelectedMovie;
 
 import java.util.List;
 
@@ -26,5 +27,12 @@ public class OutputView {
 
     public static void printImpossibleReasonWatchPeopleExceeding() {
         System.out.println("예매 가능 인원을 초과하였습니다. 예매가 불가능합니다. 다시 입력해주세요.\n");
+    }
+
+    public static void printSelectedMovies(List<SelectedMovie> selectedMovies) {
+        System.out.println("예약 내역");
+        for (SelectedMovie selectedMovie : selectedMovies) {
+            System.out.println(selectedMovie);
+        }
     }
 }

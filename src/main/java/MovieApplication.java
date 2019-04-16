@@ -10,47 +10,52 @@ import static utils.DateTimeUtils.format;
 
 public class MovieApplication {
     public static void main(String[] args) {
+        final int EXIT_RESERVATION = 1;
+        final int ADD_RESERVATION = 2;
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
-        int movieIndex;
         while(true) {
-            movieIndex = ReserveMovie.assertMovieId(movies, movieId);
-            if(movieIndex != -1) {
-                OutputView.printInputMovieSchedule(movies, movieIndex);
+            int movieId = InputView.inputMovieId();
+            int movieIndex;
+            while(true) {
+                movieIndex = ReserveMovie.assertMovieId(movies, movieId);
+                if(movieIndex != -1) {
+                    OutputView.printInputMovieSchedule(movies, movieIndex);
+                    break;
+                }
+                OutputView.printImpossibleReasonSelectedMovieNotOnTheList();
+                movieId = InputView.inputMovieId();
+            }
+
+            int movieSchedule = InputView.inputMovieSchedule();
+            while(true) {
+                if(ReserveMovie.assertMovieSchedule(movies, movieIndex, movieSchedule)) {
+                    System.out.println();
+                    break;
+                }
+                OutputView.printImpossibleReasonSelectedMovieAlreadyStartTime();
+                movieSchedule = InputView.inputMovieSchedule();
+            }
+
+            int movieWatchPeople = InputView.inputMovieWatchPeople();
+            while(true) {
+                if(ReserveMovie.assertMovieWatchPeople(movies, movieIndex, movieSchedule, movieWatchPeople)) {
+                    System.out.println();
+                    ReserveMovie.addReserveMovie(movies.get(movieIndex), movieSchedule, movieWatchPeople);
+                    break;
+                }
+                OutputView.printImpossibleReasonWatchPeopleExceeding();
+                movieWatchPeople = InputView.inputMovieWatchPeople();
+            }
+
+            int exitOrAddReserve = InputView.inputExitOrAddReservation();
+            if(exitOrAddReserve == EXIT_RESERVATION) {
+                OutputView.printSelectedMovies(ReserveMovie.getSelectedMovies());
                 break;
             }
-            OutputView.printImpossibleReasonSelectedMovieNotOnTheList();
-            movieId = InputView.inputMovieId();
+            System.out.println();
         }
 
-        int movieSchedule = InputView.inputMovieSchedule();
-        while(true) {
-            if(ReserveMovie.assertMovieSchedule(movies, movieIndex, movieSchedule)) {
-                System.out.println();
-                break;
-            }
-            OutputView.printImpossibleReasonSelectedMovieAlreadyStartTime();
-            movieSchedule = InputView.inputMovieSchedule();
-        }
-
-        int movieWatchPeople = InputView.inputMovieWatchPeople();
-        while(true) {
-            if(ReserveMovie.assertMovieWatchPeople(movies, movieIndex, movieSchedule, movieWatchPeople)) {
-                System.out.println();
-                break;
-            }
-            OutputView.printImpossibleReasonWatchPeopleExceeding();
-            movieWatchPeople = InputView.inputMovieWatchPeople();
-        }
-
-
-        ReserveMovie.addReserveMovie(movies.get(movieIndex), movieSchedule, movieWatchPeople);
-
-
-
-
-        // TODO 구현 진행
     }
 }
