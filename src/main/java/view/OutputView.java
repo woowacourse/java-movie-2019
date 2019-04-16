@@ -24,4 +24,8 @@ public class OutputView {
         }
         throw new Exception("상영목록에 없는 영화를 선택하셨습니다.");
     }
+
+    public static void printPaymentStart() {
+        System.out.println("## 결제를 진행합니다.");
+    }
 }
