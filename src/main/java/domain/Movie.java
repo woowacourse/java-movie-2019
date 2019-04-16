@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public boolean isSameId(int movieId) {
+        return movieId == this.id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

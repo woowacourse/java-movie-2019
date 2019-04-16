@@ -13,5 +13,13 @@ public class MovieApplication {
         int movieId = InputView.inputMovieId();
 
         // TODO 구현 진행
+        for (Movie movie : movies) {
+            if (movie.isSameId(movieId)) {
+                System.out.println(movie.toString());
+                break;
+            }
+        }
+
+        int scheduleNumber = InputView.inputMovieSchedule();
     }
 }
