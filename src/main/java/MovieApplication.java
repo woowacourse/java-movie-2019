@@ -16,6 +16,7 @@ public class MovieApplication {
         int scheduleNumber;
         int reservationCount;
         int quitOrAdditionalReservation;
+        int pointCount;
 
         do {
             OutputView.printMovies(movies);
@@ -31,5 +32,8 @@ public class MovieApplication {
         } while (quitOrAdditionalReservation == 2);
 
         OutputView.printReservationResult(reservationRepository);
+
+        pointCount = InputView.inputPointCount();
+
     }
 }

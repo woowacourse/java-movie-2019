@@ -50,4 +50,16 @@ public class InputView {
 
         return answer;
     }
+
+    public static int inputPointCount() {
+        int pointCount;
+        System.out.println("## 결제를 진행합니다.");
+
+        do {
+            System.out.println("## 포인트 사용금액을 입력하세요.");
+            pointCount = scanner.nextInt();
+        } while (pointCount < 0);
+
+        return pointCount;
+    }
 }
