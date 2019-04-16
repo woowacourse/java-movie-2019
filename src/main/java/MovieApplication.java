@@ -20,6 +20,7 @@ public class MovieApplication {
     private List<Integer> getInMovieIdList(String[] movieIdString){
 
         List<Integer> movieIdList = new ArrayList<Integer>();
+
         for(int i=0;i<movieIdString.length;i++){
 
             movieIdList.add(Integer.parseInt(movieIdString[i]));
@@ -27,21 +28,22 @@ public class MovieApplication {
         return movieIdList;
     }
 
-    private void printMovieList(String movieIdString){
+    private List<Integer> printMovieList(String movieIdString){
 
         String[] movieIdStringArrays = movieIdString.split("");
-        List<Integer> movieIdArrayList = new ArrayList<Integer>();
+        List<Integer> movieIdArrayList;
         movieIdArrayList = getInMovieIdList(movieIdStringArrays);
-
         for(int i=0; i<movieIdArrayList.size();i++) {
 
             getFirstMovie(movieIdArrayList, i);
             getSecondToFourthMovie(movieIdArrayList, i);
             getException(movieIdArrayList, i);
         }
+        return movieIdArrayList;
     }
 
     private void getException(List<Integer> movieIdArrayList, int i) {
+
         if (movieIdArrayList.get(i) != FIRST_MOVIE && movieIdArrayList.get(i) != SECOND_MOVIE &&
                 movieIdArrayList.get(i) != THIRD_MOVIE &&
                 movieIdArrayList.get(i) != FOURTH_MOVIE) {
@@ -52,6 +54,7 @@ public class MovieApplication {
     }
 
     private void getSecondToFourthMovie(List<Integer> movieIdArrayList, int i) {
+
         if (movieIdArrayList.get(i) == SECOND_MOVIE || movieIdArrayList.get(i) == THIRD_MOVIE ||
                 movieIdArrayList.get(i) == FOURTH_MOVIE) {
 
@@ -60,6 +63,7 @@ public class MovieApplication {
     }
 
     private void getFirstMovie(List<Integer> movieIdArrayList, int i) {
+
         if (movieIdArrayList.get(i) == FIRST_MOVIE) {
 
             System.out.println(getMovies().get(movieIdArrayList.get(i) - FIRST_MOVIE));
@@ -67,29 +71,81 @@ public class MovieApplication {
     }
 
     public static void main(String[] args) {
+
         List<Movie> movies = getMovies();
+
         OutputView.printMovies(movies);
         MovieApplication movieCompany = new MovieApplication();
 
-        movieCompany.checkMovieId();
-
-        // TODO 구현 진행
+        movieCompany.getReservationTime(movieCompany.checkMovieId());
     }
 
-    private void checkMovieId(){
+    private List<Integer> checkMovieId(){
 
+        List<Integer> movieIdList = new ArrayList<>();
         while(true){
+
             try{
+
                 String movieIdValue = inputMovieId();
-                printMovieList(movieIdValue);
+                movieIdList = printMovieList(movieIdValue);
                 break;
             } catch(Exception e){
 
                 System.out.println("다시 입력해주십시오.");
             }
         }
+
+        return movieIdList;
     }
 
-    
+    private List<Integer> getReservationTime(List<Integer> movieIdList) {
+
+        System.out.println("예약할 시간표를 선택하세요");
+
+        List<Integer> reservationTimeList;
+        while (true) {
+            try {
+
+                Scanner scanReservationTime = new Scanner(System.in);
+                String getReservationTimeString = scanReservationTime.nextLine();
+                reservationTimeList = invertReservationTimeStringToList(getReservationTimeString);
+                checkSameSizeListReservationTimeAndMovieId(movieIdList, reservationTimeList);
+                break;
+            } catch (Exception e) {
+
+                System.out.println("예약 시간으르 다시 입력해주십시오");
+            }
+        }
+        return reservationTimeList;
+    }
+
+    private List<Integer> getInReservationList(String[] movieIdString){
+
+        List<Integer> movieIdList = new ArrayList<Integer>();
+
+        for(int i=0;i<movieIdString.length;i++){
+
+            movieIdList.add(Integer.parseInt(movieIdString[i]));
+        }
+        return movieIdList;
+    }
+
+    private List<Integer> invertReservationTimeStringToList(String movieIdString) {
+
+        String[] movieIdStringArrays = movieIdString.split("");
+        List<Integer> movieIdArrayList;
+        movieIdArrayList = getInReservationList(movieIdStringArrays);
+
+        return movieIdArrayList;
+    }
+
+    private void checkSameSizeListReservationTimeAndMovieId(List<Integer> movieIdListSize, List<Integer> reservationTimeList){
+
+        if(movieIdListSize.size() != reservationTimeList.size()){
+
+            throw new IllegalArgumentException();
+        }
+    }
 
 }
