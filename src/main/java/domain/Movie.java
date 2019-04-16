@@ -32,15 +32,19 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String toString(int id) {
+        return id + " - " + name + ", " + price + "원";
+    }
+
     public int getId() {
         return this.id;
     }
 
-    public int getScheduleSize(){
+    public int getScheduleSize() {
         return playSchedules.size();
     }
 
-    public List<PlaySchedule> getPlaySchedules(){
+    public List<PlaySchedule> getPlaySchedules() {
         return playSchedules;
     }
 
