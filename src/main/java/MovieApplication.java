@@ -21,25 +21,51 @@ public class MovieApplication {
 
         Movie movie;
         PlaySchedule playSchedule;
-        int personnel;
-        boolean isReservation;
-        int sum;
+        int personnel = 0;
+        boolean isReservation = false;
+        int sum = 0;
+        double amount = 0;
+
 
         do {
             movie = selectMovie(movies);
             playSchedule = selectSchedule(movie);
-            personnel = selectPersonnel(playSchedule);
             isReservation = checkStartTime(playSchedule, now);
             if (isReservation) {
                 addSelectMovie(selectMovies, movie);
                 addSelectSchedules(selectSchedules, playSchedule);
+                personnel = selectPersonnel(playSchedule);
             }
         } while (!isReservation || selectReservation());
 
+        sum = sumMoviesPrice(selectMovies, personnel);
+        amount = resultAmount(sum , InputView.inputPoint());
+        
+    }
 
+    public static double resultAmount(int sum, int point) {
+        int selectNum = InputView.inputSelectPayment();
+        double amount = sum - point;
 
-        /*printMovie(selectMovies);
-        printSchedule(selectSchedules);*/
+        if (selectNum == 1) {
+            amount = amount * 0.95;
+        }
+
+        if (selectNum == 2) {
+            amount = amount * 0.98;
+        }
+
+        return amount;
+    }
+
+    public static int sumMoviesPrice(List<Movie> selectMovies, int personnel) {
+        int sum = 0;
+
+        for (Movie movie : selectMovies) {
+            sum += movie.getPrice();
+        }
+
+        return sum * personnel;
     }
 
     public static boolean selectReservation() {
@@ -58,7 +84,12 @@ public class MovieApplication {
     }
 
     public static boolean checkStartTime(PlaySchedule playSchedule, LocalDateTime now) {
-        return playSchedule.checkStartDateTime(now);
+        if (!playSchedule.checkStartDateTime(now)) {
+            System.out.println("영화가 상영중이거나 종료되었습니다.");
+            return false;
+        }
+
+        return true;
     }
 
     public static int selectPersonnel(PlaySchedule playSchedule) {
@@ -90,6 +121,7 @@ public class MovieApplication {
         Movie movie = OutputView.printMovieSchedule(movies, movieId);
 
         if (movie == null) {
+            System.out.println("선택된 영화는 존재하지 않습니다.");
             return selectMovie(movies);
         }
 

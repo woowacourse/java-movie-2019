@@ -17,7 +17,7 @@ public class PlaySchedule {
         if (this.capacity >= capacity) {
             return false;
         }
-        System.out.println("범위를 벗어났습니다.");
+        System.out.println("예약인원을 초과했습니다.");
         return true;
     }
 
