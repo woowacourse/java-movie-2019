@@ -17,7 +17,6 @@ public class MovieApplication {
 
         int movieId = Data.getMovieId(InputView.inputMovieId());
 
-        // TODO 구현 진행
         OutputView.printMovieInfo(movies.get(movieId).toString());
 
         Result result = new Result(movies, movieId);

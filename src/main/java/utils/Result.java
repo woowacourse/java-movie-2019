@@ -20,9 +20,9 @@ public class Result {
     }
 
     public void startMovieResult(){
-        movieTime.add(InputView.inputMovieTime()); //시간 입력
-        moviePeople.add(InputView.inputMoviePeople()); // 몇명인가?
-        setMovieResult(InputView.inputMovieExit()); //결제를 진행할 것인가? 추가 예약할 것인가?
+        movieTime.add(InputView.inputMovieTime());
+        moviePeople.add(InputView.inputMoviePeople());
+        setMovieResult(InputView.inputMovieExit());
     }
 
     private void setMovieResult(int num){
@@ -30,14 +30,19 @@ public class Result {
             startMovieSellect();
         }
         if(num == 1){
-            startMoviePay();
+            startMoviePay(); // TODO 결제 진행하기
         }
     }
 
-    private void startMoviePay(){ //TODO
+    private void startMoviePay(){ //TODO 결제 진행
+        int sum = 0;
         for(int i=0; i<movieId.size(); i++){
             movies.get(movieId.get(i)).toStringInfo(movieTime.get(i), moviePeople.get(i));
+            sum += movies.get(movieId.get(i)).getTotalPrice(moviePeople.get(i));
         }
+        int point = InputView.inputPoint();
+        double pay = InputView.inputPay();
+        OutputView.printResult(sum, point, pay);
     }
 
     private void startMovieSellect(){

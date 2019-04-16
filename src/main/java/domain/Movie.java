@@ -39,4 +39,8 @@ public class Movie {
         String movieTime = playSchedules.get(time-1).toStringData();
         OutputView.printMoviePayState(movieData, movieTime, people);
     }
+
+    public int getTotalPrice(int people){
+        return this.price * people;
+    }
 }
