@@ -21,4 +21,7 @@ public class PlaySchedule {
     public LocalDateTime getStartDateTime(){
         return startDateTime;
     }
+    public boolean isOverPerson(int personCount){
+        return personCount <= capacity;
+    }
 }

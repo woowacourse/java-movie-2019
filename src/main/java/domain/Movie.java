@@ -54,4 +54,10 @@ public class Movie {
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.isBefore(userSelectSchedule.getStartDateTime());
     }
+    public PlaySchedule getSchedule(int scheduleId){
+        return playSchedules.get(scheduleId);
+    }
+    public void printMovieInformation(){
+        System.out.println( id + " - " + name + ", " + price + "원" + NEW_LINE);
+    }
 }
