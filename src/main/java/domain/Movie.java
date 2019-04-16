@@ -19,8 +19,13 @@ public class Movie {
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
-        playSchedules.add(playSchedule);
+            playSchedules.add(playSchedule);
     }
+
+    public int getMovieId() {
+        return id;
+    }
+    public List<PlaySchedule> getPlaySchedules() { return playSchedules; }
 
     @Override
     public String toString() {

@@ -1,8 +1,10 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieApplication {
@@ -10,8 +12,13 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        List<Movie> selectMovies = new ArrayList<>();
+        Movie movie = null;
 
-        // TODO 구현 진행
+        do {
+            int movieId = InputView.inputMovieId();
+            movie = OutputView.printMovieSchedule(movies, movieId);
+            selectMovies.add(movie);
+        } while (movie == null);
     }
 }
