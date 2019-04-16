@@ -60,4 +60,10 @@ public class MovieRepository {
         }
         throw new RuntimeException("스케줄 오류");
     }
+
+    public static void buyMovieTickets(int movieId, int playScheduleIndex, int buyCount) {
+        Movie movie = getWantMovie(movieId);
+        List<PlaySchedule> playScheduleList = getPlaySchedule(movieId);
+        playScheduleList.get(playScheduleIndex - 1).buyTicket(buyCount);
+    }
 }
