@@ -1,19 +1,30 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author delf
  */
 public class UserInfo {
-    private List<MovieBookingInfo> bookingList;
-    private int point;
+    private final static int DEFAULT_POINT = 10_000;
+
+    private List<MovieBookingInfo> bookingList = new ArrayList<>();
+    private int point = DEFAULT_POINT;
 
     public int  plusPoint(int n) {
         return (point += n);
     }
 
-    public boolean hasMovieOneHourWithinRange(Movie movie) {
+    public int getPoint() {
+        return point;
+    }
+
+    public void addMove(MovieBookingInfo movieBookingInfo) {
+        bookingList.add(movieBookingInfo);
+    }
+
+    private boolean hasMovieOneHourWithinRange(Movie movie) {
         for (MovieBookingInfo bookingInfo : bookingList) {
 
         }
@@ -27,4 +38,9 @@ public class UserInfo {
         }
         return sum;
     }
+
+    public List<MovieBookingInfo> getBookingList() {
+        return this.bookingList;
+    }
+
 }

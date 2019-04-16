@@ -6,43 +6,56 @@ import java.util.List;
 
 public class MovieApplication {
     private static List<Movie> movies = MovieRepository.getMovies();
-    private static UserInfo userInfo = new UserInfo();
+    private static UserInfo user = new UserInfo();
 
     public static void main(String[] args) {
-        MovieBookingInfo myMovie = reserveMovie();
-        
+        reserveMovie();
+        OutputView.printReservedMovieList(user);
+
+        int price = processPayment();
+        OutputView.printReserveSuccess(price);
 
     }
 
-    private static MovieBookingInfo reserveMovie() {
-        MovieBookingInfo movieBookingInfo = null;
+    private static void reserveMovie() {
         do {
-            OutputView.printMovies(movies);
-            Movie movie = selectMovie();
-            OutputView.printPlaySchedule(movie);
-            PlaySchedule playSchedule = selectSchedult(movie);
-            int nPeople = selectPoepleNumber(playSchedule);
-            movieBookingInfo = new MovieBookingInfo(movie, playSchedule, nPeople);
+            Movie movie = selectMovie(); // 영화 선택
+            PlaySchedule playSchedule = selectSchedule(movie); // 시간 선택
+            int nPeople = selectPeopleNumber(playSchedule); // 인원 선택
 
-        } while (InputView.selectPayment());
+            reserveMovie(movie, playSchedule, nPeople); // 예약
 
-        return movieBookingInfo;
+        } while (InputView.selectMoreReseve());
+    }
+
+    private static void reserveMovie(Movie movie, PlaySchedule playSchedule, int number) {
+        MovieBookingInfo movieBookingInfo = new MovieBookingInfo(movie, playSchedule, number);
+        user.addMove(movieBookingInfo);
     }
 
     private static Movie selectMovie() {
+        // TODO: 예외에 따른 입력 반복 구현
         OutputView.printMovies(movies);
         int movieId = InputView.inputMovieId();
         return MovieRepository.findById(movieId);
     }
 
-    private static PlaySchedule selectSchedult(Movie movie) {
+    private static PlaySchedule selectSchedule(Movie movie) {
+        // TODO: 예외에 따른 입력 반복 구현
+        OutputView.printPlaySchedule(movie);
         int scheduleIndex = InputView.inputPlaySchedule() - 1;
         return movie.getPlaySchedule(scheduleIndex);
     }
 
-    private static int selectPoepleNumber(PlaySchedule playSchedule) {
+    private static int selectPeopleNumber(PlaySchedule playSchedule) {
         int nPeople = InputView.inputPeopleNumber();
         // TODO: 인원 체크
         return nPeople;
+    }
+
+    private static int processPayment() {
+        int point = InputView.inputPoint(user.getPoint());
+        Payment payment = InputView.selectPaymentMethod();
+        return payment.getDiscountedPrice(user, point);
     }
 }

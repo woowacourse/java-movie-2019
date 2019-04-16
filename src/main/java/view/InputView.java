@@ -1,5 +1,7 @@
 package view;
 
+import domain.Payment;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -20,7 +22,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static boolean selectPayment() {
+    public static boolean selectMoreReseve() {
         System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
         int n = scanner.nextInt();
         if (n == 1) {
@@ -30,5 +32,22 @@ public class InputView {
             return false;
         }
         throw new IllegalArgumentException();
+    }
+
+    public static Payment selectPaymentMethod() {
+        System.out.println("## 신용카드는 1번, 현금은 2번");
+        int n = scanner.nextInt();
+        if (n == 1) {
+            return Payment.CARD;
+        }
+        if (n == 2) {
+            return Payment.CASH;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static int inputPoint(int nowPoint) {
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0원 (현재 포인트: " + nowPoint + "점)");
+        return scanner.nextInt();
     }
 }
