@@ -31,9 +31,4 @@ public class OutputView {
     }
   }
 
-  public static void printOneMovieSchedule(List<Movie> movies, int movieId, int movieSchedule){
-    for(Movie movie : movies){
-      FindMovieSchedule(movie, movieId, movieSchedule);
-    }
-  }
 }

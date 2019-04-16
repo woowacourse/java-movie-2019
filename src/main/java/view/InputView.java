@@ -14,11 +14,11 @@ public class InputView {
     return MovieRepository.IsIncludeMovie(movieId);
   }
 
-  private static boolean IsCorrectMovieSchedule(int movieId, int movieSchedule){
-    for(Movie movie : MovieRepository.getMovies()){
+  private static boolean IsCorrectMovieSchedule(int movieId, int movieSchedule) {
+    for (Movie movie : MovieRepository.getMovies()) {
       int movieScheduleNumber = movie.getBookableNumber(movieId);
-      if(movieSchedule!=0){
-        return movieSchedule<=movieScheduleNumber;
+      if (movieSchedule != 0) {
+        return movieSchedule <= movieScheduleNumber;
       }
     }
     return false;
@@ -45,10 +45,15 @@ public class InputView {
 
   public static int InputMovieSchedule(int movieId) {
     int movieSchedule;
-    do{
+    do {
       System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-      movieSchedule = scanner.nextInt();
-    }while(!IsCorrectMovieSchedule(movieId, movieSchedule));
+      movieSchedule = InputValidNumber();
+    } while (!IsCorrectMovieSchedule(movieId, movieSchedule));
     return movieSchedule;
+  }
+
+  public static int InputBookingNumber() {
+      System.out.println("## 예약할 인원을 입력하세요.");
+      return InputValidNumber();
   }
 }
