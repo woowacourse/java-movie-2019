@@ -1,38 +1,33 @@
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Payment;
 import domain.PlaySchedule;
+import domain.Reservation;
 import view.InputView;
 import view.OutputView;
 
 public class MovieApplication {
+	private static List<Reservation> reservations;
+	private static final int MORE_BOOK = 2;
+
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
 		OutputView.printMovies(movies);
 
-		// 예약할 movie id 입력
-		int movieId = InputView.inputMovieId();
-		Movie selectedMovie = MovieRepository.findMovie(movieId);
-		if (selectedMovie != null) {
-			OutputView.printMovie(selectedMovie);
+		int moreReservationFlag = MORE_BOOK;
+		reservations = new ArrayList<>();
+		while (moreReservationFlag == MORE_BOOK) {
+			addMovieSchedule();
+			moreReservationFlag = InputView.inputMoreBookingFlag();
 		}
+		OutputView.printAllReservation(reservations);
 
-		// 영화 시간표 선택
-		// TODO selectedMovie.getPlaySchedules().size() 보다 작은 값
-		int startDateTime = InputView.inputStartDateTime();
-		PlaySchedule playSchedule = selectedMovie.getPlaySchedules().get(startDateTime - 1);
-		OutputView.printPlaySchedule(selectedMovie, startDateTime);
-
-		// 영화 인원 선택
-		int capacity = InputView.inputCapacity();
-		OutputView.printBookingResult(selectedMovie, playSchedule, capacity);
-
-		// 결제
 		// 포인트 입력
 		int point = InputView.inputPoint();
-		int totalPrice = selectedMovie.getTotalPrice(capacity);
+		int totalPrice = reservations.stream().mapToInt(Reservation::calculateEachMoviePrice).sum();
 		Payment payment = new Payment(totalPrice, point);
 
 		// 결제 방식 입력 & 최종금액 출력
@@ -42,6 +37,18 @@ public class MovieApplication {
 
 		// 안내 message 출력
 		OutputView.printBookingFinishMessage();
+	}
 
+	private static void addMovieSchedule() {
+		int movieId = InputView.inputMovieId(reservations);
+		Movie selectedMovie = MovieRepository.findMovie(movieId);
+		OutputView.printMovie(selectedMovie);
+
+		int startDateTime = InputView.inputStartDateTime(selectedMovie);
+		PlaySchedule playSchedule = selectedMovie.getPlaySchedules().get(startDateTime - 1);
+		OutputView.printPlaySchedule(playSchedule);
+
+		int capacity = InputView.inputCapacity(playSchedule);
+		reservations.add(new Reservation(selectedMovie, playSchedule, capacity));
 	}
 }
