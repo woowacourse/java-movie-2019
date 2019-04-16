@@ -12,8 +12,8 @@ public class OutputView {
         }
     }
 
-    public static void printPlaySchedule(int movieId) {
-        System.out.println(MovieRepository.getWantMovie(movieId));
+    public static void printPlaySchedule(Movie movie) {
+        System.out.println(movie);
     }
 
     public static void printPayResult(AllPay allPay) {

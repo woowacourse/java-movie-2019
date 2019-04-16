@@ -52,18 +52,17 @@ public class MovieRepository {
         throw new RuntimeException("스케줄 오류");
     }
 
-    public static List<PlaySchedule> getPlaySchedule(int movieId) {
+    public static List<PlaySchedule> getPlaySchedule(Movie inputMovie) {
         for (Movie movie : movies) {
-            if (movie.isRightMovie(movieId)) {
+            if (movie.equals(inputMovie)) {
                 return movie.getPlaySchedules();
             }
         }
-        throw new RuntimeException("스케줄 오류");
+        throw new RuntimeException("스케줄이 없습니다");
     }
 
-    public static void buyMovieTickets(int movieId, int playScheduleIndex, int buyCount) {
-        Movie movie = getWantMovie(movieId);
-        List<PlaySchedule> playScheduleList = getPlaySchedule(movieId);
+    public static void buyMovieTickets(Movie movie, int playScheduleIndex, int buyCount) {
+        List<PlaySchedule> playScheduleList = getPlaySchedule(movie);
         playScheduleList.get(playScheduleIndex - 1).buyTicket(buyCount);
     }
 }
