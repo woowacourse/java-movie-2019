@@ -40,11 +40,15 @@ public class MovieApplication {
 
         for(int i=0; i<movieIdArrayList.size();i++) {
 
-            getFirstMovie(movieIdArrayList, i);
-            getSecondToFourthMovie(movieIdArrayList, i);
-            getException(movieIdArrayList, i);
+            getMovieState(movieIdArrayList, i);
         }
         return movieIdArrayList;
+    }
+
+    private void getMovieState(List<Integer> movieIdArrayList, int i) {
+        getFirstMovie(movieIdArrayList, i);
+        getSecondToFourthMovie(movieIdArrayList, i);
+        getException(movieIdArrayList, i);
     }
 
     private void getException(List<Integer> movieIdArrayList, int i) {
@@ -92,7 +96,6 @@ public class MovieApplication {
                 System.out.println("다시 입력해주십시오.");
             }
         }
-
         return movieIdList;
     }
 
@@ -103,15 +106,20 @@ public class MovieApplication {
         List<Integer> reservationTimeList;
         while (true) try {
 
-            Scanner scanReservationTime = new Scanner(System.in);
-            String getReservationTimeString = scanReservationTime.nextLine();
-            reservationTimeList = invertReservationTimeStringToList(getReservationTimeString);
-            checkSameSizeListReservationTimeAndMovieId(movieIdList, reservationTimeList);
+            checkReservationTime(movieIdList);
             break;
         } catch (Exception e) {
 
             System.out.println("예약 시간으르 다시 입력해주십시오");
         }
+    }
+
+    private void checkReservationTime(List<Integer> movieIdList) {
+        List<Integer> reservationTimeList;
+        Scanner scanReservationTime = new Scanner(System.in);
+        String getReservationTimeString = scanReservationTime.nextLine();
+        reservationTimeList = invertReservationTimeStringToList(getReservationTimeString);
+        checkSameSizeListReservationTimeAndMovieId(movieIdList, reservationTimeList);
     }
 
     private List<Integer> getInReservationList(String[] movieIdString){
@@ -138,8 +146,8 @@ public class MovieApplication {
 
         if(movieIdListSize.size() != reservationTimeList.size()){
 
+            System.out.println("예약 시간표와 예약 영화의 갯수가 일치하지 않습니다");
             throw new IllegalArgumentException();
         }
     }
-
 }
