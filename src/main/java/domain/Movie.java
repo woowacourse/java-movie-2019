@@ -35,4 +35,8 @@ public class Movie {
     int getId() {
         return id;
     }
+
+    boolean isSameMovieId(int movieId) {
+        return (id == movieId);
+    }
 }

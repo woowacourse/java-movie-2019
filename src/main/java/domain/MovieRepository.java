@@ -51,4 +51,13 @@ public class MovieRepository {
 
         return movieIdList;
     }
+
+    public static Movie getMovie(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.isSameMovieId(movieId)) {
+                return movie;
+            }
+        }
+        return null;
+    }
 }
