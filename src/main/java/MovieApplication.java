@@ -7,14 +7,22 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieApplication {
-    public static void main(String[] args) {
+
+    public void ReservateMovie(){
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         Movie userMovie = InputView.inputMovieId();
         OutputView.printMovie(userMovie);
-
         PlaySchedule reserveSchedule = InputView.inputReserveTime(userMovie);
-        InputView.intputReservePeople(reserveSchedule);
+        InputView.inputReservePeople(reserveSchedule);
+        int paymentOrReservation = InputView.inputPaymentOrReservation();
+        if(paymentOrReservation == 2){
+            ReservateMovie();
+        }
+    }
+    public static void main(String[] args) {
+        MovieApplication movieApplication = new MovieApplication();
+        movieApplication.ReservateMovie();
         // TODO 구현 진행
     }
 }

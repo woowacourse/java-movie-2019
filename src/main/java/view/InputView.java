@@ -23,27 +23,39 @@ public class InputView {
         }
     }
 
-    public static PlaySchedule inputReserveTime(Movie movie){
+    public static PlaySchedule inputReserveTime(Movie movie) {
         try {
             System.out.println("##예약할시간표를선택하세요.(첫번째상영시간이1번)");
-            int reserveTime  = scanner.nextInt();
-            ReserveTime reserveTime1 = new ReserveTime(movie,reserveTime);
+            int reserveTime = scanner.nextInt();
+            ReserveTime reserveTime1 = new ReserveTime(movie, reserveTime);
             return reserveTime1.getReserveSchedule();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return inputReserveTime(movie);
         }
     }
 
-    public static int intputReservePeople(PlaySchedule reserveSchedule){
+    public static int inputReservePeople(PlaySchedule reserveSchedule) {
         try {
             System.out.println("##예약할인원을입력하세요. ");
             int reservePerple = scanner.nextInt();
-            ReservePeople reservePeople = new ReservePeople(reserveSchedule,reservePerple);
+            ReservePeople reservePeople = new ReservePeople(reserveSchedule, reservePerple);
             return reservePerple;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            return intputReservePeople(reserveSchedule);
+            return inputReservePeople(reserveSchedule);
+        }
+    }
+
+    public static int inputPaymentOrReservation() {
+        try {
+            System.out.println("##예약을종료하고결제를진행하려면1번, 추가예약을진행하려면2번 ");
+            int paymentOrReservation = scanner.nextInt();
+            PaymentOrReservation paymentOrReservation1 = new PaymentOrReservation(paymentOrReservation);
+            return paymentOrReservation;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return inputPaymentOrReservation();
         }
     }
 
