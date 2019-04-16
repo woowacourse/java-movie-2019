@@ -27,4 +27,9 @@ public class DateTimeUtils {
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
 
+    public static boolean isProbabilityCheck(LocalDateTime dateTime1) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return currentDateTime.isBefore(dateTime1);
+    }
+
  }

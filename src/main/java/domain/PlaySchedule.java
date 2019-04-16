@@ -21,4 +21,12 @@ public class PlaySchedule {
     public String toString(boolean simple) {
         return "시작시간: " + format(startDateTime) + "\n";
     }
+
+    public LocalDateTime getStartDateTime(){
+        return this.startDateTime;
+    }
+
+    public int getCapacity(){
+        return this.capacity;
+    }
 }
