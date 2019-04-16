@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class CheckValidity {
+    protected static final int MIN_PAY_PROCESSING = 1;
+    private static final int MAX_PAY_PROCESSING = 2;
+
     protected static boolean checkValidityIntegerFormat(String input) {
         try {
             Integer.parseInt(input);
@@ -33,7 +36,7 @@ public class CheckValidity {
     }
 
     protected static boolean checkIsShowTimeBefore(Movie movie, int bookingTime) {
-        if (DateTimeUtils.isShowTimeBefore(LocalDateTime.now(), movie.getshowTime(bookingTime))) {
+        if (DateTimeUtils.isShowTimeBefore(LocalDateTime.now(), movie.getShowTime(bookingTime))) {
             System.out.println("예약이 불가능한 시간입니다.");
             return false;
         }
@@ -46,5 +49,9 @@ public class CheckValidity {
             return false;
         }
         return true;
+    }
+
+    protected static boolean checkValidityScopeOfPayProcessing(int payProcessing){
+        return ((MIN_PAY_PROCESSING <= payProcessing) && (payProcessing <= MAX_PAY_PROCESSING));
     }
 }

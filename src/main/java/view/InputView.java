@@ -51,4 +51,18 @@ public class InputView extends CheckValidity {
         return checkValidityIntegerFormat(bookingNumber)
                 && checkIsValidityBookingNumber(movie, bookingTime, Integer.parseInt(bookingNumber));
     }
+
+    public static boolean inputPayProcessing(){
+        String payProcessing;
+        do{
+            System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+            payProcessing = scanner.next();
+        }while(!validityPayProcessing(payProcessing));
+        return Integer.parseInt(payProcessing) == MIN_PAY_PROCESSING;
+    }
+
+    private static boolean validityPayProcessing(String  payProcessing){
+        return checkValidityIntegerFormat(payProcessing)
+                && checkValidityScopeOfPayProcessing(Integer.parseInt(payProcessing));
+    }
 }
