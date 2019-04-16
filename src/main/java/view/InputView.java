@@ -1,12 +1,20 @@
 package view;
 
+import utils.StringLiterals;
+
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId() {
-        System.out.println("## 예약할 영화를 선택하세요.");
-        return scanner.nextInt();
+    public static int getUserInput(String statement, String errorMessage) {
+        try {
+            System.out.println(statement);
+            return scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println(errorMessage);
+            scanner.nextLine();
+            return getUserInput(statement, errorMessage);
+        }
     }
 }
