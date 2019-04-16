@@ -42,4 +42,15 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovieUsingMovieID(int movieID) {
+        Movie matchedMovie = null;
+        for (Movie movie : movies) {
+            if (movie.isMatchMovieID(movieID)) {
+                matchedMovie = movie;
+                break;
+            }
+        }
+        return matchedMovie;
+    }
 }
