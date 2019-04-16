@@ -26,4 +26,13 @@ public class DateTimeUtils {
         LocalDateTime endDateTime = dateTime1.plusHours(ONE_HOURS);
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
+
+    public static LocalDateTime createCurrentTime(){
+        LocalDateTime now = LocalDateTime.now();
+        return now;
+    }
+
+    public static boolean isEarlyerThanMovieTime(LocalDateTime selectedTime){
+        return selectedTime.isBefore(LocalDateTime.now());
+    }
 }

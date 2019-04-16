@@ -23,7 +23,16 @@ public class BookMovieTest {
         System.setIn(input);
 
         assertEquals(bookMovie.movies.get(1), bookMovie.getSelectedMovie());
+    }
 
+    @Test
+    public void getMovieTimeTest() {
+        BookMovie bookMovie = new BookMovie();
+
+        ByteArrayInputStream input = new ByteArrayInputStream("4".getBytes());
+        System.setIn(input);
+
+        assertEquals(true, bookMovie.getMovieTime());
 
     }
 }

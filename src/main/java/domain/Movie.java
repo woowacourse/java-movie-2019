@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +35,9 @@ public class Movie {
 
     public int getMovieId(){
         return this.id;
+    }
+
+    public PlaySchedule getMovieSchedule(int movieIndex){
+        return playSchedules.get(movieIndex);
     }
 }
