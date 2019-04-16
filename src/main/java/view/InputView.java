@@ -9,20 +9,30 @@ public class InputView {
         String scannedMovieId;
         do {
             System.out.println("## 예약할 영화를 선택하세요.");
-            scannedMovieId=SCANNER.nextLine();
+            scannedMovieId = SCANNER.nextLine();
         }
         while (!Validator.isNaturalNumber(scannedMovieId));
         return Integer.parseInt(scannedMovieId);
     }
 
-    public static int inputMovieSchedule(){
+    public static int inputMovieSchedule() {
         String scannedMovieSchedule;
         do {
             System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-            scannedMovieSchedule=SCANNER.nextLine();
+            scannedMovieSchedule = SCANNER.nextLine();
         }
         while (!Validator.isNaturalNumber(scannedMovieSchedule) || scannedMovieSchedule.equals("0"));
         return Integer.parseInt(scannedMovieSchedule);
+    }
+
+    public static int inputNumberOfPeople() {
+        String scanned;
+        do {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            scanned = SCANNER.nextLine();
+        }
+        while (!Validator.isNaturalNumber(scanned));
+        return Integer.parseInt(scanned);
     }
 
 }

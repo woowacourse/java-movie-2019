@@ -18,17 +18,21 @@ public class Movie {
         this.price = price;
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public int getScheduleSize(){
+    public int getPrice() {
+        return this.price;
+    }
+
+    public int getScheduleSize() {
         return this.playSchedules.size();
     }
 
-   public List<PlaySchedule> getPlaySchedule(){
+    public List<PlaySchedule> getPlaySchedule() {
         return this.playSchedules;
-   }
+    }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
