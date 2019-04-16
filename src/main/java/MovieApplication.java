@@ -17,6 +17,10 @@ import java.util.List;
 public class MovieApplication {
 	
 	private static final int MORE_BOOK = 2;
+	private static final int CREDIT_CARD = 1;
+	private static final double CREDIT_CARD_DISCOUNT = 0.95;
+	private static final double CASH_DISCOUNT = 0.98;
+	private static final String NEW_LINE = "\n";
 	
 	private Movie selectMovie(List<Movie> movies) {
 		ExceptionCheckedNumber movieId;
@@ -113,7 +117,7 @@ public class MovieApplication {
 	
 	private void printMyMovieInfo(List<MyMovie> myMovies) {
 		for (MyMovie myMovie : myMovies) {
-			System.out.println(myMovie.toString() + "\n");
+			System.out.println(myMovie.toString() + NEW_LINE);
 		}
 	}
 	
@@ -124,7 +128,7 @@ public class MovieApplication {
 		}
 		
 	    int finalPrice = totalPrice - point;
-	    int payPrice = (payType == 1) ? (int) (finalPrice * 0.95) : (int) (finalPrice * 0.98);
+	    int payPrice = (payType == CREDIT_CARD) ? (int) (finalPrice * CREDIT_CARD_DISCOUNT) : (int) (finalPrice * CASH_DISCOUNT);
 	    
 	    System.out.println("최종 결제한 금액은 " + payPrice + "원 입니다.");
 	    System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
