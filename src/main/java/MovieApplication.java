@@ -41,8 +41,8 @@ public class MovieApplication {
 	static Movie inputMovieIdOnce(List<Movie> movies, List<SelectedMovie> selectedMovies) {
 		int id = InputView.inputMovieId();
 		isExist(movies, id);
-		Movie selectedMovie = getMovie(movies, id); 
-		if(numberOfValidTicket(selectedMovies, selectedMovie) == 0) 
+		Movie selectedMovie = getMovie(movies, id);
+		if (numberOfValidTicket(selectedMovies, selectedMovie) == 0)
 			throw new IllegalArgumentException("해당 영화에 구매 가능한 표가 없습니다.");
 		return selectedMovie;
 	}
@@ -57,18 +57,18 @@ public class MovieApplication {
 		}
 		return selectedMovie;
 	}
-	
+
 	static int numberOfValidTicket(List<SelectedMovie> selectedMovies, Movie movie) {
 		int ticket = 0;
-		for(int index = 1; index < movie.getNumberOfSchedule(); index++) {
+		for (int index = 1; index < movie.getNumberOfSchedule(); index++) {
 			ticket += (isValidStartTime(selectedMovies, movie, index)) ? movie.getNumberOfTicket(index) : 0;
 		}
 		return ticket;
 	}
-	
+
 	static int numberOfValidTicket(List<Movie> movies, List<SelectedMovie> selectedMovies) {
 		int ticket = 0;
-		for(Movie movie : movies) {
+		for (Movie movie : movies) {
 			ticket += numberOfValidTicket(selectedMovies, movie);
 		}
 		return ticket;
@@ -162,7 +162,26 @@ public class MovieApplication {
 			selectMovie(movies, selectedMovies);
 			swc = (numberOfValidTicket(movies, selectedMovies) != 0) ? recurInputRechoiceOrNot() : -1;
 		} while (swc == 2);
-		if(swc == -1)
+		if (swc == -1)
 			System.out.println("## 더이상 구매 가능한 표가 없습니다. 예약을 종료합니다.");
 	}
+
+	static int inputPointOnce() {
+		int point = InputView.inputPoint();
+		if (point < 0)
+			throw new IllegalAccessError("사용할 포인트는 0 점 이상이어야 합니다. \n다시 입력해주세요.");
+		return 0;
+	}
+
+	static int recurInputPoint() {
+		int point = 0;
+		try {
+			point = inputPointOnce();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			point = recurInputPoint();
+		}
+		return point;
+	}
+
 }
