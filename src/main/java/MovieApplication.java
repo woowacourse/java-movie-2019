@@ -29,7 +29,6 @@ public class MovieApplication {
             OutputView.printMovies(movies);
             makeReservation(movies);
         }
-
         OutputView.printReservations(reservations);
 
         pay();
@@ -72,10 +71,17 @@ public class MovieApplication {
 
         if (movie.makeReserve(tableId, numPeople)) {
             newReservation = new Reservation(movie, tableId, numPeople);
-            return checkOutOfOneHourRange(newReservation);
+            return checkAlreadyStarted(newReservation);
         }
 
         return false;
+    }
+
+    public static boolean checkAlreadyStarted(Reservation newReservation) {
+        if (newReservation.isAlreadyStarted()) {
+            return false;
+        }
+        return checkOutOfOneHourRange(newReservation);
     }
 
     public static boolean checkOutOfOneHourRange(Reservation newReservation) {

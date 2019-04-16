@@ -25,4 +25,8 @@ public class Reservation {
     public boolean checkOneHourWithinRange(Reservation reservation) {
         return movie.getSchedule(tableId).isOneHourWithinRange(reservation.movie.getSchedule(reservation.tableId));
     }
+
+    public boolean isAlreadyStarted() {
+        return movie.getSchedule(tableId).isAlreadyStarted();
+    }
 }

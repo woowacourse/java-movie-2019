@@ -36,4 +36,7 @@ public class PlaySchedule {
         return DateTimeUtils.isOneHourWithinRange(startDateTime, playSchedule.startDateTime);
     }
 
+    public boolean isAlreadyStarted() {
+        return LocalDateTime.now().isAfter(startDateTime);
+    }
 }
