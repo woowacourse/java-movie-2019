@@ -42,7 +42,8 @@ public class movieNumReceiver {
             if (mid == movieNum) {
                 return;
             }
-            throw new NotInRangeException();
+
         }
+        throw new NotInRangeException();
     }
 }

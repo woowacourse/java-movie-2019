@@ -1,9 +1,14 @@
 package receiver;
 
+import domain.Movie;
+import domain.MovieRepository;
 import error.Validator;
+import error.exceptions.NotInRangeException;
 import error.exceptions.NotIntegerException;
 import error.exceptions.NotValidException;
+import domain.PlaySchedule;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class scheduleNumReceiver {
@@ -22,6 +27,7 @@ public class scheduleNumReceiver {
     }
 
     private static void checkValid(String inputFromUser) throws Exception {
+        List<Movie> movies = MovieRepository.getMovies();
         if (!Validator.isInteger(inputFromUser)) {    // 정수 변환 가능한지
             throw new NotIntegerException();
         }
@@ -29,5 +35,15 @@ public class scheduleNumReceiver {
         if (1 > movieNum || movieNum > 9) {    // 적은 금액인지
             throw new NotValidException();
         }
+        for (Movie movie : movies) {
+            int mid = movie.getId();
+            if (mid == movieNum) {
+                int length = movie.getPlaySchedules().size();
+                if (Integer.parseInt(inputFromUser) < length) {
+                    return;
+                }
+            }
+        }
+        throw new NotInRangeException();
     }
 }
