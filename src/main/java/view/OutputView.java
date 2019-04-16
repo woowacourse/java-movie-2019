@@ -20,6 +20,7 @@ public class OutputView {
 		String message = e.getMessage();
 		if (message == null) {
 			System.out.println("오류가 발생했습니다.");
+			return;
 		}
 		System.out.println(message);
 	}
