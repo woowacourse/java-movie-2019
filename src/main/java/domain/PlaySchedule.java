@@ -18,6 +18,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public String getStartTimeString() {
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     public void scheduleReservation(int count) {
         this.capacity -= count;
     }

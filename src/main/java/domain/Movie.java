@@ -32,6 +32,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String getName() {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
+
     public boolean isThisMovie(int id) {
         return this.id == id;
     }
