@@ -2,8 +2,6 @@ import domain.Movie;
 import domain.MovieRepository;
 import domain.User;
 import domain.UserSelection;
-import utils.StringLiterals;
-import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
@@ -14,8 +12,10 @@ public class MovieApplication {
         User user = new User();
         List<UserSelection> userSelections = new ArrayList<>();
         List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
 
-        userSelections.add(user.issueMovieTicket());
+        do {
+            OutputView.printMovies(movies);
+            userSelections.add(user.issueMovieTicket());
+        } while (user.repeatSelection());
     }
 }

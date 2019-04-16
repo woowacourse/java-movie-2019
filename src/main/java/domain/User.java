@@ -3,9 +3,6 @@ package domain;
 import utils.StringLiterals;
 import view.InputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
     public UserSelection issueMovieTicket() {
         int movieId = getMovieId();
@@ -15,17 +12,26 @@ public class User {
         return new UserSelection(movieId, movieTime, noOfPerson);
     }
 
-    public int getMovieId() {
+    public boolean repeatSelection() {
+        int repeat = validateRepeatInput();
+
+        if (repeat == 1)
+            return false;
+
+        return true;
+    }
+
+    private int getMovieId() {
         return validateMovieId();
     }
 
-    public int getMovieTime(int movieId) {
+    private int getMovieTime(int movieId) {
         MovieRepository.showTimeTable(movieId);
 
         return validateMovieTime(movieId);
     }
 
-    public int getNoOfPerson(int movieId, int movieTime) {
+    private int getNoOfPerson(int movieId, int movieTime) {
         return validateNoOfPerson(movieId, movieTime);
     }
 
@@ -63,5 +69,17 @@ public class User {
         }
 
         return noOfPerson;
+    }
+
+    private int validateRepeatInput() {
+        int repeat = InputView.getUserInput(StringLiterals.FINISH_SELECTION_STATEMENT.toString(),
+                StringLiterals.FINISH_SELECTION_ERROR.toString());
+
+        if (repeat == 1 || repeat == 2) {
+            return repeat;
+        }
+
+        System.out.println(StringLiterals.FINISH_SELECTION_ERROR.toString());
+        return validateRepeatInput();
     }
 }
