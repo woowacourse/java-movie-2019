@@ -2,6 +2,8 @@ package view;
 
 import domain.Movie;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
@@ -11,11 +13,9 @@ public class OutputView {
         }
     }
 
-    public static void printMovieInfo(List<Movie> movies, int id){
-        for(Movie i : movies){
-            if(i.getId() == id){
-                System.out.println(i);
-            }
+    public static void printMovieInfo(Map<Integer, Movie> movies, int id){
+        if(movies.containsKey(id)){
+            System.out.println(movies.get(id));
         }
     }
 }

@@ -24,5 +24,22 @@ public class InputView {
         }
         throw new IllegalArgumentException();
     }
+/*
+    public static int inputSchedule(){
+        try {
+            System.out.println("## 예약할 시간표를 선택하세요.(첫 번째 상영 시간이 1번");
+            int schedule = Integer.parseInt(scanner.nextLine());
+            return isValidScheduleNumber(schedule);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: 올바른 시간표 번호를 입력해주세요.");
+            return inputMovieId();
+        }
+    }
+
+
+    private static int isValidScheduleNumber(int number) {
+        if(number < )
+    }
+    */
 }
 

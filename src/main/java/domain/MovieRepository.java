@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -45,10 +47,18 @@ public class MovieRepository {
 
     public static List<Integer> getIdList() {
         List<Integer> idList = new ArrayList<>();
-        for (Movie i : MovieRepository.getMovies()) {
+        for (Movie i : movies) {
             idList.add(i.getId());
         }
         return idList;
+    }
+
+    public static Map getMovieMap(){
+        Map<Integer, Movie> movieMap = new HashMap<>();
+        for(Movie i : movies){
+            movieMap.put(i.getId(),i);
+        }
+        return movieMap;
     }
 
 }
