@@ -54,4 +54,7 @@ public class Movie {
     public void printMovieInformation(){
         System.out.println( id + " - " + name + ", " + price + "원");
     }
+    public int getPrice(){
+        return price;
+    }
 }

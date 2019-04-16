@@ -17,4 +17,7 @@ public class Reserve {
     public PlaySchedule getSchedule(){
         return this.schedule;
     }
+    public int getPrice(){
+        return movie.getPrice() * person;
+    }
 }

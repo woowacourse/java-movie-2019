@@ -13,6 +13,7 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         List<Reserve> reserveList = new ArrayList<>();
+        int price = 0;
         OutputView.printMovies(movies);
         bookTicket(reserveList);
         int isContinue = InputView.inputContinue();
@@ -21,18 +22,21 @@ public class MovieApplication {
             isContinue = InputView.inputContinue();
         }
         for(Reserve reserve : reserveList){
+            price = price + reserve.getPrice();
             reserve.printReserverInformation();
         }
-        int point = InputView.inputPoint();
-        
+
+        int point = inputPoint(price);
+        int cashOrCredit = InputView.intputCashOrCredit();
+        OutputView.printResult(cashOrCredit,price-point);
     }
-    public static void bookTicket( List<Reserve> reserveList){
+    private static void bookTicket( List<Reserve> reserveList){
         Movie userSelectMovie = selectMovie();
         PlaySchedule userSelectSchedule = selectSchedule(reserveList, userSelectMovie);
         int personCount = selectPerson(userSelectSchedule);
         reserveList.add(new Reserve(userSelectMovie,userSelectSchedule,personCount));
     }
-    public static Movie selectMovie(){
+    private static Movie selectMovie(){
         int movieId = InputView.inputMovieId();
         while(!MovieRepository.isContainMovieId(movieId)){
             System.out.println(InputView.NOT_MOVIE_ID);
@@ -42,21 +46,19 @@ public class MovieApplication {
         System.out.println(userSelectMovie);
         return userSelectMovie;
     }
-    public static PlaySchedule selectSchedule(List<Reserve> reserveList , Movie userSelectMovie){
+    private static PlaySchedule selectSchedule(List<Reserve> reserveList , Movie userSelectMovie){
         int scheduleId = InputView.inputScheduleId();
-        while(!userSelectMovie.isCorrectScheduleId(scheduleId)){
+        while(!userSelectMovie.isCorrectScheduleId(scheduleId))
             scheduleId = InputView.inputScheduleId();
-        }
         while(!userSelectMovie.isPossibleWatch(scheduleId)){
             System.out.println(InputView.NOT_MOVIE_SCHEDULE);
             scheduleId = InputView.inputScheduleId();
         }
-        while(isImpossibleSchedule(reserveList, userSelectMovie.getSchedule(scheduleId))){
+        while(isImpossibleSchedule(reserveList, userSelectMovie.getSchedule(scheduleId)))
             scheduleId = InputView.inputScheduleId();
-        }
         return userSelectMovie.getSchedule(scheduleId);
     }
-    public static int selectPerson(PlaySchedule userSelectSchedule){
+    private static int selectPerson(PlaySchedule userSelectSchedule){
         int personCount = InputView.inputPerson();
         while(!userSelectSchedule.isOverPerson(personCount)){
             System.out.println(InputView.OVER_RANGE_CAPACITY);
@@ -64,7 +66,7 @@ public class MovieApplication {
         }
         return personCount;
     }
-    public static boolean isImpossibleSchedule(List<Reserve> reserveList, PlaySchedule userSelcetSchedule){
+    private static boolean isImpossibleSchedule(List<Reserve> reserveList, PlaySchedule userSelcetSchedule){
         boolean result = false;
         for(Reserve reserve : reserveList){
             result = result || !isOneHourWithinRange(reserve.getSchedule().getStartDateTime(), userSelcetSchedule.getStartDateTime());
@@ -73,5 +75,13 @@ public class MovieApplication {
             System.out.println(InputView.OVER_ONEHOUR);
         }
         return result;
+    }
+    private static int inputPoint(int price){
+        int point = InputView.inputPoint();
+        while(point > price){
+            System.out.println(InputView.OVER_POINT);
+            point = InputView.inputPoint();
+        }
+        return point;
     }
 }
