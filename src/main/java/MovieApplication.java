@@ -11,8 +11,12 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         int movieId = InputView.inputMovieId();
-
         OutputView.printMovie(findMovieById(movies, movieId));
+
+        int movieTable = InputView.inputMovieTable();
+        int numPeople = InputView.inputNumPeople();
+
+
     }
 
     public static Movie findMovieById(List<Movie> movieList, int movieId) {
