@@ -37,11 +37,10 @@ public class OutputView {
     }
 
     public static String userMovie_SelectDatatime(int movie_datatime) {
-
         return userMovie.getMovieDataTime(movie_datatime);
     }
 
-    public static int userMovie_SelectCapacity(int movie_person){
+    public static int userMovie_SelectCapacity(int movie_person) {
         return userMovie.getMoviecapacity(movie_person);
     }
 }
