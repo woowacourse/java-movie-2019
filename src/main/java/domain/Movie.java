@@ -1,10 +1,14 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static domain.MovieRepository.ONE;
+
 public class Movie {
-    private static final char NEW_LINE = '\n';
+    public static final char NEW_LINE = '\n';
 
     private final int id;
     private final String name;
@@ -18,11 +22,20 @@ public class Movie {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public boolean isSelectedMovie(int movieId) {
-        if (this.id == movieId) {
-            return true;
-        }
-        return false;
+        return this.id == movieId;
     }
 
     void addPlaySchedule(PlaySchedule playSchedule) {
@@ -30,7 +43,11 @@ public class Movie {
     }
 
     public void reserveMovie(int movieTime, int numberOfPeople) {
-        playSchedules.get(movieTime).decreaseCapacity(numberOfPeople);
+        playSchedules.get(movieTime - ONE).decreaseCapacity(numberOfPeople);
+    }
+
+    public LocalDateTime getReserveMovieTime(int movieTime) {
+        return playSchedules.get(movieTime - ONE).getStartDateTime();
     }
 
     @Override

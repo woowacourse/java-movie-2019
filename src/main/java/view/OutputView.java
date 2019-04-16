@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.MovieRepository;
+import domain.ReservationMovieList;
 
 import java.util.List;
 
@@ -14,5 +15,9 @@ public class OutputView {
 
     public static void printSelectedMovie(int movieId) {
         System.out.println(MovieRepository.getSelectedMovie(movieId));
+    }
+
+    public static void printReservation() {
+        System.out.println(ReservationMovieList.getInstance());
     }
 }

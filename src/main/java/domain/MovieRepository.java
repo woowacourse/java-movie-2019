@@ -8,8 +8,8 @@ import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
     private static List<Movie> movies = new ArrayList<>();
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
@@ -55,6 +55,6 @@ public class MovieRepository {
 
     public static void reserveMovie(int movieId, int movieTime, int numberOfPeople) {
         Movie selectedMovie = getSelectedMovie(movieId);
-        selectedMovie.reserveMovie(movieTime - ONE, numberOfPeople);
+        selectedMovie.reserveMovie(movieTime, numberOfPeople);
     }
 }
