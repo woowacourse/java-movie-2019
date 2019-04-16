@@ -43,6 +43,6 @@ public class Movie {
     }
 
     public PlaySchedule getScheduleByIndex(int index) {
-        return playSchedules.get(index);
+        return playSchedules.get(index - 1);
     }
 }
