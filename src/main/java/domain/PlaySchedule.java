@@ -2,6 +2,12 @@ package domain;
 
 import java.time.LocalDateTime;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+import org.assertj.core.internal.bytebuddy.asm.Advice.Local;
+
+import utils.DateTimeUtils;
+
 import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
@@ -11,6 +17,10 @@ public class PlaySchedule {
     public PlaySchedule(LocalDateTime startDateTime, int capacity) {
         this.startDateTime = startDateTime;
         this.capacity = capacity;
+    }
+    
+    public boolean checkOneHourRange(PlaySchedule playSchedule) {
+    	return DateTimeUtils.isOneHourWithinRange(this.startDateTime, playSchedule.startDateTime);
     }
 
     @Override

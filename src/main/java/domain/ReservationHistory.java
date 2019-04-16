@@ -18,6 +18,10 @@ public class ReservationHistory {
         		+ "\n예약 인원: " + reservedPersonnel + "명";  		
     }
 	
+	public boolean checkOneHourRange(PlaySchedule playSchedule) {
+		return this.playschedule.checkOneHourRange(playSchedule);
+	}
+	
 	/* 테스트 코드 */
 	public static void main(String[] args) {
 		Movie movie = MovieRepository.getMovie(1);

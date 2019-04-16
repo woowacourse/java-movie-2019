@@ -35,4 +35,13 @@ public class MovieReservation {
 		int personnel = InputView.inputPersonnel();
 		return personnel;
 	}
+	
+	private static boolean checkOneHourRange(PlaySchedule playSchedule) {
+		for (ReservationHistory reservationHistory: reservationHistories) {
+			if (!reservationHistory.checkOneHourRange(playSchedule)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
