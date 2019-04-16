@@ -14,6 +14,10 @@ public class InputView {
     private static final String ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
     private static final String SELECT_PAYMENT_METHOD_MESSAGE = "## 신용카드는 1번, 현금은 2번";
 
+    private static final int END_RESERVATION = 1;
+    private static final int ADD_RESERVATION = 2;
+    private static final String END_OR_ADD_RESERVE_ERROR_MESSAGE = "예약을 종료하고 결제려면 1, 추가 예약을 진행하려면 2를 선택하셔야 합니다.";
+
     private static final int MIN_POINT = 0;
     private static final String POINT_INPUT_ERROR_MESSAGE = "포인트는 0보다 작을 수 없습니다.";
 
@@ -39,7 +43,17 @@ public class InputView {
 
     public static int inputEndOrAddReservation() {
         System.out.println(SELECT_END_OR_ADD_RESERVE_MESSAGE);
-        return InputNumber.getNaturalNumber();
+        try{
+            int endOrAdd = InputNumber.getNaturalNumber();
+            if (endOrAdd != END_RESERVATION && endOrAdd != ADD_RESERVATION) {
+                System.out.println(END_OR_ADD_RESERVE_ERROR_MESSAGE);
+                throw new IllegalArgumentException();
+            }
+            return endOrAdd;
+        }catch (Exception e){
+            return inputEndOrAddReservation();
+        }
+
     }
 
     public static int inputAmountOfPointToUse() {
