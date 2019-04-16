@@ -4,26 +4,30 @@ public class MovieReservation {
     private int movieId;
     private int scheduleIndex;
     private int personCount;
-    public MovieReservation(int movieNumber, int scheduleIndex, int personCount){
+
+    public MovieReservation(int movieNumber, int scheduleIndex, int personCount) {
         this.movieId = movieNumber;
         this.scheduleIndex = scheduleIndex;
         this.personCount = personCount;
     }
 
-    public boolean isSameReservation(MovieReservation reservation){
+    public boolean isSameReservation(MovieReservation reservation) {
         return (movieId == reservation.getMovieId()) && (scheduleIndex == reservation.getScheduleIndex());
     }
 
-    public void increaseCount(int count){
+    public void increaseCount(int count) {
         personCount += count;
     }
-    public int getMovieId(){
+
+    public int getMovieId() {
         return movieId;
     }
-    public int getScheduleIndex(){
+
+    public int getScheduleIndex() {
         return scheduleIndex;
     }
-    public int getPersonCount(){
+
+    public int getPersonCount() {
         return personCount;
     }
 }

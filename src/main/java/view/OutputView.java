@@ -11,7 +11,7 @@ public class OutputView {
         }
     }
 
-    public static void printMovie(Movie movie){
+    public static void printMovie(Movie movie) {
         System.out.println(movie);
     }
 }

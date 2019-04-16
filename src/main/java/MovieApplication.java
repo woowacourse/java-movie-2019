@@ -2,6 +2,7 @@ import domain.Movie;
 import domain.MovieRepository;
 import domain.MovieReservation;
 import domain.PlaySchedule;
+import utils.MovieDataRequester;
 import view.InputView;
 import view.OutputView;
 
@@ -12,32 +13,20 @@ public class MovieApplication {
     public static final double SALE_RATE_CARD = 0.95;
     public static final double SALE_RATE_NOCARD = 0.98;
 
-    public static void tryMakingReservation(List<MovieReservation> reservationList) {
-        // 영화 보여주기
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
+    public static void makeReservation(List<MovieReservation> reservationList) {
+        OutputView.printMovies(MovieRepository.getMovies());
 
-        // 예약할 영화를 선택하세요
         int movieId = InputView.inputMovieId();
-        Movie selectedMovie = MovieRepository.getMovie(movieId);
+        Movie selectedMovie = MovieDataRequester.getMovie(movieId);
         OutputView.printMovie(selectedMovie);
-
-        // 스캐줄 받기
         int scheduleIndex = InputView.inputScheduleIndex(movieId);
-
-        // 예약 인원
         int personCount = InputView.inputReservePersonCount(movieId, scheduleIndex);
-
-        // 무비의 예약시간에 현재정보 적용해주기
         selectedMovie.decreaseScheduleCapacity(scheduleIndex, personCount);
-        // 예약리스트에 추가하기
         addToReservationList(reservationList, new MovieReservation(movieId, scheduleIndex, personCount));
-
-        // 예약 종료할지 더할지
         if (InputView.inputWannaEndMovieChoice()) {
             return;
         }
-        tryMakingReservation(reservationList);
+        makeReservation(reservationList);
     }
 
     public static void addToReservationList(List<MovieReservation> reservationList, MovieReservation movieReservation) {
@@ -54,10 +43,9 @@ public class MovieApplication {
     }
 
     public static void showAllReservation(List<MovieReservation> reservationList) {
-        // 지금까지 예약내역 보여주기
         for (int i = 0; i < reservationList.size(); i++) {
             MovieReservation reserveInfo = reservationList.get(i);
-            Movie movie = MovieRepository.getMovie(reserveInfo.getMovieId());
+            Movie movie = MovieDataRequester.getMovie(reserveInfo.getMovieId());
             PlaySchedule playSchedule = movie.getSchedule(reserveInfo.getScheduleIndex());
             int printPersonCount = reserveInfo.getPersonCount();
 
@@ -73,7 +61,7 @@ public class MovieApplication {
         int totalMoney = 0;
         for (int i = 0; i < reservationList.size(); i++) {
             MovieReservation reserveInfo = reservationList.get(i);
-            Movie movie = MovieRepository.getMovie(reserveInfo.getMovieId());
+            Movie movie = MovieDataRequester.getMovie(reserveInfo.getMovieId());
             int printPersonCount = reserveInfo.getPersonCount();
 
             totalMoney += movie.calculateTotalReserveMoney(printPersonCount);
@@ -94,27 +82,21 @@ public class MovieApplication {
             return;
         }
         int payMoney = (int) (payExceptPoint * (getSalePercent(isCard)));
-        System.out.println(String.format("## 최종 결제한 금액은 %d 원 입니다.",payMoney));
+        System.out.println(String.format("## 최종 결제한 금액은 %d 원 입니다.", payMoney));
 
 
     }
 
     public static void main(String[] args) {
+        List<Movie> movies = MovieRepository.getMovies();
         List<MovieReservation> reservationList = new ArrayList<MovieReservation>();
 
-        // 예약 하기
-        tryMakingReservation(reservationList);
-        // 선택된 모든 예약 보여주기
+        makeReservation(reservationList);
         showAllReservation(reservationList);
-        // 모든 금액 계산하기
         int totalMoney = getTotalPayment(reservationList);
-        // 포인트 금액 계산하기
         int pointUseAmount = InputView.inputPoint();
-        // 신용카드 인지 현금인지
         boolean isCardUse = InputView.inputIsCardUse();
-        // 계산하기
         pay(totalMoney - pointUseAmount, isCardUse);
         System.out.println("## 예매를 완료했습니다. 즐거운 영화 관람되세요.");
-
     }
 }

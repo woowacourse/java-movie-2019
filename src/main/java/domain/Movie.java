@@ -32,36 +32,32 @@ public class Movie {
                 + sb.toString();
     }
 
-    // 같은 영화가 맞는지
-    public boolean isSameMovie(int movieNumber){
+    public boolean isSameMovie(int movieNumber) {
         return id == movieNumber;
     }
 
-    // 공석이 있는지
-    public boolean vacancyExist(){
+    public boolean vacancyExist() {
         return playSchedules.stream().anyMatch(schedule -> schedule.isNotEmpty());
     }
-    // 해당 스캐줄이 존재하는지
-    public boolean isScheduleExist(int scheduleIndex){
-        return (playSchedules.size()-1 >= scheduleIndex);
+
+    public boolean isScheduleExist(int scheduleIndex) {
+        return (playSchedules.size() - 1 >= scheduleIndex);
     }
-    // 스캐줄 가져오기
-    public PlaySchedule getSchedule(int indexIndex){
+
+    public PlaySchedule getSchedule(int indexIndex) {
         return playSchedules.get(indexIndex);
     }
 
-    // 영화정보만 출력하기
-    public void showBasicInfo(){
+    public void showBasicInfo() {
         System.out.println(id + " - " + name + ", " + price + "원");
     }
-    // 전체 예약금액 계산하기
-    public int calculateTotalReserveMoney(int personCount){
-        return price*personCount;
+
+    public int calculateTotalReserveMoney(int personCount) {
+        return price * personCount;
     }
-    // 자리 줄이기
-    public void decreaseScheduleCapacity(int scheduleIndex, int personCount){
+
+    public void decreaseScheduleCapacity(int scheduleIndex, int personCount) {
         PlaySchedule reserveSchedule = playSchedules.get(scheduleIndex);
-        // 줄이기
         reserveSchedule.decreasePersonCount(personCount);
     }
 }

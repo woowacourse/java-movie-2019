@@ -19,19 +19,21 @@ public class PlaySchedule {
     }
 
     // 공석이 있는지
-    public boolean isNotEmpty(){
+    public boolean isNotEmpty() {
         return capacity > 0;
     }
+
     // 예매 가능한지
-    public boolean isReservePossible(int count){
+    public boolean isReservePossible(int count) {
         return capacity >= count;
     }
+
     // 시간만 출력하기
-    public void showOnlyTimeInfo(){
+    public void showOnlyTimeInfo() {
         System.out.println("시작시간: " + format(startDateTime));
     }
 
-    public void decreasePersonCount(int count){
+    public void decreasePersonCount(int count) {
         capacity -= count;
     }
 }
