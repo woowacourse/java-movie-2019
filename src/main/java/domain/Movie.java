@@ -31,4 +31,20 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public void printMovieWithoutSchedule() {
+        System.out.print(id + " - " + name + ", " + price + "원" + NEW_LINE);
+    }
+
+    public boolean hasSameId(int movieId) {
+        return id == movieId;
+    }
+
+    public PlaySchedule getScheduleById(int scheduleId) {
+        try {
+            return playSchedules.get(scheduleId-1);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
 }
