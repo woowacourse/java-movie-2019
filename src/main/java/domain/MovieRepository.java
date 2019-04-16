@@ -1,7 +1,9 @@
 package domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -12,7 +14,7 @@ public class MovieRepository {
 
     static {
         Movie movie1 = new Movie(1, "생일", 8_000);
-        movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 12:00"), 6));
+        movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-05-16 12:00"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 14:40"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 17:00"), 6));
         movie1.addPlaySchedule(new PlaySchedule(createDateTime("2019-04-16 19:40"), 3));
@@ -45,16 +47,48 @@ public class MovieRepository {
         return movies;
     }
 
+    public static Movie selectMovie(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.getId() == movieId) {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+
     public static PlaySchedule selectSchedule(int movieId, int movieSchedule) {
-        int idIndex = movieId - INDEX_NUM;
-        int scheduleIndex = movieSchedule - INDEX_NUM;
-        return movies.get(idIndex).getPlaySchedules().get(scheduleIndex);
+        Movie movie = selectMovie(movieId);
+
+        if (!Objects.isNull(movie)) {
+            return movie.getPlaySchedules().get(movieSchedule - 1);
+        }
+
+        return null;
     }
 
     public static int selectCapacity(int movieId, int movieSchedule) {
-        int index = movieId - INDEX_NUM;
-        int scheduleIndex = movieSchedule - INDEX_NUM;
+        PlaySchedule playSchedule = selectSchedule(movieId, movieSchedule);
 
-        return movies.get(index).getPlaySchedules().get(movieSchedule).getCapacity();
+        if (!Objects.isNull(playSchedule)) {
+            return playSchedule.getCapacity();
+        }
+
+        return 0;
+    }
+
+    public static LocalDateTime selectTime(int movieId, int movieSchedule) {
+        PlaySchedule playSchedule = selectSchedule(movieId, movieSchedule);
+
+        if (!Objects.isNull(playSchedule)) {
+            return playSchedule.getStartDateTime();
+        }
+
+        return null;
+    }
+
+    public static int getScheduleSize(int movieId) {
+        Movie movie = selectMovie(movieId);
+        return movie.getPlaySchedules().size();
     }
 }
