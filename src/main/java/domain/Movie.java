@@ -27,6 +27,14 @@ public class Movie {
         return id;
     }
 
+    public int sizeOfScheduleList() {
+        return playSchedules.size();
+    }
+
+    public PlaySchedule getScheduleById(int id) {
+        return playSchedules.get(id);
+    }
+
 
     @Override
     public String toString() {

@@ -1,9 +1,11 @@
 import domain.Movie;
 import domain.MovieRepository;
-import input.MovieInput;
+
+import input.ScheduleInput;
 import view.InputView;
 import view.OutputView;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MovieApplication {
@@ -12,9 +14,9 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         Movie movie = InputView.inputMovie(movies);
-        System.out.println(movie);
+        ScheduleInput scheduleInput = new ScheduleInput(movie,"");
         // TODO 구현 진행
-
+        System.out.println(scheduleInput.scheduleIdIs());
 
     }
 }
