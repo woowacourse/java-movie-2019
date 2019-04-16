@@ -12,10 +12,9 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        Movie selectedMovie = getPlaySchedulesOfSelectedMovie();
-        int schecduleId = InputView.inputMovieScheduleId();
-        List<PlaySchedule> playSchedules = selectedMovie.getPlaySchedules();
-        System.out.println(playSchedules.get(schecduleId));
+        Movie selectedMovie = getPlaySchedulesOfSelectedMovie();        // 영화 선택
+        PlaySchedule selectedPlaySchedule = getPlayScheduleByNumber(selectedMovie);
+        System.out.println(setReservedAllMovieToList(selectedPlaySchedule));
     }
 
     private static Movie getPlaySchedulesOfSelectedMovie() {
@@ -28,8 +27,19 @@ public class MovieApplication {
         }
     }
 
-    private static List<Movie> setReservedAllMovieToList() {
-        List<Movie> reservedMovies = new ArrayList<>();
+    private static List<PlaySchedule> setReservedAllMovieToList(PlaySchedule playSchedule) {
+        List<PlaySchedule> reservedMovies = new ArrayList<>();
+        reservedMovies.add(playSchedule);
         return reservedMovies;
+    }
+
+    private static PlaySchedule getPlayScheduleByNumber(Movie selectedMovie) {
+        try {
+            int scheduleId = InputView.inputMovieScheduleId();             // 시간표 선택
+            return selectedMovie.getPlaySchedules().get(scheduleId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getPlayScheduleByNumber(selectedMovie);
+        }
     }
 }

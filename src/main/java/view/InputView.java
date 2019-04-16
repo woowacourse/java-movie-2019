@@ -24,4 +24,14 @@ public class InputView {
             return inputMovieScheduleId();
         }
     }
+
+    public static int inputTheNumberOfPerson() {
+        try {
+            System.out.println("## 예약할 인원을 입력하세요.");
+            return Integer.parseInt(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputMovieScheduleId();
+        }
+    }
 }
