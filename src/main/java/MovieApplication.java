@@ -1,6 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
 import domain.ReservationCategory;
+import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -35,6 +36,12 @@ public class MovieApplication {
         if(reservedPerson < 0 || reservedPerson > choiceMovie.getPlaySchedules().get(choiceTime-1).getCapacity()){
             System.out.println("예약 인원이 없거나 초과 하였습니다. 다시 입력해주세요.");
             return reservedTimeSchedule(choiceMovie, reservationCategories);
+        }
+        for(int i = 0 ; i < reservationCategories.size() ; i++){
+            if(!DateTimeUtils.isOneHourWithinRange(reservationCategories.get(i).getStartDateTime() ,choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime())){
+                System.out.println("두영화 시작시간이 한시간 이내가 아닙니다. 다시입력해주세요.");
+                return reservedTimeSchedule(choiceMovie, reservationCategories);
+            }
         }
         reservationCategories.add(new ReservationCategory(choiceMovie, choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime(), reservedPerson));
         return reservationCategories;
