@@ -22,7 +22,7 @@ public class PlaySchedule {
 	}
 
 	public boolean isLessThanCapacity(int inputtedCapacity) {
-		if (this.capacity <= inputtedCapacity) {
+		if (this.capacity >= inputtedCapacity) {
 			return true;
 		}
 		return false;
