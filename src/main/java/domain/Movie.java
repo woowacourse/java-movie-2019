@@ -18,6 +18,9 @@ public class Movie {
         this.price = price;
     }
 
+    public int getMovieId() { return this.id; }
+
+
     void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
     }
