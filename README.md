@@ -30,8 +30,8 @@
 | ----------- | ------------ |
 | public static void main(String[] args) |   영화 예매를 실행시킨다.|
 | public static void printSelectMovie(int movieId,int no) | 영화를 선택하는 매서드 |
-|  public static void selecMovieTime(int no)| 선택한 영화의 사영 시간을 선택하는 매서드 |
-
+|  public static void selecMovieTime(int no)| 선택한 영화의 상영 시간을 선택하는 매서드 |
+|private static void getPpl(int no)| 선택한 시간에 예약할 인원을 입력받는 매서드 |
 
 | Movie.java | 영화 정보를 가지고 있는 객체|
 | ----------- | ------------ |
@@ -44,7 +44,8 @@
 
 |InputView|입력을 받는 클래스|
 |-----------|----------|
-|public static int inputTime()| 시간표를 선택하고 선택한 시간을 반환하는 매서드|
+| public static int inputTime()| 시간표를 선택하고 선택한 시간을 반환하는 매서드|
+| public static int inputPpl()| 예약할 인원을 입력받는 매서드|
 
 ---
 ### 프로그래머
