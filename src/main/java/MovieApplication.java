@@ -1,5 +1,6 @@
 import domain.*;
 import jdk.internal.util.xml.impl.Input;
+import utils.InputError;
 import view.InputView;
 import view.OutputView;
 
@@ -8,15 +9,15 @@ import java.util.List;
 
 public class MovieApplication {
 
+    private static List<Movie> movies = MovieRepository.getMovies();
     private static List<ReservingMovie> reservedMovies = new ArrayList<>();
 
     public static void main(String[] args) {
-        List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
         boolean reservingProcess = true;
         while (reservingProcess) {
-            int movieId = InputView.inputMovieId();
+            int movieId = inputMovieID();
             Movie selectedMovie = MovieRepository.getMovieUsingMovieID(movieId);
             OutputView.printSelectedMovie(selectedMovie);
             addReservedMovie(selectedMovie);
@@ -25,6 +26,16 @@ public class MovieApplication {
         }
         OutputView.printDetailsOfReservingMovie(reservedMovies);
         startPayment(reservedMovies);
+    }
+
+    private static int inputMovieID() {
+        boolean rightInput = false;
+        int inputMovieId = 0;
+        while(!rightInput) {
+            inputMovieId = InputView.inputMovieId();
+            rightInput = InputError.handleMovieIdInputError(inputMovieId, movies);
+        }
+        return inputMovieId;
     }
 
     private static void addReservedMovie(Movie selectedMovie) {
