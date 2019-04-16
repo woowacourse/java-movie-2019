@@ -7,6 +7,7 @@ public class Movie {
     private static final char NEW_LINE = '\n';
 
     private final int id;
+
     private final String name;
     private final int price;
 
@@ -32,12 +33,16 @@ public class Movie {
                 + sb.toString();
     }
 
-    public String choiceMovie(){
-        return id + " - " + name + ", " + price + "원";
-    }
-
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public List<PlaySchedule> getPlaySchedules() {

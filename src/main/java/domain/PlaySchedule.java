@@ -21,7 +21,7 @@ public class PlaySchedule {
     public int getCapacity() {
         return capacity;
     }
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
+    public String getStartDateTime() {
+        return format(startDateTime);
     }
 }

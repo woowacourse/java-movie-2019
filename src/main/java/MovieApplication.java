@@ -1,11 +1,18 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.ReservationCategory;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MovieApplication {
+
+    static List<ReservationCategory> reservationCategory = new ArrayList<>();
+
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
@@ -19,11 +26,15 @@ public class MovieApplication {
 
         reservedTimeSchedule(choiceMovie, choiceTime, reservedPerson);
 
+        int isPayment = InputView.inputIsPayment();
+        OutputView.printReservedCategory(reservationCategory, isPayment);
+        OutputView.progressPayment(reservationCategory);
+
     }
 
     private static void reservedTimeSchedule(Movie choiceMovie, int choiceTime, int reservedPerson){
-        System.out.println("영화 선택 : " + choiceMovie.choiceMovie()
-                +", 얘약 가능인원: "+choiceMovie.getPlaySchedules().get(choiceTime-1).getCapacity()
-            + ", 시작시간: " + choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime());
+        reservationCategory.add(new ReservationCategory(choiceMovie, choiceMovie.getPlaySchedules().get(choiceTime-1).getStartDateTime(), reservedPerson));
     }
+
+
 }
