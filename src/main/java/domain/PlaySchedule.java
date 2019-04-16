@@ -22,7 +22,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + "\n";
     }
 
-    public void scheduleReservation(int count) {
+    public void scheduleReservation(int count) throws Exception {
+        if (this.capacity - count < 0) {
+            throw new Exception("예매 가능 인원을 초과합니다.");
+        }
         this.capacity -= count;
     }
 }
