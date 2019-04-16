@@ -24,6 +24,7 @@ public class TicketingManager {
 			int movieId = InputView.inputMovieId();
 			checkMovie(movieId);
 			OutputView.printMovie(movieId);
+			int scheduleNumber = InputView.inputScheduleNumber();
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
 			ticketing();
