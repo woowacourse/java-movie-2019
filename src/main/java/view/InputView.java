@@ -9,31 +9,31 @@ public class InputView {
     private static final String SELECT_MOVIE_PLAY_SCHEDULE_MESSAGE = "## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
     private static final String ENTER_PEOPLE_NUMBER_OF_RESERVE_MESSAGE = "## 예약할 인원을 입력하세요.";
     private static final String SELECT_END_OR_ADD_RESERVE_MESSAGE = "## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번";
-    private static final String AMOUNT_OF_POINT_TO_USE_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
-
+    private static final String ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
 
     public static int inputMovieId() {
         System.out.println(SELECT_MOVIE_TO_RESERVE_MESSAGE);
         return scanner.nextInt();
     }
 
-    public static int inputMoviePlaySchedule(){
+    public static int inputMoviePlaySchedule() {
         System.out.println(SELECT_MOVIE_PLAY_SCHEDULE_MESSAGE);
         return scanner.nextInt();
     }
 
-    public static int inputPeopleNumberOfReservation(){
+    public static int inputPeopleNumberOfReservation() {
         System.out.println(ENTER_PEOPLE_NUMBER_OF_RESERVE_MESSAGE);
         return scanner.nextInt();
     }
 
-    public static int inputEndOrAddReservation(){
+    public static int inputEndOrAddReservation() {
         System.out.println(SELECT_END_OR_ADD_RESERVE_MESSAGE);
         return scanner.nextInt();
     }
 
-    public static int inputAmountOfPointToUse(){
-        System.out.println(AMOUNT_OF_POINT_TO_USE_MESSAGE);
+    public static int inputAmountOfPointToUse() {
+        System.out.println(ENTER_AMOUNT_OF_POINT_TO_USE_MESSAGE);
         return scanner.nextInt();
     }
+
 }
