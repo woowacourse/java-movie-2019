@@ -19,6 +19,7 @@ public class MovieApplication {
         PlaySchedule playSchedule = selectPlayScheduleToReserve(movieToReserve);
         int peopleToReserve = selectPeopleToReserve(playSchedule);
         reservationStorage.addReservation(new ReservedMovie(movieToReserve, playSchedule, peopleToReserve));
+        selectToGoToPaymentStep();
     }
 
     private Movie selectMovieToReserve() {
@@ -37,13 +38,18 @@ public class MovieApplication {
     }
 
     private void selectToGoToPaymentStep() {
-        InputView.inputPaymentDecision();
+        int selection = InputView.inputPaymentDecision();
+        if (selection == InputView.FIRST_SELECTION) {
+            OutputView.printAllReservedMovies(reservationStorage);
+        }
+        if (selection == InputView.SECOND_SELECTION) {
+            reserveMovie();
+        }
     }
 
     public static void main(String[] args) {
         MovieApplication movieApplication = new MovieApplication();
         movieApplication.showAllMovieInfo();
         movieApplication.reserveMovie();
-        movieApplication.selectToGoToPaymentStep();
     }
 }

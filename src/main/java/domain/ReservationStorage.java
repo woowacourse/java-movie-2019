@@ -9,4 +9,8 @@ public class ReservationStorage {
     public void addReservation(ReservedMovie reservedMovie) {
         moviesToReserve.add(reservedMovie);
     }
+
+    public List<ReservedMovie> getMoviesToReserve() {
+        return moviesToReserve;
+    }
 }

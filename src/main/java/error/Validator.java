@@ -5,11 +5,10 @@ import domain.MovieRepository;
 import domain.PlaySchedule;
 import error.customExceptions.NonAccurateSelection;
 import error.customExceptions.NotIntegerException;
+import view.InputView;
 
 public class Validator {
     private static final int EXISTENCE = 1;
-    private static final int FIRST_SELECTION = 1;
-    private static final int SECOND_SELECTION = 2;
 
     public static void checkAccuracyOfMovieId(String id) {
         checkInteger(id);
@@ -51,7 +50,7 @@ public class Validator {
     public static void checkAccuracyOfPaymentDecision(String paymentDecisionInput) {
         checkInteger(paymentDecisionInput);
         int paymentDecision = Integer.parseInt(paymentDecisionInput);
-        if ((paymentDecision != FIRST_SELECTION) && (paymentDecision != SECOND_SELECTION)) {
+        if ((paymentDecision != InputView.FIRST_SELECTION) && (paymentDecision != InputView.SECOND_SELECTION)) {
             throw new NonAccurateSelection();
         }
     }

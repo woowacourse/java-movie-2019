@@ -8,6 +8,8 @@ import utils.PrintUtils;
 import java.util.Scanner;
 
 public class InputView {
+    public static final int FIRST_SELECTION = 1;
+    public static final int SECOND_SELECTION = 2;
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputMovieId() {
