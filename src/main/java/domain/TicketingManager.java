@@ -27,6 +27,7 @@ public class TicketingManager {
 			int scheduleNumber = InputView.inputScheduleNumber();
 			checkSchedule(movieId, scheduleNumber);
 			int ticketCount = InputView.inputTicketCount();
+			checkTicketCount(movieId, scheduleNumber, ticketCount);
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
 			ticketing();
@@ -44,4 +45,11 @@ public class TicketingManager {
 			throw new IllegalArgumentException("해당 상영 시간은 존재하지 않습니다.");
 		}
 	}
+	
+	private void checkTicketCount(int movieId, int scheduleNumber, int ticketCount) {
+		if (!MovieRepository.hasEnoughCapacity(movieId, scheduleNumber, ticketCount)) {
+			throw new IllegalArgumentException("자리가 부족합니다.");
+		}
+	}
+	
 }
