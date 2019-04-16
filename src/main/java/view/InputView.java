@@ -10,5 +10,8 @@ public class InputView {
         return scanner.nextInt();
     }
 
-
+    public static int inputMovieSchedule() {
+        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+        return scanner.nextInt();
+    }
 }
