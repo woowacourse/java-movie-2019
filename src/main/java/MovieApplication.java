@@ -12,8 +12,8 @@ public class MovieApplication {
 
     private static final int RESERVATION_FINISHED = 1;
     private static final int ADDITIONAL_RESERVATION = 2;
-    private static final int MIN = 0;
-    private static final int CONSTANT_TO_MAKE_INDEX = 1;
+    private static final int TO_SCREEN_NULL = 0;
+    private static final int MIN = 1;
 
     public void printSelectedMovieInfo(int movieId, List<Movie> movies) {
         for (Movie movie : movies) {
@@ -48,7 +48,7 @@ public class MovieApplication {
     }
 
     public void checkIfselectedTableInTimeTable(int selectedTable, Movie reservingMovie) {
-        if (selectedTable <= MIN || selectedTable > reservingMovie.getPlayScehdules().size()) {
+        if (selectedTable <= TO_SCREEN_NULL || selectedTable > reservingMovie.getPlayScehdules().size()) {
             throw new IllegalArgumentException("존재 하지 않는 상영시간(시간표) 입니다. 다시 입력해주세요.");
         }
     }
@@ -65,7 +65,7 @@ public class MovieApplication {
     }
 
     public void checkIfreservationNumberIsAvailable(int reservationNumber, Movie reservingMovie, int selectedTable) {
-        if (reservationNumber == MIN || reservingMovie.getPlayScehdules().get(selectedTable).getCapacity() < reservationNumber) {
+        if (reservationNumber == TO_SCREEN_NULL || reservingMovie.getPlayScehdules().get(selectedTable).getCapacity() < reservationNumber) {
             throw new IllegalArgumentException("예약 인원을 입력하지 않았거나 예약 가능 인원을 초과하였습니다. 다시 입력해 주세요.");
         }
     }
@@ -105,21 +105,43 @@ public class MovieApplication {
 
     public boolean checkIfOneHourWithinRange(List<Movie> reservedMovie, LocalDateTime dateTimetoCheck, int selectedTable) {
         boolean isOneHourWithinRange = false;
-        for (Movie movie : reservedMovie) {
-            LocalDateTime movieTimeToCheck = movie.getPlayScehdules().get(selectedTable).getStartDateTime();
-            isOneHourWithinRange = DateTimeUtils.isOneHourWithinRange(movieTimeToCheck, dateTimetoCheck);
+        if (reservedMovie.size() != TO_SCREEN_NULL && reservedMovie.size() > MIN){
+            for (Movie movie : reservedMovie) {
+                LocalDateTime movieTimeToCheck = movie.getPlayScehdules().get(selectedTable).getStartDateTime();
+                isOneHourWithinRange = DateTimeUtils.isOneHourWithinRange(movieTimeToCheck, dateTimetoCheck);
+            }
+
         }
+
         return isOneHourWithinRange;
 
     }
 
     public boolean checkIfMovieSame(List<Movie> reservedMovie, int movieIdReserving) {
         boolean isSameMovie = false;
-        for (Movie movie : reservedMovie) {
-            isSameMovie = movie.checkMovieId(movieIdReserving);
+        if (reservedMovie.size() != TO_SCREEN_NULL && reservedMovie.size() > MIN){
+            for (Movie movie : reservedMovie) {
+                isSameMovie = movie.checkMovieId(movieIdReserving);
+            }
         }
         return isSameMovie;
     }
+
+    public void printPaymentAmount(List<ReservedMovie> reservedMovieList,int amountOfPointToUse,int payByCreditOrCash){
+        int amount = 0;
+        for (ReservedMovie reservedMovie : reservedMovieList){
+            amount += reservedMovie.getMovie().getPrice() * reservedMovie.getReservingNumber();
+        }
+        amount -= amountOfPointToUse;
+        if (payByCreditOrCash == 1){
+            amount *= 0.95;
+        }
+        if (payByCreditOrCash ==2){
+            amount *= 0.98;
+        }
+        System.out.println(String.format("최종 결제한 금액은 %d원 입니다.\n",amount) + "예매를 완료했습니다. 즐거운 영화관람되세요");
+    }
+
 
 
     public static void main(String[] args) {
@@ -133,8 +155,6 @@ public class MovieApplication {
         boolean isOneHourWithinRange = false;
         boolean isSameMovie = false;
 
-        List<LocalDateTime> reservedMovieTimeInfoForPrint = new ArrayList<>();
-        List<Integer> reservedMovieReservationNumberInfoForPrint = new ArrayList<>();
 
         List<ReservedMovie> reservedMovieList = new ArrayList<>();
         //TODO : 바깥 루프 필요함
@@ -152,7 +172,7 @@ public class MovieApplication {
 
             isOneHourWithinRange = m.checkIfOneHourWithinRange(reservedMovie, dateTimeToCheck, selectedTable);
             isSameMovie = m.checkIfMovieSame(reservedMovie, movieId);
-            
+
             if (isOneHourWithinRange) {
                 System.out.println("상영 시간이 예매된 영화와 1시간 이내입니다. 다시 예매 해주세요.");
                 continue;
@@ -174,7 +194,11 @@ public class MovieApplication {
         m.printReservationList(reservedMovieList);
         InputView.printPaymentRunningMessage();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
+
+
         int payByCreditOrCash = InputView.inputPayByCreditCardOrCash();
+
+        printPaymentAmount(reservedMovieList,amountOfPointToUse,payByCreditOrCash);
 
         //예약 내역 프린트. 이건 movie 정보를 받아야겟지
 

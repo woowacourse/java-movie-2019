@@ -21,4 +21,16 @@ public class ReservedMovie {
                 "시작시간 : " + time + "\n" + "예약 인원 : " + reservingNumber + "명");
         return sb.toString();
     }
+
+    public int getReservingNumber() {
+        return reservingNumber;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
 }
