@@ -39,6 +39,22 @@ public class MovieRepository {
         movies.add(movie4);
     }
 
+    public static Movie getMovieById(int movieId){
+        int i=0;
+        while (movies.get(i).getId()!=movieId){
+            i++;
+        }
+        return movies.get(i);
+    }
+
+    public static boolean isContains(int movieId){
+        boolean flag= false;
+        for (Movie movie:movies){
+            flag = (movie.getId() == movieId) || flag;
+        }
+        return flag;
+    }
+
     public static List<Movie> getMovies() {
         return movies;
     }
