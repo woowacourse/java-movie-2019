@@ -25,6 +25,10 @@ public class Movie {
     public PlaySchedule getPlayMovieSchedule(int selectedMovieTime) {
     	return playSchedules.get(selectedMovieTime);
     }
+    
+    public String getMovieInfo() {
+    	return this.id + " -" + this.name + ", " + this.price + "원";
+    }
 
     @Override
     public String toString() {

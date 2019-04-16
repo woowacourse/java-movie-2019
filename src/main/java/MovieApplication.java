@@ -63,7 +63,7 @@ public class MovieApplication {
 	}
 	
 	public boolean checkPeopleNumber(PlaySchedule selectedMovieTime, int peopleNum) {
-		boolean isPossible = selectedMovieTime.getCapacity() > peopleNum ? true : false;
+		boolean isPossible = selectedMovieTime.getCapacity() >= peopleNum ? true : false;
 		if (isPossible == false) {
 			System.out.println("예약 가능 인원을 초과하였습니다.");
 		}
@@ -96,6 +96,11 @@ public class MovieApplication {
     	List<Movie> movies = movieApp.getAllMovie();
     	
     	MyMovie movie = movieApp.bookMovie(movies);
-
+    	
+        int payOrMoreBook = InputView.payOrMoreBook();
+        if(payOrMoreBook == 1) {
+        	System.out.println(movie.toString());
+        }
+ 
     }
 }

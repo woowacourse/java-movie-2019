@@ -1,8 +1,7 @@
 package domain;
 
-import java.time.LocalDateTime;
-
 public class MyMovie {
+	private static final String NEW_LINE = "\n";
 	private final Movie myMovie;
 	private final int peopleNum;
 	private final PlaySchedule movieTime;
@@ -23,5 +22,14 @@ public class MyMovie {
 	
 	public PlaySchedule getMovieTime() {
 		return this.movieTime;
+	}
+	
+	public String toString() {
+		String result = "";
+		result += "예약 내역" + NEW_LINE;
+		result += myMovie.getMovieInfo() + NEW_LINE;
+		result += "시작시간: " + this.movieTime.getStartDateTime() + NEW_LINE;
+		result += "예약 인원: " + this.peopleNum + "명";
+		return result;
 	}
 }
