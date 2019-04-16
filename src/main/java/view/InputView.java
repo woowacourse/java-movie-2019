@@ -15,8 +15,23 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static int inputMovietickets() {
+    public static int inputMovieTicket() {
         System.out.println("## 예약할 인원을 입력하세요.");
+        return scanner.nextInt();
+    }
+
+    public static int inputContinueReserve() {
+        System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+        return scanner.nextInt();
+    }
+
+    public static int inputPoint() {
+        System.out.println("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력");
+        return scanner.nextInt();
+    }
+
+    public static int inputBillingType() {
+        System.out.println("## 신용카드는 1번, 현금은 2번");
         return scanner.nextInt();
     }
 }
