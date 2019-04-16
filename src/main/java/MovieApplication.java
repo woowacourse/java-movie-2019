@@ -3,6 +3,7 @@ import domain.MovieRepository;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,6 +26,7 @@ public class MovieApplication {
     private static int movieContinue = 0;
     private static Movie choiceMovie;
     private static List<Movie> movies = MovieRepository.getMovies();
+    private static ArrayList<Movie> choiceMovies = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(INFO_MOVIE);
@@ -41,9 +43,11 @@ public class MovieApplication {
 
     public static void checkBooking() {
         if(movieContinue == 1) {
+            choiceMovies.add(choiceMovie);
             showBooking();
         }
         if(movieContinue == 2) {
+            choiceMovies.add(choiceMovie);
             int movieId = InputView.inputMovieId();
             choiceMovie = choiceMovie(movies, movieId);
             System.out.println(choiceMovie);
@@ -56,8 +60,10 @@ public class MovieApplication {
 
     public static void showBooking() {
         System.out.println(INFO_BOOKING);
-        System.out.println(choiceMovie.choiceTime(movieTime));  //choice Time
-        System.out.println("예약 인원 : " + movieNum + "명");
+        for(int i = 0 ; i < choiceMovies.size(); i++) {
+            System.out.println(choiceMovies.get(i).choiceTime(movieTime));  //choice Time
+            System.out.println("예약 인원 : " + movieNum + "명");
+        }
     }
 
     public static void movieTime() {
