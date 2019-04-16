@@ -4,5 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private List<UserMovie> userMoviesList = new ArrayList<>();
+    private static List<UserMovie> userMoviesList = new ArrayList<>();
+
+    public static List<UserMovie> getUserList(){
+        return userMoviesList;
+    }
 }

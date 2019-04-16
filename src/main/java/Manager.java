@@ -11,13 +11,18 @@ public class Manager {
     private InputError inputError;
     private MyUtil myUtil;
     private List<Movie> movies;
+    private User user;
     private int movieId;
     private int timeId;
     private int peopleCount;
+    private int isPay;
+    private int totalAmount;
 
     Manager(){
         inputError = new InputError();
         myUtil = new MyUtil();
+        user = new User();
+        totalAmount = 0;
     }
 
     public void startReserve(){
@@ -25,6 +30,17 @@ public class Manager {
         this.movies = MovieRepository.getMovies();
         while(!reserveProcess());
         //printResult
+        System.out.println("## 결제를 진행합니다.");
+        InputView.inputPoint();
+        InputView.inputHowPay();
+        printResult();
+    }
+
+    public void printResult(){
+        System.out.print("최종 결제한 금액은 ");
+        System.out.print(totalAmount);
+        System.out.println("원 입니다.");
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
     }
 
     public boolean reserveProcess(){
@@ -35,11 +51,44 @@ public class Manager {
         while(!secondQuery());
         while(!thirdQuery());
         while(!fourthQuery());
+        // userlist에 집어넣어야 한다.
+        user.getUserList().add(new UserMovie(movieId, timeId, peopleCount));
+        if(isPay == 2) return false;
+        printReserveAll();
+        return true;
+    }
+
+    public void printReserveAll(){
+        System.out.println("예약 내역");
+        List<UserMovie> userList = User.getUserList();
+        for(int i=0; i<userList.size(); i++){
+            UserMovie userMovie = userList.get(i);
+            Movie movie = getMovie(movieId);
+            System.out.print(movie.getId());
+            System.out.print(" - ");
+            System.out.print(movie.getName());
+            System.out.print(", ");
+            System.out.println(movie.getPrice());
+            System.out.println(movie.getStartTime(userMovie.getTimeId()));
+            System.out.print("예약 인원: ");
+            System.out.println(movie.getPeopleCount(userMovie.getTimeId()));
+            totalAmount += movie.getPrice() * movie.getPeopleCount(userMovie.getTimeId());
+            System.out.println();
+        }
+    }
+
+    public Movie getMovie(int movieId){
+        for(int i=0; i<movies.size(); i++){
+            if(movies.get(i).getId() == movieId){
+                return movies.get(i);
+            }
+        }
+        return null;
     }
 
     public boolean fourthQuery(){
-        int ret = InputView.inputIsEndOrNot();
-        if(!inputError.checkOneTwo(ret)){
+        isPay = InputView.inputIsEndOrNot();
+        if(!inputError.checkOneTwo(isPay)){
             return false;
         }
         return true;
@@ -47,7 +96,7 @@ public class Manager {
 
     public boolean thirdQuery(){
         peopleCount = InputView.inputPeopleCount();
-        if(!inputError.CheckMinusError(movieId)){
+        if(!inputError.CheckMinusError(movieId) || !inputError.checkPeopleCount(movies, movieId, timeId, peopleCount)){
             return false;
         }
         return true;

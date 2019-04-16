@@ -35,4 +35,26 @@ public class Movie {
         return id + " - " + name + ", " + price + "원" + NEW_LINE
                 + sb.toString();
     }
+
+    public int getPeopleCount(int timeId){
+        timeId--;
+        return playSchedules.get(timeId).getCapacity();
+    }
+
+    public String getStartTime(int timeId){
+        return playSchedules.get(timeId).startTime();
+    }
+
+    public int getPrice(){
+        return price;
+    }
+
+    public int scheduleCnt(){
+        return playSchedules.size();
+    }
+
+    public String getName(){
+        return name;
+    }
 }
+
