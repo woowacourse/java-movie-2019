@@ -25,6 +25,7 @@ public class TicketingManager {
 			checkMovie(movieId);
 			OutputView.printMovie(movieId);
 			int scheduleNumber = InputView.inputScheduleNumber();
+			checkSchedule(movieId, scheduleNumber);
 		} catch (Exception e) {
 			OutputView.printErrorMessage(e);
 			ticketing();
@@ -34,6 +35,12 @@ public class TicketingManager {
 	private void checkMovie(int movieId) {
 		if (!MovieRepository.hasMovie(movieId)) {
 			throw new IllegalArgumentException("해당 영화는 상영중이지 않습니다.");
+		}
+	}
+
+	private void checkSchedule(int movieId, int scheduleNumber) {
+		if (!MovieRepository.hasSchedule(movieId, scheduleNumber)) {
+			throw new IllegalArgumentException("해당 상영 시간은 존재하지 않습니다.");
 		}
 	}
 }

@@ -54,6 +54,12 @@ public class MovieRepository {
 		return true;
 	}
 	
+	public static Boolean hasSchedule(int movieId, int scheduleNumber) {
+		int movieIndex = findMovieIndex(movieId, 0);
+		Movie movie = movies.get(movieIndex);
+		return movie.hasSchedule(scheduleNumber);
+	}
+	
 	/**
 	 * 찾으려는 아이디의 영화가 저장된 인덱스를 반환하는 메소드
 	 * @param id 찾으려는 영화의 아이디
