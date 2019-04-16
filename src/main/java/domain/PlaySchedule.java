@@ -16,14 +16,18 @@ public class PlaySchedule {
 	public int getCapacity() {
 		return capacity;
 	}
-	
+
+	public LocalDateTime getStartDateTime() {
+		return startDateTime;
+	}
+
 	public boolean isLessThanCapacity(int inputtedCapacity) {
-		if(this.capacity <= inputtedCapacity) {
+		if (this.capacity <= inputtedCapacity) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public String getPlayScheduleSummary() {
 		return "시작시간: " + format(startDateTime);
 	}
