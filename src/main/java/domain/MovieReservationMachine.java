@@ -56,9 +56,9 @@ public class MovieReservationMachine {
     }
 
     /**
-     * 결제 금액을 계산한다
+     * 결제 금액을 계산하고 출력한다.
      */
-    public static int calculatePayment(int point, int howToPay) {
+    public static void processPayment(int point, int howToPay) {
         double reduceRate = (howToPay == 1) ? 0.05 : 0.02;
 
         int totalPay = 0;
@@ -66,8 +66,13 @@ public class MovieReservationMachine {
         while (it.hasNext()) {
             totalPay += it.next().howMuch();
         }
-
-        return (int)((totalPay - point) * (1-reduceRate));
+        System.out.println("최종 결제한 금액은 " + (int)((totalPay - point) * (1-reduceRate)) + "원 입니다.");
     }
 
+    /**
+     * Good-Bye 메시지를 출력한다.
+     */
+    public static void printGoodBye() {
+        System.out.println("예매를 완료했습니다. 즐거운 영화 관람되세요.");
+    }
 }

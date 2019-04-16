@@ -22,5 +22,7 @@ public class MovieApplication {
         MovieReservationMachine.showReservatoinHistory();
         int point = User.selectPointUse();
         int howToPay = User.selectPaymentMethod();
+        MovieReservationMachine.processPayment(point, howToPay);
+        MovieReservationMachine.printGoodBye();
     }
 }
