@@ -9,22 +9,42 @@ public class InputView {
     public static int inputMovieId() {
         try{
             System.out.println("## 예약할 영화를 선택하세요.");
-            return Integer.parseInt(scanner.nextLine());
+            int input = Integer.parseInt(scanner.nextLine());
+            return checkInputMinus(input);
         }catch(InputMismatchException | IllegalArgumentException e){
             System.out.println("잘못 입력하였습니다. 다시입력해 주세요.");
             return inputMovieId();
         }
+    }
 
+    private static int checkInputMinus(int input){
+        if(input < 0){
+            System.out.println("음수가 입력되었습니다. 다시입력해주세요.");
+            return inputMovieId();
+        }
+        return input;
     }
 
     public static int inputChoiceTime(){
-        System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
-        return scanner.nextInt();
+        try{
+            System.out.println("## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)");
+            int input = Integer.parseInt(scanner.nextLine());
+            return checkInputMinus(input);
+        } catch(InputMismatchException | IllegalArgumentException e){
+            System.out.println("잘못 입력하였습니다. 다시입력해 주세요.");
+            return inputChoiceTime();
+        }
     }
 
     public static int inputReservedPerson(){
-        System.out.println("\n## 예약할 인원을 입력하세요.");
-        return scanner.nextInt();
+        try{
+            System.out.println("\n## 예약할 인원을 입력하세요.");
+            int input = Integer.parseInt(scanner.nextLine());
+            return checkInputMinus(input);
+        } catch(InputMismatchException | IllegalArgumentException e){
+            System.out.println("잘못 입력하였습니다. 다시입력해 주세요.");
+            return inputReservedPerson();
+        }
     }
 
     public static int inputIsPayment(){

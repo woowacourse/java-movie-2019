@@ -22,7 +22,6 @@ public class OutputView {
                 return movie;
             }
         }
-
         return hasNotMovie(movies);
     }
 
