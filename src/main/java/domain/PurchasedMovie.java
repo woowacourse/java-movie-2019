@@ -7,17 +7,21 @@ public class PurchasedMovie {
     private PlaySchedule playSchedule;
     private int countOfTickets;
     private int money = 0;
-    private int totalMoney = 1;
+    private static int totalMoney = 0;
 
     public PurchasedMovie(Movie movie, PlaySchedule playSchedule, int countOfTickets) {
         this.movie = movie;
         this.playSchedule = playSchedule;
         this.countOfTickets = countOfTickets;
         money = movie.getPrice() * countOfTickets;
-        totalMoney *= money;
+        totalMoney += money;
     }
 
     public LocalDateTime getLocalDateTime() {
         return playSchedule.getStartDateTime();
+    }
+
+    public int getTotalMoney() {
+        return totalMoney;
     }
 }

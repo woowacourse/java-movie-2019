@@ -1,7 +1,4 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.PlaySchedule;
-import domain.PurchasedMovie;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -39,7 +36,8 @@ public class MovieApplication {
             PurchasedMovie purchasedMovie = new PurchasedMovie(movies.get(movieId), playSchedule, countOfTickets);
             purchasedMovies.add(purchasedMovie);
         }
-
+        totalMoney = purchasedMovies.get(0).getTotalMoney();
+        PayMent.pay(totalMoney);
 
 
     }
