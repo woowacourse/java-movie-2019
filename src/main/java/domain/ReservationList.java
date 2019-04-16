@@ -33,12 +33,12 @@ public class ReservationList {
         reservationTimeList.put(movie, timeCode);
     }
 
-    public boolean addMovieTimeValidator(Integer newTimeCode) {
-        for (Movie movie : reservationTimeList.keySet()) {
-            Integer timeCode = reservationTimeList.get(movie);
+//    public boolean addMovieTimeValidator(Integer newTimeCode) {
+//        for (Movie movie : reservationTimeList.keySet()) {
+//            Integer timeCode = reservationTimeList.get(movie);
 //            if (DateTimeUtils.isOneHourWithinRange(movie.))
-        }
-    }
+//        }
+//    }
 
     public Set<Movie> getMovieSet() {
         return this.reservationCountList.keySet();
