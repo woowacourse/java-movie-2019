@@ -43,7 +43,7 @@ public class MovieReservation {
     }
 
     private void selectScheduleAndPerson(Movie selectedMovie) {
-        int scheduleNumber = InputView.inputTimeSchedule();
+        int scheduleNumber = InputView.inputTimeSchedule() - 1;
         if (selectedMovie.cantSchedule(scheduleNumber)) {
             throw new IllegalArgumentException("예매할 수 없는 시간대입니다.");
         }

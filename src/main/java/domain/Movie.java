@@ -24,7 +24,7 @@ public class Movie {
     }
 
     LocalDateTime getStartDateTime(int scheduleNumber) {
-        return playSchedules.get(scheduleNumber - 1).getStartDateTime();
+        return playSchedules.get(scheduleNumber).getStartDateTime();
     }
 
     boolean notThisMovie(int movieID) {
@@ -32,16 +32,16 @@ public class Movie {
     }
 
     boolean cantSchedule(int scheduleNumber) {
-        return (scheduleNumber <= 0 || scheduleNumber > playSchedules.size());
+        return (scheduleNumber < 0 || scheduleNumber >= playSchedules.size());
     }
 
     boolean overPersonReservation(int scheduleNumber, int numberOfPerson) {
-        return playSchedules.get(scheduleNumber - 1).notOkReservation(numberOfPerson);
+        return playSchedules.get(scheduleNumber).notOkReservation(numberOfPerson);
     }
 
     Reservation reservation(int scheduleNumber, int numberOfPerson) {
-        playSchedules.get(scheduleNumber - 1).reduceCapacity(numberOfPerson);
-        return new Reservation(playSchedules.get(scheduleNumber - 1).getStartDateTime(), price, numberOfPerson);
+        playSchedules.get(scheduleNumber).reduceCapacity(numberOfPerson);
+        return new Reservation(playSchedules.get(scheduleNumber).getStartDateTime(), price, numberOfPerson);
     }
 
     @Override
