@@ -3,6 +3,8 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.OutputView;
+
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -28,7 +30,25 @@ public class Movie {
         for (PlaySchedule playSchedule : playSchedules) {
             sb.append(playSchedule);
         }
-        return id + " - " + name + ", " + price + "Ïõê" + NEW_LINE
+        return id + " - " + name + ", " + price + "ø¯" + NEW_LINE
                 + sb.toString();
     }
+    
+    public String getRst() {
+    	return id + " - " + name + ", " + price + "ø¯" + NEW_LINE;
+    }
+    
+	public List<PlaySchedule> getPlaySchedules() {
+		return playSchedules;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+	
+	
 }
