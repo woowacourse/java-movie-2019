@@ -18,6 +18,10 @@ public class PlaySchedule {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
     }
 
+    public String toStringInfo() {
+        return "시작시간: " + format(startDateTime) + "\n";
+    }
+
     public boolean isValidPeople(int people){
         return (people <= this.capacity);
     }

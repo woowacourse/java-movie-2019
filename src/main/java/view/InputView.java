@@ -47,6 +47,18 @@ public class InputView {
                 }
         }
 
+        public static int inputPayOrAdd() {
+                System.out.println("## 예약을 종료하고 결제를 진행하려면 1번, 추가 예약을 진행하려면 2번");
+                try {
+                        int select = inputInt();
+                        InputCheckUtils.checkInputPayOrAdd(select);
+                        return select;
+                } catch (Exception e) {
+                        System.err.println(e);
+                        return inputPayOrAdd();
+                }
+        }
+
         public static int inputInt() {
                 try {
                         return scanner.nextInt();

@@ -1,7 +1,11 @@
 package domain;
 
+
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
@@ -32,6 +36,10 @@ public class Movie {
                 + sb.toString();
     }
 
+    public String toStringInfo(){
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
+    }
+
     public boolean compareId(int movieId) {
         return this.id == movieId;
     }
@@ -42,5 +50,10 @@ public class Movie {
 
     public boolean isValidPeople(int movieId, int schedule, int people){
         return (this.id == movieId && this.playSchedules.get(schedule-1).isValidPeople(people));
+    }
+
+    public void makeReservedInfo(Movie movie, int schedule, int people) {
+        TimeAndPeople timeAndPeople = new TimeAndPeople(this.playSchedules.get(schedule-1),people);
+        ReservedInfo.reservedMovieInfoMap.put(movie, timeAndPeople);
     }
 }
