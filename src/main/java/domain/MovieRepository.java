@@ -1,7 +1,7 @@
 /*
  * MovieRepository Class
  *
- * @version 1.1
+ * @version 1.2
  *
  * @date 2019-04-16
  *
@@ -61,13 +61,13 @@ public class MovieRepository {
         return false;
     }
 
-    private static int findMovieByMovieIDAtMovieList(int thMovie, int selecteID) {
-        if (thMovie >= movies.size())
-            return thMovie;
+    private static int findMovieByMovieIDAtMovieList(int movieIndex, int selectID) {
+        if (movieIndex >= movies.size())
+            return movieIndex;
 
-        if (movies.get(thMovie).isMatchId(selecteID))
-            return thMovie;
-        return findMovieByMovieIDAtMovieList(thMovie + NEXT_INDEX, selecteID);
+        if (movies.get(movieIndex).isMatchId(selectID))
+            return movieIndex;
+        return findMovieByMovieIDAtMovieList(movieIndex + NEXT_INDEX, selectID);
     }
 
     public static Movie getMovieByID(int movieId) {

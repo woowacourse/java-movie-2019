@@ -1,7 +1,7 @@
 /*
  * MovieApplication Class
  *
- * @version 1.1
+ * @version 1.3
  *
  * @date 2019-04-16
  *
@@ -20,11 +20,8 @@ public class MovieApplication {
     public static void main(String[] args) {
         int movieId;
 
-        while (true) {
-            printBoxOfficeMovie();
-            movieId = selectMovieByID();
-            printSelectedMovieInfo(movieId);
-        }
+        printBoxOfficeMovie();
+        movieReserveProcess();
         // TODO 구현 진행
     }
 
@@ -33,8 +30,22 @@ public class MovieApplication {
         OutputView.printMovies(movies);
     }
 
+    public static void movieReserveProcess() {
+        try {
+            printSelectedMovieInfo(selectMovieByID());
+        } catch (IllegalArgumentException e) {
+            OutputView.printRestartReservation(e);
+            movieReserveProcess();
+        }
+    }
+
     public static int selectMovieByID() {
-        return InputView.inputMovieId();
+        int selectedMovieId = InputView.inputMovieId();
+
+        if (!MovieRepository.isContainMovieId(selectedMovieId))
+            throw new IllegalArgumentException("해당하는 영화의 ID 가 없습니다.");
+
+        return selectedMovieId;
     }
 
     public static void printSelectedMovieInfo(int movieId) {
