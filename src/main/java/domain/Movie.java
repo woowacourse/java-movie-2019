@@ -36,6 +36,19 @@ public class Movie {
         return playSchedules;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+
     public boolean checkMovieId(int movieId){
         if (id == movieId) {
             return true;

@@ -1,14 +1,12 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.ReservedMovie;
 import utils.DateTimeUtils;
 import view.InputView;
 import view.OutputView;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 
 public class MovieApplication {
 
@@ -98,10 +96,12 @@ public class MovieApplication {
         return true;
     }
 
-    public void printReservationList(List<Movie> reservedMovie, int selectedTable, int reservationNumber) {
-
-
+    public void printReservationList(List<ReservedMovie> reservedMovieList){
+        for (ReservedMovie movie : reservedMovieList){
+            System.out.println(movie);
+        }
     }
+
 
     public boolean checkIfOneHourWithinRange(List<Movie> reservedMovie, LocalDateTime dateTimetoCheck, int selectedTable) {
         boolean isOneHourWithinRange = false;
@@ -116,7 +116,7 @@ public class MovieApplication {
     public boolean checkIfMovieSame(List<Movie> reservedMovie, int movieIdReserving) {
         boolean isSameMovie = false;
         for (Movie movie : reservedMovie) {
-            isSameMovie = movie.checkMovieId(movieIdReserving)
+            isSameMovie = movie.checkMovieId(movieIdReserving);
         }
         return isSameMovie;
     }
@@ -132,38 +132,46 @@ public class MovieApplication {
         boolean isReservationEnd = false;
         boolean isOneHourWithinRange = false;
         boolean isSameMovie = false;
+
+        List<LocalDateTime> reservedMovieTimeInfoForPrint = new ArrayList<>();
+        List<Integer> reservedMovieReservationNumberInfoForPrint = new ArrayList<>();
+
+        List<ReservedMovie> reservedMovieList = new ArrayList<>();
         //TODO : 바깥 루프 필요함
 
         while (!isReservationEnd) {
             int movieId = InputView.inputMovieId();
             m.printSelectedMovieInfo(movieId, movies);
             Movie movieReservingNow = m.movieSelection(movieId, movies);
+
             reservedMovie.add(m.movieSelection(movieId, movies));
+
             int selectedTable = m.timeTableSelectionInput(movieReservingNow);
 
             LocalDateTime dateTimeToCheck = movieReservingNow.getPlayScehdules().get(selectedTable).getStartDateTime();
-            isOneHourWithinRange = m.checkIfOneHourWithinRange(reservedMovie, dateTimeToCheck, selectedTable);
 
+            isOneHourWithinRange = m.checkIfOneHourWithinRange(reservedMovie, dateTimeToCheck, selectedTable);
             isSameMovie = m.checkIfMovieSame(reservedMovie, movieId);
+            
             if (isOneHourWithinRange) {
                 System.out.println("상영 시간이 예매된 영화와 1시간 이내입니다. 다시 예매 해주세요.");
                 continue;
             }
             if (isSameMovie) {
                 System.out.println("기존 예매한 영화와 같은 영화입니다. 다른 영화로 예매 해주세요.");
-
+                continue;
             }
             int reseravationNumber = m.reservingNumberInput(movieReservingNow, selectedTable);
 
-            //LocalDateTime과 예약 인원을 저장하는 객체 필요
+            //LocalDaeTime과 예약 인원을 저장하는 객체 필요
 
-
+            reservedMovieList.add(new ReservedMovie(movieReservingNow, dateTimeToCheck, reseravationNumber));
 
             int payOrAdditionalReservation = m.payOrAdditionalReservationInput();
             isReservationEnd = m.checkIfReservationEnd(payOrAdditionalReservation);
         }
         //예약이 끝낫다면,
-        printReservationList(reservedMovie);
+        m.printReservationList(reservedMovieList);
         InputView.printPaymentRunningMessage();
         int amountOfPointToUse = InputView.inputAmountOfPointToUse();
         int payByCreditOrCash = InputView.inputPayByCreditCardOrCash();
