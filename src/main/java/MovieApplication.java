@@ -34,11 +34,12 @@ public class MovieApplication {
         completeOnceTicketing(selectedMovie, movieTime, peopleNum);
     }
 
-    public static void completeOnceTicketing(Movie selectedMovie, int movieTime, int peopleNum){
-        selectedMovie.discountScheduleCapacity(movieTime,peopleNum);
+    public static void completeOnceTicketing(Movie selectedMovie, int movieTime, int peopleNum) {
+        selectedMovie.discountScheduleCapacity(movieTime, peopleNum);
         SelectMovie completeMovie = new SelectMovie(selectedMovie, movieTime, peopleNum);
         selectMovieList.add(completeMovie);
     }
+
     public static void payment(List<SelectMovie> movieList) {
         OutputView.paymentRequest();
         int sumPrice = getSumPrice(movieList);
@@ -48,8 +49,8 @@ public class MovieApplication {
     }
 
     public static int getSumPrice(List<SelectMovie> movieList) {
-        int price=0;
-        for(SelectMovie movie: movieList){
+        int price = 0;
+        for (SelectMovie movie : movieList) {
             price += movie.getOneMovieSumPrice();
         }
         return price;
