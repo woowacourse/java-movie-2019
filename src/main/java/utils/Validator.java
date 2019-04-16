@@ -22,7 +22,7 @@ public class Validator {
 		return true;
 	}
 
-	public static boolean checkMovieReservationNumber(Movie movie, int movieTimeIdx, int reservationNumber) {
+	public static boolean checkMovieReservationNumberValid(Movie movie, int movieTimeIdx, int reservationNumber) {
 		int maxReservationNumber = movie.getPlaySchedules().get(movieTimeIdx).getCapacity();
 
 		if (reservationNumber <= 0 || maxReservationNumber < reservationNumber) {

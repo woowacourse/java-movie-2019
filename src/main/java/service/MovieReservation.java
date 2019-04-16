@@ -37,15 +37,23 @@ public class MovieReservation {
 
 	public static int getMovieReservationNumber(Movie movie, int movieTimeIdx) {
 		int reservationNumber = InputView.inputReservationNumber();
-		boolean result = Validator.checkMovieReservationNumber(movie, movieTimeIdx - 1, reservationNumber);
+		boolean result = Validator.checkMovieReservationNumberValid(movie, movieTimeIdx - 1, reservationNumber);
 
 		while (!result) {
 			OutputView.printUserInputAgainReservationNumberOver();
 			reservationNumber = InputView.inputReservationNumber();
-			result = Validator.checkMovieReservationNumber(movie, movieTimeIdx - 1, reservationNumber);
+			result = Validator.checkMovieReservationNumberValid(movie, movieTimeIdx - 1, reservationNumber);
 		}
 
 		return reservationNumber;
 	}
+
+/*	public static int getFinishReservationOrAddReservation(){
+		int finishOrAddNumber = InputView.inputFinishReservationOrAddReservation();
+		boolean result = Validator.check
+		while(){
+
+		}
+	}*/
 
 }
