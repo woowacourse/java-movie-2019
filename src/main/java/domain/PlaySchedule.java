@@ -29,7 +29,7 @@ public class PlaySchedule {
     // 현재 시간 이후인지 체크
     private boolean isScheduleValidTime() {
         LocalDateTime currentTime = LocalDateTime.now();
-        return currentTime.isAfter(this.startDateTime);
+        return currentTime.isBefore(this.startDateTime);
     }
 
     // 1시간 이내인지 체크

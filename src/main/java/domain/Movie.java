@@ -45,7 +45,7 @@ public class Movie {
         return playSchedules;
     }
 
-    public boolean isRightMovie(int movieId) {
+    public boolean isSameMovie(int movieId) {
         return (id == movieId);
     }
 
@@ -57,18 +57,18 @@ public class Movie {
 
     public void checkTimeScheduleValid(int timeScheduleIndex) {
         playSchedules.get(timeScheduleIndex - ONE);
-        if (checkMovieSchedule(timeScheduleIndex - ONE)) {
+        if (!checkMovieSchedule(timeScheduleIndex - ONE)) {
             throw new IllegalArgumentException("이미 지난 시간표입니다");
         }
+    }
+
+    private boolean checkMovieSchedule(int timeScheduleIndex) {
+        return playSchedules.get(timeScheduleIndex).isSchedulePossible();
     }
 
     public boolean isMoviePossible() {
         return playSchedules.stream()
                 .anyMatch(schedule -> schedule.isSchedulePossible());
-    }
-
-    public boolean checkMovieSchedule(int timeScheduleIndex) {
-        return playSchedules.get(timeScheduleIndex).isSchedulePossible();
     }
 
     public boolean isOneHourWithRangeMovie(int timeIndex) {

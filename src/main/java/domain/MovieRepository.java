@@ -1,11 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ForkJoinTask;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static utils.DateTimeUtils.createDateTime;
@@ -58,7 +54,7 @@ public class MovieRepository {
     public static Movie getWantMovie(int movieId) {
         if (isContains(movieId)) {
             return movies.stream()
-                    .filter(movie -> movie.isRightMovie(movieId))
+                    .filter(movie -> movie.isSameMovie(movieId))
                     .collect(Collectors.toList())
                     .get(0);
         }
@@ -67,7 +63,7 @@ public class MovieRepository {
 
     private static boolean isContains(int movieId) {
         return movies.stream()
-                .anyMatch(movie -> movie.isRightMovie(movieId));
+                .anyMatch(movie -> movie.isSameMovie(movieId));
     }
 
     public static List<PlaySchedule> getPlaySchedule(Movie inputMovie) {

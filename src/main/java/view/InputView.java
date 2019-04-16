@@ -27,7 +27,7 @@ public class InputView {
             movie.checkTimeScheduleValid(timeScheduleIndex);
             return timeScheduleIndex;
         } catch (Exception e) {
-            System.out.println("제대로된 스케쥴 일정을 입력해주세요");
+            System.out.println(e.getMessage());
             return InputTimeScheduleIndex(movie);
         }
     }
