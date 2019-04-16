@@ -60,5 +60,11 @@ public class InputView {
             return inputMember();
         }
     }
+   public static int isOneOrTwo(int input){
+        if(!(input==1 || input==2)){
+            throw new IllegalArgumentException("입력은 1또는 2를 입력해 주세요.");
+        }
+        return input;
+   }
 
 }
