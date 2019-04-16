@@ -1,4 +1,5 @@
 import Program.BookSystem;
+import Program.PaymentSystem;
 import domain.BookMovie;
 import domain.Movie;
 import domain.MovieRepository;
@@ -7,6 +8,12 @@ import view.OutputView;
 
 import java.util.List;
 
+/**
+ * BookSystem - 한 세트
+ * bookingMovie = 예약중인 영화(인원 수 포함)
+ * bookingMovieList = 예약중인 영화 정보
+ *
+ */
 public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
@@ -24,10 +31,12 @@ public class MovieApplication {
 
         int inputPeopleBooking = InputView.inputPeopleBooking();
         bookSystem.selectPeopleBooking(inputPeopleBooking);
-        System.out.println(bookingMovie);
 
+        PaymentSystem paymentSystem = new PaymentSystem();
 
-
+        int inputPaymentType = InputView.inputPaymentType();
+        paymentSystem.paymentStart(bookingMovie,inputPaymentType);
+        OutputView.printTotalPrice(paymentSystem.getTotalPrice());
 
     }
 }
