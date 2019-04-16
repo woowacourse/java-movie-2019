@@ -1,12 +1,15 @@
+import domain.BookedMovie;
 import domain.Movie;
 import domain.PlaySchedule;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookControl {
     private List<Movie> movies; // MovieRepository로부터 가져온 영화 목록 저장 변수
+    private List<BookedMovie> bookedMovies = new ArrayList<>(); // 예약된 영화를 저장할 변수
 
     public BookControl(List<Movie> movies) {
         this.movies = movies;
@@ -17,6 +20,8 @@ public class BookControl {
         int movieId = chooseMovie();
         int time_index = chooseTime(movieId);
         int people = howManyPeople(movieId, time_index);
+
+        addBookedMovies(movieId, time_index, people);
     }
 
     // #1-1 예약할 영화를 입력받는 함수
@@ -82,6 +87,17 @@ public class BookControl {
             return true;
         System.out.println("예약 가능인원을 초과하였습니다.");
         return false;
+    }
+
+    // #1-4 예약한 영화를 저장할 함수
+    private void addBookedMovies(int id, int time, int num) {
+        Movie target = getMovieByID(id);
+        bookedMovies.add(new BookedMovie(id, target.getName(), 
+                    target.getPrice(), target.getPlaySchedules().get(time).getStartDateTime(), num));
+        PlaySchedule temp = new PlaySchedule(target.getPlaySchedules().get(time).getStartDateTime(), target.getPlaySchedules().get(time).getCapacity() - num);
+        target.getPlaySchedules().remove(time);
+        target.getPlaySchedules().add(time, temp);
+
     }
 
     // 예매를 더 할지 결제로 넘어갈지 판단하는 함수
