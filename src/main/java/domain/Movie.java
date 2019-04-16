@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Movie {
     private static final char NEW_LINE = '\n';
-    private static final String INVALID_SCHEDULE_ID_ERROR_MESSAGE = "해당 번호에 해당하는 시간대가 존재하지 않습니다.";
 
     private final int id;
     private final String name;
@@ -37,11 +36,15 @@ public class Movie {
         return this.id == id;
     }
 
+    public boolean isValidScheduleId(int id) {
+        return (id >= 1 && id <= playSchedules.size());
+    }
+
     public PlaySchedule getSchedule(int id) {
-        if (id >= 1 && id <= playSchedules.size()) {
+        if (isValidScheduleId(id)) {
             return playSchedules.get(id - 1);
         }
-        throw new IllegalArgumentException("해당 번호에 해당하는 시간대가 존재하지 않습니다.");
+        return null;
     }
 
 }

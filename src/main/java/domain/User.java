@@ -16,4 +16,6 @@ public class User {
     public static int selectSchedule(int movieId) {
         return InputView.inputScheduleId(movieId);
     }
+
+    public static int selectPersonnels(int movieId, int scheduleId) { return InputView.inputPersonnels(movieId, scheduleId); }
 }

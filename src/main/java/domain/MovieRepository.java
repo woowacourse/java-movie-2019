@@ -46,7 +46,7 @@ public class MovieRepository {
 
 
     /**
-     * 영화 id를 입력받아 이를 id로 갖는 영화를 찾아서 반환하는 메소드. 찾는 데 실패하면 예외를 던진다.
+     * 영화 id를 입력받아 이를 id로 갖는 영화를 찾아서 반환하는 메소드. 찾는 데 실패하면 null을 반환한다.
      */
     public static Movie getMovieWithId(int id) {
         Iterator<Movie> it = movies.iterator();
@@ -56,6 +56,13 @@ public class MovieRepository {
                 return thisMovie;
             }
         }
-        throw new IllegalArgumentException("해당 번호에 해당하는 영화가 존재하지 않습니다.");
+        return null;
+    }
+
+    /**
+     * 영화 id가 유효한지 확인하는 메소드.
+     */
+    public static boolean isValidMovieId(int id) {
+        return !(getMovieWithId(id) == null);
     }
 }

@@ -3,6 +3,7 @@ package view;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.MovieReservationMachine;
+import domain.PlaySchedule;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -12,7 +13,6 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String NOT_INTEGER_ERROR_MESSAGE = "정수를 입력해 주세요.";
-    private static final String NOT_AVAILABLE_MOVIE_ID_ERROR_MESSAGE = "현재 상영중인 영화의 번호들 중에서 선택하세요.";
 
 
     /**
@@ -34,8 +34,10 @@ public class InputView {
      */
     private static int getValidMovieId() {
         int userMovieId = getInteger();
-        MovieRepository.getMovieWithId(userMovieId);
-        return userMovieId;
+        if (MovieRepository.isValidMovieId(userMovieId)) {
+            return userMovieId;
+        }
+        throw new InputMismatchException("해당 번호에 해당하는 영화가 존재하지 않습니다.");
     }
 
     /**
@@ -52,21 +54,43 @@ public class InputView {
     }
 
     /**
-     * 인원을 입력받는 메소드. 성공할 때까지 반복함.
-     */
-    public static int inputPersonnels() {
-        return 0;
-    }
-
-    /**
      * 예매할 시간대 번호를 입력받는 메소드. 실패할 경우 예외를 던짐.
      */
     private static int getValidScheduleId(int movieId) {
         int userScheduleId = getInteger();
         Movie movie = MovieRepository.getMovieWithId(movieId);
-        movie.getSchedule(userScheduleId);
-        return userScheduleId;
+        if (movie.isValidScheduleId(userScheduleId)) {
+            return userScheduleId;
+        }
+        throw new InputMismatchException("해당 번호에 해당하는 시간대가 존재하지 않습니다.");
     }
+
+    /**
+     * 인원을 입력받는 메소드. 성공할 때까지 반복함.
+     */
+    public static int inputPersonnels(int movieId, int scheduleId) {
+        System.out.println("## 예약할 인원을 입력하세요.");
+        try {
+            return getValidPersonnels(movieId, scheduleId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputPersonnels(movieId, scheduleId);
+        }
+    }
+
+    /**
+     * 인원을 입력받는 메소드. 실패할 경우 예외를 던짐.
+     */
+    private static int getValidPersonnels(int movieId, int scheduleId) {
+        int personnels = getInteger();
+        Movie movie = MovieRepository.getMovieWithId(movieId);
+        PlaySchedule schedule = movie.getSchedule(scheduleId);
+        if (schedule.isCapable(personnels) && personnels >= 1) {
+            return personnels;
+        }
+        throw new InputMismatchException("입력하신 인원은 수용할 수 없습니다.");
+    }
+
 
     /**
      * 정수 하나를 입력받는 메소드. 실패할 경우 예외를 던짐.

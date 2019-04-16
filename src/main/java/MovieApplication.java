@@ -13,5 +13,6 @@ public class MovieApplication {
         int userMovieId = User.selectMovie();
         MovieReservationMachine.showSchedulesOfMovieWithId(userMovieId);
         int userScheduleId = User.selectSchedule(userMovieId);
+        int userPersonnels = User.selectPersonnels(userMovieId, userScheduleId);
     }
 }
