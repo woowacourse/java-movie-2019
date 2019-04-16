@@ -36,4 +36,21 @@ public class Movie {
         return id;
     }
 
+
+    public int getMovieTimeSize() {
+        return playSchedules.size();
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getCapacity(int time) {
+        return playSchedules.get(time).getCapacity();
+    }
+
+    public void setCapacity(int time,int capacity) {
+        playSchedules.get(time).setCapacity(capacity);
+    }
+
 }
