@@ -25,17 +25,35 @@ public class MovieApplication {
 
 	private void requestMovieTime(int movieId) {
 		int inputTime = InputView.inputMovieTime(movieId);
+		if (reservations.size() > 0) {
+			checkTimeGap(inputTime, movieId);
+		}
 		int inputPeople = InputView.inputMoviePeople(movieId, inputTime);
 		reservations.add(new Reservation(movieId, inputTime, inputPeople));
-		printAll();
+
+		selectOption();
 	}
-	
-	private void printAll() {
-		for(Reservation resv : reservations) {
+
+	private boolean checkTimeGap(int inputTime, int movieId) {
+		return true;
+	}
+
+	private void selectOption() {
+		int option = InputView.inputCheckReservation();
+		if (option == 2) {
+			printMovies();
+		}
+		if (option == 1) {
+			printReservations();
+		}
+	}
+
+	private void printReservations() {
+		for (Reservation resv : reservations) {
 			System.out.println(resv);
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		new MovieApplication().printMovies();
 	}

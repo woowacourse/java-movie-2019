@@ -44,11 +44,11 @@ public class Movie {
 	public String getMovieInfoString() {
 		return id + " - " + name + ", " + price + "원";
 	}
-	
+
 	public String getMovieTime(int timeIndex) {
 		return playSchedules.get(timeIndex - 1).getMovieTime();
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
