@@ -21,4 +21,10 @@ public class MovieRepositoryTest {
 		assertThat(MovieRepository.hasMovie(1)).isEqualTo(true);
 		assertThat(MovieRepository.hasMovie(2)).isEqualTo(false);
 	}
+	
+	@Test
+	public void hasSchedule() {
+		assertThat(MovieRepository.hasSchedule(1,1)).isEqualTo(true);
+		assertThat(MovieRepository.hasSchedule(1,6)).isEqualTo(false);
+	}
 }
